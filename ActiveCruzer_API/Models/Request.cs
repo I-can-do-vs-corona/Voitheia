@@ -17,6 +17,7 @@ namespace ActiveCruzer.Models
         public string description { get; set; }
         enum status { OPEN = 1, PENDING = 2, CLOSED = 3, TIMEOUT = 4 };
         public int currentStatus { get; set; }
+        public DateTime createdOn { get; set; }
 
         public Request(User requestor, string topic, string description)
         {

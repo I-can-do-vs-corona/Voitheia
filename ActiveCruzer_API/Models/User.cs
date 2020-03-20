@@ -10,7 +10,7 @@ namespace ActiveCruzer.Models
     {
         public User(string userName) : base (userName)
         {
-            UserName = userName;
+            
         }
     }
 }

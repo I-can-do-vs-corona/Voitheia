@@ -8,11 +8,13 @@ namespace ActiveCruzer.Models
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base (options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-            
+
         }
 
-        public DbSet<DotNetCore>
-    } 
+        public DbSet<ActiveCruzer.Models.Request> Request { get; set; }
+        public DbSet<ActiveCruzer.Models.User> User { get; set; }
+    }
+    
 }
