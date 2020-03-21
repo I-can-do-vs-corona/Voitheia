@@ -7,7 +7,7 @@ export class RequestDTO {
     public street: string;
     public zip: string;
     public city: string;
-    public comment: string;
+    public description: string;
 
     constructor() {
         this.requestType = "";
@@ -18,6 +18,6 @@ export class RequestDTO {
         this.street = "";
         this.zip = "";
         this.city = "";
-        this.comment = "";
+        this.description = "";
     }
 }

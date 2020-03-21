@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RequestViewComponent } from './components/request/request-view/request-view.component';
 import { RequestListComponent } from './components/request/request-list/request-list.component';
 import { RequestFormComponent } from './components/request/request-form/request-form.component';
+import { RequestFormSuccessComponent } from './components/request/request-form/request-form-success/request-form-success.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,14 @@ const routes: Routes = [
         path: 'create',
         component: RequestFormComponent,
         data: {title: 'Request.Form'},
+        children: [
+      
+          {
+            path: 'success',
+            component: RequestFormSuccessComponent,
+            data: {title: 'Request.Form.Success'},
+          }
+        ]
       }
     ]
   }

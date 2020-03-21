@@ -12,4 +12,12 @@ export class UtilitiesService {
   getAPIUrl() {
     return environment.apiBaseUrl;
   }
+
+  getRequestAmount() {
+    return environment.requestAmount
+  }
+
+  getRequestDistance() {
+    return environment.requestDistance
+  }
 }

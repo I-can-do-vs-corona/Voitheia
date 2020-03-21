@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "https://activecruzer.azurewebsites.net/"
+  apiBaseUrl: "https://activecruzer.azurewebsites.net/",
+  requestDistance: "2000",
+  requestAmount: "100"
 };
 
 /*

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestService } from '../request.service';
+import { RequestResponseDTO } from 'src/app/common/models/RequestResponseDTO';
 
 @Component({
   selector: 'app-request-list',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestListComponent implements OnInit {
 
-  constructor() { }
+  public data : RequestResponseDTO[];
+
+  constructor(private _requestService: RequestService) {
+    
+  }
 
   ngOnInit(): void {
   }

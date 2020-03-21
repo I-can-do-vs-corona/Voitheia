@@ -22,6 +22,7 @@ import { RequestViewComponent } from './components/request/request-view/request-
 import { TermsComponent } from './components/terms/terms/terms.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { RequestListComponent } from './components/request/request-list/request-list.component';
+import { RequestFormSuccessComponent } from './components/request/request-form/request-form-success/request-form-success.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RequestListComponent } from './components/request/request-list/request-
     RequestViewComponent,
     TermsComponent,
     HeaderComponent,
-    RequestListComponent
+    RequestListComponent,
+    RequestFormSuccessComponent
   ],
   imports: [
     BrowserModule,
