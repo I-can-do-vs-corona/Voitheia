@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ActiveCruzer.Models.DTO
 {
@@ -53,6 +54,7 @@ namespace ActiveCruzer.Models.DTO
     /// <summary>
     /// The type of the request
     /// </summary>
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum RequestType
     {
         Shopping,

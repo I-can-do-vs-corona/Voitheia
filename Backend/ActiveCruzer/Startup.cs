@@ -83,12 +83,7 @@ namespace ActiveCruzer
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
-
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
         private static void ConfigureSwaggerGen(IApplicationBuilder app)
