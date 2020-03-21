@@ -90,7 +90,7 @@ namespace ActiveCruzer
                 app.UseHsts();
             }
 
-            app.UseCors("MyPolicy");
+            app.UseCors(MyAllowSpecificOrigins);
 
 
             app.UseHttpsRedirection();
