@@ -25,9 +25,11 @@ namespace ActiveCruzer.Controllers
     [Route("[controller]")]
     public class RequestController : BaseController 
     {
-        private readonly RequestBll _bll;
-        private readonly IMapper _mapper;
+        private readonly MemoryRequestBll _bll = new MemoryRequestBll();
+        private IMapper _mapper;
         private bool _disposed;
+
+        public RequestController(IMapper mapper) => _mapper = mapper;
 
         /// <summary>
         /// Inserts a request to the database
@@ -88,7 +90,7 @@ namespace ActiveCruzer.Controllers
             {
                 if (_bll.Exists(id))
                 {
-                    _bll.UpdateStatus(Models.Request.RequestStatus.CLOSED);
+                    _bll.UpdateStatus(id,Models.Request.RequestStatus.CLOSED);
                     return Ok();
                 }
                 else
