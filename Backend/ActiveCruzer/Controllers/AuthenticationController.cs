@@ -18,14 +18,14 @@ namespace ActiveCruzer.Controllers
             _logger = logger;
         }
 
-        // action vor route /Login
+        // action route /Login
         public string Login()
         {
             // TODO
             return "TODO: logic for login";
         }
 
-        //action for route /Logout
+        //action route /Logout
         public string Logout()
         {
             // TODO

@@ -93,6 +93,28 @@ namespace ActiveCruzer.Controllers
             }
         }
 
+        /// <summary>
+        /// Assign request to free individual
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPatch("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult AssignRequest([FromRoute] Request request, [FromBody] int id)
+        {
+            if(_bll.Exists(id))
+            {
+                _bll.UpdateAssignee(id, request.unique_id);
+                return Ok(_mapper.Map<GetRequestResponse>(request));
+            }
+            else
+            {
+                return NotFound(request.unique_id);
+            }
+        }
+
 
         /// <summary>
         /// Get request by id

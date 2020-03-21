@@ -37,5 +37,10 @@ namespace ActiveCruzer.BLL
         {
             throw new NotImplementedException();
         }
+
+        public int UpdateAssignee(in int UserId, int RequestId)
+        {
+            return 1;
+        }
     }
 }
