@@ -1,29 +1,47 @@
-<p>request-list works!</p>
-<table mat-table [dataSource]="listRequests">
-    <!-- Firstname Column -->
-    <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef> Firstname </th>
-        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-    </ng-container>
-
-    <!-- Lastname Column -->
-    <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef> Lastname </th>
-        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-    </ng-container>
-
-    <!-- Description Column -->
-    <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-    </ng-container>
-
-    <!-- Distance to User Column -->
-    <ng-container matColumnDef="distanceToUser">
-        <th mat-header-cell *matHeaderCellDef> Distance </th>
-        <td mat-cell *matCellDef="let element"> {{element.distanceToUser}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <mat-form-field>
+            <mat-label>Types</mat-label>
+            <mat-select multiple (selectionChange)="applyFilter($event)">
+                <mat-option value="Shopping">
+                    Shopping
+                </mat-option>
+                <mat-option value="Childcare">
+                    Childcare
+                </mat-option>
+                <mat-option value="Medical">
+                    Medical
+                </mat-option>
+                <mat-option value="Petcare">
+                    Petcare
+                </mat-option>
+                <mat-option value="Other">
+                    Other
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <table mat-table [dataSource]="requestDataSource">
+            <!-- Firstname Column -->
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef> First name </th>
+                <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+        
+            <!-- RequestType Column -->
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> Request Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+            </ng-container>
+        
+            <!-- Distance to User Column -->
+            <ng-container matColumnDef="distanceToUser">
+                <th mat-header-cell *matHeaderCellDef> Distance </th>
+                <td mat-cell *matCellDef="let element"> {{element.distanceToUser}} </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" (click)="openDetails(i)"></tr>
+        </table>
+    </div>
+</div>

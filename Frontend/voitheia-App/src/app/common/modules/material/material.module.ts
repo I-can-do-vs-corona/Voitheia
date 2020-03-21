@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
-import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatTableModule, MatTableDataSource } from '@angular/material/table';
+import {MatTableModule } from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -13,18 +14,18 @@ import {MatTableModule, MatTableDataSource } from '@angular/material/table';
     CommonModule,
     MatInputModule,
     MatStepperModule,
-    MatSelectModule,
     MatRadioModule,
+    MatSelectModule,
     MatTableModule,
-    MatTableDataSource 
+    MatDialogModule
   ],
   exports: [
     MatInputModule,
     MatStepperModule,
-    MatSelectModule,
     MatRadioModule,
+    MatSelectModule,
     MatTableModule,
-    MatTableDataSource 
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

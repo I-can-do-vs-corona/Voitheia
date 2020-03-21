@@ -1,5 +1,5 @@
 export class RequestDTO {
-    public requestType: string;
+    public type: string;
     public lastName: string;
     public firstName: string;
     public email: string;
@@ -10,7 +10,7 @@ export class RequestDTO {
     public description: string;
 
     constructor() {
-        this.requestType = "";
+        this.type = "";
         this.lastName = "";
         this.firstName = "";
         this.email = "";

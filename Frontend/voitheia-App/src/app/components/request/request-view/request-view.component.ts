@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { RequestResponseDTO } from 'src/app/common/models/requestResponseDTO';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-request-view',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestViewComponent implements OnInit {
 
-  constructor() { }
+  @Input() element: RequestResponseDTO;
+  
+  constructor(
+    public dialogRef: MatDialogRef<RequestViewComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: RequestResponseDTO) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
   ngOnInit(): void {
   }
