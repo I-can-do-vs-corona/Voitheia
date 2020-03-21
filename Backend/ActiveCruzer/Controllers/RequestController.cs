@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,7 +22,7 @@ namespace ActiveCruzer.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
-    public class RequestController : BaseController
+    public class RequestController : BaseController 
     {
         private readonly RequestBll _bll;
         private readonly IMapper _mapper;
@@ -80,17 +81,26 @@ namespace ActiveCruzer.Controllers
         [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult ChangeStatus([FromRoute] int id, [FromBody] Request.RequestStatus status)
+        public ActionResult PatchRequest([FromRoute] int id, [FromBody] PatchRequestDto patchRequest)
         {
-            if (_bll.Exists(id))
+            if (ModelState.IsValid)
             {
-                _bll.UpdateStatus(status);
-                return Ok();
+                if (_bll.Exists(id))
+                {
+                    _bll.UpdateStatus(Models.Request.RequestStatus.CLOSED);
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound(id);
+                }
             }
             else
             {
-                return NotFound(id);
+                return BadRequest(ModelState);
             }
+
+        
         }
 
         /// <summary>
@@ -123,13 +133,31 @@ namespace ActiveCruzer.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<GetRequestResponse> GetById(int id)
         {
             var request = _bll.GetRequest(id);
             
             return Ok(_mapper.Map<GetRequestResponse>(request));
+        }
+
+        /// <summary>
+        /// Get all requests in a specific area
+        /// </summary>
+        /// <param name="longitude">Longitude in degrees</param>
+        /// <param name="latitude">Latitude in degrees</param>
+        /// <param name="amount">How many requests to retrieve</param>
+        /// <param name="metersPerimeter">Which perimeter should be kept in considoration</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult<GetAllRequestResponse> GetAll([FromQuery] double longitude, 
+            [FromQuery] double latitude, [FromQuery] int amount = 10, [FromQuery] int metersPerimeter = 2000)
+        {
+
+            var requests = _bll.GetRequestsViaGps(latitude, longitude,amount, metersPerimeter);
+            var dtoRequests = requests.Select(it => _mapper.Map<RequestDto>(it)).ToList();
+
+            return Ok(new GetAllRequestResponse {Requests = dtoRequests});
         }
 
         /// <summary>
@@ -150,7 +178,6 @@ namespace ActiveCruzer.Controllers
             base.Dispose(disposing);
         }
 
-       
-       
     }
+
 }

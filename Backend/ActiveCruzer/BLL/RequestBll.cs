@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,12 @@ namespace ActiveCruzer.BLL
         public int UpdateAssignee(in int UserId, int RequestId)
         {
             return 1;
+        }
+
+
+        public List<Request> GetRequestsViaGps(in double latitude, in double longitude, in int amount, in int metersPerimeter)
+        {
+            throw new NotImplementedException();
         }
     }
 }
