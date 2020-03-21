@@ -2,8 +2,11 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
+using ActiveCruzer.Models.DTO;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,32 +19,33 @@ namespace ActiveCruzer.Controllers
     /// <summary>
     /// Database controller for transactions related to the database
     /// </summary>
-    public class DatabaseController : ControllerBase, IDisposable
+    [ApiController]
+    [Route("[controller]")]
+    public class RequestController : BaseController
     {
-        // configs must be generated and connection must be parsed
-        private static DbContextOptions<ACDatabaseContext> options;
-        private ACDatabaseContext _db = new ACDatabaseContext(options);
+        private readonly RequestBll _bll;
+        private readonly IMapper _mapper;
+        private bool _disposed;
 
         /// <summary>
         /// Inserts a request to the database
         /// </summary>
         /// <returns></returns>
-        [HttpPost("/requests/")]
+        [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<int> InsertRequest([FromBody] Request req)
+        public ActionResult<CreateRequestResponseDto> InsertRequest([FromBody] CreateRequestDto req)
         {
             if (ModelState.IsValid)
             {
-                _db.Request.Add(req);
-                _db.SaveChanges();
+                var request = _mapper.Map<Request>(req);
+                var id = _bll.CreateRequest(request);
+                return CreatedAtAction(nameof(GetById), new {id}, new CreateRequestResponseDto{Id = id});
             }
             else
             {
                 return BadRequest(ModelState);
             }
-
-            return CreatedAtAction(nameof(GetById), new {id = req.unique_id}, req);
         }
 
         /// <summary>
@@ -49,20 +53,22 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("/requests/{id}")]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult RemoveRequest([FromRoute] int id)
         {
-            var request = _db.Request.Find(id);
-            if (request == null)
+            if (_bll.Exists(id))
             {
-                return NotFound();
+                _bll.Delete(id);
+                return Ok();
             }
-            _db.Remove(request);
-            _db.SaveChanges();
+            else
+            {
+                return NotFound(id);
+            }
+            
 
-            return Ok();
         }
 
         /// <summary>
@@ -71,20 +77,20 @@ namespace ActiveCruzer.Controllers
         /// <param name="id"></param>
         /// <param name="status"></param>
         /// <returns></returns>
-        [HttpPatch("/requests/{id}")]
+        [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult ChangeStatus([FromRoute] int id, [FromBody] Request.RequestStatus status)
         {
-            var request = _db.Request.Find(id);
-            if (request == null)
+            if (_bll.Exists(id))
             {
-                return NotFound();
+                _bll.UpdateStatus(status);
+                return Ok();
             }
-            request.currentStatus = status.GetHashCode();
-            _db.Update(request);
-
-            return Ok();
+            else
+            {
+                return NotFound(id);
+            }
         }
 
 
@@ -94,15 +100,14 @@ namespace ActiveCruzer.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<Request> GetById(int id)
+        public ActionResult<GetRequestResponse> GetById(int id)
         {
-            var request = _db.Request.Find(id);
-            if(request == null)
-            {
-                return NotFound();
-            }
-            return request;
+            var request = _bll.GetRequest(id);
+            
+            return Ok(_mapper.Map<GetRequestResponse>(request));
         }
 
         /// <summary>
@@ -113,14 +118,17 @@ namespace ActiveCruzer.Controllers
         {
             if (disposing)
             {
-                Dispose();
+                if (!_disposed)
+                {
+                    _bll?.Dispose();
+                }
+                _disposed = true;
             }
+
+            base.Dispose(disposing);
         }
 
-        /// <inheritdoc />
-        public void Dispose()
-        {
-            _db?.Dispose();
-        }
+       
+       
     }
 }
