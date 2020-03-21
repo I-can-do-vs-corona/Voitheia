@@ -19,6 +19,13 @@ export class RequestFormComponent implements OnInit {
   }
 
   public send(){
-
+    this._requestService.createRequest(this.request).subscribe(
+      data => {
+        
+      },
+      err => {
+        
+      }
+    );
   }
 }
