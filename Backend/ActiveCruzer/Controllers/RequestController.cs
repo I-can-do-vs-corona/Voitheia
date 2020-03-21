@@ -8,6 +8,7 @@ using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using ActiveCruzer.Models.DTO.Request;
+using ActiveCruzer.Models.Geo;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,27 +26,57 @@ namespace ActiveCruzer.Controllers
     [Route("[controller]")]
     public class RequestController : BaseController
     {
-        private readonly IRequestBll _bll = MemoryRequestBll.Instance;
+        private readonly IRequestBll _requestBll = MemoryRequestBll.Instance;
+        private readonly IGeoCodeBll _geoCodeBll;
+
         private IMapper _mapper;
         private bool _disposed;
 
-        public RequestController(IMapper mapper) => _mapper = mapper;
+        public RequestController(IMapper mapper)
+        {
+            _mapper = mapper;
+            _geoCodeBll = new GeoCodeBll(_mapper);
+        } 
 
         /// <summary>
         /// Inserts a request to the database
+        /// Returns 201 if success
+        /// Returns 400 if the Request dto was malformed
+        /// Returns 424 if the Address was invalid
         /// </summary>
         /// <returns></returns>
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status424FailedDependency)]
+
         public ActionResult<CreateRequestResponseDto> InsertRequest([FromBody] CreateRequestDto req)
         {
             if (ModelState.IsValid)
             {
-                var request = _mapper.Map<Request>(req);
-                request.Status = Models.Request.RequestStatus.Open;
-                var id = _bll.CreateRequest(request);
-                return CreatedAtAction(nameof(GetById), new {id}, new CreateRequestResponseDto {Id = id});
+
+                var validatedAddress = _geoCodeBll.ValidateAddress(_mapper.Map<GeoQuery>(req));
+                if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High)
+                {
+                    var request = _mapper.Map<Request>(req);
+                    request.Zip = validatedAddress.Zip;
+                    request.City = validatedAddress.City;
+                    request.Street = validatedAddress.Street;
+                    request.Longitude = validatedAddress.Coordinates.Longitude;
+                    request.Latitude = validatedAddress.Coordinates.Latitude;
+                    request.Status = Models.Request.RequestStatus.Open;
+                    var id = _requestBll.CreateRequest(request);
+                    return CreatedAtAction(nameof(GetById), new { id }, new CreateRequestResponseDto { Id = id });
+                }
+                else
+                {
+                    return new ContentResult
+                    {
+                        StatusCode = 424,
+                        Content = $"Status Code: {424}; FailedDependency; Address is invalid",
+                        ContentType = "text/plain",
+                    };
+                }
             }
             else
             {
@@ -63,9 +94,9 @@ namespace ActiveCruzer.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult RemoveRequest([FromRoute] int id)
         {
-            if (_bll.Exists(id))
+            if (_requestBll.Exists(id))
             {
-                _bll.Delete(id);
+                _requestBll.Delete(id);
                 return Ok();
             }
             else
@@ -84,7 +115,7 @@ namespace ActiveCruzer.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<GetRequestResponse> GetById(int id)
         {
-            var request = _bll.GetRequest(id);
+            var request = _requestBll.GetRequest(id);
 
             return Ok(new GetRequestResponse
             {
@@ -105,7 +136,7 @@ namespace ActiveCruzer.Controllers
         public ActionResult<GetAllRequestResponse> GetAll([FromQuery] double longitude,
             [FromQuery] double latitude, [FromQuery] int amount = 10, [FromQuery] int metersPerimeter = 2000)
         {
-            var requests = _bll.GetRequestsViaGps(latitude, longitude, amount, metersPerimeter);
+            var requests = _requestBll.GetRequestsViaGps(latitude, longitude, amount, metersPerimeter);
             var dtoRequests = requests.Select(it => _mapper.Map<RequestDto>(it)).ToList();
 
             return Ok(new GetAllRequestResponse {Requests = dtoRequests});
@@ -121,7 +152,7 @@ namespace ActiveCruzer.Controllers
             {
                 if (!_disposed)
                 {
-                    _bll?.Dispose();
+                    _requestBll?.Dispose();
                 }
 
                 _disposed = true;

@@ -4,6 +4,6 @@ namespace ActiveCruzer.BLL
 {
     public interface IGeoCodeBll
     {
-        Coordinates ConvertToCoordinates(GeoQuery query);
+        ValidatedAddress ValidateAddress(GeoQuery query);
     }
 }

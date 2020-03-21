@@ -17,9 +17,15 @@
         /// The City
         /// </summary>
         public string City { get; set; }
+
         /// <summary>
         /// The Country
         /// </summary>
-        public string Country { get; set; }
+        public string Country { get; set; } = "Germany";
+
+        public override string ToString()
+        {
+            return Street + "," + Zip + "," + City + "," + Country;
+        }
     }
 }

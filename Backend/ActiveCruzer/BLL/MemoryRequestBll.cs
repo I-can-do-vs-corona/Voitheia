@@ -15,32 +15,28 @@ namespace ActiveCruzer.BLL
 
         MemoryRequestBll()
         {
-            CreateRequest(new Request
+            for (int i = 0; i < 100; i++)
             {
-                Id = 1, City = "Schweinfurt",
-                CreatedOn = DateTime.UtcNow,
-                Description = "Hammer Beschreibung",
-                Email = "hallo@la.com",
-                FirstName = "hallo",
-                LastName = "Ben",
-                Latitude = 1,
-                Longitude = 2,
-                PhoneNumber = "+12351231"
-            });
+                
+                CreateRequest(new Request
+                {
+                    City = "Wasserlosen",
+                    Street = "Neubessinger Str. 14",
+                    Zip = "97535",
+                    CreatedOn = DateTime.UtcNow,
+                    Description = "Hammer Beschreibung",
+                    Email = "hallo@la.com",
+                    FirstName = "hallo",
+                    LastName = "Ben",
+                    Latitude = 1,
+                    Longitude = 2,
+                    PhoneNumber = "+12351231",
+                    RequestType = (RequestType) (i%5+1)
+                });
+            }
+            
 
-            CreateRequest(new Request
-            {
-                Id = 2,
-                City = "Dieter",
-                CreatedOn = DateTime.UtcNow,
-                Description = "Hammer a",
-                Email = "hallo@la.caom",
-                FirstName = "a232",
-                LastName = "asdasd",
-                Latitude = 1,
-                Longitude = 2,
-                PhoneNumber = "+1235asdsdsa1231"
-            });
+            
         }
 
         public static MemoryRequestBll Instance
@@ -66,6 +62,7 @@ namespace ActiveCruzer.BLL
         public int CreateRequest(Request request)
         {
             Interlocked.Increment(ref _index);
+            request.Id = _index;
             _requests.Add(_index, request);
             return _index;
         }

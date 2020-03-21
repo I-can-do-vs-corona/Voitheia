@@ -5,9 +5,9 @@ namespace ActiveCruzer.BLL
 {
     public class MemoryGeoBll : IGeoCodeBll
     {
-        public Coordinates ConvertToCoordinates(GeoQuery query)
+        public ValidatedAddress ValidateAddress(GeoQuery query)
         {
-            return new Coordinates {Longitude = 9.709178, Latitude = 50.24512};
+            return new ValidatedAddress {Coordinates = new Coordinates {Longitude = 9.709178, Latitude = 50.24512}};
         }
     }
 }

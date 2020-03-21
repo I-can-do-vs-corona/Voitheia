@@ -1,9 +1,9 @@
-﻿using ActiveCruzer.Models.DTO.Geo;
-
+﻿
 namespace ActiveCruzer.Models.DTO.Request
 {
     public class RequestDto
     {
+        public int Id { get; set; }
         public string Description { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
@@ -17,5 +17,7 @@ namespace ActiveCruzer.Models.DTO.Request
         /// Distance to the currently logged in users registered address
         /// </summary>
         public int DistanceToUser { get; set; }
+
+        public RequestType Type { get; set; }
     }
 }

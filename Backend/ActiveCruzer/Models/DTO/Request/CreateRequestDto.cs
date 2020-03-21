@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ActiveCruzer.Models.DTO.Geo;
 
 namespace ActiveCruzer.Models.DTO.Request
 {
@@ -12,7 +11,7 @@ namespace ActiveCruzer.Models.DTO.Request
         /// The Request type
         /// </summary>
         [Required]
-        public RequestType RequestType { get; set; }
+        public RequestType Type { get; set; }
 
         /// <summary>
         /// The last name of the person who needs help

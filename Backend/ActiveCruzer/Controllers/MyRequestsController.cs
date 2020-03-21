@@ -146,7 +146,7 @@ namespace ActiveCruzer.Controllers
             {
                 if (_bll.ExistsOnUser(id, _hardcodedUser))
                 {
-                    _bll.TakeRequest(id, _hardcodedUser);
+                    _bll.FinishRequest(id, _hardcodedUser);
                     return Ok();
                 }
                 else

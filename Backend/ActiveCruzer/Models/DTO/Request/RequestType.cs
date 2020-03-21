@@ -8,10 +8,10 @@ namespace ActiveCruzer.Models.DTO.Request
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum RequestType
     {
-        Shopping,
-        Childcare,
-        Medical,
-        Petcare,
-        Other
+        Shopping = 1,
+        Childcare = 2,
+        Medical = 3,
+        Petcare = 4,
+        Other = 5
     }
 }
