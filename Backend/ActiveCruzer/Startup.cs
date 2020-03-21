@@ -45,7 +45,7 @@ namespace ActiveCruzer
                     Contact = new OpenApiContact
                     {
                         Name = "Gerd Wagner",
-                        Email = string.Empty,
+                        Email = "gerd.wagner@voithea.org",
                         Url = new Uri("https://twitter.com/Gerdi"),
                     },
                     License = new OpenApiLicense
@@ -84,21 +84,6 @@ namespace ActiveCruzer
             app.UseAuthorization();
 
 
-            /**
-             * Please provide endpoint information like this - plsssss : BR Lukas
-             * */
-            app.UseEndpoints(endpoints =>
-            {
-                // request endpoint
-                endpoints.MapControllerRoute(
-                    name: "database",
-                    pattern: "{controller=Database}/{action=Index}/{id?}");
-
-                // authentication endpoint
-                endpoints.MapControllerRoute(
-                    name: "authentication",
-                    pattern: "{controller=Authentication}/{action=Index}/{id?}");
-            });
         }
 
         private static void ConfigureSwaggerGen(IApplicationBuilder app)

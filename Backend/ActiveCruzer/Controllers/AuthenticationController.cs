@@ -9,7 +9,7 @@ using ActiveCruzer.Models;
 
 namespace ActiveCruzer.Controllers
 {
-    public class AuthenticationController : Controller
+    public class AuthenticationController : ControllerBase
     {
         private readonly ILogger<AuthenticationController> _logger;
 

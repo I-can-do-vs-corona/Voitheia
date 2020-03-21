@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,8 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ActiveCruzer.Controllers
 {
-    
-    public class DatabaseController : Controller
+    public class DatabaseController : ControllerBase, IDisposable
     {
         // configs must be generated and connection must be parsed
         private static DbContextOptions<ACDatabaseContext> options;
@@ -21,7 +23,9 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("/requests/")]
-        public string InsertRequest([FromBody]Request req)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public ActionResult<int> InsertRequest([FromBody] Request req)
         {
             if (ModelState.IsValid)
             {
@@ -30,9 +34,10 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return "Bad request";
+                return BadRequest(ModelState);
             }
-            return "request processed";
+
+            return CreatedAtAction(nameof(GetById), new {id = req.unique_id}, req);
         }
 
         /// <summary>
@@ -41,20 +46,21 @@ namespace ActiveCruzer.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("/requests/{id}")]
-        public string RemoveRequest([FromRoute]int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult RemoveRequest([FromRoute] int id)
         {
-            if(ModelState.IsValid)
+            var request = _db.Request.Find(id);
+            if (request == null)
             {
-                Request tmp = _db.Request.Find(id);
-                _db.Remove(tmp);
-                _db.SaveChanges();
+                return NotFound();
             }
-            else
-            {
-                return "Bad request";
-            }
-            return "request processed";
+            _db.Remove(request);
+            _db.SaveChanges();
+
+            return Ok();
         }
+
         /// <summary>
         /// Updates the status of a request
         /// </summary>
@@ -62,26 +68,33 @@ namespace ActiveCruzer.Controllers
         /// <param name="status"></param>
         /// <returns></returns>
         [HttpPatch("/requests/{id}")]
-        public string ChangeStatus([FromRoute]int id, [FromBody] Request.RequestStatus status)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public string ChangeStatus([FromRoute] int id, [FromBody] Request.RequestStatus status)
         {
-            if(ModelState.IsValid)
-            {
-                
-            }
-            else
-            {
-
-            }
-            return "request processed";
+            throw new NotImplementedException();
         }
 
-        protected override void Dispose(bool disposing)
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<Request> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected void Dispose(bool disposing)
         {
             if (disposing)
             {
-                _db.Dispose();
+                Dispose();
             }
-            base.Dispose(disposing);
+        }
+
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            _db?.Dispose();
         }
     }
 }
