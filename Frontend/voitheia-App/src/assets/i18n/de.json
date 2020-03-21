@@ -3,7 +3,9 @@
         "Name": "Name",
         "Email": "Email adresse",
         "Password": "Password",
-        "Submit": "Schicken"
+        "Submit": "Schicken",
+        "Next": "Weiter",
+        "Back": "Zurück"
     },
     "Home": {
         "Buttons": {
@@ -17,7 +19,11 @@
     },
     "Request": {
         "Create": {
-            "Title": "Anfrage erstellen"
+            "Title": "Anfrage erstellen",
+            "Stepper": {
+                "Request": "Anfrage",
+                "ContactInformation": "Kontaktdate"
+            }
         },
         "Input": {
             "Label": {
