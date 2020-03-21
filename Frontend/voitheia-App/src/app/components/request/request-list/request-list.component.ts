@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../request.service';
-import { RequestResponseDTO } from 'src/app/common/models/RequestResponseDTO';
+import { RequestResponseDTO } from 'src/app/common/models/requestResponseDTO';
 
 @Component({
   selector: 'app-request-list',
@@ -9,10 +9,18 @@ import { RequestResponseDTO } from 'src/app/common/models/RequestResponseDTO';
 })
 export class RequestListComponent implements OnInit {
 
-  public data : RequestResponseDTO[];
+  public listRequests : RequestResponseDTO[];
+  displayedColumns = ['firstName', 'lastName', 'description', 'distanceToUser'];
 
   constructor(private _requestService: RequestService) {
-    
+    this._requestService.getRequests().subscribe(
+      data => {
+        this.listRequests = data['requests'];
+      },
+      err => {
+        alert("error");
+      }
+    );
   }
 
   ngOnInit(): void {

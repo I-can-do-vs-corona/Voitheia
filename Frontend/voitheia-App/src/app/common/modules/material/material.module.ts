@@ -5,6 +5,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule, MatTableDataSource } from '@angular/material/table';
 
 @NgModule({
   declarations: [],
@@ -13,13 +14,17 @@ import {MatRadioModule} from '@angular/material/radio';
     MatInputModule,
     MatStepperModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule,
+    MatTableDataSource 
   ],
   exports: [
     MatInputModule,
     MatStepperModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule,
+    MatTableDataSource 
   ]
 })
 export class MaterialModule { }

@@ -15,8 +15,10 @@ export class RequestService {
   }
 
   getRequests(requestAmount = 0, requestDistance = 0){
-    var parameters = "?metersPerimeter="  + (requestDistance === 0)? this._utilitiesService.getRequestDistance().toString() : requestDistance.toString();
-    parameters += "&amount=" + (requestAmount === 0)? this._utilitiesService.getRequestAmount().toString() : requestAmount.toString();
+    var parameters = "?metersPerimeter=";
+    parameters += (requestDistance === 0)? this._utilitiesService.getRequestDistance().toString() : requestDistance.toString();
+    parameters += "&amount=";
+    parameters += (requestAmount === 0)? this._utilitiesService.getRequestAmount().toString() : requestAmount.toString();
     return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'request' + parameters, {withCredentials: false});
   }
 }

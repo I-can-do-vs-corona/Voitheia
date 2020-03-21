@@ -1,10 +1,10 @@
 import { RequestDTO } from './requestDTO';
 
 export class RequestResponseDTO extends RequestDTO {
-    public volunteerUserId: string;
+    public distanceToUser: number;
 
     constructor() {
         super();
-        this.volunteerUserId = "";
+        this.distanceToUser = 0;
     }
 }
