@@ -1,0 +1,18 @@
+{
+    "General": {
+        "Name": "Name",
+        "Email": "Email address",
+        "Password": "Password",
+        "Submit": "Submit"
+    },
+    "Home": {
+        "Buttons": {
+            "CreateRequest": "",
+            "ShowRequests" : ""
+        },
+        "Texts": {
+            "Level1": "",
+            "Level2": ""
+        }
+    }
+}

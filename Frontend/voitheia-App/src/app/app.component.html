@@ -1,12 +1,7 @@
-<app-navbar></app-navbar>
-<div class="content container">
-    <div>
-      <mat-form-field class="example-full-width">
-        <mat-label>Favorite food</mat-label>
-        <input matInput placeholder="Ex. Pizza" value="Sushi">
-      </mat-form-field>
-      <fa-icon [icon]="['fas', 'lock']" ></fa-icon>
-        <router-outlet></router-outlet>
-    </div>
+<app-header></app-header>
+<div id="page-content">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 <app-footer></app-footer>

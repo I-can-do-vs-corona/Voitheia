@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import './variables.scss';
+@import './custom-angular-material-theme.scss';
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+    background-color: $brand-secondary-color-light;
+    color:white;
+
+    .container-fluid{
+        padding:0;
+    }
+}

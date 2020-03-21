@@ -1,0 +1,23 @@
+@import '../../../variables.scss';
+
+:host{
+    .box{
+        padding:2em;
+        background-color: white;
+        color:black;
+        height:100%;
+
+        font-size: $largest;
+        font-weight: $bold;
+    }
+
+    #line1 {
+        margin: 1em 0;
+        font-size: $xxtra-large;
+        font-weight: $bold;
+    }
+
+    #line2 {
+
+    }
+}
