@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ActiveCruzer.Controllers
 {
+    /// <summary>
+    /// Database controller for transactions related to the database
+    /// </summary>
     public class DatabaseController : ControllerBase, IDisposable
     {
         // configs must be generated and connection must be parsed
@@ -76,6 +79,11 @@ namespace ActiveCruzer.Controllers
         }
 
 
+        /// <summary>
+        /// Get request by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Request> GetById(int id)
@@ -83,6 +91,10 @@ namespace ActiveCruzer.Controllers
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// IDisposible for connections
+        /// </summary>
+        /// <param name="disposing"></param>
         protected void Dispose(bool disposing)
         {
             if (disposing)

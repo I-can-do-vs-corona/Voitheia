@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ActiveCruzer.Models
 {
+    /// <summary>
+    /// model for requests
+    /// </summary>
     public class Request
     {
         public int unique_id { get; set; }
