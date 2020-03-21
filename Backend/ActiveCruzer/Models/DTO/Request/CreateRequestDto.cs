@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using ActiveCruzer.Models.DTO.Geo;
 
-namespace ActiveCruzer.Models.DTO
+namespace ActiveCruzer.Models.DTO.Request
 {
     /// <summary>
     /// The DTO for requests
@@ -48,19 +48,13 @@ namespace ActiveCruzer.Models.DTO
         /// Comment for the request
         /// </summary>
         public string Comment { get; set; }
+        /// <summary>
+        /// The coordinates of the request. can be retrieved via the Geo/GetGeoCode endpoint
+        /// </summary>
+        [Required]
+        public CoordinatesDto Coordinates { get; set; }
 
     }
 
-    /// <summary>
-    /// The type of the request
-    /// </summary>
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum RequestType
-    {
-        Shopping,
-        Kids,
-        Medical,
-        Pet,
-        Other
-    }
+  
 }
