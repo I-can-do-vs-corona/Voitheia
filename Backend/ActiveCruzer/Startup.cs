@@ -55,8 +55,8 @@ namespace ActiveCruzer
             {
                 // request endpoint
                 endpoints.MapControllerRoute(
-                    name: "requests",
-                    pattern: "{controller=Request}/{action=Index}/{id?}");
+                    name: "database",
+                    pattern: "{controller=Database}/{action=Index}/{id?}");
 
                 // authentication endpoint
                 endpoints.MapControllerRoute(

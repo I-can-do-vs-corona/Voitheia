@@ -24,7 +24,7 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return HttpStatusCodeResult(HttpStatusCode.BadRequest, "No valid type of Request was retrieved");
+                return "Bad request";
             }
             return "request processed";
         }
@@ -39,7 +39,7 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return HttpStatusCodeResult(HttpStatusCode.BadRequest, "No valid type of Request was retrieved");
+                return "Bad request";
             }
             return "request processed";
         }
