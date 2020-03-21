@@ -1,1 +1,78 @@
-<p>request-form works!</p>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        Anfrage erstellen
+        <form #RequestForm="ngForm" novalidate>
+            <div class="row">
+                <div class="col-md">
+                    <div class="form-group">
+                        <mat-form-field>
+                          <mat-label><span [innerHTML]="'Request.Input.Label.Type' | translate"></span></mat-label>
+                          <mat-select name="typeInput" [(ngModel)]="request.requestType" #typeInput="ngModel" required>
+                            <mat-option>
+                                test
+                            </mat-option>
+                            <mat-option>
+                                test2
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                          <mat-label><span [innerHTML]="'Request.Input.Label.Description' | translate"></span></mat-label>
+                            <textarea matInput name="textareaInput" [(ngModel)]="request.comment" #textareaInput="ngModel"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-group">
+                        <mat-form-field>
+                          <mat-label><span [innerHTML]="'Request.Input.Label.FirstName' | translate"></span></mat-label>
+                          <input matInput name="firstnameInput" [(ngModel)]="request.firstName" #firstnameInput="ngModel" required />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                            <mat-label><span [innerHTML]="'Request.Input.Label.LastName' | translate"></span></mat-label>
+                          <input matInput name="lastnameInput" [(ngModel)]="request.lastName" #lastnameInput="ngModel" required />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                          <mat-label><span [innerHTML]="'Request.Input.Label.Email' | translate"></span></mat-label>
+                          <input matInput name="emailInput" [(ngModel)]="request.email" #emailInput="ngModel" />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                          <mat-label><span [innerHTML]="'Request.Input.Label.Phone' | translate"></span></mat-label>
+                          <input matInput name="phoneInput" [(ngModel)]="request.phoneNumber" #phoneInput="ngModel" required />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                          <mat-label><span [innerHTML]="'Request.Input.Label.Address' | translate"></span></mat-label>
+                          <input matInput name="addressInput" [(ngModel)]="request.street" #addressInput="ngModel" required />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                          <mat-label><span [innerHTML]="'Request.Input.Label.PostalCode' | translate"></span></mat-label>
+                          <input matInput name="postalcodeInput" [(ngModel)]="request.zip" #postalcodeInput="ngModel" required />
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field>
+                          <mat-label><span [innerHTML]="'Request.Input.Label.City' | translate"></span></mat-label>
+                          <input matInput name="cityInput" [(ngModel)]="request.city" #cityInput="ngModel" required />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!RequestForm.form.valid">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> Save
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestDTO } from 'src/app/common/models/requestDTO';
+import { RequestService } from '../request.service';
 
 @Component({
   selector: 'app-request-form',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestFormComponent implements OnInit {
 
-  constructor() { }
+  request: RequestDTO;
+
+  constructor(private _requestService: RequestService) {
+    this.request = new RequestDTO();
+  }
 
   ngOnInit(): void {
   }
 
+  public send(){
+
+  }
 }
