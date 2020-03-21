@@ -19,6 +19,8 @@ namespace ActiveCruzer
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,6 +35,12 @@ namespace ActiveCruzer
 
             services.AddAutoMapper(GetType().Assembly);
 
+            services.AddCors(o => o.AddPolicy(MyAllowSpecificOrigins, builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
 
             RegisterSwaggerGen(services);
         }
@@ -81,6 +89,9 @@ namespace ActiveCruzer
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseCors(MyAllowSpecificOrigins);
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
