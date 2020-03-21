@@ -2,5 +2,6 @@
 {
     public class GetRequestResponse
     {
+        public RequestDto Request { get; set; }
     }
 }

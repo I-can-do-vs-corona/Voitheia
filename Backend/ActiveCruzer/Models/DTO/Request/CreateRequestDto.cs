@@ -47,12 +47,7 @@ namespace ActiveCruzer.Models.DTO.Request
         /// <summary>
         /// Comment for the request
         /// </summary>
-        public string Comment { get; set; }
-        /// <summary>
-        /// The coordinates of the request. can be retrieved via the Geo/GetGeoCode endpoint
-        /// </summary>
-        [Required]
-        public CoordinatesDto Coordinates { get; set; }
+        public string Description { get; set; }
 
     }
 

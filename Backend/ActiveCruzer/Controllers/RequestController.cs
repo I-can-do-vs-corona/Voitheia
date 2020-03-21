@@ -23,9 +23,9 @@ namespace ActiveCruzer.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
-    public class RequestController : BaseController 
+    public class RequestController : BaseController
     {
-        private readonly MemoryRequestBll _bll = new MemoryRequestBll();
+        private readonly IRequestBll _bll = MemoryRequestBll.Instance;
         private IMapper _mapper;
         private bool _disposed;
 
@@ -43,8 +43,9 @@ namespace ActiveCruzer.Controllers
             if (ModelState.IsValid)
             {
                 var request = _mapper.Map<Request>(req);
+                request.Status = Models.Request.RequestStatus.Open;
                 var id = _bll.CreateRequest(request);
-                return CreatedAtAction(nameof(GetById), new {id}, new CreateRequestResponseDto{Id = id});
+                return CreatedAtAction(nameof(GetById), new {id}, new CreateRequestResponseDto {Id = id});
             }
             else
             {
@@ -71,39 +72,6 @@ namespace ActiveCruzer.Controllers
             {
                 return NotFound(id);
             }
-            
-
-        }
-
-        /// <summary>
-        /// Updates the status of a request
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="status"></param>
-        /// <returns></returns>
-        [HttpPatch("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult PatchRequest([FromRoute] int id, [FromBody] PatchRequestDto patchRequest)
-        {
-            if (ModelState.IsValid)
-            {
-                if (_bll.Exists(id))
-                {
-                    _bll.UpdateStatus(id,Models.Request.RequestStatus.CLOSED);
-                    return Ok();
-                }
-                else
-                {
-                    return NotFound(id);
-                }
-            }
-            else
-            {
-                return BadRequest(ModelState);
-            }
-
-        
         }
 
         /// <summary>
@@ -117,24 +85,27 @@ namespace ActiveCruzer.Controllers
         public ActionResult<GetRequestResponse> GetById(int id)
         {
             var request = _bll.GetRequest(id);
-            
-            return Ok(_mapper.Map<GetRequestResponse>(request));
+
+            return Ok(new GetRequestResponse
+            {
+                Request = _mapper.Map<RequestDto>(request)
+            });
         }
 
         /// <summary>
-        /// Get all requests in a specific area
+        /// Get all requests in a specific area if longitude and latitude is not given,
+        /// the registered address of the user is taken
         /// </summary>
-        /// <param name="longitude">Longitude in degrees</param>
-        /// <param name="latitude">Latitude in degrees</param>
+        /// <param name="longitude">Longitude in degrees, if this is not passed, the users address is taken</param>
+        /// <param name="latitude">Latitude in degrees, if this is not passed, the users address is taken</param>
         /// <param name="amount">How many requests to retrieve</param>
         /// <param name="metersPerimeter">Which perimeter should be kept in considoration</param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<GetAllRequestResponse> GetAll([FromQuery] double longitude, 
+        public ActionResult<GetAllRequestResponse> GetAll([FromQuery] double longitude,
             [FromQuery] double latitude, [FromQuery] int amount = 10, [FromQuery] int metersPerimeter = 2000)
         {
-
-            var requests = _bll.GetRequestsViaGps(latitude, longitude,amount, metersPerimeter);
+            var requests = _bll.GetRequestsViaGps(latitude, longitude, amount, metersPerimeter);
             var dtoRequests = requests.Select(it => _mapper.Map<RequestDto>(it)).ToList();
 
             return Ok(new GetAllRequestResponse {Requests = dtoRequests});
@@ -152,12 +123,11 @@ namespace ActiveCruzer.Controllers
                 {
                     _bll?.Dispose();
                 }
+
                 _disposed = true;
             }
 
             base.Dispose(disposing);
         }
-
     }
-
 }

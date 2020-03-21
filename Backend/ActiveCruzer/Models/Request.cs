@@ -12,28 +12,33 @@ namespace ActiveCruzer.Models
     /// </summary>
     public class Request
     {
-        public int unique_id { get; set; }
+        public int Id { get; set; }
+        public int? Volunteer { get; set; }
+        public RequestType RequestType { get; set; }
+        public string Description { get; set; }
+        public RequestStatus Status { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Street { get; set; }
+        public string Zip { get; set; }
+        public string City { get; set; }
 
-        public User requestor { get; set; }
-        public int acceptor { get; set; }
 
-        public string topic { get; set; }
-        public string description { get; set; }
-        private RequestStatus status { get; set; }
-        public RequestStatus currentStatus { get; set; }
-        public DateTime createdOn { get; set; }
-        public Coordinates Coordinates { get; set; }
-
-        public Request(User requestor, string topic, string description)
+        public Request()
         {
         }
 
         public enum RequestStatus
         {
-            OPEN = 1,
-            PENDING = 2,
-            CLOSED = 3,
-            TIMEOUT = 4
+            Open = 1,
+            Pending = 2,
+            Closed = 3,
+            Timeout = 4
         }
     }
 }

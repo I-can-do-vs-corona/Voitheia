@@ -8,16 +8,65 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ActiveCruzer.BLL
 {
-    public class MemoryRequestBll : IRequestBll
+    public class MemoryRequestBll : IRequestBll, IMyRequestsBll
     {
-        private readonly Dictionary<int,Request> _requests = new Dictionary<int, Request>();
+        private static MemoryRequestBll instance = null;
+        private static readonly object padlock = new object();
+
+        MemoryRequestBll()
+        {
+            CreateRequest(new Request
+            {
+                Id = 1, City = "Schweinfurt",
+                CreatedOn = DateTime.UtcNow,
+                Description = "Hammer Beschreibung",
+                Email = "hallo@la.com",
+                FirstName = "hallo",
+                LastName = "Ben",
+                Latitude = 1,
+                Longitude = 2,
+                PhoneNumber = "+12351231"
+            });
+
+            CreateRequest(new Request
+            {
+                Id = 2,
+                City = "Dieter",
+                CreatedOn = DateTime.UtcNow,
+                Description = "Hammer a",
+                Email = "hallo@la.caom",
+                FirstName = "a232",
+                LastName = "asdasd",
+                Latitude = 1,
+                Longitude = 2,
+                PhoneNumber = "+1235asdsdsa1231"
+            });
+        }
+
+        public static MemoryRequestBll Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new MemoryRequestBll();
+                    }
+
+                    return instance;
+                }
+            }
+        }
+
+        private readonly Dictionary<int, Request> _requests = new Dictionary<int, Request>();
         private int _index = 0;
 
         /// <inheritdoc />
         public int CreateRequest(Request request)
         {
             Interlocked.Increment(ref _index);
-            _requests.Add(_index,request);
+            _requests.Add(_index, request);
             return _index;
         }
 
@@ -25,6 +74,11 @@ namespace ActiveCruzer.BLL
         public bool Exists(in int id)
         {
             return _requests.ContainsKey(id);
+        }
+
+        public bool IsNotClosed(in int id)
+        {
+            return _requests[id].Status != Request.RequestStatus.Closed;
         }
 
         /// <inheritdoc />
@@ -37,7 +91,7 @@ namespace ActiveCruzer.BLL
         /// <inheritdoc />
         public void UpdateStatus(int id, Request.RequestStatus status)
         {
-            _requests[id].currentStatus = status;
+            _requests[id].Status = status;
         }
 
         /// <inheritdoc />
@@ -49,12 +103,14 @@ namespace ActiveCruzer.BLL
         /// <inheritdoc />
         public void UpdateAssignee(in int userId, int requestId)
         {
-            _requests[requestId].acceptor = userId;
+            _requests[requestId].Volunteer = userId;
         }
 
 
         /// <inheritdoc />
-        public List<Request> GetRequestsViaGps(in double latitude, in double longitude, in int amount, in int metersPerimeter)
+        public List<ActiveCruzer.Models.Request> GetRequestsViaGps(in double latitude, in double longitude,
+            in int amount,
+            in int metersPerimeter)
         {
             return _requests.Values.Take(amount).ToList();
         }
@@ -63,8 +119,42 @@ namespace ActiveCruzer.BLL
         /// <inheritdoc />
         public void Dispose()
         {
-
         }
 
+
+        public int TakeRequest(in int requestId, in int userId)
+        {
+            var request = _requests[requestId];
+            request.Volunteer = userId;
+            request.Status = Request.RequestStatus.Pending;
+            return requestId;
+        }
+
+        public void FinishRequest(in int requestId, in int userId)
+        {
+            _requests[requestId].Status = Request.RequestStatus.Closed;
+        }
+
+        public void AbortRequest(in int requestId, in int userId)
+        {
+            var request = _requests[requestId];
+            request.Volunteer = null;
+            request.Status = Request.RequestStatus.Open;
+        }
+
+        public Request GetRequest(in int requestId, in int userId)
+        {
+            return _requests[requestId];
+        }
+
+        public bool ExistsOnUser(in int id, in int userId)
+        {
+            return _requests.ContainsKey(id) && _requests[id]?.Volunteer == userId;
+        }
+
+        public List<Request> GetAllFromUser(int hardcodedUser)
+        {
+            return _requests.Values.Where(it => it.Volunteer == hardcodedUser).ToList();
+        }
     }
 }
