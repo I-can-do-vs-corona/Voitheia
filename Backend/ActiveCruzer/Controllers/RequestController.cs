@@ -7,6 +7,7 @@ using ActiveCruzer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Extensions;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -73,9 +74,17 @@ namespace ActiveCruzer.Controllers
         [HttpPatch("/requests/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public string ChangeStatus([FromRoute] int id, [FromBody] Request.RequestStatus status)
+        public ActionResult ChangeStatus([FromRoute] int id, [FromBody] Request.RequestStatus status)
         {
-            throw new NotImplementedException();
+            var request = _db.Request.Find(id);
+            if (request == null)
+            {
+                return NotFound();
+            }
+            request.currentStatus = status.GetHashCode();
+            _db.Update(request);
+
+            return Ok();
         }
 
 
@@ -88,7 +97,12 @@ namespace ActiveCruzer.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Request> GetById(int id)
         {
-            throw new NotImplementedException();
+            var request = _db.Request.Find(id);
+            if(request == null)
+            {
+                return NotFound();
+            }
+            return request;
         }
 
         /// <summary>
