@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
+import { NgModule, FactorySansProvider } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faLock
+  faSave
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
-  faLock
+  faSave
 )
 
 @NgModule({
@@ -21,4 +21,6 @@ library.add(
     FontAwesomeModule
   ]
 })
-export class CustomFontAwesomeModule { }
+export class CustomFontAwesomeModule {
+  public faSave = faSave;
+}

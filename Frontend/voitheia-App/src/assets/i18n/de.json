@@ -16,6 +16,9 @@
         }
     },
     "Request": {
+        "Create": {
+            "Title": "Anfrage erstellen"
+        },
         "Input": {
             "Label": {
                 "FirstName": "Vorname",
