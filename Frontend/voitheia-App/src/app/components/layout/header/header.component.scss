@@ -1,10 +1,19 @@
+
+
 :host{
     height:65px;
+
+    .center_title{
+        text-shadow: 2px 2px black;
+        font-size: 6em; 
+        font-weight: bold; 
+        display: inline-block;
+        margin-bottom: 0.7em;
+        cursor: pointer;
+    }
+    
+    .center_title:hover{
+        color: #52B9CC;
+    }
 }
 
-.center_title{
-    font-size: 6em; 
-    font-weight: bold; 
-    display: inline-block;
-    margin-bottom: 0.7em;
-}

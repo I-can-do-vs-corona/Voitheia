@@ -1,7 +1,7 @@
 {
     "General": {
         "Buttons":{
-            "Submit": "Schicken",
+            "Submit": "Absenden",
             "Next": "Weiter",
             "Back": "Zurück",
             "Cancel": "Abbrechen",
@@ -31,8 +31,8 @@
         "Create": {
             "Title": "Anfrage erstellen",
             "Stepper": {
-                "Request": "Anfrage",
-                "ContactInformation": "Kontaktdate"
+                "Request": "Anfragedetails",
+                "ContactInformation": "Kontaktdaten"
             }
         },
         "Details": {
@@ -49,7 +49,7 @@
                 "Street": "Strasse & Hausnummer",
                 "PostalCode": "PLZ",
                 "City": "Ort",
-                "Type": "Typ",
+                "Type": "Anfragetyp",
                 "Description": "Beschreibung",
                 "Distance": "Entfernung"
             }
