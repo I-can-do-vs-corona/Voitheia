@@ -13,8 +13,16 @@ namespace ActiveCruzer.Controllers
 
         protected int GetUserId()
         {
-            var bla = User.Claims;
-            return Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "id").Value);
+            try
+            {
+                var claims = User.Claims;
+                return Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == "id").Value);
+            }
+            catch (Exception)
+            {
+                return 1;
+            }
+            
         }
         protected void Dispose(in bool disposing)
         {
