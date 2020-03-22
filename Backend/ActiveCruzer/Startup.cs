@@ -24,7 +24,8 @@ using Microsoft.Extensions.Logging.Console;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-
+using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 
 namespace ActiveCruzer
 {
@@ -33,8 +34,10 @@ namespace ActiveCruzer
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public static string BingKey;
         public static string SqlConnectionStringBuilder;
+        private static IConfiguration _configuration;
+        private string _connectionString;
 
-        public Startup(IWebHostEnvironment env)
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -49,6 +52,8 @@ namespace ActiveCruzer
             }
 
             Configuration = builder.Build();
+            _configuration = configuration;
+            _connectionString = _configuration["ActiveCrzuerDB-ConnectionString"];
         }
 
         public IConfiguration Configuration { get; }
@@ -58,7 +63,7 @@ namespace ActiveCruzer
         {
             services.AddDbContext<ACDatabaseContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("ActiveCruzerDB")));
+                    Configuration.GetConnectionString(_connectionString)));
             services.Configure<JwtAuthentication>(Configuration.GetSection("JwtAuthentication"));
             services.AddSingleton<IPostConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -77,8 +82,7 @@ namespace ActiveCruzer
 
             RegisterSwaggerGen(services);
 
-            BingKey = Configuration["Bing:ServiceApiKey"];
-            SqlConnectionStringBuilder = Configuration["Sql:ConnectionString"];
+            BingKey = _configuration["RingumsBing"];
         }
 
         private static void RegisterSwaggerGen(IServiceCollection services)
