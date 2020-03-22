@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ActiveCruzer.DAL.DataContext;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
@@ -17,6 +19,10 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace ActiveCruzer
@@ -51,7 +57,10 @@ namespace ActiveCruzer
             services.AddDbContext<ACDatabaseContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("ActiveCruzerDB")));
-
+            services.Configure<JwtAuthentication>(Configuration.GetSection("JwtAuthentication"));
+            services.AddSingleton<IPostConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer();
 
             services.AddControllersWithViews();
 
@@ -125,6 +134,7 @@ namespace ActiveCruzer
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
@@ -139,6 +149,37 @@ namespace ActiveCruzer
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
                 c.RoutePrefix = string.Empty;
             });
+        }
+
+        private class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
+        {
+            private readonly IOptions<JwtAuthentication> _jwtAuthentication;
+
+            public ConfigureJwtBearerOptions(IOptions<JwtAuthentication> jwtAuthentication)
+            {
+                _jwtAuthentication = jwtAuthentication ?? throw new System.ArgumentNullException(nameof(jwtAuthentication));
+            }
+
+            public void PostConfigure(string name, JwtBearerOptions options)
+            {
+                var jwtAuthentication = _jwtAuthentication.Value;
+
+                options.ClaimsIssuer = jwtAuthentication.ValidIssuer;
+                options.IncludeErrorDetails = true;
+                options.RequireHttpsMetadata = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateActor = false,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = false,
+                    ValidIssuer = jwtAuthentication.ValidIssuer,
+                    ValidAudience = jwtAuthentication.ValidAudience,
+                    IssuerSigningKey = jwtAuthentication.SymmetricSecurityKey,
+                    NameClaimType = ClaimTypes.NameIdentifier
+                };
+            }
         }
     }
 }

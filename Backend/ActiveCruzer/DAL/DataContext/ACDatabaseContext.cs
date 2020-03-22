@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Portal.API.Models;
 
 namespace ActiveCruzer.DAL.DataContext
 {
@@ -22,6 +23,6 @@ namespace ActiveCruzer.DAL.DataContext
         /// <summary>
         /// database model users
         /// </summary>
-        public DbSet<ActiveCruzer.Models.User> User { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ActiveCruzer.Models.DTO.Request
+﻿using ActiveCruzer.Models.DTO.MyRequests;
+
+namespace ActiveCruzer.Models.DTO.Request
 {
     public class PatchRequestDto
     {
