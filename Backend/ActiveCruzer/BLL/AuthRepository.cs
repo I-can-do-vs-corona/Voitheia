@@ -1,20 +1,8 @@
-﻿
-using Portal.API.Models;
-using Portal.API.Models.DTOs;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using ActiveCruzer.Models;
+using ActiveCruzer.Models.DTO;
 
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using System.Web;
-using ActiveCruzer.BLL;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using Portal.API.Helper.Authentication;
-
-
-namespace Portal.API.DAL.Repositories
+namespace ActiveCruzer.BLL
 {
     public class AuthRepository : IDisposable
     {

@@ -2,9 +2,8 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
+using ActiveCruzer.Models;
 using Microsoft.AspNetCore.Identity;
-using Portal.API.Helper.Authentication;
-using Portal.API.Models;
 
 namespace ActiveCruzer.BLL
 {

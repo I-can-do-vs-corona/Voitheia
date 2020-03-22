@@ -1,26 +1,16 @@
-﻿
-using System;
+﻿using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using ActiveCruzer;
-using ActiveCruzer.Controllers;
-using ActiveCruzer.Helper;
+using ActiveCruzer.BLL;
+using ActiveCruzer.Models;
+using ActiveCruzer.Models.DTO;
 using AutoMapper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Portal.API.BLL;
-using Portal.API.Helper.Authentication;
-using Portal.API.Models;
-using Portal.API.Models.DTOs;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
-namespace Portal.API.Controllers
+namespace ActiveCruzer.Controllers
 {
     /// <summary>
     /// Controller to check if User is logged in

@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Portal.API.Models;
+﻿using ActiveCruzer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ActiveCruzer.DAL.DataContext
 {

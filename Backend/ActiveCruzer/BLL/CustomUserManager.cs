@@ -1,10 +1,7 @@
-﻿
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Portal.API.Models;
+﻿using System;
+using ActiveCruzer.Models;
 
-namespace Portal.API.Helper.Authentication
+namespace ActiveCruzer.BLL
 {
     public interface IUserManager : IDisposable
     {

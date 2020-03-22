@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
-using ActiveCruzer.BLL;
-using AutoMapper;
-using Portal.API.Helper;
+using ActiveCruzer.Models;
+using ActiveCruzer.Models.DTO;
 
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using Portal.API.DAL.Repositories;
-using Portal.API.Helper.Authentication;
-using Portal.API.Models;
-using Portal.API.Models.DTOs;
-
-namespace Portal.API.BLL
+namespace ActiveCruzer.BLL
 {
     ///<Summary>
     /// Business Logic Layer for the History entries

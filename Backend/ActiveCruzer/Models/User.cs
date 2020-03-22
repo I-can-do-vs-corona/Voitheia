@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace Portal.API.Models
+namespace ActiveCruzer.Models
 {
     
     public class User : IdentityUser
