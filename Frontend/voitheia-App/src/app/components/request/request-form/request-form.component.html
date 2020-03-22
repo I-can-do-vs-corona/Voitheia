@@ -7,26 +7,15 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <mat-label name="requestType-label"><span [innerHTML]="'Request.Input.Label.Type' | translate"></span></mat-label>
+                                <mat-label name="requestType-label"><span [innerHTML]="'Request.Field.Label.Type' | translate"></span></mat-label>
                                 <mat-radio-group class="custom-radio-group"
                                 aria-labelledby="requestType-label"
                                 name="typeInput"
                                 #typeInput="ngModel"
-                                [(ngModel)]="request.type">
-                                    <mat-radio-button class="custom-radio-button" value="Shopping">
-                                        Shopping
-                                    </mat-radio-button>
-                                    <mat-radio-button class="custom-radio-button" value="Childcare">
-                                        Childcare
-                                    </mat-radio-button>
-                                    <mat-radio-button class="custom-radio-button" value="Medical">
-                                        Medical
-                                    </mat-radio-button>
-                                    <mat-radio-button class="custom-radio-button" value="Petcare">
-                                        Petcare
-                                    </mat-radio-button>
-                                    <mat-radio-button class="custom-radio-button" value="Other">
-                                        Other
+                                [(ngModel)]="request.type"
+                                required>
+                                    <mat-radio-button class="custom-radio-button" *ngFor="let requestType of RequestTypeEnum | keys" [value]="requestType">
+                                        <span [innerHTML]="'General.Enums.RequestTypeEnum.' + RequestTypeEnum[requestType] | translate"></span>
                                     </mat-radio-button>
                                 </mat-radio-group>
                             </div>
@@ -34,15 +23,15 @@
                         <div class="col-md">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Input.Label.Description' | translate"></span></mat-label>
-                                    <textarea matInput name="textareaInput" [(ngModel)]="request.description" #textareaInput="ngModel"></textarea>
+                                    <mat-label><span [innerHTML]="'Request.Field.Label.Description' | translate"></span></mat-label>
+                                    <textarea matInput name="textareaInput" [(ngModel)]="request.description" #textareaInput="ngModel" required></textarea>
                                 </mat-form-field>
                             </div>
                         </div>
                     </div>
                     <div>
                         <button matStepperNext class="btn btn-primary" [disabled]="!RequestForm.form.valid">
-                            {{'General.Next' | translate }}
+                            {{'General.Buttons.Next' | translate }}
                         </button>
                     </div>
                 </form>
@@ -51,31 +40,31 @@
                 <form #RequestAddressForm="ngForm" novalidate>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Input.Label.FirstName' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'Request.Field.Label.FirstName' | translate"></span></mat-label>
                             <input matInput name="firstnameInput" [(ngModel)]="request.firstName" #firstnameInput="ngModel" required />
                         </mat-form-field>
                     </div>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Input.Label.LastName' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'Request.Field.Label.LastName' | translate"></span></mat-label>
                             <input matInput name="lastnameInput" [(ngModel)]="request.lastName" #lastnameInput="ngModel" required />
                         </mat-form-field>
                     </div>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Input.Label.Email' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'Request.Field.Label.Email' | translate"></span></mat-label>
                             <input matInput name="emailInput" [(ngModel)]="request.email" #emailInput="ngModel" />
                         </mat-form-field>
                     </div>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Input.Label.Phone' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'Request.Field.Label.Phone' | translate"></span></mat-label>
                             <input matInput name="phoneInput" [(ngModel)]="request.phoneNumber" #phoneInput="ngModel" required />
                         </mat-form-field>
                     </div>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Input.Label.Address' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'Request.Field.Label.Street' | translate"></span></mat-label>
                             <input matInput name="addressInput" [(ngModel)]="request.street" #addressInput="ngModel" required />
                         </mat-form-field>
                     </div>
@@ -83,7 +72,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Input.Label.PostalCode' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'Request.Field.Label.PostalCode' | translate"></span></mat-label>
                                     <input matInput name="postalcodeInput" [(ngModel)]="request.zip" #postalcodeInput="ngModel" required />
                                 </mat-form-field>
                             </div>
@@ -91,7 +80,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Input.Label.City' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'Request.Field.Label.City' | translate"></span></mat-label>
                                     <input matInput name="cityInput" [(ngModel)]="request.city" #cityInput="ngModel" required />
                                 </mat-form-field>
                             </div>
@@ -100,10 +89,10 @@
         
                     <div>
                         <button matStepperPrevious class="btn btn-outline-dark">
-                            {{'General.Back' | translate }}
+                            {{'General.Buttons.Back' | translate }}
                         </button>
                         <button type="submit" class="btn btn-primary" [disabled]="!RequestAddressForm.form.valid || !RequestForm.form.valid" (click)="send()">
-                            <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Submit' | translate }}
+                            <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Submit' | translate }}
                         </button>
                     </div>
                 </form>

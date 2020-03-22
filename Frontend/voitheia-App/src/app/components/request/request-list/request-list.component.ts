@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RequestService } from '../request.service';
 import { RequestResponseDTO } from 'src/app/common/models/requestResponseDTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSelectChange } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestViewComponent } from '../request-view/request-view.component';
+import { RequestTypeEnum } from 'src/app/common/helper/enums';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-request-list',
@@ -12,9 +14,15 @@ import { RequestViewComponent } from '../request-view/request-view.component';
   styleUrls: ['./request-list.component.scss']
 })
 export class RequestListComponent implements OnInit {
-  tmpdata: RequestResponseDTO[];
+  unfilteredResult: RequestResponseDTO[];
+  openedItem: RequestResponseDTO;
   requestDataSource: MatTableDataSource<RequestResponseDTO>;
   displayedColumns = ['firstName', 'type', 'distanceToUser'];
+  resultsLength = 0;
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
 
   constructor(private _requestService: RequestService, public dialog: MatDialog) {
     
@@ -22,15 +30,8 @@ export class RequestListComponent implements OnInit {
 
   ngOnInit(): void {
     this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
-    this._requestService.getRequests().subscribe(
-      data => {
-        this.requestDataSource.data = data['requests'];
-        this.tmpdata = data['requests'];
-      },
-      err => {
-        alert("error");
-      }
-    );
+    this.requestDataSource.paginator = this.paginator;
+    this.loadAllData();
   }
 
   applyFilter(event: MatSelectChange) {
@@ -38,11 +39,11 @@ export class RequestListComponent implements OnInit {
 
     var tmp: RequestResponseDTO[];
     if(filterValues.length === 0){
-      tmp = this.tmpdata;
+      tmp = this.unfilteredResult;
     } else{
-      tmp = this.tmpdata.filter(item => {
+      tmp = this.unfilteredResult.filter(item => {
         for (let f of filterValues) {
-          if(item.type === f){
+          if(item.type === RequestTypeEnum[f]){
             return true;
           }
         }
@@ -50,6 +51,7 @@ export class RequestListComponent implements OnInit {
     }
 
     this.requestDataSource.data = tmp;
+    this.resultsLength = tmp.length;
 
     if (this.requestDataSource.paginator) {
       this.requestDataSource.paginator.firstPage();
@@ -57,14 +59,39 @@ export class RequestListComponent implements OnInit {
   }
   
   openDetails(index:number){
-    var element = this.requestDataSource.data[index];
+    this.openedItem = this.requestDataSource.data[index];
     const dialogRef = this.dialog.open(RequestViewComponent, {
-      width: '250px',
-      data: {element: element}
+      width: '450px',
+      data: {item: this.openedItem}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      alert("closed");
+      if(result){
+        this._requestService.takeRequest(this.openedItem.id).subscribe(
+          data => {
+            alert("angenommen & gespeichert")
+            this.loadAllData();
+          },
+          err => {
+            alert("error");
+          }
+        );
+      }else{
+        this.openedItem = null;
+      }
     });
+  }
+
+  private loadAllData(){
+    this._requestService.getRequests().subscribe(
+      data => {
+        this.requestDataSource.data = data['requests'];
+        this.unfilteredResult = data['requests'];
+        this.resultsLength = this.unfilteredResult.length;
+      },
+      err => {
+        alert("error");
+      }
+    );
   }
 }

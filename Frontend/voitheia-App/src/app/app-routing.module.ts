@@ -8,6 +8,7 @@ import { RequestViewComponent } from './components/request/request-view/request-
 import { RequestListComponent } from './components/request/request-list/request-list.component';
 import { RequestFormComponent } from './components/request/request-form/request-form.component';
 import { RequestFormSuccessComponent } from './components/request/request-form/request-form-success/request-form-success.component';
+import { MyRequestsListComponent } from './components/my-requests/my-requests-list/my-requests-list.component';
 
 
 const routes: Routes = [
@@ -39,34 +40,25 @@ const routes: Routes = [
   {
     path: 'request',
     children: [
-      
       {
         path: 'list',
         component: RequestListComponent,
         data: {title: 'Request.List'},
       },
       {
-        path: 'view:id',
-        component: RequestViewComponent,
-        data: {title: 'Request.View'},
-      },
-      {
-        path: 'edit:id',
-        component: RequestFormComponent,
-        data: {title: 'Request.Form'},
-      },
-      {
         path: 'create',
         component: RequestFormComponent,
-        data: {title: 'Request.Form'},
-        children: [
-      
-          {
-            path: 'success',
-            component: RequestFormSuccessComponent,
-            data: {title: 'Request.Form.Success'},
-          }
-        ]
+        data: {title: 'Request.Form'}
+      }
+    ]
+  },
+  {
+    path: 'my-requests',
+    children: [
+      {
+        path: 'list',
+        component: MyRequestsListComponent,
+        data: {title: 'Request.List'},
       }
     ]
   }

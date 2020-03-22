@@ -7,6 +7,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule } from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -17,7 +18,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatRadioModule,
     MatSelectModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   exports: [
     MatInputModule,
@@ -25,7 +27,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatRadioModule,
     MatSelectModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule { }

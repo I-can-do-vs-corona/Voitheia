@@ -1,11 +1,21 @@
 {
     "General": {
-        "Name": "Name",
-        "Email": "Email adresse",
-        "Password": "Password",
-        "Submit": "Schicken",
-        "Next": "Weiter",
-        "Back": "Zurück"
+        "Buttons":{
+            "Submit": "Schicken",
+            "Next": "Weiter",
+            "Back": "Zurück",
+            "Cancel": "Abbrechen",
+            "Accept": "Annehmen"
+        },
+        "Enums": {
+            "RequestTypeEnum": {
+                "Shopping": "Einkaufen",
+                "Childcare": "Kinderbetreuung",
+                "Medical": "Medizinisch",
+                "Petcare": "Tiersitting",
+                "Other": "Anderes"
+            }
+        }
     },
     "Home": {
         "Buttons": {
@@ -25,17 +35,23 @@
                 "ContactInformation": "Kontaktdate"
             }
         },
-        "Input": {
+        "Details": {
+            "Title": "Anfragedetails"
+        },
+        "Field": {
             "Label": {
                 "FirstName": "Vorname",
                 "LastName": "LastName",
+                "Name": "Name",
                 "Email": "E-Mail",
                 "Phone": "Telefonnummer",
-                "Address": "Strasse & Hausnummer",
+                "Address": "Adresse",
+                "Street": "Strasse & Hausnummer",
                 "PostalCode": "PLZ",
                 "City": "Ort",
                 "Type": "Typ",
-                "Description": "Beschreibung"
+                "Description": "Beschreibung",
+                "Distance": "Entfernung"
             }
         }
     }

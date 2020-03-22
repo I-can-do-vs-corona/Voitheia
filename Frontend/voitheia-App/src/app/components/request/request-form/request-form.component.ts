@@ -3,6 +3,7 @@ import { RequestDTO } from 'src/app/common/models/requestDTO';
 import { RequestService } from '../request.service';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
+import { RequestTypeEnum } from 'src/app/common/helper/enums';
 
 @Component({
   selector: 'app-request-form',
@@ -12,6 +13,7 @@ import { NavigationService } from 'src/app/common/shared/services/navigation.ser
 export class RequestFormComponent implements OnInit {
 
   faPaperPlane = faPaperPlane;
+  RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
 
   request: RequestDTO;
 
@@ -23,6 +25,8 @@ export class RequestFormComponent implements OnInit {
   }
 
   public send(){
+    this.request.type = this.RequestTypeEnum[this.request.type];
+    
     this._requestService.createRequest(this.request).subscribe(
       data => {
         this._navigationService.navigateTo("request/create/success")

@@ -21,4 +21,8 @@ export class RequestService {
     parameters += (requestAmount === 0)? this._utilitiesService.getRequestAmount().toString() : requestAmount.toString();
     return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'request' + parameters, {withCredentials: false});
   }
+
+  takeRequest(id: number){
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'myRequests', {"requestId" : id}, {withCredentials: false});
+  }
 }
