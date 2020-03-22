@@ -35,9 +35,14 @@ namespace ActiveCruzer.BLL
         ///<Summary>
         /// Constructor
         ///</Summary>
-        public UserBLL()
+        private UserBLL()
         {
             _AuthRepository = new AuthRepository();
+            _AuthRepository.Register(new RegisterUserDTO
+            {
+                Email = "test@test.com",
+                Password = "test"
+            });
         }
 
         ///<Summary>
