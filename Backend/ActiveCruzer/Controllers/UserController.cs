@@ -58,7 +58,7 @@ namespace ActiveCruzer.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public ActionResult Register([FromBody] RegisterUserDTO credentials)
+        public ActionResult<JwtDto> Register([FromBody] RegisterUserDTO credentials)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace ActiveCruzer.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public ActionResult Login([FromBody] CredentialsDTO credentials)
+        public ActionResult<JwtDto> Login([FromBody] CredentialsDTO credentials)
         {
             User user = _userBll.Login(credentials);
             ;
