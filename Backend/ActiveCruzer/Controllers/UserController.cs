@@ -4,7 +4,9 @@ using System.Security.Claims;
 using ActiveCruzer.BLL;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
+using ActiveCruzer.Models.Geo;
 using AutoMapper;
+using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -21,9 +23,8 @@ namespace ActiveCruzer.Controllers
     {
         private bool disposed = false;
 
-        private UserBLL _BLL = UserBLL.Instance;
-
-        private int _JWTExpirationMinutes = 120;
+        private UserBLL _userBll = UserBLL.Instance;
+        private IGeoCodeBll _geoCodeBll;
         private IMapper _mapper;
 
         private readonly IOptions<JwtAuthentication> _jwtAuthentication;
@@ -35,7 +36,7 @@ namespace ActiveCruzer.Controllers
         public UserController(IMapper mapper, IOptions<JwtAuthentication> jwtAuthentication)
         {
             _mapper = mapper;
-            _JWTExpirationMinutes = 3600;
+            _geoCodeBll = new GeoCodeBll(mapper);
             _jwtAuthentication = jwtAuthentication;
         }
 
@@ -55,51 +56,61 @@ namespace ActiveCruzer.Controllers
             return Ok();
         }
 
-        // POST api/Account/Register
         [HttpPost]
         [Route("Register")]
         public ActionResult Register([FromBody] RegisterUserDTO credentials)
         {
             if (ModelState.IsValid)
             {
-                var result = _BLL.Register(credentials);
-                if (result.Success)
+                var validatedAddress = _geoCodeBll.ValidateAddress(new GeoQuery
                 {
-                    DateTime expiration = DateTime.Now.AddMinutes(_JWTExpirationMinutes);
+                    City = credentials.City, Country = credentials.Country, Street = credentials.Street,
+                    Zip = credentials.Zip
+                });
 
-                    User user = _BLL.GetUser(credentials.Email);
-
-                   
-
-
-                    return Ok(new
+                if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High)
+                {
+                    var result = _userBll.Register(credentials, validatedAddress.Coordinates);
+                    if (result.Success)
                     {
-                        token = new JwtSecurityTokenHandler().WriteToken(GenerateToken(user.UserName, user.IntId))
-                    });
+                        User user = _userBll.GetUser(credentials.Email);
+                        return Ok(new
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(GenerateToken(user.UserName, user.IntId))
+                        });
+                    }
+                    else
+                    {
+                        return BadRequest(result.ErrorMessage);
+                    }
                 }
                 else
                 {
-                    return BadRequest(result.ErrorMessage);
+                    return new ContentResult
+                    {
+                        StatusCode = 424,
+                        Content = $"Status Code: {424}; FailedDependency; Address is invalid",
+                        ContentType = "text/plain",
+                    };
                 }
+                
             }
             else
             {
                 return BadRequest();
             }
-
         }
 
-        
+
         [HttpPost]
         [Route("Login")]
         public ActionResult Login([FromBody] CredentialsDTO credentials)
         {
-         
-            User user = _BLL.Login(credentials); ;
-            
+            User user = _userBll.Login(credentials);
+            ;
+
             if (user != null)
             {
-
                 return Ok(new
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(GenerateToken(user.UserName, user.IntId))
@@ -109,18 +120,19 @@ namespace ActiveCruzer.Controllers
             return Unauthorized();
         }
 
-        
+
         protected void Dispose(bool disposing)
         {
             if (disposing)
             {
                 if (!disposed)
                 {
-                    if (_BLL != null)
+                    if (_userBll != null)
                     {
-                        _BLL.Dispose();
+                        _userBll.Dispose();
                     }
                 }
+
                 disposed = true;
             }
 
@@ -135,7 +147,7 @@ namespace ActiveCruzer.Controllers
                 issuer: "https://localhost:44314/",
                 claims: new[]
                 {
-                    new Claim("id", id.ToString()), 
+                    new Claim("id", id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Sub, username),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 },

@@ -31,6 +31,7 @@ namespace ActiveCruzer.Controllers
     {
         private readonly IRequestBll _requestBll = MemoryRequestBll.Instance;
         private readonly IGeoCodeBll _geoCodeBll;
+        private readonly UserBLL _userBll = UserBLL.Instance;
 
         private IMapper _mapper;
         private bool _disposed;
@@ -144,7 +145,16 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                coordinates = new GeoCoordinate(50, 10);
+                try
+                {
+                    var userId = GetUserId();
+                    var user = _userBll.GetUserViaId(userId);
+                    coordinates = new GeoCoordinate(user.Latitude, user.Longtitude);
+                }
+                catch (Exception)
+                {
+                    return BadRequest("User not logged in. Provide Longitude and Latitude");
+                }
             }
 
             var requests = _requestBll.GetRequestsViaGps(coordinates, amount, metersPerimeter*2);
