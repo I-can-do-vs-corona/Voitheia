@@ -25,6 +25,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
+
 namespace ActiveCruzer
 {
     public class Startup
@@ -32,6 +33,7 @@ namespace ActiveCruzer
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public static string BingKey;
         public static string SqlConnectionStringBuilder;
+
         public Startup(IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
