@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -42,6 +43,11 @@ namespace ActiveCruzer.BLL
         public User FindByUserName(string userName)
         {
             return _users[userName];
+        }
+
+        public User FindById(int userId)
+        {
+            return _users.Values.First(it => it.IntId == userId);
         }
 
         private string GetHash(string password)

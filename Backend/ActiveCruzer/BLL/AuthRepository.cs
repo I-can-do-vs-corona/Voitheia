@@ -1,6 +1,7 @@
 ﻿using System;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
+using GeoCoordinatePortable;
 
 namespace ActiveCruzer.BLL
 {
@@ -12,7 +13,7 @@ namespace ActiveCruzer.BLL
         private IUserManager _userManager = new UserManager();
 
 
-        public RegisteringResult Register(RegisterUserDTO credentials)
+        public RegisteringResult Register(RegisterUserDTO credentials, GeoCoordinate coordinates)
         {
             User user = new User
             {
@@ -22,7 +23,9 @@ namespace ActiveCruzer.BLL
                 City = credentials.City,
                 Zip = credentials.Zip,
                 FirstName = credentials.FirstName,
-                LastName = credentials.LastName
+                LastName = credentials.LastName,
+                Latitude = coordinates.Latitude,
+                Longtitude = coordinates.Longitude
             };
 
             var result = _userManager.CreateUser(user, credentials.Password);
@@ -55,7 +58,10 @@ namespace ActiveCruzer.BLL
             return _userManager.FindByUserName(userName);
         }
 
-        
+        public User FindUser(in int userId)
+        {
+            return _userManager.FindById(userId);
+        }
 
         protected virtual void Dispose(bool disposing)
         {
@@ -76,5 +82,7 @@ namespace ActiveCruzer.BLL
         {
             Dispose(true);
         }
+
+        
     }
 }

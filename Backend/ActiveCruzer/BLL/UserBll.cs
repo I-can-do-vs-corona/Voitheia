@@ -1,6 +1,7 @@
 ﻿using System;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
+using GeoCoordinatePortable;
 
 namespace ActiveCruzer.BLL
 {
@@ -38,11 +39,27 @@ namespace ActiveCruzer.BLL
         private UserBLL()
         {
             _AuthRepository = new AuthRepository();
+
+            _AuthRepository.Register(new RegisterUserDTO
+            {
+                Email = "first@test.com",
+                Street = "Neubessinger Str. 16",
+                Zip = "97535",
+                City = "Wasserlosen",
+                Country = "Germany",
+                Password = "first"
+            }, new GeoCoordinate(50.054710, 9.995050));
+
             _AuthRepository.Register(new RegisterUserDTO
             {
                 Email = "test@test.com",
+                Street = "Georg-Schäfer-Straße 30",
+                Zip = "97421",
+                City = "Schweinfurt",
+                Country = "Germany",
                 Password = "test"
-            });
+            }, new GeoCoordinate(50.102590, 10.795760));
+
         }
 
         ///<Summary>
@@ -54,10 +71,10 @@ namespace ActiveCruzer.BLL
         }
 
 
-        public RegisteringResult Register(RegisterUserDTO credentials)
+        public RegisteringResult Register(RegisterUserDTO credentials, GeoCoordinate validatedAddressCoordinates)
         {
 
-            var result = _AuthRepository.Register(credentials);
+            var result = _AuthRepository.Register(credentials, validatedAddressCoordinates);
 
             if (result.Success)
             {
@@ -78,6 +95,11 @@ namespace ActiveCruzer.BLL
             return _AuthRepository.FindUser(eMail);
         }
 
+
+        public User GetUserViaId(in int userId)
+        {
+            return _AuthRepository.FindUser(userId);
+        }
 
         ///<Summary>
         /// Function to Dispose the BLL
@@ -107,23 +129,6 @@ namespace ActiveCruzer.BLL
         }
 
 
-        //internal string RandomString(int length)
-        //{
-        //    const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        //    System.Text.StringBuilder res = new System.Text.StringBuilder();
-        //    using (System.Security.Cryptography.RNGCryptoServiceProvider rng = new System.Security.Cryptography.RNGCryptoServiceProvider())
-        //    {
-        //        byte[] uintBuffer = new byte[sizeof(uint)];
-
-        //        while (length-- > 0)
-        //        {
-        //            rng.GetBytes(uintBuffer);
-        //            uint num = BitConverter.ToUInt32(uintBuffer, 0);
-        //            res.Append(valid[(int)(num % (uint)valid.Length)]);
-        //        }
-        //    }
-
-        //    return res.ToString();
-        //}
+      
     }
 }
