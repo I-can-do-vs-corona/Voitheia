@@ -17,6 +17,9 @@
                 "Petcare": "Tiersitting",
                 "Other": "Anderes"
             }
+        },
+        "Errors": {
+            "Required": "Feld ist erforderlich."
         }
     },
     "Home": {

@@ -5,7 +5,6 @@ import { RequestTypeEnum } from 'src/app/common/helper/enums';
 import { MyRequestsService } from '../my-requests.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MyRequestsViewComponent } from '../my-requests-view/my-requests-view.component';
-import { AuthService } from 'src/app/components/user/auth.service';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 
 @Component({
@@ -21,16 +20,11 @@ export class MyRequestsListComponent implements OnInit {
 
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
   
-  constructor(public _myRequestsService: MyRequestsService,public _navigationService: NavigationService, public _authService: AuthService, public dialog: MatDialog) { }
+  constructor(public _myRequestsService: MyRequestsService,public _navigationService: NavigationService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    if(!this._authService.getToken()){
-      this._navigationService.navigateTo('login');
-    }
-    else{
       this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
       this.loadAllData();
-    }
   }
 
   openDetails(index:number){

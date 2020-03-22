@@ -29,7 +29,7 @@ export class RequestFormComponent implements OnInit {
     
     this._requestService.createRequest(this.request).subscribe(
       data => {
-        this._navigationService.navigateTo("request/create/success")
+        //this._navigationService.navigateTo("request/create/success")
       },
       err => {
         alert("error");

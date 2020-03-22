@@ -1,19 +1,29 @@
-
+@import '../../../../variables.scss';
 
 :host{
-    height:65px;
-
-    .center_title{
-        text-shadow: 2px 2px black;
-        font-size: 6em; 
-        font-weight: bold; 
-        display: inline-block;
-        margin-bottom: 0.7em;
-        cursor: pointer;
-    }
+    nav{
+        height:120px;
     
-    .center_title:hover{
-        color: #52B9CC;
+        .center_title{
+            text-shadow: 2px 2px black;
+            font-size: 6em; 
+            font-weight: bold; 
+            display: inline-block;
+            margin-bottom: 0.7em;
+            cursor: pointer;
+        }
+        
+        .center_title:hover{
+            color: $brand-color-light;
+        }
+    
+        &.sticky {
+            height: 80px;
+            background-color:#00ff00;
+
+            .center_title{
+                font-size: 4em;
+            }
+        }
     }
 }
-

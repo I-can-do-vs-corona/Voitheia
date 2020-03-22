@@ -1,9 +1,22 @@
 <!-- <p>header works!</p> -->
-<div class="container">
-    
-    <div class="row justify-content-center">
-      <a (click)="_navigationService.navigateTo('home')">
-        <h1 class="center_title">Voitheia</h1>
-      </a>
+<!--<header class="container" id="header">
+  <div class="row justify-content-center">
+    <a (click)="_navigationService.navigateTo('home')">
+      <h1 class="center_title">Voitheia</h1>
+    </a>
+  </div>
+</header>-->
+<nav class="navbar navbar-light" id="header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-1">
+        logo
+      </div>
+      <div class="col-10 text-center">
+        <a (click)="_navigationService.navigateTo('home')">
+          <h1 class="center_title">Voitheia</h1>
+        </a>
+      </div>
     </div>
   </div>
+</nav>

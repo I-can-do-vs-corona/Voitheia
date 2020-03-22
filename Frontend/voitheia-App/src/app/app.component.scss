@@ -1,5 +1,7 @@
 :host{
     #page-content {
-        
+        &.marginTop{
+          margin-top: 80px;
+        }
       }      
 }

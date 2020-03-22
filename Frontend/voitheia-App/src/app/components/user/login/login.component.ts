@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/common/models/user';
-import { AuthService } from '../auth.service';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/common/shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
