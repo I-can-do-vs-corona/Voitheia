@@ -126,10 +126,10 @@ namespace ActiveCruzer.Controllers
         [HttpGet]
         public ActionResult<GetAllRequestResponse> GetAll()
         {
-            var requests = _bll.GetAllFromUser(_hardcodedUser);
+            var requests = _bll.GetAllPendingFromUser(_hardcodedUser);
             var dtoRequests = requests.Select(it => _mapper.Map<RequestDto>(it)).ToList();
 
-            return Ok(new GetAllRequestResponse { Requests = dtoRequests });
+            return Ok(new GetAllRequestResponse { Requests = dtoRequests, TotalCount = dtoRequests.Count});
         }
 
         /// <summary>

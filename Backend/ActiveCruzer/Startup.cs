@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,10 +24,23 @@ namespace ActiveCruzer
     public class Startup
     {
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
-        public Startup(IConfiguration configuration)
+        public static string BingKey;
+        public static string SqlConnectionStringBuilder;
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json",
+                    optional: false,
+                    reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -51,6 +65,9 @@ namespace ActiveCruzer
             }));
 
             RegisterSwaggerGen(services);
+
+            BingKey = Configuration["Bing:ServiceApiKey"];
+            SqlConnectionStringBuilder = Configuration["Sql:ConnectionString"];
         }
 
         private static void RegisterSwaggerGen(IServiceCollection services)
@@ -85,6 +102,8 @@ namespace ActiveCruzer
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+
             ConfigureSwaggerGen(app);
 
             if (env.IsDevelopment())

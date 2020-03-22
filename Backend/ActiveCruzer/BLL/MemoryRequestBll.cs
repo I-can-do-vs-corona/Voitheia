@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using ActiveCruzer.Helper;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
+using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActiveCruzer.BLL
@@ -15,28 +17,51 @@ namespace ActiveCruzer.BLL
 
         MemoryRequestBll()
         {
-            for (int i = 0; i < 100; i++)
+            var addresses = new List<ValidatedAddress>
             {
-                
+                new ValidatedAddress
+                {
+                    City = "Schweinfurt",
+                    Street = "Mainberger Straße 36",
+                    Zip = "97422",
+                    Coordinates = new GeoCoordinate(50.04941467070081,10.247946539857518)
+                },
+                new ValidatedAddress
+                {
+                    City = "Schweinfurt",
+                    Street = "Niederwerrner Straße 17",
+                    Zip = "97421",
+                    Coordinates = new GeoCoordinate(50.04772021791362,10.222338545531148)
+                },
+                new ValidatedAddress
+                {
+                    City = "Werneck",
+                    Street = "Julius-Echter-Straße 15",
+                    Zip = "97440",
+                    Coordinates = new GeoCoordinate(49.98282398648274,10.097537016741756)
+                }
+            };
+
+            for (int i = 0; i < 101; i++)
+            {
+                var addressIndex = i % 3 ;
                 CreateRequest(new Request
                 {
-                    City = "Wasserlosen",
-                    Street = "Neubessinger Str. 14",
-                    Zip = "97535",
+                    City = addresses[addressIndex].City,
+                    Street = addresses[addressIndex].Street,
+                    Zip = addresses[addressIndex].Zip,
                     CreatedOn = DateTime.UtcNow,
                     Description = "Hammer Beschreibung",
                     Email = "hallo@la.com",
                     FirstName = "hallo",
                     LastName = "Ben",
-                    Latitude = 1,
-                    Longitude = 2,
+                    Latitude = addresses[addressIndex].Coordinates.Latitude,
+                    Longitude = addresses[addressIndex].Coordinates.Longitude,
                     PhoneNumber = "+12351231",
-                    RequestType = (RequestType) (i%5+1)
+                    Status = Request.RequestStatus.Open,
+                    RequestType = (RequestType) (i % 5 + 1)
                 });
             }
-            
-
-            
         }
 
         public static MemoryRequestBll Instance
@@ -103,15 +128,20 @@ namespace ActiveCruzer.BLL
             _requests[requestId].Volunteer = userId;
         }
 
-
-        /// <inheritdoc />
-        public List<ActiveCruzer.Models.Request> GetRequestsViaGps(in double latitude, in double longitude,
-            in int amount,
-            in int metersPerimeter)
+        public List<Request> GetRequestsViaGps(GeoCoordinate coordinates, in int amount, in int metersPerimeter)
         {
-            return _requests.Values.Take(amount).ToList();
-        }
+            var degrees = GeoHelper.MetersToDegree(metersPerimeter);
+            var northernMax = coordinates.Latitude + degrees;
+            var southernMax = coordinates.Latitude - degrees;
+            var westernMax = coordinates.Longitude - degrees;
+            var easternMax = coordinates.Longitude + degrees;
 
+            return _requests.Values.Where(it => it.Status == Request.RequestStatus.Open&&
+                                                it.Latitude <= northernMax &&
+                                                it.Latitude >= southernMax &&
+                                                it.Longitude <= easternMax &&
+                                                it.Latitude >= westernMax).Take(amount).ToList();
+        }
 
         /// <inheritdoc />
         public void Dispose()
@@ -149,9 +179,9 @@ namespace ActiveCruzer.BLL
             return _requests.ContainsKey(id) && _requests[id]?.Volunteer == userId;
         }
 
-        public List<Request> GetAllFromUser(int hardcodedUser)
+        public List<Request> GetAllPendingFromUser(int hardcodedUser)
         {
-            return _requests.Values.Where(it => it.Volunteer == hardcodedUser).ToList();
+            return _requests.Values.Where(it => it.Volunteer == hardcodedUser && it.Status == Request.RequestStatus.Pending).ToList();
         }
     }
 }

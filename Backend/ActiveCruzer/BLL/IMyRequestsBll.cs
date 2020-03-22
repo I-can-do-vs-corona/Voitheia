@@ -11,7 +11,7 @@ namespace ActiveCruzer.BLL
         void AbortRequest(in int requestId, in int userId);
         Request GetRequest(in int requestId, in int userId);
         bool ExistsOnUser(in int id, in int userId);
-        List<Request> GetAllFromUser(int hardcodedUser);
+        List<Request> GetAllPendingFromUser(int hardcodedUser);
         bool Exists(in int requestId);
         bool IsNotClosed(in int id);
     }

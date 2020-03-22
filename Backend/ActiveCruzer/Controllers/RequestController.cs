@@ -5,13 +5,16 @@ using System.Net;
 using System.Net.Http;
 using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
+using ActiveCruzer.Helper;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using ActiveCruzer.Models.DTO.Request;
 using ActiveCruzer.Models.Geo;
 using AutoMapper;
+using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Extensions;
 
@@ -36,7 +39,7 @@ namespace ActiveCruzer.Controllers
         {
             _mapper = mapper;
             _geoCodeBll = new GeoCodeBll(_mapper);
-        } 
+        }
 
         /// <summary>
         /// Inserts a request to the database
@@ -49,12 +52,10 @@ namespace ActiveCruzer.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status424FailedDependency)]
-
         public ActionResult<CreateRequestResponseDto> InsertRequest([FromBody] CreateRequestDto req)
         {
             if (ModelState.IsValid)
             {
-
                 var validatedAddress = _geoCodeBll.ValidateAddress(_mapper.Map<GeoQuery>(req));
                 if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High)
                 {
@@ -66,7 +67,7 @@ namespace ActiveCruzer.Controllers
                     request.Latitude = validatedAddress.Coordinates.Latitude;
                     request.Status = Models.Request.RequestStatus.Open;
                     var id = _requestBll.CreateRequest(request);
-                    return CreatedAtAction(nameof(GetById), new { id }, new CreateRequestResponseDto { Id = id });
+                    return CreatedAtAction(nameof(GetById), new {id}, new CreateRequestResponseDto {Id = id});
                 }
                 else
                 {
@@ -133,13 +134,30 @@ namespace ActiveCruzer.Controllers
         /// <param name="metersPerimeter">Which perimeter should be kept in considoration</param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<GetAllRequestResponse> GetAll([FromQuery] double longitude,
-            [FromQuery] double latitude, [FromQuery] int amount = 10, [FromQuery] int metersPerimeter = 2000)
+        public ActionResult<GetAllRequestResponse> GetAll([FromQuery] double? longitude,
+            [FromQuery] double? latitude, [FromQuery] int amount = 10, [FromQuery] int metersPerimeter = 2000)
         {
-            var requests = _requestBll.GetRequestsViaGps(latitude, longitude, amount, metersPerimeter);
-            var dtoRequests = requests.Select(it => _mapper.Map<RequestDto>(it)).ToList();
+            GeoCoordinate coordinates;
+            if (latitude != null && longitude != null)
+            {
+                coordinates = new GeoCoordinate(latitude.Value, longitude.Value);
+            }
+            else
+            {
+                coordinates = new GeoCoordinate(50, 10);
+            }
 
-            return Ok(new GetAllRequestResponse {Requests = dtoRequests});
+            var requests = _requestBll.GetRequestsViaGps(coordinates, amount, metersPerimeter*2);
+            var dtoRequests = requests.Select(it =>
+            {
+                var dto = _mapper.Map<RequestDto>(it);
+                dto.DistanceToUser =
+                    (int) coordinates.GetDistanceTo(new GeoCoordinate(it.Latitude, it.Longitude));
+                return dto;
+            }).OrderBy(it=> it.DistanceToUser).ToList();
+
+
+            return Ok(new GetAllRequestResponse {Requests = dtoRequests, TotalCount = dtoRequests.Count});
         }
 
         /// <summary>

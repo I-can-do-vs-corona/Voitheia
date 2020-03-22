@@ -17,7 +17,6 @@ namespace ActiveCruzer.Models.DTO.Request
         /// Distance to the currently logged in users registered address
         /// </summary>
         public int DistanceToUser { get; set; }
-
         public RequestType Type { get; set; }
     }
 }

@@ -5,6 +5,6 @@ namespace ActiveCruzer.Models.DTO.Request
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum PatchRequestStatus
     {
-        Closed
+        Closed = 1
     }
 }

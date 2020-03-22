@@ -2,6 +2,7 @@
 using ActiveCruzer.Models.Geo;
 using AutoMapper;
 using BingMapsRESTToolkit;
+using GeoCoordinatePortable;
 
 namespace ActiveCruzer.BLL
 {
@@ -19,7 +20,7 @@ namespace ActiveCruzer.BLL
         {
             var request = new GeocodeRequest
             {
-                BingMapsKey = "AlYeou04vVPFXJqm9AhT6owjLSWpgA4--oJQamCs4ilOCx-SwNMBzdpQ9esWIhEJ",
+                BingMapsKey = Startup.BingKey,
                 Query = query.ToString()
             };
 
@@ -46,7 +47,7 @@ namespace ActiveCruzer.BLL
     {
         public ConfidenceLevel ConfidenceLevel { get; set; }
         public string Street { get; set; }
-        public Coordinates Coordinates { get; set; }
+        public GeoCoordinate Coordinates { get; set; }
         public string Zip { get; set; }
         public string City { get; set; }
     }

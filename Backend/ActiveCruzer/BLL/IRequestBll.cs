@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ActiveCruzer.Models;
+using GeoCoordinatePortable;
 
 namespace ActiveCruzer.BLL
 {
@@ -16,6 +17,6 @@ namespace ActiveCruzer.BLL
         void UpdateStatus(int id, Request.RequestStatus status);
         Request GetRequest(in int id);
         void UpdateAssignee(in int userId, int requestId);
-        List<Request> GetRequestsViaGps(in double latitude, in double longitude, in int amount, in int metersPerimeter);
+        List<Request> GetRequestsViaGps(GeoCoordinate coordinates, in int amount, in int metersPerimeter);
     }
 }
