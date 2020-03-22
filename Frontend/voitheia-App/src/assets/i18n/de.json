@@ -5,7 +5,9 @@
             "Next": "Weiter",
             "Back": "Zurück",
             "Cancel": "Abbrechen",
-            "Accept": "Annehmen"
+            "Accept": "Annehmen",
+            "Login": "Einloggen",
+            "Register": "Registrieren"
         },
         "Enums": {
             "RequestTypeEnum": {
@@ -26,6 +28,21 @@
             "Level1": "Erstellen Sie selbst eine Anfrage oder bieten Sie Ihre Hilfe an.",
             "Level2": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
         }
+    },
+    "Login":{
+        "Title": "Einloggen",
+        "Name": "Benutzername",
+        "Password": "Passwort"
+    },
+    "Register":{
+        "FirstName": "Vorname",
+        "LastName": "Nachname",
+        "Title": "Registrieren",
+        "Name": "Benutzername",
+        "Password": "Passwort",
+        "StreetAdress": "Adresse",
+        "ZipCode": "PLZ",
+        "City": "Ort"
     },
     "Request": {
         "Create": {
