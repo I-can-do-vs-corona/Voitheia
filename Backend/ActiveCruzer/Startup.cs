@@ -92,20 +92,9 @@ namespace ActiveCruzer
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Voithea API",
-                    Description = "Voll krasse Voithea api",
-                    TermsOfService = new Uri("https://voithea.org/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Gerd Wagner",
-                        Email = "gerd.wagner@voithea.org",
-                        Url = new Uri("https://twitter.com/Gerdi"),
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "I will geld",
-                        Url = new Uri("https://voithea.org/license"),
-                    }
+                    Title = "Voitheia API",
+                    Description = "Api for Voitheia. Developed for the WeVsVirus hackathon",
+                    TermsOfService = new Uri("https://voitheia.org/terms")
                 });
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
