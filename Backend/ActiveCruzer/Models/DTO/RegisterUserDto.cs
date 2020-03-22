@@ -20,7 +20,6 @@ namespace ActiveCruzer.Models.DTO
         public string Password { get; set; }
         [Required]
         public string Street { get; set; }
-        [Required]
         public string Zip { get; set; }
         [Required]
         public string City { get; set; }
