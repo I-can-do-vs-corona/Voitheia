@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/common/models/user';
-import { LoginService } from '../login.service';
+import { AuthService } from '../auth.service';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,12 +15,18 @@ export class LoginComponent implements OnInit {
   token: string;
   faPaperPlane = faPaperPlane;
   
-  constructor(private _loginService: LoginService, private _navigationService: NavigationService) {
+  constructor(private _authService: AuthService, private _navigationService: NavigationService) {
     this.user = new User();
     this.token = "";
   }
 
   ngOnInit(): void {
+    if(!this._authService.getToken()){
+
+    }
+    else{
+      this._navigationService.navigateTo('home');
+    }
   }
 
   public registerUser(){
@@ -28,15 +34,19 @@ export class LoginComponent implements OnInit {
   }
 
   public send(){    
-    this._loginService.requestLogin(this.user).subscribe(
+    this._authService.requestLogin(this.user).subscribe(
       data => {
-        console.log(data);
-        this.token = data["token"];
-        //TODO: Handle Login Success
+        this._authService.setToken(data["token"]);
+        this._navigationService.navigateTo('home');
       },
       err => {
         console.log(err);
-        alert("error");
+        if(err["status"] === 400){
+          alert("Login Error, please check email and password!");
+        }
+        else{
+          alert("Error");
+        }
       }
     );
   }

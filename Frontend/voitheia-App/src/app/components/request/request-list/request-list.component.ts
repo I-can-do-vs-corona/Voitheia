@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { RequestViewComponent } from '../request-view/request-view.component';
 import { RequestTypeEnum } from 'src/app/common/helper/enums';
 import { MatPaginator } from '@angular/material/paginator';
+import { AuthService } from 'src/app/components/user/auth.service';
+import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 
 @Component({
   selector: 'app-request-list',
@@ -24,14 +26,19 @@ export class RequestListComponent implements OnInit {
 
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
 
-  constructor(private _requestService: RequestService, public dialog: MatDialog) {
+  constructor(private _requestService: RequestService,public _navigationService: NavigationService, public _authService: AuthService, public dialog: MatDialog) {
     
   }
 
   ngOnInit(): void {
-    this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
-    this.requestDataSource.paginator = this.paginator;
-    this.loadAllData();
+    if(!this._authService.getToken()){
+      this._navigationService.navigateTo('login');
+    }
+    else{
+      this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
+      this.requestDataSource.paginator = this.paginator;
+      this.loadAllData();
+    }
   }
 
   applyFilter(event: MatSelectChange) {
