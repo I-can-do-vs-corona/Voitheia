@@ -2,6 +2,8 @@
 
 :host{
     #page-content {
-      margin-top:$header-height;
+      padding-top: calc(#{$header-height} + #{$normal-spacing});
+
+      padding-bottom: calc(2.5em + #{$normal-spacing}); /* Footer height + normal spacing */
     }      
 }

@@ -22,15 +22,12 @@
                         </div>
                     </div>
                     <div>
-                       
-                        
-                        <button type="submit" class="btn btn-primary" (click)= "registerUser()">
-                            <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Register' | translate }}
-                        </button>
-                        <button type="submit" class="btn btn-outline-dark"  (click)="send()">
+                        <button type="submit" class="btn btn-primary"  (click)="send()">
                             <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Login' | translate }}
                         </button>
-                      
+                        <button type="submit" class="btn btn-outline-dark" (click)= "registerUser()">
+                            <fa-icon [icon]="faUserPlus"></fa-icon> {{'General.Buttons.Register' | translate }}
+                        </button>
                     </div>
                 </form>
     </div>

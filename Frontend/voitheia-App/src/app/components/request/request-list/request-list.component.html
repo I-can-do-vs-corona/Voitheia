@@ -32,7 +32,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" (click)="openDetails(i)"></tr>
         </table>
         <mat-paginator class="list_paginator" ([length])="resultsLength"
-              [pageSize]="100"
+              [pageSize]="25"
               [pageSizeOptions]="[5, 10, 25, 50, 100]"
               showFirstLastButtons>
         </mat-paginator>

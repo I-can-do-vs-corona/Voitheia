@@ -19,7 +19,6 @@ export class AuthService {
 
   getToken(){
     return localStorage.getItem('token');
-    //return this.userToken;
   }
 
   isLoggedIn() {
@@ -32,12 +31,10 @@ export class AuthService {
 
   logout() {
     this.delSession();
-    this._route.navigate(['login']);
   }
 
   private delSession() {
-    localStorage.removeItem('idToken');
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem('token');
     localStorage.removeItem('expiresAt');
     localStorage.removeItem('userName');
   }

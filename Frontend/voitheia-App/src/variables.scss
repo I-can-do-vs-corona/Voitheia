@@ -21,11 +21,11 @@ $brand-warn-color-light:#ffb3b3;
 $brand-warn-color-dark:$brand-warn-color;
 
 //a tag config
-$link-color: #0555a4;
+$link-color: $brand-color;
 $link-text-decoration:underline;
-$link-hover-color: #0555a4;
+$link-hover-color: $brand-color-dark;
 $link-hover-text-decoration:underline;
-$link-hover-bgcolor:  #e5e5e5;
+$link-hover-bgcolor:  $brand-color-light;
 
 $green: #6bb324;
 $red: #d90000;

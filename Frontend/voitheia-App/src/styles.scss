@@ -3,6 +3,14 @@
 @import './variables.scss';
 @import './custom-angular-material-theme.scss';
 
+@font-face {
+    //https://www.fontfabric.com/fonts/kelson-sans/#font-styles
+    font-family: 'Kelson';
+    src: url('./assets/fonts/KelsonSans-Light.woff2') format('woff2'),
+         url('./assets/fonts/KelsonSans-Light.woff') format('woff'),
+         url('./assets/fonts/KelsonSans-Light.ttf') format('truetype');
+  }
+
 html, body { height: 100%; }
 body {
     margin: 0;
@@ -11,8 +19,14 @@ body {
     background-color: $brand-secondary-color-light;
     color:white;
 
+    /*Needed to position the footer*/
+    #page-container{
+        position: relative;
+        min-height:100vh;
+    }
+
     .container-fluid{
-        padding:0;
+        //padding:0;
     }
 
     .mat-form-field {

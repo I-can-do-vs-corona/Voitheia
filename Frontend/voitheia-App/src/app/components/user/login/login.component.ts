@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/common/models/user';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/common/shared/services/auth.service';
 
 @Component({
@@ -12,21 +12,15 @@ import { AuthService } from 'src/app/common/shared/services/auth.service';
 export class LoginComponent implements OnInit {
 
   user: User;
-  token: string;
   faPaperPlane = faPaperPlane;
+  faUserPlus = faUserPlus;
   
   constructor(private _authService: AuthService, private _navigationService: NavigationService) {
     this.user = new User();
-    this.token = "";
   }
 
   ngOnInit(): void {
-    if(!this._authService.getToken()){
-
-    }
-    else{
-      this._navigationService.navigateTo('home');
-    }
+      
   }
 
   public registerUser(){

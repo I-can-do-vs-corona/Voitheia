@@ -25,7 +25,11 @@
     "Home": {
         "Buttons": {
             "CreateRequest": "Anfrage erstellen",
-            "ShowRequests" : "Zum Helfen Anmelden"
+            "MyRequests" : "Meine Anfrage",
+            "ShowRequests" : {
+                "LoggedIn" : "Offene Anfragen anzeigen",
+                "LoggedOut" : "Zum Helfen Anmelden"
+            }
         },
         "Texts": {
             "Level1": "Erstellen Sie selbst eine Anfrage oder bieten Sie Ihre Hilfe an.",

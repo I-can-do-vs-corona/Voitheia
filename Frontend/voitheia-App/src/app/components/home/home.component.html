@@ -1,9 +1,11 @@
 
-<a (click)="_navigationService.navigateTo('my-requests/list')">
-    <div class="box text-center my-requests">
-        Meine Anfragen
-    </div>
-</a>
+<div *ngIf="isLoggedIn()">
+    <a (click)="_navigationService.navigateTo('my-requests/list')">
+        <div class="box text-center my-requests">
+            {{'Home.Buttons.MyRequests' | translate }}
+        </div>
+    </a>
+</div>
 <!-- <a (click)="_navigationService.navigateTo('login')">
     <div class="box text-center my-requests">
         Login
@@ -20,7 +22,12 @@
     <div class="col-md">
         <a (click)="_navigationService.navigateTo('request/list')">
             <div class="box text-center">
-                {{'Home.Buttons.ShowRequests' | translate }}
+                <span *ngIf="isLoggedIn()">
+                    {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}
+                </span>
+                <span *ngIf="!isLoggedIn()">
+                    {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
+                </span>
             </div>
         </a>
     </div>
