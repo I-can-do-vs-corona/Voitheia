@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { UtilitiesService } from './utilities.service';
 import { User } from '../../models/User';
 import { LoginCredentials } from '../../models/loginCredentials';
-import { Router } from '@angular/router';
+import { NavigationService } from './navigation.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private _route: Router, private _httpClient: HttpClient, private _utilitiesService: UtilitiesService) {}
+  constructor(private _httpClient: HttpClient, private _utilitiesService: UtilitiesService, private _navigationService: NavigationService) {}
 
 
   setToken(token: string){
@@ -31,6 +31,7 @@ export class AuthService {
 
   logout() {
     this.delSession();
+    this._navigationService.navigateTo('home');
   }
 
   private delSession() {
