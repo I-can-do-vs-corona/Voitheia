@@ -1,7 +1,7 @@
+@import '../variables.scss';
+
 :host{
     #page-content {
-        &.marginTop{
-          margin-top: 80px;
-        }
-      }      
+      margin-top:$header-height;
+    }      
 }

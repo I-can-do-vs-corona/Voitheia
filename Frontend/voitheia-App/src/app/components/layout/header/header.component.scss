@@ -2,27 +2,45 @@
 
 :host{
     nav{
-        height:120px;
+        height:$header-height;
+        width:100%;
+        background-color:$brand-secondary-color-light;
+        padding:$half-spacing;
+        position:absolute;
+        top:0;
+        z-index:105;
     
-        .center_title{
-            text-shadow: 2px 2px black;
-            font-size: 6em; 
+        img#logo{
+            height:90px;
+            width:86px;
+            background-image: url(../../../../assets/images/logo.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin-right:$half-spacing;
+        }
+
+        h1{
+            font-size: 4em; 
             font-weight: bold; 
             display: inline-block;
-            margin-bottom: 0.7em;
             cursor: pointer;
-        }
-        
-        .center_title:hover{
-            color: $brand-color-light;
         }
     
         &.sticky {
-            height: 80px;
-            background-color:#00ff00;
+            height:70px;
+            position:fixed;
+            -webkit-box-shadow: 0px 2px 5px 0px rgba(92, 92, 92, 0.377);
+            -moz-box-shadow: 0px 2px 5px 0px rgba(92, 92, 92, 0.377);
+            box-shadow: 0px 2px 5px 0px rgba(92, 92, 92, 0.377);
+            //position:sticky;
 
-            .center_title{
-                font-size: 4em;
+            img#logo{
+                height:60px;
+                width:57px;
+            }
+
+            h1{
+                font-size: 3em;
             }
         }
     }
