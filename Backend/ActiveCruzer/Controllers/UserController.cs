@@ -74,9 +74,11 @@ namespace ActiveCruzer.Controllers
                     if (result.Success)
                     {
                         User user = _userBll.GetUser(credentials.Email);
-                        return Ok(new
+                        var token = GenerateToken(user.UserName, user.IntId, null);
+                        return Ok(new JwtDto
                         {
-                            token = new JwtSecurityTokenHandler().WriteToken(GenerateToken(user.UserName, user.IntId))
+                            Token = new JwtSecurityTokenHandler().WriteToken(token),
+                            ValidUntil = token.ValidTo.ToUniversalTime()
                         });
                     }
                     else
@@ -111,9 +113,11 @@ namespace ActiveCruzer.Controllers
 
             if (user != null)
             {
-                return Ok(new
+                var token = GenerateToken(user.UserName, user.IntId, credentials.MinutesValid);
+                return Ok(new JwtDto
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(GenerateToken(user.UserName, user.IntId))
+                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    ValidUntil = token.ValidTo.ToUniversalTime()
                 });
             }
 
@@ -140,7 +144,7 @@ namespace ActiveCruzer.Controllers
         }
 
 
-        private JwtSecurityToken GenerateToken(string username, int id)
+        private JwtSecurityToken GenerateToken(string username, int id, int? credentialsMinutesValid)
         {
             return new JwtSecurityToken(
                 audience: "https://localhost:44314/",
@@ -151,7 +155,7 @@ namespace ActiveCruzer.Controllers
                     new Claim(JwtRegisteredClaimNames.Sub, username),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 },
-                expires: DateTime.UtcNow.AddDays(30),
+                expires: DateTime.UtcNow.AddMinutes(credentialsMinutesValid??43200),
                 notBefore: DateTime.UtcNow,
                 signingCredentials: _jwtAuthentication.Value.SigningCredentials);
         }
