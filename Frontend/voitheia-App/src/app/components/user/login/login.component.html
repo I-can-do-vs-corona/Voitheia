@@ -1,1 +1,34 @@
-<p>login works!</p>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h3>{{'Login.Title' | translate }}</h3>
+        <!-- <mat-horizontal-stepper>
+            <mat-step [label]="'Request.Create.Stepper.Request' | translate"> -->
+                <form #RequestForm="ngForm" novalidate>
+                    <div class="row">
+                        
+                        <div class="col-md">
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <mat-label><span [innerHTML]="'Login.Name' | translate"></span></mat-label>
+                                    <input  matInput name="textareaInput" [(ngModel)]="user.email" #textareaInput="ngModel" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <mat-label><span [innerHTML]="'Login.Password' | translate"></span></mat-label>
+                                    <input  type="password" matInput name="textareaInput" [(ngModel)]="user.password" #textareaInput="ngModel" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary"  (click)="send()">
+                            <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Login' | translate }}
+                        </button>
+                        <button type="submit" class="btn btn-outline-dark" (click)= "registerUser()">
+                            <fa-icon [icon]="faUserPlus"></fa-icon> {{'General.Buttons.Register' | translate }}
+                        </button>
+                    </div>
+                </form>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+
+<div *ngIf="isLoggedIn()">
+    <a (click)="_navigationService.navigateTo('my-requests/list')">
+        <div class="box text-center my-requests">
+            {{'Home.Buttons.MyRequests' | translate }}
+        </div>
+    </a>
+</div>
+<!-- <a (click)="_navigationService.navigateTo('login')">
+    <div class="box text-center my-requests">
+        Login
+    </div>
+</a> -->
+<div class="row">
+    <div class="col-md">
+        <a (click)="_navigationService.navigateTo('request/create')">
+            <div class="box text-center">
+                {{'Home.Buttons.CreateRequest' | translate }}
+            </div>
+        </a>
+    </div>
+    <div class="col-md">
+        <a (click)="_navigationService.navigateTo('request/list')">
+            <div class="box text-center">
+                <span *ngIf="isLoggedIn()">
+                    {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}
+                </span>
+                <span *ngIf="!isLoggedIn()">
+                    {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
+                </span>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div id="line1" class="col text-center">
+        {{'Home.Texts.Level1' | translate }}
+    </div>
+</div>
+<div class="row">
+    <div id="line2" class="col-md-8 offset-md-2">
+        {{'Home.Texts.Level2' | translate }}
+    </div>
+</div>
