@@ -1,0 +1,34 @@
+<h3 mat-dialog-title>{{'Request.Details.Title' | translate }}</h3>
+<div mat-dialog-content>
+    <p>
+        <span class="label">{{'Request.Field.Label.Name' | translate }}</span><br />
+        {{item.firstName}} {{item.lastName}}
+    </p>
+    <p>
+        <span class="label">{{'Request.Field.Label.Type' | translate }}</span><br />
+        {{item.type}}
+    </p>
+    <p>
+        <span class="label">{{'Request.Field.Label.Description' | translate }}</span><br />
+        {{item.description}}
+    </p>
+    <p>
+        <span class="label">{{'Request.Field.Label.Distance' | translate }}</span><br />
+        {{item.distanceToUser}}
+    </p>
+    <p>
+        <span class="label">{{'Request.Field.Label.Phone' | translate }}</span><br />
+        {{item.phoneNumber}}
+    </p>
+    <p>
+        <span class="label">{{'Request.Field.Label.Address' | translate }}</span><br />
+        {{item.street}}<br />
+        {{item.zip}} {{item.city}}
+    </p>
+</div>
+
+<div mat-dialog-actions>
+    <button class="btn btn-outline-dark" (click)="onCancel()">Zurück</button>
+    <button class="btn btn-secondary" (click)="onCancelRequest()">Auftrag abbrechen</button>
+    <button class="btn btn-primary" (click)="onCloseRequest()">Auftrag abschliessen</button>
+</div>

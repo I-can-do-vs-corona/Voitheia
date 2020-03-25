@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <mat-form-field>
+            <mat-label>{{'Request.Field.Label.Type' | translate }}</mat-label>
+            <mat-select multiple (selectionChange)="applyFilter($event)">
+                <mat-option *ngFor="let requestType of RequestTypeEnum | keys" [value]="requestType">
+                    <span [innerHTML]="'General.Enums.RequestTypeEnum.' + RequestTypeEnum[requestType] | translate"></span>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <table mat-table [dataSource]="requestDataSource" matSort matSortActive="distanceToUser" matSortDisableClear matSortDirection="desc">
+            <!-- Firstname Column -->
+            <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef> {{'Request.Field.Label.FirstName' | translate }} </th>
+                <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+        
+            <!-- RequestType Column -->
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> {{'Request.Field.Label.Type' | translate }} </th>
+                <td mat-cell *matCellDef="let element"> {{'General.Enums.RequestTypeEnum.' + element.type | translate}} </td>
+            </ng-container>
+        
+            <!-- Distance to User Column -->
+            <ng-container matColumnDef="distanceToUser">
+                <th mat-header-cell *matHeaderCellDef> {{'Request.Field.Label.Distance' | translate }} </th>
+                <td mat-cell *matCellDef="let element"> {{element.distanceToUser / 1000.0 | number: '1.0-1'}} km</td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" (click)="openDetails(i)"></tr>
+        </table>
+        <mat-paginator class="list_paginator" ([length])="resultsLength"
+              [pageSize]="25"
+              [pageSizeOptions]="[5, 10, 25, 50, 100]"
+              showFirstLastButtons>
+        </mat-paginator>
+    </div>
+</div>

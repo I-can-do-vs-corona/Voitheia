@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/921cf388-3d4a-4125-932a-4ba54f05799f/resourceGroups/Voitheia/providers/Microsoft.Web/sites/Voitheia",
+    "appService.deploySubpath": "dist"
+}
