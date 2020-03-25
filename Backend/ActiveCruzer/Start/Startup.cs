@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Security.Claims;
 using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Startup;
@@ -36,8 +37,10 @@ namespace ActiveCruzer.Start
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ACDatabaseContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("ActiveCrzuerDB-ConnectionString")));
+            // add service from mysql framework
+            services.Add(new ServiceDescriptor(
+                typeof(ACDatabaseContext), new ACDatabaseContext(_configuration.GetConnectionString("ActiveCrzuerDB-ConnectionString")))
+                );
 
             services.InitJwt();
 

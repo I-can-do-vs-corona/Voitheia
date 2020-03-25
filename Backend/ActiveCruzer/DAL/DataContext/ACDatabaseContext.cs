@@ -1,5 +1,6 @@
 ﻿using ActiveCruzer.Models;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 
 namespace ActiveCruzer.DAL.DataContext
 {
@@ -9,11 +10,26 @@ namespace ActiveCruzer.DAL.DataContext
     public class ACDatabaseContext : DbContext
     {
         /// <summary>
-        /// basic constructor for database context
+        /// connection string for mysql connection
         /// </summary>
-        /// <param name="options"></param>
-        public ACDatabaseContext(DbContextOptions<ACDatabaseContext> options) : base(options)
+        public string ConnectionString { get; set; }
+
+        /// <summary>
+        /// assign connectionstring
+        /// </summary>
+        /// <param name="connectionString"></param>
+        public ACDatabaseContext(string connectionString)
         {
+            this.ConnectionString = connectionString;
+        }
+
+        /// <summary>
+        /// return mysql connection
+        /// </summary>
+        /// <returns></returns>
+        private MySqlConnection GetConnection()
+        {
+            return new MySqlConnection(ConnectionString);
         }
 
         /// <summary>
