@@ -23,13 +23,6 @@ namespace ActiveCruzer
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.ConfigureLogging(logging =>
-                //{
-                //    logging.ClearProviders();
-                //    logging.AddConsole();
-                //    logging.AddDebug();
-                //    logging.SetMinimumLevel(LogLevel.Debug);
-                //}
                 .ConfigureAppConfiguration((context, config) =>
                 {
                     var keyVaultEndpoint = GetKeyVaultEndpoint();
@@ -44,7 +37,7 @@ namespace ActiveCruzer
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Start.Startup>();
                 });
     }
 }

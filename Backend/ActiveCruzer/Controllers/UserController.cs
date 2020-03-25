@@ -5,10 +5,12 @@ using ActiveCruzer.BLL;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using ActiveCruzer.Models.Geo;
+using ActiveCruzer.Startup;
 using AutoMapper;
 using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
@@ -27,16 +29,16 @@ namespace ActiveCruzer.Controllers
         private IGeoCodeBll _geoCodeBll;
         private IMapper _mapper;
 
-        private readonly IOptions<JwtAuthentication> _jwtAuthentication;
+        private readonly IOptions<Jwt.JwtAuthentication> _jwtAuthentication;
 
         /// <summary>
-        /// Constructor
+        /// Constructor 
         /// </summary>
         /// <param name="logger"></param>
-        public UserController(IMapper mapper, IOptions<JwtAuthentication> jwtAuthentication)
+        public UserController(IMapper mapper, IOptions<Jwt.JwtAuthentication> jwtAuthentication, IConfiguration configuration)
         {
             _mapper = mapper;
-            _geoCodeBll = new GeoCodeBll(mapper);
+            _geoCodeBll = new GeoCodeBll(mapper, configuration);
             _jwtAuthentication = jwtAuthentication;
         }
 
