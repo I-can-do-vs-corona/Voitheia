@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Extensions;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -36,10 +37,10 @@ namespace ActiveCruzer.Controllers
         private IMapper _mapper;
         private bool _disposed;
 
-        public RequestController(IMapper mapper)
+        public RequestController(IMapper mapper, IConfiguration configuration)
         {
             _mapper = mapper;
-            _geoCodeBll = new GeoCodeBll(_mapper);
+            _geoCodeBll = new GeoCodeBll(_mapper, configuration);
         }
 
         /// <summary>
