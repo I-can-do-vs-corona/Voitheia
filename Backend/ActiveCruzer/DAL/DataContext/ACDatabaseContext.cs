@@ -1,6 +1,7 @@
 ﻿using ActiveCruzer.Models;
+using ActiveCruzer.Models.DTO;
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.MySqlClient;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace ActiveCruzer.DAL.DataContext
 {
@@ -10,35 +11,32 @@ namespace ActiveCruzer.DAL.DataContext
     public class ACDatabaseContext : DbContext
     {
         /// <summary>
-        /// connection string for mysql connection
+        /// init db context
         /// </summary>
-        public string ConnectionString { get; set; }
+        /// <param name="options"></param>
+        public ACDatabaseContext(DbContextOptions<ACDatabaseContext> options) : base(options)
+        { }
 
         /// <summary>
-        /// assign connectionstring
+        /// run on model creating
         /// </summary>
-        /// <param name="connectionString"></param>
-        public ACDatabaseContext(string connectionString)
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            this.ConnectionString = connectionString;
-        }
+            base.OnModelCreating(modelBuilder);
 
-        /// <summary>
-        /// return mysql connection
-        /// </summary>
-        /// <returns></returns>
-        private MySqlConnection GetConnection()
-        {
-            return new MySqlConnection(ConnectionString);
+            modelBuilder.Entity<Request>();
+            modelBuilder.Entity<RegisterUserDTO>();
         }
 
         /// <summary>
         /// database model requests
         /// </summary>
-        public DbSet<ActiveCruzer.Models.Request> Request { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<ActiveCruzer.Models.Request> Request { get; set; }
+
         /// <summary>
-        /// database model users
+        /// database model for registering a user
         /// </summary>
-        public DbSet<User> User { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<RegisterUserDTO> RegisterUserDTOs { get; set; }
     }
 }

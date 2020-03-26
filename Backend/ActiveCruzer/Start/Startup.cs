@@ -1,3 +1,4 @@
+using System;
 using System.Configuration;
 using System.Security.Claims;
 using ActiveCruzer.DAL.DataContext;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace ActiveCruzer.Start
 {
@@ -38,9 +40,8 @@ namespace ActiveCruzer.Start
         public void ConfigureServices(IServiceCollection services)
         {
             // add service from mysql framework
-            services.Add(new ServiceDescriptor(
-                typeof(ACDatabaseContext), new ACDatabaseContext(_configuration.GetConnectionString("ActiveCrzuerDB-ConnectionString")))
-                );
+            services.AddDbContext<ACDatabaseContext>(options =>
+                options.UseMySql(_configuration.GetValue<string>("ActiveCrzuerDB-ConnectionString")));
 
             services.InitJwt();
 
