@@ -1,0 +1,82 @@
+{
+    "General": {
+        "Buttons":{
+            "Submit": "Absenden",
+            "Next": "Weiter",
+            "Back": "Zurück",
+            "Cancel": "Abbrechen",
+            "Accept": "Annehmen",
+            "Login": "Einloggen",
+            "Register": "Registrieren"
+        },
+        "Enums": {
+            "RequestTypeEnum": {
+                "Shopping": "Einkaufen",
+                "Childcare": "Kinderbetreuung",
+                "Medical": "Medizinisch",
+                "Petcare": "Tiersitting",
+                "Other": "Anderes"
+            }
+        },
+        "Errors": {
+            "Required": "Feld ist erforderlich."
+        }
+    },
+    "Home": {
+        "Buttons": {
+            "CreateRequest": "Anfrage erstellen",
+            "MyRequests" : "Meine Anfrage",
+            "ShowRequests" : {
+                "LoggedIn" : "Offene Anfragen anzeigen",
+                "LoggedOut" : "Zum Helfen Anmelden"
+            }
+        },
+        "Texts": {
+            "Level1": "Erstellen Sie selbst eine Anfrage oder bieten Sie Ihre Hilfe an.",
+            "Level2": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        }
+    },
+    "Login":{
+        "Title": "Einloggen",
+        "Name": "Benutzername",
+        "Password": "Passwort"
+    },
+    "Register":{
+        "FirstName": "Vorname",
+        "LastName": "Nachname",
+        "Title": "Registrieren",
+        "Name": "Benutzername",
+        "Password": "Passwort",
+        "StreetAdress": "Adresse",
+        "ZipCode": "PLZ",
+        "City": "Ort"
+    },
+    "Request": {
+        "Create": {
+            "Title": "Anfrage erstellen",
+            "Stepper": {
+                "Request": "Anfragedetails",
+                "ContactInformation": "Kontaktdaten"
+            }
+        },
+        "Details": {
+            "Title": "Anfragedetails"
+        },
+        "Field": {
+            "Label": {
+                "FirstName": "Vorname",
+                "LastName": "LastName",
+                "Name": "Name",
+                "Email": "E-Mail",
+                "Phone": "Telefonnummer",
+                "Address": "Adresse",
+                "Street": "Strasse & Hausnummer",
+                "PostalCode": "PLZ",
+                "City": "Ort",
+                "Type": "Anfragetyp",
+                "Description": "Beschreibung",
+                "Distance": "Entfernung"
+            }
+        }
+    }
+}
