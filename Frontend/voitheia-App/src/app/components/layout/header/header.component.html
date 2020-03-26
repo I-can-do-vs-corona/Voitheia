@@ -12,10 +12,10 @@
       <h1 class="my-auto">Voitheia</h1>
     </a>
     <div class="ml-auto" id="navigation">
-      <a  (click)="_navigationService.navigateTo('login')"> <!-- *ngIf="!isLoggedIn()"-->
+      <a *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('login')">
         <fa-icon [icon]="faSignInAlt"></fa-icon>
       </a>
-      <a (click)="logout()"> <!-- *ngIf="isLoggedIn()"-->
+      <a *ngIf="isLoggedIn()" (click)="logout()">
         <fa-icon [icon]="faSignOutAlt"></fa-icon>
       </a>
     </div>
