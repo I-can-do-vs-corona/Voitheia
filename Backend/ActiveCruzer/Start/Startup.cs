@@ -1,6 +1,7 @@
 using System;
 using System.Configuration;
 using System.Security.Claims;
+using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Startup;
 using AutoMapper;
@@ -43,6 +44,12 @@ namespace ActiveCruzer.Start
             services.AddDbContext<ACDatabaseContext>(options =>
                 options.UseMySql(_configuration.GetValue<string>("ActiveCrzuerDB-ConnectionString")));
 
+            services.AddMvc();
+
+            // register services for interface and related bll
+            services.AddTransient<IMyRequestsBll, MyRequestBll>();
+            services.AddTransient<IRequestBll, RequestBll>();
+
             services.InitJwt();
 
             services.AddControllers();
@@ -56,7 +63,6 @@ namespace ActiveCruzer.Start
             }));
 
             services.InitSwagger();
-
         }
 
 

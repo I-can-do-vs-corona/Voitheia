@@ -10,7 +10,7 @@ namespace ActiveCruzer.BLL
 {
     public class MyRequestBll : IMyRequestsBll
     {
-        Mapper _mapper;
+        private readonly IMapper _mapper;
         private readonly ACDatabaseContext _context;
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace ActiveCruzer.BLL
         /// </summary>
         /// <param name="mapper"></param>
         /// <param name="context"></param>
-        public MyRequestBll(Mapper mapper, ACDatabaseContext context)
+        public MyRequestBll(IMapper mapper, ACDatabaseContext context)
         {
             _mapper = mapper;
             _context = context;
@@ -30,7 +30,7 @@ namespace ActiveCruzer.BLL
         /// <param name="requestId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public int TakeRequest(in int requestId, in int userId)
+        public int TakeRequest(int requestId, int userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if(request != null)

@@ -6,7 +6,7 @@ namespace ActiveCruzer.BLL
 {
     public interface IMyRequestsBll : IDisposable
     {
-        int TakeRequest(in int requestId, in int userId);
+        int TakeRequest(int requestId, int userId);
         void FinishRequest(int requestId);
         void AbortRequest(int requestId, int userId);
         Request GetRequest(int requestId);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ActiveCruzer.BLL;
+using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO.MyRequests;
 using ActiveCruzer.Models.DTO.Request;
@@ -22,12 +23,22 @@ namespace ActiveCruzer.Controllers
     [Route("[controller]")]
     public class MyRequestsController: BaseController
     {
-        private readonly IMyRequestsBll _requestBll = MemoryRequestBll.Instance;
         private UserBLL _userBll = UserBLL.Instance;
+        private readonly IMyRequestsBll _requestBll;
 
         private IMapper _mapper;
         private bool _disposed;
-        public MyRequestsController(IMapper mapper) => _mapper = mapper;
+
+        /// <summary>
+        /// base constructor for myrequest controller
+        /// </summary>
+        /// <param name="mapper"></param>
+        /// <param name="myRequestBll"></param>
+        public MyRequestsController(IMapper mapper, IMyRequestsBll myRequestBll)
+        {
+            _mapper = mapper;
+            _requestBll = myRequestBll;
+        }
 
         /// <summary>
         /// Add a request to the users personal request list.
@@ -72,7 +83,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (_requestBll.ExistsOnUser(id, userId))
             {
-                var request = _requestBll.GetRequest(id, userId);
+                var request = _requestBll.GetRequest(id);
 
                 return Ok(new GetRequestResponse
                 {
@@ -151,7 +162,7 @@ namespace ActiveCruzer.Controllers
             {
                 if (_requestBll.ExistsOnUser(id, userId))
                 {
-                    _requestBll.FinishRequest(id, userId);
+                    _requestBll.FinishRequest(id);
                     return Ok();
                 }
                 else
