@@ -30,7 +30,7 @@ namespace ActiveCruzer.BLL
         /// <param name="requestId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public int TakeRequest(int requestId, int userId)
+        public int TakeRequest(in int requestId, in int userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if(request != null)
@@ -83,7 +83,7 @@ namespace ActiveCruzer.BLL
         /// <param name="requestId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public Request GetRequest(int requestId, int userId)
+        public Request GetRequest(int requestId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if(request != null)
@@ -91,6 +91,14 @@ namespace ActiveCruzer.BLL
                 return request;
             }
             return null;
+        }
+
+        /// <summary>
+        /// dispose from inherit
+        /// </summary>
+        public void Dispose()
+        {
+
         }
 
         /// <summary>
@@ -117,6 +125,36 @@ namespace ActiveCruzer.BLL
         public List<Request> GetAllPendingFromUser(int hardcodedUser)
         {
             return _context.Request.Where(it => it.Volunteer == hardcodedUser && it.Status == Request.RequestStatus.Pending).ToList();
+        }
+
+        /// <summary>
+        /// does requests exist bool?
+        /// </summary>
+        /// <param name="requestId"></param>
+        /// <returns></returns>
+        public bool Exists(int requestId)
+        {
+            var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
+            if(request != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// reuquest not closed bool?
+        /// </summary>
+        /// <param name="requestId"></param>
+        /// <returns></returns>
+        public bool IsNotClosed(int requestId)
+        {
+            var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
+            if(request != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

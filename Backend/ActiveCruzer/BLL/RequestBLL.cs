@@ -22,11 +22,25 @@ namespace ActiveCruzer.BLL
         }
 
         /// <summary>
+        /// create request in db from request input
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public int CreateRequest(Request request)
+        {
+            var _request = request;
+            _context.Request.Add(request);
+            _context.SaveChanges();
+            return request.Id;
+        }
+
+
+        /// <summary>
         /// try lookup request in db and return result bool
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public bool Exists(int id)
+        public bool Exists(in int id)
         {
             var request = _context.Request.Where(x => x.Id == id);
             if (request != null)
@@ -43,7 +57,7 @@ namespace ActiveCruzer.BLL
         /// delete request in database related to id param
         /// </summary>
         /// <param name="i"></param>
-        public void Delete(int id)
+        public void Delete(in int id)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == id);
             if (request != null)
@@ -74,7 +88,7 @@ namespace ActiveCruzer.BLL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Request GetRequest(int id)
+        public Request GetRequest(in int id)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == id);
             if(request != null)
@@ -92,7 +106,7 @@ namespace ActiveCruzer.BLL
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="requestId"></param>
-        public void UpdateAssignee(int userId, int requestId)
+        public void UpdateAssignee(in int userId, int requestId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if(request != null)
@@ -110,7 +124,7 @@ namespace ActiveCruzer.BLL
         /// <param name="amount"></param>
         /// <param name="metersPerimeter"></param>
         /// <returns></returns>
-        List<Request> GetRequestsViaGps(GeoCoordinate coordinates, in int amount, in int metersPerimeter)
+        public List<Request> GetRequestsViaGps(GeoCoordinate coordinates, in int amount, in int metersPerimeter)
         {
             var degrees = GeoHelper.MetersToDegree(metersPerimeter);
             var northernMax = coordinates.Latitude + degrees;

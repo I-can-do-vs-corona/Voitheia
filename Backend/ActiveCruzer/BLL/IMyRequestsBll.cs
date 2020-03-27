@@ -7,12 +7,12 @@ namespace ActiveCruzer.BLL
     public interface IMyRequestsBll : IDisposable
     {
         int TakeRequest(in int requestId, in int userId);
-        void FinishRequest(in int requestId, in int userId);
-        void AbortRequest(in int requestId, in int userId);
-        Request GetRequest(in int requestId, in int userId);
-        bool ExistsOnUser(in int id, in int userId);
+        void FinishRequest(int requestId);
+        void AbortRequest(int requestId, int userId);
+        Request GetRequest(int requestId);
+        bool ExistsOnUser(int id, int userId);
         List<Request> GetAllPendingFromUser(int hardcodedUser);
-        bool Exists(in int requestId);
-        bool IsNotClosed(in int id);
+        bool Exists(int requestId);
+        bool IsNotClosed(int id);
     }
 }
