@@ -48,7 +48,6 @@ namespace ActiveCruzer.BLL
         /// finish request with request id and user id param
         /// </summary>
         /// <param name="requestId"></param>
-        /// <param name="userId"></param>
         public void FinishRequest(int requestId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
