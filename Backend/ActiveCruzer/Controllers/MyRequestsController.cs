@@ -20,6 +20,7 @@ namespace ActiveCruzer.Controllers
     /// For this controller authentication is required
     /// </summary>
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class MyRequestsController: BaseController
     {

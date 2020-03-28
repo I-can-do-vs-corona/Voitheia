@@ -119,11 +119,11 @@ namespace ActiveCruzer.BLL
         /// <summary>
         /// get all reqeusts of user based on hardcoded user
         /// </summary>
-        /// <param name="hardcodedUser"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
-        public List<Request> GetAllPendingFromUser(int hardcodedUser)
+        public List<Request> GetAllPendingFromUser(int userId)
         {
-            return _context.Request.Where(it => it.Volunteer == hardcodedUser && it.Status == Request.RequestStatus.Pending).ToList();
+            return _context.Request.Where(it => it.Volunteer == userId && it.Status == Request.RequestStatus.Pending).ToList();
         }
 
         /// <summary>
@@ -151,7 +151,11 @@ namespace ActiveCruzer.BLL
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if(request != null)
             {
-                return true;
+                if(request.Status == Request.RequestStatus.Open)
+                {
+                    return true;
+                }
+                return false;
             }
             return false;
         }

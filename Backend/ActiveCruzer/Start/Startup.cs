@@ -44,7 +44,6 @@ namespace ActiveCruzer.Start
             services.AddDbContext<ACDatabaseContext>(options =>
                 options.UseMySql(_configuration.GetValue<string>("ActiveCrzuerDB-ConnectionString")));
 
-            services.AddMvc();
 
             // register services for interface and related bll
             services.AddTransient<IMyRequestsBll, MyRequestBll>();
@@ -63,6 +62,7 @@ namespace ActiveCruzer.Start
             }));
 
             services.InitSwagger();
+            services.AddMvc();
         }
 
 
