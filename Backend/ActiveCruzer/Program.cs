@@ -10,6 +10,7 @@ using Microsoft.Azure.KeyVault.Core;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
+using ActiveCruzer.DAL.DataContext;
 
 namespace ActiveCruzer
 {

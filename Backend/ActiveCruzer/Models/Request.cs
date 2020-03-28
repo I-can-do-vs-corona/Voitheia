@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ActiveCruzer.Models.Geo;
-
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace ActiveCruzer.Models
 {
     /// <summary>
     /// model for requests
     /// </summary>
+    [Table("Requests")]
     public class Request
     {
+        [Key]
         public int Id { get; set; }
         public int? Volunteer { get; set; }
         public RequestType RequestType { get; set; }

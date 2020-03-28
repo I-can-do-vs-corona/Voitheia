@@ -1,4 +1,7 @@
+using System;
+using System.Configuration;
 using System.Security.Claims;
+using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Startup;
 using AutoMapper;
@@ -11,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace ActiveCruzer.Start
 {
@@ -36,8 +40,14 @@ namespace ActiveCruzer.Start
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // add service from mysql framework
             services.AddDbContext<ACDatabaseContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("ActiveCrzuerDB-ConnectionString")));
+                options.UseMySql(_configuration.GetValue<string>("ActiveCrzuerDB-ConnectionString")));
+
+
+            // register services for interface and related bll
+            services.AddTransient<IMyRequestsBll, MyRequestBll>();
+            services.AddTransient<IRequestBll, RequestBll>();
 
             services.InitJwt();
 
@@ -52,7 +62,7 @@ namespace ActiveCruzer.Start
             }));
 
             services.InitSwagger();
-
+            services.AddMvc();
         }
 
 
