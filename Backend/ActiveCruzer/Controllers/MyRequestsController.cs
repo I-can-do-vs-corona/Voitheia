@@ -34,6 +34,7 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="takeRequestDto">The required data to take a request. Right now only the request id</param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -64,6 +65,7 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -91,6 +93,7 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -126,6 +129,7 @@ namespace ActiveCruzer.Controllers
         /// <param name="amount">How many requests to retrieve</param>
         /// <param name="metersPerimeter">Which perimeter should be kept in considoration</param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public ActionResult<GetAllRequestResponse> GetAll()
         {
@@ -140,7 +144,7 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        
+        [Authorize]
         [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

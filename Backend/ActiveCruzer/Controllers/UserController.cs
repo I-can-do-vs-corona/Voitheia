@@ -149,15 +149,15 @@ namespace ActiveCruzer.Controllers
         private JwtSecurityToken GenerateToken(string username, int id, int? credentialsMinutesValid)
         {
             return new JwtSecurityToken(
-                audience: "https://localhost:44314/",
-                issuer: "https://localhost:44314/",
+                audience: _jwtAuthentication.Value.ValidAudience,
+                issuer: _jwtAuthentication.Value.ValidIssuer,
                 claims: new[]
                 {
                     new Claim("id", id.ToString()),
                     new Claim(JwtRegisteredClaimNames.Sub, username),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 },
-                expires: DateTime.UtcNow.AddMinutes(credentialsMinutesValid??43200),
+                expires: DateTime.UtcNow.AddMinutes(credentialsMinutesValid??1),
                 notBefore: DateTime.UtcNow,
                 signingCredentials: _jwtAuthentication.Value.SigningCredentials);
         }

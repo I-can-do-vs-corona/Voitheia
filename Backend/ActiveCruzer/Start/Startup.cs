@@ -39,7 +39,7 @@ namespace ActiveCruzer.Start
             services.AddDbContext<ACDatabaseContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("ActiveCrzuerDB-ConnectionString")));
 
-            services.InitJwt();
+            services.InitJwt(_configuration);
 
             services.AddControllers();
             services.AddAutoMapper(GetType().Assembly);
@@ -52,7 +52,6 @@ namespace ActiveCruzer.Start
             }));
 
             services.InitSwagger();
-
         }
 
 
