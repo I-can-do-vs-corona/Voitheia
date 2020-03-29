@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -9,52 +10,42 @@ namespace ActiveCruzer.Startup
 {
     public static class Jwt
     {
-        public static void InitJwt(this IServiceCollection self)
+        private static IConfiguration _configuration;
+
+        public static void InitJwt(this IServiceCollection self, IConfiguration  configuration)
         {
-            self.AddSingleton<IPostConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
+            _configuration = configuration;
 
             self.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer();
-        }
-
-        private class ConfigureJwtBearerOptions : IPostConfigureOptions<JwtBearerOptions>
-        {
-            public void PostConfigure(string name, JwtBearerOptions options)
-            {
-                var jwtAuthentication = new JwtAuthentication
+                .AddJwtBearer(options =>
                 {
-                    SecurityKey = "ouNtF8Xds1jE55/d+iVZ99u0f2U6lQ+AHdiPFwjVW3o=",
-                    ValidAudience = "https://localhost:44314/",
-                    ValidIssuer = "https://localhost:44314/"
-                };
+                    var jwtAuthentication = new JwtAuthentication();
 
-
-                options.ClaimsIssuer = jwtAuthentication.ValidIssuer;
-                options.IncludeErrorDetails = true;
-                options.RequireHttpsMetadata = true;
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateActor = false,
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = false,
-                    ValidateIssuerSigningKey = false,
-                    ValidIssuer = jwtAuthentication.ValidIssuer,
-                    ValidAudience = jwtAuthentication.ValidAudience,
-                    IssuerSigningKey = jwtAuthentication.SymmetricSecurityKey,
-                    NameClaimType = ClaimTypes.NameIdentifier
-                };
-            }
+                    options.ClaimsIssuer = jwtAuthentication.ValidIssuer;
+                    options.IncludeErrorDetails = true;
+                    options.RequireHttpsMetadata = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateActor = true,
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = jwtAuthentication.ValidIssuer,
+                        ValidAudience = jwtAuthentication.ValidAudience,
+                        IssuerSigningKey = jwtAuthentication.SymmetricSecurityKey,
+                        NameClaimType = ClaimTypes.NameIdentifier
+                    };
+                });
         }
 
         public class JwtAuthentication
         {
-            public string SecurityKey { get; set; }
-            public string ValidIssuer { get; set; }
-            public string ValidAudience { get; set; }
+            public string SecurityKey { get; set; } = _configuration["JwPee"];
+            public string ValidIssuer { get; set; } = _configuration["Jwt:Issuer"];
+            public string ValidAudience { get; set; } = _configuration["Jwt:Audience"];
             public SymmetricSecurityKey SymmetricSecurityKey => new SymmetricSecurityKey(Convert.FromBase64String(SecurityKey));
             public SigningCredentials SigningCredentials => new SigningCredentials(SymmetricSecurityKey, SecurityAlgorithms.HmacSha256);
-
         }
     }
 }

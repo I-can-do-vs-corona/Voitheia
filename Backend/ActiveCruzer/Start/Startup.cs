@@ -49,7 +49,7 @@ namespace ActiveCruzer.Start
             services.AddTransient<IMyRequestsBll, MyRequestBll>();
             services.AddTransient<IRequestBll, RequestBll>();
 
-            services.InitJwt();
+            services.InitJwt(_configuration);
 
             services.AddControllers();
             services.AddAutoMapper(GetType().Assembly);
@@ -62,7 +62,6 @@ namespace ActiveCruzer.Start
             }));
 
             services.InitSwagger();
-            services.AddMvc();
         }
 
 
