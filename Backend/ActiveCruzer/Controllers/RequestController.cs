@@ -43,11 +43,12 @@ namespace ActiveCruzer.Controllers
         /// <param name="mapper"></param>
         /// <param name="configuration"></param>
         /// <param name="requestBll"></param>
-        public RequestController(IMapper mapper, IConfiguration configuration, IRequestBll requestBll)
+        public RequestController(IMapper mapper, IConfiguration configuration, IRequestBll requestBll, ACDatabaseContext databaseContext)
         {
             _mapper = mapper;
             _requestBll = requestBll;
             _geoCodeBll = new GeoCodeBll(_mapper, configuration);
+            _userBll = new UserBLL(new UserManager(databaseContext),mapper);
         }
 
         /// <summary>
