@@ -151,7 +151,7 @@ namespace ActiveCruzer.BLL
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if(request != null)
             {
-                if(request.Status == Request.RequestStatus.Open)
+                if(request.Status == Request.RequestStatus.Open || request.Status == Request.RequestStatus.Pending ||  request.Status == Request.RequestStatus.Timeout)
                 {
                     return true;
                 }
