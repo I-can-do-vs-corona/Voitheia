@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ActiveCruzer.Models;
+using ActiveCruzer.Models.DTO.Request;
 
 namespace ActiveCruzer.BLL
 {
@@ -9,9 +10,9 @@ namespace ActiveCruzer.BLL
         int TakeRequest(int requestId, int userId);
         void FinishRequest(int requestId);
         void AbortRequest(int requestId, int userId);
-        Request GetRequest(int requestId);
+        RequestDto GetRequest(int requestId, int userId);
         bool ExistsOnUser(int id, int userId);
-        List<Request> GetAllPendingFromUser(int hardcodedUser);
+        List<RequestDto> GetAllPendingFromUser(int hardcodedUser);
         bool Exists(int requestId);
         bool IsNotClosed(int id);
     }
