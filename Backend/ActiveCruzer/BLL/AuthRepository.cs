@@ -1,4 +1,5 @@
 ﻿using System;
+using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using GeoCoordinatePortable;

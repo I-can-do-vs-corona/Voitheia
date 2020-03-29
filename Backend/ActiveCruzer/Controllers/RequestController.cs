@@ -30,16 +30,23 @@ namespace ActiveCruzer.Controllers
     [Route("[controller]")]
     public class RequestController : BaseController
     {
-        private readonly IRequestBll _requestBll = MemoryRequestBll.Instance;
+        private readonly IRequestBll _requestBll;
         private readonly IGeoCodeBll _geoCodeBll;
         private readonly UserBLL _userBll = UserBLL.Instance;
 
         private IMapper _mapper;
         private bool _disposed;
 
-        public RequestController(IMapper mapper, IConfiguration configuration)
+        /// <summary>
+        /// Request controller base
+        /// </summary>
+        /// <param name="mapper"></param>
+        /// <param name="configuration"></param>
+        /// <param name="requestBll"></param>
+        public RequestController(IMapper mapper, IConfiguration configuration, IRequestBll requestBll)
         {
             _mapper = mapper;
+            _requestBll = requestBll;
             _geoCodeBll = new GeoCodeBll(_mapper, configuration);
         }
 
