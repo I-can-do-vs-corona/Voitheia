@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ActiveCruzer.Models.DTO.Request;
+using GeoCoordinatePortable;
 
 namespace ActiveCruzer.BLL
 {
@@ -12,6 +14,7 @@ namespace ActiveCruzer.BLL
     {
         private readonly IMapper _mapper;
         private readonly ACDatabaseContext _context;
+        private UserManager _userManager;
 
         /// <summary>
         /// basic constructur for MyRequests
@@ -22,6 +25,7 @@ namespace ActiveCruzer.BLL
         {
             _mapper = mapper;
             _context = context;
+            _userManager = new UserManager(context);
         }
 
         /// <summary>
@@ -33,7 +37,7 @@ namespace ActiveCruzer.BLL
         public int TakeRequest(int requestId, int userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
-            if(request != null)
+            if (request != null)
             {
                 request.Volunteer = userId;
                 request.Status = Request.RequestStatus.Pending;
@@ -41,6 +45,7 @@ namespace ActiveCruzer.BLL
                 _context.SaveChanges();
                 return request.Id;
             }
+
             return 0;
         }
 
@@ -51,7 +56,7 @@ namespace ActiveCruzer.BLL
         public void FinishRequest(int requestId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
-            if(request != null)
+            if (request != null)
             {
                 request.Status = Request.RequestStatus.Closed;
                 _context.Update(request);
@@ -67,7 +72,7 @@ namespace ActiveCruzer.BLL
         public void AbortRequest(int requestId, int userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
-            if(request != null)
+            if (request != null)
             {
                 request.Status = Request.RequestStatus.Open;
                 request.Volunteer = null;
@@ -82,13 +87,17 @@ namespace ActiveCruzer.BLL
         /// <param name="requestId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public Request GetRequest(int requestId)
+        public RequestDto GetRequest(int requestId, int userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
-            if(request != null)
+            var user = _userManager.FindById(userId);
+            var userCoordinate = new GeoCoordinate(user.Latitude, user.Longitude);
+
+            if (request != null)
             {
-                return request;
+                return MapRequestAndCalculateDistance(request, userCoordinate);
             }
+
             return null;
         }
 
@@ -97,7 +106,6 @@ namespace ActiveCruzer.BLL
         /// </summary>
         public void Dispose()
         {
-
         }
 
         /// <summary>
@@ -109,10 +117,11 @@ namespace ActiveCruzer.BLL
         public bool ExistsOnUser(int requestId, int userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
-            if(request != null)
+            if (request != null)
             {
                 return request.Id == requestId && request.Volunteer == userId;
             }
+
             return false;
         }
 
@@ -121,9 +130,14 @@ namespace ActiveCruzer.BLL
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public List<Request> GetAllPendingFromUser(int userId)
+        public List<RequestDto> GetAllPendingFromUser(int userId)
         {
-            return _context.Request.Where(it => it.Volunteer == userId && it.Status == Request.RequestStatus.Pending).ToList();
+            var requests = _context.Request
+                .Where(it => it.Volunteer == userId && it.Status == Request.RequestStatus.Pending).ToList();
+            var user = _userManager.FindById(userId);
+            var userCoordinate = new GeoCoordinate(user.Latitude, user.Longitude);
+
+            return requests.Select(it => MapRequestAndCalculateDistance(it, userCoordinate)).ToList();
         }
 
         /// <summary>
@@ -134,10 +148,11 @@ namespace ActiveCruzer.BLL
         public bool Exists(int requestId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
-            if(request != null)
+            if (request != null)
             {
                 return true;
             }
+
             return false;
         }
 
@@ -149,15 +164,25 @@ namespace ActiveCruzer.BLL
         public bool IsNotClosed(int requestId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
-            if(request != null)
+            if (request != null)
             {
-                if(request.Status == Request.RequestStatus.Open || request.Status == Request.RequestStatus.Pending ||  request.Status == Request.RequestStatus.Timeout)
+                if(request.Status != Request.RequestStatus.Closed)
                 {
                     return true;
                 }
+
                 return false;
             }
+
             return false;
+        }
+
+        private RequestDto MapRequestAndCalculateDistance(Request request, GeoCoordinate userCoordinate)
+        {
+            var mapped = _mapper.Map<RequestDto>(request);
+            mapped.DistanceToUser =
+                (int)userCoordinate.GetDistanceTo(new GeoCoordinate(request.Latitude, request.Longitude));
+            return mapped;
         }
     }
 }

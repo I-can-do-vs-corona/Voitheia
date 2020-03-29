@@ -24,7 +24,6 @@ namespace ActiveCruzer.Controllers
     [Route("[controller]")]
     public class MyRequestsController: BaseController
     {
-        private UserBLL _userBll;
         private readonly IMyRequestsBll _requestBll;
 
         private IMapper _mapper;
@@ -86,7 +85,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (_requestBll.ExistsOnUser(id, userId))
             {
-                var request = _requestBll.GetRequest(id);
+                var request = _requestBll.GetRequest(id, userId);
 
                 return Ok(new GetRequestResponse
                 {
@@ -145,10 +144,9 @@ namespace ActiveCruzer.Controllers
         [HttpGet]
         public ActionResult<GetAllRequestResponse> GetAll()
         {
-            var requests = _requestBll.GetAllPendingFromUser(GetUserId());
-            var dtoRequests = requests.Select(it => _mapper.Map<RequestDto>(it)).ToList();
-
-            return Ok(new GetAllRequestResponse { Requests = dtoRequests, TotalCount = dtoRequests.Count});
+            var userId = GetUserId();
+            var requests = _requestBll.GetAllPendingFromUser(userId);
+            return Ok(new GetAllRequestResponse { Requests = requests, TotalCount = requests.Count});
         }
 
         /// <summary>
