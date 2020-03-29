@@ -24,7 +24,7 @@ namespace ActiveCruzer.Controllers
     [Route("[controller]")]
     public class MyRequestsController: BaseController
     {
-        private UserBLL _userBll = UserBLL.Instance;
+        private UserBLL _userBll;
         private readonly IMyRequestsBll _requestBll;
 
         private IMapper _mapper;

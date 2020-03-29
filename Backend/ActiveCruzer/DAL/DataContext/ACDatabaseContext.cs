@@ -26,7 +26,7 @@ namespace ActiveCruzer.DAL.DataContext
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Request>();
-            modelBuilder.Entity<RegisterUserDTO>();
+            modelBuilder.Entity<User>();
         }
 
         /// <summary>
@@ -37,6 +37,6 @@ namespace ActiveCruzer.DAL.DataContext
         /// <summary>
         /// database model for registering a user
         /// </summary>
-        public Microsoft.EntityFrameworkCore.DbSet<RegisterUserDTO> RegisterUserDTOs { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<User> Users { get; set; }
     }
 }

@@ -1,16 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BingMapsRESTToolkit;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace ActiveCruzer.Models.DTO
 {
-    [Table("Users")]
     public class RegisterUserDTO
     {
-        [Key]
-        public int id { get; set; }
-
         [Required]
         [EmailAddress]
         public string Email { get; set; }
@@ -23,7 +20,6 @@ namespace ActiveCruzer.Models.DTO
 
         [Required(ErrorMessage = "PasswordRequired")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
         public string Password { get; set; }
         [Required]
         public string Street { get; set; }
