@@ -1,6 +1,7 @@
 ﻿using System;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
+using AutoMapper;
 using GeoCoordinatePortable;
 
 namespace ActiveCruzer.BLL
@@ -10,56 +11,17 @@ namespace ActiveCruzer.BLL
     ///</Summary>
     public class UserBLL
     {
-        private static UserBLL instance = null;
-        private static readonly object padlock = new object();
-
-        public static UserBLL Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                    {
-                        instance = new UserBLL();
-                    }
-
-                    return instance;
-                }
-            }
-        }
-
         private bool disposed = false;
-
-        internal static AuthRepository _AuthRepository;
+        private IUserManager _userManager;
+        private readonly IMapper _mapper;
 
         ///<Summary>
         /// Constructor
         ///</Summary>
-        private UserBLL()
+        public UserBLL(IUserManager userManager, IMapper mapper)
         {
-            _AuthRepository = new AuthRepository();
-
-            _AuthRepository.Register(new RegisterUserDTO
-            {
-                Email = "first@test.com",
-                Street = "Neubessinger Str. 16",
-                Zip = "97535",
-                City = "Wasserlosen",
-                Country = "Germany",
-                Password = "first"
-            }, new GeoCoordinate(50.054710, 9.995050));
-
-            _AuthRepository.Register(new RegisterUserDTO
-            {
-                Email = "test@test.com",
-                Street = "Georg-Schäfer-Straße 30",
-                Zip = "97421",
-                City = "Schweinfurt",
-                Country = "Germany",
-                Password = "test"
-            }, new GeoCoordinate(50.102590, 10.795760));
-
+            _userManager = userManager;
+            _mapper = mapper;
         }
 
         ///<Summary>
@@ -67,38 +29,41 @@ namespace ActiveCruzer.BLL
         ///</Summary>
         public void Save()
         {
-
         }
 
 
         public RegisteringResult Register(RegisterUserDTO credentials, GeoCoordinate validatedAddressCoordinates)
         {
-
-            var result = _AuthRepository.Register(credentials, validatedAddressCoordinates);
+            var user = _mapper.Map<User>(credentials);
+            user.Longitude = validatedAddressCoordinates.Longitude;
+            user.Latitude = validatedAddressCoordinates.Latitude;
+            var result = _userManager.CreateUser(user, credentials.Password);
 
             if (result.Success)
             {
                 return result;
             }
-           
-            throw new Exception("ErrorInRegistration");
+
+            throw new Exception(result.ErrorMessage);
         }
 
         public User Login(CredentialsDTO credentials)
         {
-            return _AuthRepository.Login(credentials);
+            return _userManager.CheckPassword(credentials.Email, credentials.Password)
+                ? _userManager.FindByUserName(credentials.Email)
+                : null;
         }
 
 
         public User GetUser(string eMail)
         {
-            return _AuthRepository.FindUser(eMail);
+            return _userManager.FindByUserName(eMail);
         }
 
 
         public User GetUserViaId(in int userId)
         {
-            return _AuthRepository.FindUser(userId);
+            return _userManager.FindById(userId);
         }
 
         ///<Summary>
@@ -110,11 +75,9 @@ namespace ActiveCruzer.BLL
             {
                 if (!disposed)
                 {
-                    if (_AuthRepository != null)
-                    {
-                        _AuthRepository.Dispose();
-                    }
+                    _userManager?.Dispose();
                 }
+
                 disposed = true;
             }
         }
@@ -127,8 +90,5 @@ namespace ActiveCruzer.BLL
             Dispose(true);
             //GC.SuppressFinalize(this);
         }
-
-
-      
     }
 }

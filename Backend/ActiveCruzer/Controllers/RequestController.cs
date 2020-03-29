@@ -32,7 +32,7 @@ namespace ActiveCruzer.Controllers
     {
         private readonly IRequestBll _requestBll;
         private readonly IGeoCodeBll _geoCodeBll;
-        private readonly UserBLL _userBll = UserBLL.Instance;
+        private readonly UserBLL _userBll;
 
         private IMapper _mapper;
         private bool _disposed;
@@ -75,6 +75,7 @@ namespace ActiveCruzer.Controllers
                     request.Longitude = validatedAddress.Coordinates.Longitude;
                     request.Latitude = validatedAddress.Coordinates.Latitude;
                     request.Status = Models.Request.RequestStatus.Open;
+                    request.CreatedOn = DateTime.UtcNow;
                     var id = _requestBll.CreateRequest(request);
                     return CreatedAtAction(nameof(GetById), new {id}, new CreateRequestResponseDto {Id = id});
                 }
@@ -157,7 +158,7 @@ namespace ActiveCruzer.Controllers
                 {
                     var userId = GetUserId();
                     var user = _userBll.GetUserViaId(userId);
-                    coordinates = new GeoCoordinate(user.Latitude, user.Longtitude);
+                    coordinates = new GeoCoordinate(user.Latitude, user.Longitude);
                 }
                 catch (Exception)
                 {

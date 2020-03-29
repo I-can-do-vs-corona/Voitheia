@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using ActiveCruzer.BLL;
+using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using ActiveCruzer.Models.Geo;
@@ -25,9 +26,8 @@ namespace ActiveCruzer.Controllers
     {
         private bool disposed = false;
 
-        private UserBLL _userBll = UserBLL.Instance;
+        private UserBLL _userBll;
         private IGeoCodeBll _geoCodeBll;
-        private IMapper _mapper;
 
         private readonly IOptions<Jwt.JwtAuthentication> _jwtAuthentication;
 
@@ -35,10 +35,11 @@ namespace ActiveCruzer.Controllers
         /// Constructor 
         /// </summary>
         /// <param name="logger"></param>
-        public UserController(IMapper mapper, IOptions<Jwt.JwtAuthentication> jwtAuthentication, IConfiguration configuration)
+        public UserController(IMapper mapper, IOptions<Jwt.JwtAuthentication> jwtAuthentication,
+            IConfiguration configuration, ACDatabaseContext databaseContext)
         {
-            _mapper = mapper;
             _geoCodeBll = new GeoCodeBll(mapper, configuration);
+            _userBll = new UserBLL(new UserManager(databaseContext),mapper);
             _jwtAuthentication = jwtAuthentication;
         }
 
@@ -76,7 +77,7 @@ namespace ActiveCruzer.Controllers
                     if (result.Success)
                     {
                         User user = _userBll.GetUser(credentials.Email);
-                        var token = GenerateToken(user.UserName, user.IntId, null);
+                        var token = GenerateToken(user.UserName, user.Id, null);
                         return Ok(new JwtDto
                         {
                             Token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -110,12 +111,11 @@ namespace ActiveCruzer.Controllers
         [Route("Login")]
         public ActionResult<JwtDto> Login([FromBody] CredentialsDTO credentials)
         {
-            User user = _userBll.Login(credentials);
-            ;
+            User user = _userBll.Login(credentials); 
 
             if (user != null)
             {
-                var token = GenerateToken(user.UserName, user.IntId, credentials.MinutesValid);
+                var token = GenerateToken(user.UserName, user.Id, credentials.MinutesValid);
                 return Ok(new JwtDto
                 {
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
