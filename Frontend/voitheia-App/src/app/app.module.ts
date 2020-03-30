@@ -26,6 +26,7 @@ import { RequestListComponent } from './components/request/request-list/request-
 import { KeysPipe } from './common/helper/pipes/keys.pipe';
 import { MyRequestsListComponent } from './components/my-requests/my-requests-list/my-requests-list.component';
 import { MyRequestsViewComponent } from './components/my-requests/my-requests-view/my-requests-view.component';
+import { DistancePipe } from './common/helper/pipes/distance.pipe';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MyRequestsViewComponent } from './components/my-requests/my-requests-vi
     HeaderComponent,
     RequestListComponent,
     MyRequestsListComponent,
-    MyRequestsViewComponent
+    MyRequestsViewComponent,
+    DistancePipe
   ],
   imports: [
     BrowserModule,
