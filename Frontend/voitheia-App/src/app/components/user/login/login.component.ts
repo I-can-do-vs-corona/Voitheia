@@ -27,21 +27,7 @@ export class LoginComponent implements OnInit {
     this._navigationService.navigateTo('register');
   }
 
-  public send(){    
-    this._authService.requestLogin(this.user).subscribe(
-      data => {
-        this._authService.setToken(data["token"]);
-        this._navigationService.navigateTo('home');
-      },
-      err => {
-        console.log(err);
-        if(err["status"] === 400){
-          alert("Login Error, please check email and password!");
-        }
-        else{
-          alert("Error");
-        }
-      }
-    );
+  public login(){ 
+    this._authService.login(this.user);
   }
 }
