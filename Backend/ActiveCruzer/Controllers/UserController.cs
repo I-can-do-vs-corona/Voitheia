@@ -127,7 +127,7 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
-        /// delete user and requests with userId
+        /// delete user with given userId
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
