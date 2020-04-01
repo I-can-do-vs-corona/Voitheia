@@ -21,6 +21,12 @@ namespace ActiveCruzer.BLL
             _passwordHasher = new PasswordHasher<User>();
         }
 
+        /// <summary>
+        /// register user in db and return result
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="credentialsPassword"></param>
+        /// <returns></returns>
         public RegisteringResult CreateUser(User user, string credentialsPassword)
         {
             if (_databaseContext.Users.Any(it => it.NormalizedUserName == user.NormalizedUserName))
@@ -34,6 +40,12 @@ namespace ActiveCruzer.BLL
             return new RegisteringResult {Success = true};
         }
 
+        /// <summary>
+        /// check password with given user in db
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="credentialsPassword"></param>
+        /// <returns></returns>
         public bool CheckPassword(string username, string credentialsPassword)
         {
             var user = _databaseContext.Users.FirstOrDefault(it => it.NormalizedUserName == username.ToLower());
@@ -60,16 +72,46 @@ namespace ActiveCruzer.BLL
             return false;
         }
 
+        /// <summary>
+        /// find user in db by username and return user
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         public User FindByUserName(string userName)
         {
             return _databaseContext.Users.FirstOrDefault(it => it.NormalizedUserName == userName.ToLower());
         }
 
+        /// <summary>
+        /// find user by userid and return it
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public User FindById(int userId)
         {
             return _databaseContext.Users.Find(userId);
         }
 
+        /// <summary>
+        /// delete user account with param user id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public string DeleteAccount(User user)
+        {
+            var _user = _databaseContext.Users.Find(user);
+            if( user != null)
+            {
+                _databaseContext.Remove(_user);
+                _databaseContext.SaveChanges();
+                return _user.UserName;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// dispose connection db
+        /// </summary>
         public void Dispose()
         {
         }

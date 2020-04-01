@@ -126,6 +126,19 @@ namespace ActiveCruzer.Controllers
             return Unauthorized();
         }
 
+        [Authorize]
+        [HttpPost]
+        [Route("Delete")]
+        public ActionResult DeleteAccount([FromBody] User user)
+        {
+            string username = _userBll.DeleteUser(user);
+            if(username != null)
+            {
+                return Ok(username);
+            }
+            return BadRequest();
+        }
+
 
         protected void Dispose(bool disposing)
         {
