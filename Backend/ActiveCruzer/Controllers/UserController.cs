@@ -135,12 +135,16 @@ namespace ActiveCruzer.Controllers
         [Route("Delete")]
         public ActionResult DeleteAccount([FromBody] int userid)
         {
-            string username = _userBll.DeleteUser(userid);
-            if(username != null)
+            if(LoggedIn() == Ok())
             {
-                return Ok(username);
+                string username = _userBll.DeleteUser(userid);
+                if (username != null)
+                {
+                    return Ok(username);
+                }
+                return BadRequest("No such user");
             }
-            return BadRequest();
+            return Unauthorized("Not allowed to process this transaction");
         }
 
 
