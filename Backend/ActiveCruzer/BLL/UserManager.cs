@@ -95,20 +95,24 @@ namespace ActiveCruzer.BLL
         /// <summary>
         /// delete user account with param user id
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
-        public string DeleteAccount(User user)
+        public string DeleteAccount(int userId)
         {
-            var _user = _databaseContext.Users.Find(user);
-            var requests = _databaseContext.Request.Where(x => x.Volunteer == _user.Id);
+            var _user = _databaseContext.Users.FirstOrDefault(x=> x.Id == userId);
+            var requests = _databaseContext.Request.Where(x => x.Volunteer == userId);
             if(requests != null)
             {
                 foreach(Request request in requests)
                 {
                     request.Volunteer = null;
+                    if(request.Status != Request.RequestStatus.Closed)
+                    {
+                        request.Status = Request.RequestStatus.Closed;
+                    }
                 }
             }
-            if( user != null)
+            if( _user != null)
             {
                 _databaseContext.Remove(_user);
                 _databaseContext.UpdateRange(requests);

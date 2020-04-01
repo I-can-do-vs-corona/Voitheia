@@ -66,9 +66,9 @@ namespace ActiveCruzer.BLL
             return _userManager.FindById(userId);
         }
 
-        public string DeleteUser(User user)
+        public string DeleteUser(int userId)
         {
-            return _userManager.DeleteAccount(user);
+            return _userManager.DeleteAccount(userId);
         }
 
         ///<Summary>
