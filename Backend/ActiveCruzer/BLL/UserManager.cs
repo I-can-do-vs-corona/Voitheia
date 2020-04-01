@@ -95,7 +95,7 @@ namespace ActiveCruzer.BLL
         /// <summary>
         /// delete user account with param user id
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
         public string DeleteAccount(User user)
         {
