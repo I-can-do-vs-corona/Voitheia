@@ -108,7 +108,7 @@ namespace ActiveCruzer.BLL
                     request.Volunteer = null;
                     if(request.Status != Request.RequestStatus.Closed)
                     {
-                        request.Status = Request.RequestStatus.Closed;
+                        request.Status = Request.RequestStatus.Open;
                     }
                 }
             }
