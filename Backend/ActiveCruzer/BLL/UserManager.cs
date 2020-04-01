@@ -100,9 +100,18 @@ namespace ActiveCruzer.BLL
         public string DeleteAccount(User user)
         {
             var _user = _databaseContext.Users.Find(user);
+            var requests = _databaseContext.Request.Where(x => x.Volunteer == _user.Id);
+            if(requests != null)
+            {
+                foreach(Request request in requests)
+                {
+                    request.Volunteer = null;
+                }
+            }
             if( user != null)
             {
                 _databaseContext.Remove(_user);
+                _databaseContext.UpdateRange(requests);
                 _databaseContext.SaveChanges();
                 return _user.UserName;
             }
