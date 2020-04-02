@@ -6,6 +6,7 @@ import { MyRequestsService } from '../my-requests.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MyRequestsViewComponent } from '../my-requests-view/my-requests-view.component';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-my-requests-list',
@@ -20,7 +21,7 @@ export class MyRequestsListComponent implements OnInit {
 
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
   
-  constructor(public _myRequestsService: MyRequestsService,public _navigationService: NavigationService, public dialog: MatDialog) { }
+  constructor(private _myRequestsService: MyRequestsService, private _navigationService: NavigationService, private _dialog: MatDialog) { }
 
   ngOnInit(): void {
       this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
@@ -29,8 +30,8 @@ export class MyRequestsListComponent implements OnInit {
 
   openDetails(index:number){
     this.openedItem = this.requestDataSource.data[index];
-    const dialogRef = this.dialog.open(MyRequestsViewComponent, {
-      width: '450px',
+    const dialogRef = this._dialog.open(MyRequestsViewComponent, {
+      width: environment.dialogWidth,
       data: {item: this.openedItem}
     });
 

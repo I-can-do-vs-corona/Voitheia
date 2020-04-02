@@ -19,10 +19,10 @@ export class RequestService {
     parameters += (requestDistance === 0)? this._utilitiesService.getRequestDistance().toString() : requestDistance.toString();
     parameters += "&amount=";
     parameters += (requestAmount === 0)? this._utilitiesService.getRequestAmount().toString() : requestAmount.toString();
-    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'request' + parameters, {withCredentials: true});
+    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'request' + parameters, {withCredentials: false});
   }
 
   takeRequest(id: number){
-    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'myRequests', {"requestId" : id}, {withCredentials: true});
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'myRequests', {"requestId" : id}, {withCredentials: false});
   }
 }

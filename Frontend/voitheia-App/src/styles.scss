@@ -15,6 +15,7 @@ html, body { height: 100%; }
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: $base-font-size;
 
     background-color: $brand-secondary-color-light;
     color:white;
@@ -25,15 +26,24 @@ body {
         min-height:100vh;
     }
 
-    .container-fluid{
-        //padding:0;
-    }
-
     .mat-form-field {
         width: 100%;
     }
 
     .mat-stepper-horizontal{
         background-color: transparent;
+    }
+
+    [mat-dialog-title], #dialog-title{
+        text-align:center;
+        font-weight:$bold;
+
+        [mat-dialog-title]{
+            border-bottom:0;
+        }
+    }
+
+    button.btn{
+        margin-right:$third-spacing;
     }
 }

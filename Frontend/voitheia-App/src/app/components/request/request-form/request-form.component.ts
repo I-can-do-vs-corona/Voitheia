@@ -3,7 +3,9 @@ import { RequestDTO } from 'src/app/common/models/requestDTO';
 import { RequestService } from '../request.service';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
-import { RequestTypeEnum } from 'src/app/common/helper/enums';
+import { RequestTypeEnum, DialogIconTypeEnum } from 'src/app/common/helper/enums';
+import { DialogService } from 'src/app/common/shared/services/dialog/dialog.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-request-form',
@@ -17,7 +19,10 @@ export class RequestFormComponent implements OnInit {
 
   request: RequestDTO;
 
-  constructor(private _requestService: RequestService, private _navigationService: NavigationService) {
+  constructor(private _requestService: RequestService,
+              private _dialogService: DialogService,
+              private _navigationService: NavigationService,
+              private _translate: TranslateService) {
     this.request = new RequestDTO();
   }
 
@@ -29,10 +34,15 @@ export class RequestFormComponent implements OnInit {
     
     this._requestService.createRequest(this.request).subscribe(
       data => {
-        //this._navigationService.navigateTo("request/create/success")
+        this._translate.get(['Request.Create.Dialog.Text', 'Request.Create.Dialog.Buttons.NewRequest', 'General.Dialogs.Titles.Success', 'General.Buttons.Close']).subscribe((res: string) => {
+          this._dialogService.showDialogTwoButtons(res['General.Dialogs.Titles.Success'], res['Request.Create.Dialog.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], res['Request.Create.Dialog.Buttons.NewRequest'], function(){this._navigationService.navigateTo("home")}.bind(this), function(){this._navigationService.navigateTo("request/create")}.bind(this));
+        });
       },
       err => {
-        alert("error");
+        this._translate.get(['General.Dialogs.Title.Error', 'General.Dialogs.Text.Error', 'General.Buttons.Close']).subscribe((res: string) => {
+          this._dialogService.showDialogOneButton(res['General.Dialogs.Title.Error'], res['General.Dialogs.Text.Error'] + "<br />" + err, DialogIconTypeEnum.Error, res['General.Buttons.Close']);
+        });
+        
       }
     );
   }

@@ -7,7 +7,9 @@
             "Cancel": "Abbrechen",
             "Accept": "Annehmen",
             "Login": "Einloggen",
-            "Register": "Registrieren"
+            "Register": "Registrieren",
+            "Complete": "Abschließen",
+            "Close": "Schliessen"
         },
         "Enums": {
             "RequestTypeEnum": {
@@ -20,6 +22,18 @@
         },
         "Errors": {
             "Required": "Feld ist erforderlich."
+        },
+        "Dialogs": {
+            "Titles": {
+                "Error": "Fehler",
+                "Warning": "Warnung",
+                "Info": "Information",
+                "Question": "Frage",
+                "Success": "Erfolg"
+            },
+            "Text": {
+                "Error": "Es ist ein Fehler aufgetreten"
+            }
         }
     },
     "Home": {
@@ -57,6 +71,12 @@
             "Stepper": {
                 "Request": "Anfragedetails",
                 "ContactInformation": "Kontaktdaten"
+            },
+            "Dialog": {
+                "Buttons": {
+                    "NewRequest": "Neue Anfrage"
+                },
+                "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
             }
         },
         "Details": {
