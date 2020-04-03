@@ -15,8 +15,8 @@
             "RequestTypeEnum": {
                 "Shopping": "Einkaufen",
                 "Childcare": "Kinderbetreuung",
-                "Medical": "Medizinisch",
-                "Petcare": "Tiersitting",
+                "Medical": "Medizinische Unterstützung",
+                "Petcare": "Haustierbetreuung",
                 "Other": "Anderes"
             }
         },
@@ -35,27 +35,51 @@
                 "Error": "Es ist ein Fehler aufgetreten"
             }
         }
+
+    }
+  },
+  "Home": {
+    "Buttons": {
+      "CreateRequest": "Ich brauche etwas",
+      "MyRequests": "Meine Unterstützungsangebote",
+      "ShowRequests": {
+        "LoggedIn": "Offene Anfragen anzeigen",
+        "LoggedOut": "Ich möchte helfen"
+      }
     },
-    "Home": {
-        "Buttons": {
-            "CreateRequest": "Anfrage erstellen",
-            "MyRequests" : "Meine Anfrage",
-            "ShowRequests" : {
-                "LoggedIn" : "Offene Anfragen anzeigen",
-                "LoggedOut" : "Zum Helfen Anmelden"
-            }
-        },
-        "Texts": {
-            "Level1": "Erstellen Sie selbst eine Anfrage oder bieten Sie Ihre Hilfe an.",
-            "Level2": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-        }
+    "Texts": {
+      "Level1": "Erstelle selbst eine Anfrage oder biete deine Unterstützung an.",
+      "Level2": "In außergewöhnlichen Situationen und den vielen Einschränkungen, mit denen wir aufgrund des Coronavirus derzeit kämpfen, möchten wir mit dieser Community Helfende und Hilfesuchende verbinden. Du brauchst kurzfristig Unterstützung, beispielsweise beim Einkaufen, Kinder hüten oder jemanden, der mit deinem Hund Gassi geht? Erstelle eine Anfrage und jemand aus deiner Nachbarschaft wird dich kontaktieren, um dich zu unterstützen."
+    }
+  },
+  "Login": {
+    "Title": "Einloggen",
+    "Name": "E-Mail Adresse",
+    "Password": "Passwort"
+  },
+  "Register": {
+    "FirstName": "Vorname",
+    "LastName": "Nachname",
+    "Title": "Registrieren",
+    "Name": "E-Mail Adresse",
+    "Password": "Passwort",
+    "StreetAdress": "Adresse",
+    "ZipCode": "PLZ",
+    "City": "Ort"
+  },
+  "Request": {
+    "Create": {
+      "Title": "Bei was benötigst du Unterstützung?",
+      "Stepper": {
+        "Request": "Anfragedetails",
+        "ContactInformation": "Kontaktdaten"
+      }
     },
-    "Login":{
-        "Title": "Einloggen",
-        "Name": "Benutzername",
-        "Password": "Passwort"
+    "Details": {
+      "Title": "Anfragedetails"
     },
-    "Register":{
+    "Field": {
+      "Label": {
         "FirstName": "Vorname",
         "LastName": "Nachname",
         "Title": "Registrieren",
@@ -93,10 +117,11 @@
                 "Street": "Strasse & Hausnummer",
                 "PostalCode": "PLZ",
                 "City": "Ort",
-                "Type": "Anfragetyp",
+                "Type": "Ich benötige Unterstützung bei",
                 "Description": "Beschreibung",
                 "Distance": "Entfernung"
             }
         }
     }
+  }
 }
