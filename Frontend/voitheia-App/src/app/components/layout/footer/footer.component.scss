@@ -1,9 +1,37 @@
-:host{
-    #footer {
-        position: absolute;
-        bottom:0;
-        width:100%;
-        height: 2.5em;
-        background-color: #383838;
+@import '../../../../variables.scss';
+
+:host {
+  .page-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 18em;
+    background-color: $gray-3;
+  }
+
+  .font-weight-bold {
+    color: $white;
+    font-size: $large;
+    font-weight: $bold
+  }
+
+  .list-unstyled {
+    /* unvisited link */
+    a:link {
+      color: $white;
     }
-}
+    /* visited link */
+    a:visited {
+      color: $white;
+    }
+    /* mouse over link */
+    a:hover {
+      color: $brand-secondary-color-dark;
+    }
+    /* selected link */
+    a:active {
+      color: $brand-secondary-color-dark;
+    }
+    }
+  }
+

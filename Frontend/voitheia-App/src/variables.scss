@@ -1,18 +1,19 @@
 // Basic colors
 $black: #262626;
-$gray-1: #ededed;
-$gray-2: #d0d0d0;
-$gray-3: #a0a0a0;
-$gray-4: #4b4b4b;
+$gray-1: #D8D8D8;
+$gray-2: #A4A4A4;
+$gray-3: #848484;
+$gray-4: #585858;
+$gray-5: #151515;
 
 //Brand Color
-$brand-color: #52B9CC;
-$brand-color-light:rgb(149, 207, 218);
-$brand-color-dark:#0000ff;
+$brand-color: #FF9985;
+$brand-color-light: #FF9985;
+$brand-color-dark: #FF9985;
 
-$brand-secondary-color: #990000;
-$brand-secondary-color-light:#FE9783;
-$brand-secondary-color-dark:#bb0000;
+$brand-secondary-color: #78E9FF;
+$brand-secondary-color-light: #78E9FF;
+$brand-secondary-color-dark: #4BA2B3;
 $brand-secondary-color-dark-dark:$black;
 
 $brand-warn-color:#ff0000;
@@ -20,13 +21,13 @@ $brand-warn-color-light:#ffb3b3;
 $brand-warn-color-dark:$brand-warn-color;
 
 //a tag config
-$link-color: $brand-color;
+$link-color: #FFFFFF;
 $link-text-decoration:underline;
-$link-hover-color: $brand-color-dark;
+$link-hover-color: $brand-secondary-color-dark;
 $link-hover-text-decoration:underline;
-$link-hover-bgcolor:  $brand-color-light;
+$link-hover-bgcolor: $brand-secondary-color-dark;
 
-$green: #6bb324;
+$green: #6FB371;
 $red: #d90000;
 $dark-red: #850000;
 $dark-red-2: #a94442;
@@ -34,6 +35,7 @@ $light-red-1: #ffe3e3;
 $light-red-2: #fcb8b8;
 $light-red-3: #f2dede;
 $blue: #00a0de;
+$white: #FFFFFF;
 
 $info-text: #31708f;
 $success-text: #3c763d;

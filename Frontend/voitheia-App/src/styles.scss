@@ -16,15 +16,21 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: $base-font-size;
+  background-color: $brand-color;
+  color: $white;
+  /*Needed to position the footer*/
+  #page-container {
+    position: relative;
+    min-height: 100vh;
+  }
 
-    background-color: $brand-secondary-color-light;
-    color:white;
+  .container-fluid {
+    //padding:0;
+  }
 
-    /*Needed to position the footer*/
-    #page-container{
-        position: relative;
-        min-height:100vh;
-    }
+  .mat-form-field {
+    width: 100%;
+  }
 
     .mat-form-field {
         width: 100%;
@@ -33,6 +39,16 @@ body {
     .mat-stepper-horizontal{
         background-color: transparent;
     }
+  
+  .basic-container .mat-step-header .mat-step-icon-selected {
+    background-color: $brand-secondary-color-dark;
+    color: #fff;
+  }
+
+  .mat-step-header .mat-step-icon {
+    background-color: $brand-secondary-color;
+    color: #fff;
+  }
 
     [mat-dialog-title], #dialog-title{
         text-align:center;
