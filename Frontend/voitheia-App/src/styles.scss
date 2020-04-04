@@ -13,27 +13,35 @@
 
 html, body { height: 100%; }
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $brand-color;
+  color: $white;
+  /*Needed to position the footer*/
+  #page-container {
+    position: relative;
+    min-height: 100vh;
+  }
 
-    background-color: $brand-color;
-    color:$white;
+  .container-fluid {
+    //padding:0;
+  }
 
-    /*Needed to position the footer*/
-    #page-container{
-        position: relative;
-        min-height:100vh;
-    }
+  .mat-form-field {
+    width: 100%;
+  }
 
-    .container-fluid{
-        //padding:0;
-    }
+  .mat-stepper-horizontal {
+    background-color: transparent;
+  }
 
-    .mat-form-field {
-        width: 100%;
-    }
+   .basic-container .mat-step-header .mat-step-icon-selected {
+    background-color: $brand-secondary-color-dark;
+    color: #fff;
+  }
 
-    .mat-stepper-horizontal{
-        background-color: transparent;
-    }
+  .mat-step-header .mat-step-icon {
+    background-color: $brand-secondary-color;
+    color: #fff;
+  }
 }
