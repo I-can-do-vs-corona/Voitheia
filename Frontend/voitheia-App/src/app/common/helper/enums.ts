@@ -9,3 +9,12 @@ export enum RequestTypeEnum {
 export enum RequestPatchStatusEnum {
     Closed = 1
 }
+
+export enum DialogIconTypeEnum {
+    None = "none",
+    Question = "question",
+    Information = "info",
+    Warning = "warning",
+    Error = "error",
+    Success = "success"
+}

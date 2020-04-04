@@ -6,10 +6,9 @@ import { Router } from '@angular/router';
 })
 export class NavigationService {
 
-  constructor(private router: Router) { }
+  constructor(private _router: Router) { }
 
   navigateTo(route: string) {
-    // this._utilitiesService.addAction('Init');
-    this.router.navigate(['/' + route]);
+    this._router.navigate(['/' + route]);
   }
 }

@@ -8,6 +8,7 @@ import { RequestViewComponent } from '../request-view/request-view.component';
 import { RequestTypeEnum } from 'src/app/common/helper/enums';
 import { MatPaginator } from '@angular/material/paginator';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-request-list',
@@ -62,7 +63,7 @@ export class RequestListComponent implements OnInit {
   openDetails(index:number){
     this.openedItem = this.requestDataSource.data[index];
     const dialogRef = this.dialog.open(RequestViewComponent, {
-      width: '450px',
+      width: environment.dialogWidth,
       data: {item: this.openedItem}
     });
 

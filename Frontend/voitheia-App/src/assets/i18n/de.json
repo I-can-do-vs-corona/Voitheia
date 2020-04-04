@@ -1,25 +1,41 @@
 {
-  "General": {
-    "Buttons": {
-      "Submit": "Absenden",
-      "Next": "Weiter",
-      "Back": "Zurück",
-      "Cancel": "Abbrechen",
-      "Accept": "Annehmen",
-      "Login": "Einloggen",
-      "Register": "Registrieren"
-    },
-    "Enums": {
-      "RequestTypeEnum": {
-        "Shopping": "Einkaufen",
-        "Childcare": "Kinderbetreuung",
-        "Medical": "Medizinische Unterstützung",
-        "Petcare": "Haustierbetreuung",
-        "Other": "Anderes"
-      }
-    },
-    "Errors": {
-      "Required": "Feld ist erforderlich."
+    "General": {
+        "Buttons":{
+            "Submit": "Absenden",
+            "Next": "Weiter",
+            "Back": "Zurück",
+            "Cancel": "Abbrechen",
+            "Accept": "Annehmen",
+            "Login": "Einloggen",
+            "Register": "Registrieren",
+            "Complete": "Abschließen",
+            "Close": "Schliessen"
+        },
+        "Enums": {
+            "RequestTypeEnum": {
+                "Shopping": "Einkaufen",
+                "Childcare": "Kinderbetreuung",
+                "Medical": "Medizinische Unterstützung",
+                "Petcare": "Haustierbetreuung",
+                "Other": "Anderes"
+            }
+        },
+        "Errors": {
+            "Required": "Feld ist erforderlich."
+        },
+        "Dialogs": {
+            "Titles": {
+                "Error": "Fehler",
+                "Warning": "Warnung",
+                "Info": "Information",
+                "Question": "Frage",
+                "Success": "Erfolg"
+            },
+            "Text": {
+                "Error": "Es ist ein Fehler aufgetreten"
+            }
+        }
+
     }
   },
   "Home": {
@@ -66,17 +82,46 @@
       "Label": {
         "FirstName": "Vorname",
         "LastName": "Nachname",
-        "Name": "Name",
-        "Email": "E-Mail",
-        "Phone": "Telefonnummer",
-        "Address": "Adresse",
-        "Street": "Strasse & Hausnummer",
-        "PostalCode": "PLZ",
-        "City": "Ort",
-        "Type": "Ich benötige Unterstützung bei",
-        "Description": "Beschreibung",
-        "Distance": "Entfernung"
-      }
+        "Title": "Registrieren",
+        "Name": "Benutzername",
+        "Password": "Passwort",
+        "StreetAdress": "Adresse",
+        "ZipCode": "PLZ",
+        "City": "Ort"
+    },
+    "Request": {
+        "Create": {
+            "Title": "Anfrage erstellen",
+            "Stepper": {
+                "Request": "Anfragedetails",
+                "ContactInformation": "Kontaktdaten"
+            },
+            "Dialog": {
+                "Buttons": {
+                    "NewRequest": "Neue Anfrage"
+                },
+                "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
+            }
+        },
+        "Details": {
+            "Title": "Anfragedetails"
+        },
+        "Field": {
+            "Label": {
+                "FirstName": "Vorname",
+                "LastName": "LastName",
+                "Name": "Name",
+                "Email": "E-Mail",
+                "Phone": "Telefonnummer",
+                "Address": "Adresse",
+                "Street": "Strasse & Hausnummer",
+                "PostalCode": "PLZ",
+                "City": "Ort",
+                "Type": "Ich benötige Unterstützung bei",
+                "Description": "Beschreibung",
+                "Distance": "Entfernung"
+            }
+        }
     }
   }
 }

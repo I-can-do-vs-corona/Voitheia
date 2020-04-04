@@ -11,16 +11,16 @@ export class MyRequestsService {
   constructor(private _httpClient: HttpClient, private _utilitiesService: UtilitiesService) {}
 
   getMyRequests(){
-    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'myrequests', {withCredentials: true});
+    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'myrequests', {withCredentials: false});
   }
 
   cancelRequest(id: number){
-    return this._httpClient.delete(this._utilitiesService.getAPIUrl() + 'myrequests/' + id, {withCredentials: true});
+    return this._httpClient.delete(this._utilitiesService.getAPIUrl() + 'myrequests/' + id, {withCredentials: false});
   }
 
   closeRequest(id: number){
     return this._httpClient.patch(this._utilitiesService.getAPIUrl() + 'myrequests/' + id,{
       "newRequestStatus": RequestPatchStatusEnum[RequestPatchStatusEnum.Closed]
-    }, {withCredentials: true});
+    }, {withCredentials: false});
   }
 }
