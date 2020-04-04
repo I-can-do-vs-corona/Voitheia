@@ -16,8 +16,8 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 
-    background-color: $brand-secondary-color-light;
-    color:white;
+    background-color: $brand-color;
+    color:$white;
 
     /*Needed to position the footer*/
     #page-container{

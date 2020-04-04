@@ -1,29 +1,27 @@
 @import '../../../variables.scss';
 
-:host{
-    .box{
-        padding:2em;
-        background-color: white;
-        color:black;
-        height:100%;
-        margin-bottom: 15px;
-        font-size: $largest;
-        font-weight: $bold;
-        cursor: pointer;
-        border: 2px solid black;
-    }
+:host {
+  .box {
+    padding: 2em;
+    background-color: $brand-secondary-color;
+    color: $white;
+    height: 100%;
+    margin-bottom: 15px;
+    font-size: $largest;
+    font-weight: $bold;
+    cursor: pointer;
+  }
 
-    .box:hover{
-        background-color: rgb(149, 207, 218);
-    }
+  .box:hover {
+    background-color: $brand-secondary-color-dark;
+  }
 
-    #line1 {
-        margin: 1em 0;
-        font-size: $xxtra-large;
-        font-weight: $bold;
-    }
+  #line1 {
+    margin: 1em 0;
+    font-size: $xxtra-large;
+    font-weight: $bold;
+  }
 
-    .my-requests {
-       
-    }
+  .my-requests {
+  }
 }
