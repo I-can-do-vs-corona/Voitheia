@@ -55,6 +55,7 @@
             "Type": "Ich benötige Unterstützung bei",
             "Description": "Beschreibung",
             "Distance": "Entfernung",
+            "Address":"Adresse",
             "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
           }
         },
