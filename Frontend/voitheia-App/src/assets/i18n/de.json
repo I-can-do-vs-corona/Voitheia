@@ -9,7 +9,8 @@
             "Login": "Einloggen",
             "Register": "Registrieren",
             "Complete": "Abschließen",
-            "Close": "Schliessen"
+            "Close": "Schliessen",
+            "Logout": "Abmelden"
         },
         "Enums": {
             "RequestTypeEnum": {

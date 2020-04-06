@@ -1,5 +1,5 @@
 <div class="row">
-    <div id="register-container" class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3 content-container form-container">
         <h3 id="register_header">{{'Register.Title' | translate }}</h3>
         <!-- <mat-horizontal-stepper>
             <mat-step [label]="'Request.Create.Stepper.Request' | translate"> -->
@@ -82,7 +82,7 @@
                                 {{'Register.HasAccount' | translate }}
                             </span>
     
-                            <a  style="font-weight: 600;" class="hyperlink" (click)= "send()" >
+                            <a  style="font-weight: 600;" class="hyperlink" (click)="_navigationService.navigateTo('login')">
                                 <span>
                                     {{'General.Buttons.Login' | translate }}
                                 </span>

@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   user: User;
   faPaperPlane = faPaperPlane;
   
-  constructor(private _userService: UserService, private _navigationService: NavigationService) {
+  constructor(private _userService: UserService, public _navigationService: NavigationService) {
     this.user = new User();
   }
 

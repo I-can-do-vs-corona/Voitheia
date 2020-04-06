@@ -15,10 +15,12 @@ export class HeaderComponent implements OnInit {
   unstickyHeaderHeight = 100;
   offset = 5;
   scrollFactor = 1.5;
+  public isMenuCollapsed = true;
 
   constructor(public _navigationService: NavigationService, private _authService: AuthService) { 
     console.log("constructed");
-    window.scroll(0,0);
+   
+    
   }
 
   ngOnInit(): void {
@@ -35,6 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public navbarCollapse(){
+    console.log("collapsing navbar");
     if (window.pageYOffset > (this.unstickyHeaderHeight + this.offset)){
       let headerElement = document.getElementById('mainNav');
       headerElement.classList.add('navbar-scrolled');
@@ -45,6 +48,8 @@ export class HeaderComponent implements OnInit {
       headerElement.classList.remove('navbar-scrolled');
     }
   }
+
+ 
 
 
   @HostListener('window:scroll', ['$event'])

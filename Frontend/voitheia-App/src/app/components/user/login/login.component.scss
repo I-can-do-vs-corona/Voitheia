@@ -1,11 +1,5 @@
 @import '../../../../variables.scss';
 
-#login-container {
-    background-color: white; 
-    padding: 2rem 4rem; 
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-}
 
 #login_header {
     color: black;
@@ -18,6 +12,7 @@
 .mat-input-element {
     padding: 1.2rem;
     font-size: 70%;
+    color: black;
 }
 
 

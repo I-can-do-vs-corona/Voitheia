@@ -64,6 +64,16 @@ body {
     //padding:0;
   }
 
+  .content-container {
+    margin-bottom: $footer-distance;
+    margin-top: $header-distance;
+  }
+
+  .form-container {
+    background-color: white;
+    padding: 2rem 4rem; 
+  }
+
   .mat-form-field {
     width: 100%;
   }
