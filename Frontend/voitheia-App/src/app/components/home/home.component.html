@@ -9,17 +9,43 @@
                 <br>
                 {{'Home.Texts.Level2' | translate }}
             </p>
-            <div class="">
-                <a style="float:left" (click)="_navigationService.navigateTo('request/create')"
+            <div class="row">
+                <div class="col-md-3">
+                    <button type="submit" mat-raised-button color="primary"  routerLink="/request/create">
+                        {{'Home.Buttons.CreateRequest' | translate }}
+                    </button>
+                </div>
+                <div class="col-md-1">
+                    <p  class="text-white-75 font-weight-light">oder</p>
+                </div>
+                <div class="col-md-3">
+                    <button  type="submit" mat-raised-button color="primary"  routerLink="/request/list">
+                        <span *ngIf="isLoggedIn()">
+                            {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}
+                        </span>
+                        <span *ngIf="!isLoggedIn()">
+                            {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
+                        </span>
+                    </button>
+                </div>
+                <div class="col-md-5">
+                    
+                </div>
+                
+                
+                
+                <!-- <a style="float:left" (click)="_navigationService.navigateTo('request/create')"
                     class="btn btn-primary btn-xl">{{'Home.Buttons.CreateRequest' | translate }}</a>
-                <p style="float:left; " class="btn-or text-white-75 font-weight-light">oder</p>
+                
                 <a style="float:left" (click)="_navigationService.navigateTo('request/list')"
-                    class="btn btn-primary btn-xl "><span *ngIf="isLoggedIn()">
+                    class="btn btn-primary btn-xl ">
+                    
+                    <span *ngIf="isLoggedIn()">
                         {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}
                     </span>
                     <span *ngIf="!isLoggedIn()">
                         {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
-                    </span></a>
+                    </span></a> -->
             </div>
         </div>
     </div>

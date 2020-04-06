@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6 offset-md-3 content-container form-container">
-        <h3 id="login_header">{{'Login.Title' | translate }}</h3>
+        <h3 class="form-header">{{'Login.Title' | translate }}</h3>
         <!-- <mat-horizontal-stepper>
             <mat-step [label]="'Request.Create.Stepper.Request' | translate"> -->
                 <form #RequestForm="ngForm" novalidate>
@@ -21,10 +21,13 @@
                             </div>
                         </div>
                     </div>
-                    <div id="login_submit_btn">
-                        <button  style="width: 100%;" type="submit" class="btn btn-primary" (click)="login()">
+                    <div class="form-submit-btn">
+                        <button style="width: 100%" type="submit" mat-raised-button color="primary" (click)="login()">
                             <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Login' | translate }}
                         </button>
+                        <!-- <button  style="width: 100%;" type="submit" class="btn btn-primary" (click)="login()">
+                            <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Login' | translate }}
+                        </button> -->
                         
                     </div>
                     <div id="register_msg">

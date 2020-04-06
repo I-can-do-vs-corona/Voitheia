@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   faPaperPlane = faPaperPlane;
   faUserPlus = faUserPlus;
   
-  constructor(private _authService: AuthService, public _navigationService: NavigationService) {
+  constructor(private _authService: AuthService, private _navigationService: NavigationService) {
     this.user = new User();
   }
 

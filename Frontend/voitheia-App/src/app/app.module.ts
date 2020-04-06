@@ -32,7 +32,7 @@ import { IdeaComponent } from './components/about/idea/idea.component';
 import { AboutUsComponent } from './components/about/about-us/about-us.component';
 import { PageNotFoundComponent } from './components/misc/page-not-found/page-not-found.component';
 import { ImprintComponent } from './components/terms/imprint/imprint.component';
-import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -79,10 +79,6 @@ import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    },
-    {
-      provide: MAT_RADIO_DEFAULT_OPTIONS,
-      useValue: {color: 'primary'}
     }
   ],
   bootstrap: [AppComponent]
