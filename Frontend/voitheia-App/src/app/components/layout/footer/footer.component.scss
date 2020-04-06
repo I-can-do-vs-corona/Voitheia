@@ -6,13 +6,15 @@
     bottom: 0;
     width: 100%;
     height: auto;
-    background-color: rgba(100, 100, 100, 0.719);
+    background-color: rgba(50, 50, 50, 1);
+    padding-top: 1rem;
+    font-size: $small;
   }
 
   .font-weight-bold {
     color: $white;
-    font-size: $large;
-    font-weight: $bold
+    font-size: $medium;
+    font-weight: $bold;
   }
 
   .list-unstyled {
