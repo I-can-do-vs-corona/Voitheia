@@ -91,21 +91,23 @@ namespace ActiveCruzer.BLL
             return null;
         }
 
-        public User UpdateUser(User user)
+        public RegisteringResult UpdateUser(User user, string credentialsPassword, int userId)
         {
-            var _user = _databaseContext.Users.FirstOrDefault(usr => usr.Id == user.Id);
+
+            var _user = _databaseContext.Users.FirstOrDefault(usr => usr.Id == userId);
             if(_user != null)
             {
                 _user.Street = user.Street;
                 _user.City = user.City;
                 _user.Zip = user.Zip;
                 _user.Email = user.Email;
+                _user.PasswordHash = _passwordHasher.HashPassword(user, credentialsPassword);
                 _user.EmailConfirmed = user.EmailConfirmed;
                 _databaseContext.Users.Update(_user);
                 _databaseContext.SaveChanges();
-                return _user;
+                return new RegisteringResult { Success = true };
             }
-            return null;
+            return new RegisteringResult { Success = false };
         }
 
         public void Dispose()

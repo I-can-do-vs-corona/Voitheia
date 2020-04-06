@@ -31,6 +31,7 @@ namespace ActiveCruzer.Controllers
 
         private UserBLL _userBll;
         private IGeoCodeBll _geoCodeBll;
+        private IMapper _mapper;
 
         private readonly IOptions<Jwt.JwtAuthentication> _jwtAuthentication;
 
@@ -42,6 +43,7 @@ namespace ActiveCruzer.Controllers
             IConfiguration configuration, ACDatabaseContext databaseContext)
         {
             _geoCodeBll = new GeoCodeBll(mapper, configuration);
+            _mapper = mapper;
             _userBll = new UserBLL(new UserManager(databaseContext),mapper);
             _jwtAuthentication = jwtAuthentication;
         }
@@ -136,22 +138,13 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpDelete]
         [Route("Delete")]
-        public ActionResult DeleteUser([FromBody] int userId)
+        public ActionResult DeleteUser()
         {
-            var claimsId = User.Claims.Where(a => a.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
-            var _user = _userBll.GetUserViaId(userId);
+            var _user = _userBll.GetUserViaId(GetUserId());
             if(_user != null)
             {
-                if (claimsId == _user.NormalizedUserName)
-                {
-                    string result = _userBll.DeleteUser(userId);
-                    if (result != null)
-                    {
-                        return Ok(result);
-                    }
-                    return BadRequest("User not found");
-                }
-                return Unauthorized("You are not allowed to perform this action.");
+                string result = _userBll.DeleteUser(GetUserId());
+                return Ok(result);
             }
             return Unauthorized("You are not allowed to perform this action.");
         }
@@ -164,19 +157,14 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpPut]
         [Route("Update")]
-        public ActionResult UpdateUser([FromBody] User user)
+        public ActionResult UpdateUser([FromBody] RegisterUserDTO user)
         {
-            var claimsId = User.Claims.Where(a => a.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
-            var _user = _userBll.UpdateUser(user);
-            if(claimsId == _user.NormalizedUserName)
-            {
+                var _user = _userBll.UpdateUser(user, GetUserId());
                 if (_user != null)
                 {
                     return Ok(_user);
                 }
-                return BadRequest(user.UserName + " not found.");
-            }
-            return Unauthorized("You are not allowed to perform this action.");
+                return Unauthorized("You are not allowed to perform this action.");
         }
 
 

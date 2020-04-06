@@ -12,6 +12,7 @@ using ActiveCruzer.Models.DTO.Request;
 using ActiveCruzer.Models.Geo;
 using AutoMapper;
 using GeoCoordinatePortable;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
@@ -101,6 +102,7 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -122,6 +124,7 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -144,6 +147,7 @@ namespace ActiveCruzer.Controllers
         /// <param name="amount">How many requests to retrieve</param>
         /// <param name="metersPerimeter">Which perimeter should be kept in considoration</param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public ActionResult<GetAllRequestResponse> GetAll([FromQuery] double? longitude,
             [FromQuery] double? latitude, [FromQuery] int amount = 10, [FromQuery] int metersPerimeter = 2000)

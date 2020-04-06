@@ -71,9 +71,10 @@ namespace ActiveCruzer.BLL
             return _userManager.DeleteUser(userId);
         }
 
-        public User UpdateUser(User user)
+        public RegisteringResult UpdateUser(RegisterUserDTO registerUserDTO, int userId)
         {
-            return _userManager.UpdateUser(user);
+            var user = _mapper.Map<User>(registerUserDTO);
+            return _userManager.UpdateUser(user, registerUserDTO.Password, userId);
         }
 
         ///<Summary>
