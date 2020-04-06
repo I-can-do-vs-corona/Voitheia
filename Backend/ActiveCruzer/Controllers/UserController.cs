@@ -166,12 +166,17 @@ namespace ActiveCruzer.Controllers
         [Route("Update")]
         public ActionResult UpdateUser([FromBody] User user)
         {
+            var claimsId = User.Claims.Where(a => a.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
             var _user = _userBll.UpdateUser(user);
-            if(_user != null)
+            if(claimsId == _user.NormalizedUserName)
             {
-                return Ok(_user);
+                if (_user != null)
+                {
+                    return Ok(_user);
+                }
+                return BadRequest(user.UserName + " not found.");
             }
-            return BadRequest(user.UserName + " not found.");
+            return Unauthorized("You are not allowed to perform this action.");
         }
 
 
