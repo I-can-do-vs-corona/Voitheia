@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+<div *ngIf="isLoggedIn()">
+    <a routerLink="/my-requests/list">
+=======
 <div class="container h-100 content-container">
     <div style="margin-left: 10%; margin-top: 4.5rem; margin-bottom: 4rem;" class="row h-100 ">
         <div class="col-lg-10 align-self-end">
@@ -29,7 +33,8 @@
 
 
 <!-- <div *ngIf="isLoggedIn()">
-    <a routerLink="/my-requests/list">
+    <a (click)="_navigationService.navigateTo('my-requests/list')">
+>>>>>>> design/67_implement_new_design
         <div class="box text-center my-requests">
             {{'Home.Buttons.MyRequests' | translate }}
         </div>

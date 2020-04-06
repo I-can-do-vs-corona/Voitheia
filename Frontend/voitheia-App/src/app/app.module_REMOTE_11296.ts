@@ -27,11 +27,6 @@ import { MyRequestsListComponent } from './components/my-requests/my-requests-li
 import { MyRequestsViewComponent } from './components/my-requests/my-requests-view/my-requests-view.component';
 import { DialogComponent } from './common/shared/services/dialog/dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PrivacyComponent } from './components/terms/privacy/privacy.component';
-import { IdeaComponent } from './components/about/idea/idea.component';
-import { AboutUsComponent } from './components/about/about-us/about-us.component';
-import { PageNotFoundComponent } from './components/misc/page-not-found/page-not-found.component';
-import { ImprintComponent } from './components/terms/imprint/imprint.component';
 import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 
 @NgModule({
@@ -51,12 +46,7 @@ import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
     MyRequestsListComponent,
     MyRequestsViewComponent,
     DistancePipe,
-    DialogComponent,
-    PrivacyComponent,
-    IdeaComponent,
-    AboutUsComponent,
-    PageNotFoundComponent,
-    ImprintComponent
+    DialogComponent
   ],
   imports: [
     BrowserModule,

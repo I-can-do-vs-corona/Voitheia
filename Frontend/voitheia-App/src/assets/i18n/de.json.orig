@@ -96,7 +96,25 @@
     }
   },
   "Login": {
+<<<<<<< HEAD
     "Title": "Einloggen"
+=======
+    "Title": "Einloggen",
+    "Name": "E-Mail Adresse",
+    "Password": "Passwort"
+  },
+  "Register": {
+    "FirstName": "Vorname",
+    "LastName": "Nachname",
+    "Title": "Registrieren",
+    "Name": "E-Mail Adresse",
+    "Password": "Passwort",
+    "StreetAdress": "Adresse",
+    "ZipCode": "PLZ",
+    "City": "Ort",
+    "NoAccount": "Noch keinen Account?",
+    "HasAccount": "Bereits Registriert?"
+>>>>>>> design/67_implement_new_design
   },
   "Request": {
     "Create": {
@@ -113,6 +131,7 @@
       }
     },
     "Details": {
+<<<<<<< HEAD
       "Title": "Anfragedetails",
       "Dialogs": {
         "Title": "Anfrage erfolgreich Angenommen!",
@@ -127,6 +146,39 @@
         "Cancel": {
           "Title": "Anfrage abgebrochen",
           "Text": "Du hast die Anfrage erfolgreich abgebrochen. Sie wurde der liste an offenen Anfragen wieder hinzugefügt."
+=======
+      "Title": "Anfragedetails"
+    },
+    "Field": {
+      "Label": {
+        "FirstName": "Vorname",
+        "LastName": "Nachname",
+        "Title": "Registrieren",
+        "Name": "Benutzername",
+        "Password": "Passwort",
+        "StreetAdress": "Adresse",
+        "ZipCode": "PLZ",
+        "City": "Ort"
+      }
+    }
+  },
+    "Request": {
+        "Create": {
+            "Title": "Anfrage erstellen",
+            "Stepper": {
+                "Request": "Anfragedetails",
+                "ContactInformation": "Kontaktdaten"
+            },
+            "Dialog": {
+                "Buttons": {
+                    "NewRequest": "Neue Anfrage"
+                },
+                "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
+            }
+        },
+        "Details": {
+            "Title": "Anfragedetails"
+>>>>>>> design/67_implement_new_design
         },
         "Close": {
           "Title": "Anfrage abgeschlossen",

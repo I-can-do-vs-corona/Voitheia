@@ -14,7 +14,11 @@
   }
 
   .box:hover {
+<<<<<<< HEAD
     background-color: $brand-color;
+=======
+    background-color: white;
+>>>>>>> design/67_implement_new_design
   }
 
   #line1 {
@@ -22,7 +26,13 @@
     font-size: $xxtra-large;
     font-weight: $bold;
   }
+<<<<<<< HEAD
+=======
+
+  .my-requests {
+  }
   
+>>>>>>> design/67_implement_new_design
 }
 
 .btn {

@@ -8,6 +8,8 @@
     color: $gray-2;
   }
 
+<<<<<<< HEAD
+=======
   .btn {
     background-color: $brand-color;
     color: $white;
@@ -15,6 +17,7 @@
     font-size: $normal;
   }
 
+>>>>>>> design/67_implement_new_design
   .custom-radio-button {
     margin: 5px;
   }

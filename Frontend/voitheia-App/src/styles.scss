@@ -11,43 +11,97 @@
          url('./assets/fonts/KelsonSans-Light.ttf') format('truetype');
   }
 
-html, body { height: 100%; }
+html, body { min-height: 100vh; height: fit-content; margin:0;}
+
+
+
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: $base-font-size;
-    background-color: $brand-background-color;
-    color: $white;
-    
+  background-color: transparent;
+  color: $white;
   /*Needed to position the footer*/
   #page-container {
-    position: relative;
-    min-height: 100vh;
+      height: fit-content;
+      min-height: 100vh;
+    //min-height: 100%;
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("assets/images/bg_main_brand.jpg"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
 
-    button{
-      margin-right: $half-spacing;
+  #page-content {
+      height: auto;
+      min-height: 100vh;
+      max-height: 100%;
+      padding-bottom: 0 !important;
+  }
+
+  @media (min-width: 992px) {
+    #page-container {
+      height: auto;
+      min-height: 100vh;
+      //padding-top: 4.5rem;
+      padding-bottom: 0;
     }
-
-    a, a:visited, a:focus{
-      color: $link-color;
-      text-decoration: $link-text-decoration;
+    #page-container p {
+      font-size: 1.15rem;
     }
+    #page-container h1 {
+      font-size: 3rem;
+    }
+  }
+  @media (min-width: 1200px) {
+    #page-container h1 {
+      font-size: 3.5rem;
+    }
+  }
 
-    a:active, a.active {
-      color: $link-hover-color;
+  .container-fluid {
+    //padding:0;
+  }
 
-      &:hover{
-        color: $link-color;
-        text-decoration: $link-hover-text-decoration;
-        text-decoration-color: $link-hover-color;
+  .content-container {
+    margin-bottom: $footer-distance;
+    margin-top: $header-distance;
+  }
+
+  .form-container {
+    background-color: white;
+    padding: 2rem 4rem; 
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+  .mat-stepper-horizontal{
+    background-color: transparent;
+  }
+  
+  .basic-container .mat-step-header .mat-step-icon-selected {
+    background-color: $brand-color;
+    color: #fff;
+  }
+
+  .mat-step-header .mat-step-icon {
+    background-color: $brand-color-dark;
+    color: #fff;
+  }
+
+  [mat-dialog-title], #dialog-title{
+      text-align:center;
+      font-weight:$bold;
+
+      [mat-dialog-title]{
+        border-bottom:0;
       }
     }
 
-    a:hover{
-      color: $link-hover-color;
-      text-decoration: $link-hover-text-decoration;
-      background-color: $link-hover-bgcolor;
-    }
-  }
-  
+    button.btn{
+        margin-right:$third-spacing;
+    }    
 }
+

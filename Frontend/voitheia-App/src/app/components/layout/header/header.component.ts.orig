@@ -17,7 +17,15 @@ export class HeaderComponent implements OnInit {
   scrollFactor = 1.5;
   public isMenuCollapsed = true;
 
+<<<<<<< HEAD
+  constructor(private _authService: AuthService) { }
+=======
   constructor(public _navigationService: NavigationService, private _authService: AuthService) { 
+    console.log("constructed");
+   
+    
+  }
+>>>>>>> design/67_implement_new_design
 
   ngOnInit(): void {
     
@@ -32,12 +40,29 @@ export class HeaderComponent implements OnInit {
     this._authService.logout();
   }
 
+<<<<<<< HEAD
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(e) {
+    if (window.pageYOffset > (this.unstickyHeaderHeight + this.offset) && window.pageYOffset < (this.unstickyHeaderHeight + this.offset + (this.stickyHeaderHeight * this.scrollFactor))){
+      var calculatedTop = (window.pageYOffset - (this.unstickyHeaderHeight + this.offset + (this.stickyHeaderHeight * this.scrollFactor)));
+
+      let headerElement = document.getElementById('header');
+      headerElement.classList.add('sticky');
+      headerElement.setAttribute("style", "top:" + calculatedTop + "px");
+
+      let tableHeaders = document.getElementsByClassName('mat-table-sticky');
+      for (let i = 0; i < tableHeaders.length; i++) {
+        const element = tableHeaders[i] as HTMLElement;
+        element.style.top = (this.stickyHeaderHeight + calculatedTop) + "px";
+      }
+=======
   public navbarCollapse(){
     console.log("collapsing navbar");
     if (window.pageYOffset > (this.unstickyHeaderHeight + this.offset)){
       let headerElement = document.getElementById('mainNav');
       headerElement.classList.add('navbar-scrolled');
 
+>>>>>>> design/67_implement_new_design
     }
     else {
       let headerElement = document.getElementById('mainNav');

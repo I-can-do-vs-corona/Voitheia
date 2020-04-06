@@ -20,4 +20,21 @@
           </ul>
       </div>
   </div>
+<<<<<<< HEAD
+</header>-->
+<nav class="navbar navbar-expand-lg justify-content-between" id="header">
+    <i id="logo"></i>
+    <a routerLink="/home">
+      <h1 class="my-auto">Voitheia</h1>
+    </a>
+    <div class="ml-auto" id="navigation">
+      <a *ngIf="!isLoggedIn()" routerLink="/user/login">
+        <fa-icon [icon]="faSignInAlt"></fa-icon>
+      </a>
+      <a *ngIf="isLoggedIn()" (click)="logout()">
+        <fa-icon [icon]="faSignOutAlt"></fa-icon>
+      </a>
+    </div>
+=======
+>>>>>>> design/67_implement_new_design
 </nav>
