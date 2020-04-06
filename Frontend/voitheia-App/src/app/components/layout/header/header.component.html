@@ -6,9 +6,9 @@
           <ul class="navbar-nav ml-auto my-2 my-lg-0">
               <li *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('login')" class="nav-item"><a class="nav-link login-btn js-scroll-trigger">
                 <fa-icon [icon]="faSignInAlt"></fa-icon>
-                Login</a></li>
+                {{'General.Buttons.Login' | translate }}</a></li>
               <li *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('register')" class="nav-item"><a class="nav-link register-btn js-scroll-trigger">
-                Register</a></li>
+                {{'General.Buttons.Register' | translate }}</a></li>
               <li *ngIf="isLoggedIn()" (click)="_navigationService.navigateTo('my-requests/list')" class="nav-item"><a class="nav-link login-btn js-scroll-trigger" >
                 {{'Home.Buttons.MyRequests' | translate }}</a></li>
               <li *ngIf="isLoggedIn()" (click)= "logout()" class="nav-item"><a class="nav-link login-btn js-scroll-trigger" >

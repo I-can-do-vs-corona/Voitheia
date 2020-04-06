@@ -68,6 +68,7 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
+
 .btn-primary {
   color: #fff;
   background-color: $brand-color;
@@ -98,6 +99,7 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(246, 122, 88, 0.5);
 }
+
 
 // .btn-xl, .btn-or {
 //   padding: 1.8rem 2.8rem;

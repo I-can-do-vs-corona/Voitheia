@@ -35,7 +35,6 @@
                 "Error": "Es ist ein Fehler aufgetreten"
             }
         }
-
     },
   "Home": {
     "Buttons": {
@@ -64,7 +63,9 @@
     "Password": "Passwort",
     "StreetAdress": "Adresse",
     "ZipCode": "PLZ",
-    "City": "Ort"
+    "City": "Ort",
+    "NoAccount": "Noch keinen Account?",
+    "HasAccount": "Bereits Registriert?"
   },
   "Request": {
     "Create": {
