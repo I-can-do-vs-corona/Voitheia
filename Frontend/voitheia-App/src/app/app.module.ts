@@ -27,6 +27,7 @@ import { MyRequestsListComponent } from './components/my-requests/my-requests-li
 import { MyRequestsViewComponent } from './components/my-requests/my-requests-view/my-requests-view.component';
 import { DialogComponent } from './common/shared/services/dialog/dialog.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    },
+    {
+      provide: MAT_RADIO_DEFAULT_OPTIONS,
+      useValue: {color: 'primary'}
     }
   ],
   bootstrap: [AppComponent]
