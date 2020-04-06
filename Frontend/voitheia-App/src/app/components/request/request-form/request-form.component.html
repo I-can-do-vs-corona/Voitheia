@@ -1,21 +1,20 @@
-<div class="row content-container">
-    <div class="col-md-8 offset-md-2">
-        <h3>{{'Request.Create.Title' | translate }}</h3>
+<div class="row ">
+    <div class="col-md-6 offset-md-3 content-container form-container">
+        <h3 id="create_request_header">{{'Request.Create.Title' | translate }}</h3>
         <mat-horizontal-stepper>
             <mat-step [label]="'Request.Create.Stepper.Request' | translate">
                 <form #RequestForm="ngForm" novalidate>
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <mat-label name="requestType-label"><span [innerHTML]="'Request.Field.Label.Type' | translate"></span></mat-label>
-                                <mat-radio-group class="custom-radio-group"
-                                aria-labelledby="requestType-label"
-                                name="typeInput"
-                                #typeInput="ngModel"
-                                [(ngModel)]="request.type"
-                                required>
-                                    <mat-radio-button class="custom-radio-button" *ngFor="let requestType of RequestTypeEnum | keys" [value]="requestType">
-                                        <span [innerHTML]="'General.Enums.RequestTypeEnum.' + RequestTypeEnum[requestType] | translate"></span>
+                                <mat-label name="requestType-label"><span
+                                        [innerHTML]="'Request.Field.Label.Type' | translate"></span></mat-label>
+                                <mat-radio-group class="custom-radio-group" aria-labelledby="requestType-label"
+                                    name="typeInput" #typeInput="ngModel" [(ngModel)]="request.type" required>
+                                    <mat-radio-button class="custom-radio-button"
+                                        *ngFor="let requestType of RequestTypeEnum | keys" [value]="requestType">
+                                        <span
+                                            [innerHTML]="'General.Enums.RequestTypeEnum.' + RequestTypeEnum[requestType] | translate"></span>
                                     </mat-radio-button>
                                 </mat-radio-group>
                                 <mat-error *ngIf="typeInput.invalid">
@@ -28,8 +27,10 @@
                         <div class="col-md">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Field.Label.Description' | translate"></span></mat-label>
-                                    <textarea matInput name="textareaInput" [(ngModel)]="request.description" #textareaInput="ngModel" required></textarea>
+                                    <mat-label><span [innerHTML]="'Request.Field.Label.Description' | translate"></span>
+                                    </mat-label>
+                                    <textarea matInput name="textareaInput" [(ngModel)]="request.description"
+                                        #textareaInput="ngModel" required></textarea>
                                 </mat-form-field>
                                 <mat-error *ngIf="textareaInput.invalid">
                                     <mat-error *ngIf="textareaInput.errors.required">
@@ -48,28 +49,41 @@
             </mat-step>
             <mat-step [label]="'Request.Create.Stepper.ContactInformation' | translate">
                 <form #RequestAddressForm="ngForm" novalidate>
-                    <div class="form-group">
-                        <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Field.Label.FirstName' | translate"></span></mat-label>
-                            <input matInput name="firstnameInput" [(ngModel)]="request.firstName" #firstnameInput="ngModel" required />
-                        </mat-form-field>
-                        <mat-error *ngIf="firstnameInput.invalid">
-                            <mat-error *ngIf="firstnameInput.errors.required">
-                                <span [innerHTML]="'General.Errors.Required' | translate"></span>
-                            </mat-error>
-                        </mat-error>
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <mat-label><span [innerHTML]="'Request.Field.Label.FirstName' | translate"></span>
+                                    </mat-label>
+                                    <input matInput name="firstnameInput" [(ngModel)]="request.firstName"
+                                        #firstnameInput="ngModel" required />
+                                </mat-form-field>
+                                <mat-error *ngIf="firstnameInput.invalid">
+                                    <mat-error *ngIf="firstnameInput.errors.required">
+                                        <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                                    </mat-error>
+                                </mat-error>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ">
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <mat-label><span [innerHTML]="'Request.Field.Label.LastName' | translate"></span>
+                                    </mat-label>
+                                    <input matInput name="lastnameInput" [(ngModel)]="request.lastName"
+                                        #lastnameInput="ngModel" required />
+                                </mat-form-field>
+                                <mat-error *ngIf="lastnameInput.invalid">
+                                    <mat-error *ngIf="lastnameInput.errors.required">
+                                        <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                                    </mat-error>
+                                </mat-error>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="form-group">
-                        <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Field.Label.LastName' | translate"></span></mat-label>
-                            <input matInput name="lastnameInput" [(ngModel)]="request.lastName" #lastnameInput="ngModel" required />
-                        </mat-form-field>
-                        <mat-error *ngIf="lastnameInput.invalid">
-                            <mat-error *ngIf="lastnameInput.errors.required">
-                                <span [innerHTML]="'General.Errors.Required' | translate"></span>
-                            </mat-error>
-                        </mat-error>
-                    </div>
+
+
                     <div class="form-group">
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'Request.Field.Label.Email' | translate"></span></mat-label>
@@ -79,7 +93,8 @@
                     <div class="form-group">
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'Request.Field.Label.Phone' | translate"></span></mat-label>
-                            <input matInput name="phoneInput" [(ngModel)]="request.phoneNumber" #phoneInput="ngModel" required />
+                            <input matInput name="phoneInput" [(ngModel)]="request.phoneNumber" #phoneInput="ngModel"
+                                required />
                         </mat-form-field>
                         <mat-error *ngIf="phoneInput.invalid">
                             <mat-error *ngIf="phoneInput.errors.required">
@@ -90,7 +105,8 @@
                     <div class="form-group">
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'Request.Field.Label.Street' | translate"></span></mat-label>
-                            <input matInput name="addressInput" [(ngModel)]="request.street" #addressInput="ngModel" required />
+                            <input matInput name="addressInput" [(ngModel)]="request.street" #addressInput="ngModel"
+                                required />
                         </mat-form-field>
                         <mat-error *ngIf="addressInput.invalid">
                             <mat-error *ngIf="addressInput.errors.required">
@@ -102,8 +118,10 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Field.Label.PostalCode' | translate"></span></mat-label>
-                                    <input matInput name="postalcodeInput" [(ngModel)]="request.zip" #postalcodeInput="ngModel" required />
+                                    <mat-label><span [innerHTML]="'Request.Field.Label.PostalCode' | translate"></span>
+                                    </mat-label>
+                                    <input matInput name="postalcodeInput" [(ngModel)]="request.zip"
+                                        #postalcodeInput="ngModel" required />
                                 </mat-form-field>
                                 <mat-error *ngIf="postalcodeInput.invalid">
                                     <mat-error *ngIf="postalcodeInput.errors.required">
@@ -115,8 +133,10 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Field.Label.City' | translate"></span></mat-label>
-                                    <input matInput name="cityInput" [(ngModel)]="request.city" #cityInput="ngModel" required />
+                                    <mat-label><span [innerHTML]="'Request.Field.Label.City' | translate"></span>
+                                    </mat-label>
+                                    <input matInput name="cityInput" [(ngModel)]="request.city" #cityInput="ngModel"
+                                        required />
                                 </mat-form-field>
                                 <mat-error *ngIf="cityInput.invalid">
                                     <mat-error *ngIf="cityInput.errors.required">
@@ -126,12 +146,13 @@
                             </div>
                         </div>
                     </div>
-        
+
                     <div>
                         <button matStepperPrevious class="btn btn-outline-dark">
                             {{'General.Buttons.Back' | translate }}
                         </button>
-                        <button type="submit" class="btn btn-primary" [disabled]="!RequestAddressForm.form.valid || !RequestForm.form.valid" (click)="send()">
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="!RequestAddressForm.form.valid || !RequestForm.form.valid" (click)="send()">
                             <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Submit' | translate }}
                         </button>
                     </div>
