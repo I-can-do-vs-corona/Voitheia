@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   faPaperPlane = faPaperPlane;
   termsChecked = false;
   
-  constructor(private _userService: UserService, private _navigationService: NavigationService, private _utilititesService: UtilitiesService) {
+  constructor(private _userService: UserService, private _navigationService: NavigationService, private _utilitiesService: UtilitiesService) {
     this.user = new User();
   }
 
@@ -34,10 +34,10 @@ export class RegisterComponent implements OnInit {
         //this._authService.setToken(data["token"]);
         //TODO: Handle Login Success
         
-        this._navigationService.navigateTo("login");
+        this._navigationService.navigateTo("user/login");
       },
       err => {
-        this._utilititesService.handleError(err);
+        this._utilitiesService.handleError(err);
       }
     );
   }

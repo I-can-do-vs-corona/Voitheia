@@ -13,7 +13,6 @@
             "Close": "Schliessen",
             "Logout": "Abmelden"
         },
-
         "Enums": {
             "RequestTypeEnum": {
                 "Shopping": "Einkaufen",
@@ -36,7 +35,6 @@
             },
             "Text": {
                 "Error": "Es ist ein Fehler aufgetreten"
-                
             }
         },
         "Field": {
@@ -49,14 +47,13 @@
             "Username": "Benutzername",
             "Email": "E-Mail",
             "Password": "Passwort",
-            "Street": "Strasse & Hausnummer",
+            "Street": "Strasse",
             "ZipCode": "PLZ",
             "City": "Ort",
             "Type": "Ich benötige Unterstützung bei",
             "Description": "Beschreibung",
             "Distance": "Entfernung",
-            "Address":"Adresse",
-            "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
+            "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
           }
         },
         "PageTitles": {
@@ -99,12 +96,25 @@
     }
   },
   "Login": {
+<<<<<<< HEAD
+    "Title": "Einloggen"
+=======
     "Title": "Einloggen",
-    "NoAccount": "Noch keinen Account? "
+    "Name": "E-Mail Adresse",
+    "Password": "Passwort"
   },
   "Register": {
+    "FirstName": "Vorname",
+    "LastName": "Nachname",
     "Title": "Registrieren",
-    "HasAccount": "Bereits Registriert? "
+    "Name": "E-Mail Adresse",
+    "Password": "Passwort",
+    "StreetAdress": "Adresse",
+    "ZipCode": "PLZ",
+    "City": "Ort",
+    "NoAccount": "Noch keinen Account?",
+    "HasAccount": "Bereits Registriert?"
+>>>>>>> design/67_implement_new_design
   },
   "Request": {
     "Create": {
@@ -121,11 +131,12 @@
       }
     },
     "Details": {
+<<<<<<< HEAD
       "Title": "Anfragedetails",
       "Dialogs": {
         "Title": "Anfrage erfolgreich Angenommen!",
         "Text": "Du hast die Anfrage erfolgreich angenommen. Vielen Dank fürs helfen!",
-        "MyRequestsButton": "Meine Anfragen anzeigen"
+        "MyRequestsButton": "Mein Anfragen anzeigen"
       }
     }
   },
@@ -135,6 +146,39 @@
         "Cancel": {
           "Title": "Anfrage abgebrochen",
           "Text": "Du hast die Anfrage erfolgreich abgebrochen. Sie wurde der liste an offenen Anfragen wieder hinzugefügt."
+=======
+      "Title": "Anfragedetails"
+    },
+    "Field": {
+      "Label": {
+        "FirstName": "Vorname",
+        "LastName": "Nachname",
+        "Title": "Registrieren",
+        "Name": "Benutzername",
+        "Password": "Passwort",
+        "StreetAdress": "Adresse",
+        "ZipCode": "PLZ",
+        "City": "Ort"
+      }
+    }
+  },
+    "Request": {
+        "Create": {
+            "Title": "Anfrage erstellen",
+            "Stepper": {
+                "Request": "Anfragedetails",
+                "ContactInformation": "Kontaktdaten"
+            },
+            "Dialog": {
+                "Buttons": {
+                    "NewRequest": "Neue Anfrage"
+                },
+                "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
+            }
+        },
+        "Details": {
+            "Title": "Anfragedetails"
+>>>>>>> design/67_implement_new_design
         },
         "Close": {
           "Title": "Anfrage abgeschlossen",
@@ -157,5 +201,4 @@
       "Contact": "Kontakt"
     }
   }
-}
 

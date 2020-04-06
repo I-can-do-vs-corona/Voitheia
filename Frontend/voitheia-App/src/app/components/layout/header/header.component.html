@@ -1,22 +1,23 @@
-<!-- <p>header works!</p> -->
-<!--<header class="container" id="header">
-  <div class="row justify-content-center">
-    <a (click)="_navigationService.navigateTo('home')">
-      <h1 class="center_title">Voitheia</h1>
-    </a>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+  <div class="container">
+      
+      <i id="logo"></i>
+      <a class="navbar-brand" (click)="_navigationService.navigateTo('home')">Voitheia</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto my-2 my-lg-0">
+              <li *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('user/login')" class="nav-item"><a class="nav-link login-btn noselect">
+                <fa-icon [icon]="faSignInAlt"></fa-icon>
+                {{'General.Buttons.Login' | translate }}</a></li>
+              <li *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('user/register')" class="nav-item"><a class="nav-link register-btn noselect">
+                {{'General.Buttons.Register' | translate }}</a></li>
+              <li *ngIf="isLoggedIn()" (click)="_navigationService.navigateTo('my-requests/list')" class="nav-item"><a class="nav-link login-btn noselect" >
+                {{'Home.Buttons.MyRequests' | translate }}</a></li>
+              <li *ngIf="isLoggedIn()" (click)= "logout()" class="nav-item"><a class="nav-link login-btn noselect" >
+                <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                {{'General.Buttons.Logout' | translate }}</a></li>
+          </ul>
+      </div>
   </div>
-</header>-->
-<nav class="navbar navbar-expand-lg justify-content-between" id="header">
-    <i id="logo"></i>
-    <a routerLink="/home">
-      <h1 class="my-auto">Voitheia</h1>
-    </a>
-    <div class="ml-auto" id="navigation">
-      <a *ngIf="!isLoggedIn()" routerLink="/user/login">
-        <fa-icon [icon]="faSignInAlt"></fa-icon>
-      </a>
-      <a *ngIf="isLoggedIn()" (click)="logout()">
-        <fa-icon [icon]="faSignOutAlt"></fa-icon>
-      </a>
-    </div>
 </nav>

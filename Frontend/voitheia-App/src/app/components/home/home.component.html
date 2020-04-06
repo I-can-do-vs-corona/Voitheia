@@ -1,43 +1,37 @@
-<div *ngIf="isLoggedIn()">
-    <a routerLink="/my-requests/list">
-        <div class="box text-center my-requests">
-            {{'Home.Buttons.MyRequests' | translate }}
+<div class="container h-100">
+    <div style="margin-left: 10%; margin-top: 4.5rem; margin-bottom: 4rem;" class="row h-100 ">
+        <div class="col-lg-10 align-self-end">
+            <h1 class="text-white font-weight-bold">Help yourself<br>by helping others</h1>
         </div>
-    </a>
-</div>
-<!-- <a (click)="_navigationService.navigateTo('login')">
-    <div class="box text-center my-requests">
-        Login
-    </div>
-</a> -->
-<div class="row">
-    <div class="col-md">
-        <a routerLink="/request/create">
-            <div class="box text-center">
-                {{'Home.Buttons.CreateRequest' | translate }}
+        <div class="col-lg-10 align-self-baseline">
+            <p class=" font-weight-light mb-5">
+                {{'Home.Texts.Level1' | translate }}
+                <br>
+                {{'Home.Texts.Level2' | translate }}
+            </p>
+            <div class="row">
+                <div class="col-md-3">
+                    <button type="submit" mat-raised-button color="primary"  routerLink="/request/create">
+                        {{'Home.Buttons.CreateRequest' | translate }}
+                    </button>
+                </div>
+                <div class="col-md-1">
+                    <p  class="text-white-75 font-weight-light">oder</p>
+                </div>
+                <div class="col-md-3">
+                    <button  type="submit" mat-raised-button color="primary"  routerLink="/request/list">
+                        <span *ngIf="isLoggedIn()">
+                            {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}
+                        </span>
+                        <span *ngIf="!isLoggedIn()">
+                            {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
+                        </span>
+                    </button>
+                </div>
+                <div class="col-md-5">
+                    
+                </div>
             </div>
-        </a>
-    </div>
-    <div class="col-md">
-        <a routerLink="/request/list">
-            <div class="box text-center">
-                <span *ngIf="isLoggedIn()">
-                    {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}
-                </span>
-                <span *ngIf="!isLoggedIn()">
-                    {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
-                </span>
-            </div>
-        </a>
-    </div>
-</div>
-<div class="row">
-    <div id="line1" class="col text-center">
-        {{'Home.Texts.Level1' | translate }}
-    </div>
-</div>
-<div class="row">
-    <div id="line2" class="col-md-8 offset-md-2">
-        {{'Home.Texts.Level2' | translate }}
+        </div>
     </div>
 </div>

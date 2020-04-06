@@ -1,6 +1,7 @@
 @import '../../../variables.scss';
 
 :host {
+  
   .box {
     padding: 2em;
     background-color: white;
@@ -21,4 +22,10 @@
     font-size: $xxtra-large;
     font-weight: $bold;
   }
+  
 }
+
+
+
+
+

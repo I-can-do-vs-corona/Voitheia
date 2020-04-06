@@ -11,7 +11,7 @@ import { DialogIconTypeEnum } from 'src/app/common/helper/enums';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public _navigationService: NavigationService, private _authService: AuthService) { }
+  constructor(private _authService: AuthService) { }
 
   ngOnInit(): void {
   }

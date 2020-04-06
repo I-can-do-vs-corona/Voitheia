@@ -11,43 +11,127 @@
          url('./assets/fonts/KelsonSans-Light.ttf') format('truetype');
   }
 
-html, body { height: 100%; }
+html, body { min-height: 100vh; height: fit-content; margin:0;}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: $base-font-size;
-    background-color: $brand-background-color;
+    background-color: transparent;
     color: $white;
-    
   /*Needed to position the footer*/
   #page-container {
-    position: relative;
-    min-height: 100vh;
+      height: fit-content;
+      min-height: 100vh;
+    //min-height: 100%;
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("assets/images/bg_main_brand.jpg"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+   
+  }
 
-    button{
-      margin-right: $half-spacing;
+  #page-content {
+      height: auto;
+      min-height: 100vh;
+      max-height: 100%;
+      padding-bottom: 0 !important;
+  }
+
+  @media (min-width: 992px) {
+    #page-container {
+      height: auto;
+      min-height: 100vh;
+      //padding-top: 4.5rem;
+      padding-bottom: 0;
     }
-
-    a, a:visited, a:focus{
-      color: $link-color;
-      text-decoration: $link-text-decoration;
+    #page-container p {
+      font-size: 1.15rem;
     }
-
-    a:active, a.active {
-      color: $link-hover-color;
-
-      &:hover{
-        color: $link-color;
-        text-decoration: $link-hover-text-decoration;
-        text-decoration-color: $link-hover-color;
-      }
-    }
-
-    a:hover{
-      color: $link-hover-color;
-      text-decoration: $link-hover-text-decoration;
-      background-color: $link-hover-bgcolor;
+    #page-container h1 {
+      font-size: 3rem;
     }
   }
+  @media (min-width: 1200px) {
+    #page-container h1 {
+      font-size: 3.5rem;
+    }
+  }
+
+  #page-content > :last-child > :first-child{
+    margin-bottom: $footer-distance;
+    margin-top: $header-distance;
+  }
   
+  .form-container {
+    background-color: white;
+    padding: 2rem 4rem; 
+    border-radius: 8px;
+    color:$default-text;
+  }
+
+  .form-header {
+    color: black;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .form-submit-btn {
+    margin: auto;
+    width: 50%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  a, a:visited, a:focus, .hyperlink, .hyperlink:visited, .hyperlink:focus{
+    color: $link-color;
+    text-decoration: $link-text-decoration;
+  }
+
+  a:active, a.active, .hyperlink:active, .hyperlink.active {
+    color: $link-hover-color;
+
+    &:hover{
+      color: $link-color;
+      text-decoration: $link-hover-text-decoration;
+      text-decoration-color: $link-hover-color;
+    }
+  }
+
+  a:hover, .hyperlink:hover{
+    color: $link-hover-color;
+    text-decoration: $link-hover-text-decoration;
+    background-color: $link-hover-bgcolor;
+  } 
 }
+
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
