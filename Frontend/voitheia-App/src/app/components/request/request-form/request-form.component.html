@@ -7,7 +7,7 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
-                                <mat-label name="requestType-label"><span [innerHTML]="'Request.Field.Label.Type' | translate"></span></mat-label>
+                                <mat-label name="requestType-label"><span [innerHTML]="'General.Field.Label.Type' | translate"></span></mat-label>
                                 <mat-radio-group class="custom-radio-group"
                                 aria-labelledby="requestType-label"
                                 name="typeInput"
@@ -28,7 +28,7 @@
                         <div class="col-md">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Field.Label.Description' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.Description' | translate"></span></mat-label>
                                     <textarea matInput name="textareaInput" [(ngModel)]="request.description" #textareaInput="ngModel" required></textarea>
                                 </mat-form-field>
                                 <mat-error *ngIf="textareaInput.invalid">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div>
-                        <button matStepperNext class="btn btn-primary" [disabled]="!RequestForm.form.valid">
+                        <button matStepperNext mat-raised-button color="primary" [disabled]="!RequestForm.form.valid">
                             {{'General.Buttons.Next' | translate }}
                         </button>
                     </div>
@@ -50,7 +50,7 @@
                 <form #RequestAddressForm="ngForm" novalidate>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Field.Label.FirstName' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'General.Field.Label.FirstName' | translate"></span></mat-label>
                             <input matInput name="firstnameInput" [(ngModel)]="request.firstName" #firstnameInput="ngModel" required />
                         </mat-form-field>
                         <mat-error *ngIf="firstnameInput.invalid">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Field.Label.LastName' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'General.Field.Label.LastName' | translate"></span></mat-label>
                             <input matInput name="lastnameInput" [(ngModel)]="request.lastName" #lastnameInput="ngModel" required />
                         </mat-form-field>
                         <mat-error *ngIf="lastnameInput.invalid">
@@ -72,13 +72,13 @@
                     </div>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Field.Label.Email' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
                             <input matInput name="emailInput" [(ngModel)]="request.email" #emailInput="ngModel" />
                         </mat-form-field>
                     </div>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Field.Label.Phone' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'General.Field.Label.Phone' | translate"></span></mat-label>
                             <input matInput name="phoneInput" [(ngModel)]="request.phoneNumber" #phoneInput="ngModel" required />
                         </mat-form-field>
                         <mat-error *ngIf="phoneInput.invalid">
@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'Request.Field.Label.Street' | translate"></span></mat-label>
+                            <mat-label><span [innerHTML]="'General.Field.Label.Street' | translate"></span></mat-label>
                             <input matInput name="addressInput" [(ngModel)]="request.street" #addressInput="ngModel" required />
                         </mat-form-field>
                         <mat-error *ngIf="addressInput.invalid">
@@ -102,11 +102,11 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Field.Label.PostalCode' | translate"></span></mat-label>
-                                    <input matInput name="postalcodeInput" [(ngModel)]="request.zip" #postalcodeInput="ngModel" required />
+                                    <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
+                                    <input matInput name="zipcodeInput" [(ngModel)]="request.zip" #zipcodeInput="ngModel" required />
                                 </mat-form-field>
-                                <mat-error *ngIf="postalcodeInput.invalid">
-                                    <mat-error *ngIf="postalcodeInput.errors.required">
+                                <mat-error *ngIf="zipcodeInput.invalid">
+                                    <mat-error *ngIf="zipcodeInput.errors.required">
                                         <span [innerHTML]="'General.Errors.Required' | translate"></span>
                                     </mat-error>
                                 </mat-error>
@@ -115,7 +115,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Field.Label.City' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.City' | translate"></span></mat-label>
                                     <input matInput name="cityInput" [(ngModel)]="request.city" #cityInput="ngModel" required />
                                 </mat-form-field>
                                 <mat-error *ngIf="cityInput.invalid">
@@ -126,12 +126,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
+                    </div>
         
                     <div>
-                        <button matStepperPrevious class="btn btn-outline-dark">
+                        <button matStepperPrevious mat-raised-button>
                             {{'General.Buttons.Back' | translate }}
                         </button>
-                        <button type="submit" class="btn btn-primary" [disabled]="!RequestAddressForm.form.valid || !RequestForm.form.valid" (click)="send()">
+                        <button type="submit" mat-raised-button color="primary" [disabled]="!RequestAddressForm.form.valid || !RequestForm.form.valid || !termsChecked" (click)="send()">
                             <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Submit' | translate }}
                         </button>
                     </div>

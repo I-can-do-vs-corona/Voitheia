@@ -1,5 +1,5 @@
 <div *ngIf="isLoggedIn()">
-    <a (click)="_navigationService.navigateTo('my-requests/list')">
+    <a routerLink="/my-requests/list">
         <div class="box text-center my-requests">
             {{'Home.Buttons.MyRequests' | translate }}
         </div>
@@ -12,14 +12,14 @@
 </a> -->
 <div class="row">
     <div class="col-md">
-        <a (click)="_navigationService.navigateTo('request/create')">
+        <a routerLink="/request/create">
             <div class="box text-center">
                 {{'Home.Buttons.CreateRequest' | translate }}
             </div>
         </a>
     </div>
     <div class="col-md">
-        <a (click)="_navigationService.navigateTo('request/list')">
+        <a routerLink="/request/list">
             <div class="box text-center">
                 <span *ngIf="isLoggedIn()">
                     {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}

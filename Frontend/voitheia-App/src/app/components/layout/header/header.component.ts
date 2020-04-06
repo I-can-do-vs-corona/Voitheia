@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   offset = 5;
   scrollFactor = 1.5;
 
-  constructor(public _navigationService: NavigationService, private _authService: AuthService) { }
+  constructor(private _authService: AuthService) { }
 
   ngOnInit(): void {
     
@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
   public logout(){
     this._authService.logout();
   }
-
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(e) {

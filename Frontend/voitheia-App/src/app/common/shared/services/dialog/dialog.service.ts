@@ -3,13 +3,14 @@ import { DialogComponent } from './dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 import { DialogIconTypeEnum } from 'src/app/common/helper/enums';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService {
 
-  constructor(private _dialog: MatDialog) { }
+  constructor(private _dialog: MatDialog, private _translate: TranslateService) { }
 
   test(){
     const dialogRef = this._dialog.open(DialogComponent, {
@@ -65,6 +66,12 @@ export class DialogService {
           secondaryButtonCallback();
         }
       }
+    });
+  }
+
+  showSimpleSuccessDialog(title: string, content: string){
+    this._translate.get(['General.Buttons.Close']).subscribe((res: string) => {
+      this.showDialogOneButton(title, content, DialogIconTypeEnum.Success, res['General.Buttons.Close']);
     });
   }
 }

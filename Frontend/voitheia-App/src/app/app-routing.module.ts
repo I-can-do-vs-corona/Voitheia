@@ -7,6 +7,12 @@ import { RequestListComponent } from './components/request/request-list/request-
 import { RequestFormComponent } from './components/request/request-form/request-form.component';
 import { MyRequestsListComponent } from './components/my-requests/my-requests-list/my-requests-list.component';
 import { AuthGuard } from './common/guards/auth.guard';
+import { TermsComponent } from './components/terms/terms/terms.component';
+import { PrivacyComponent } from './components/terms/privacy/privacy.component';
+import { AboutUsComponent } from './components/about/about-us/about-us.component';
+import { IdeaComponent } from './components/about/idea/idea.component';
+import { PageNotFoundComponent } from './components/misc/page-not-found/page-not-found.component';
+import { ImprintComponent } from './components/terms/imprint/imprint.component';
 
 
 const routes: Routes = [
@@ -14,16 +20,6 @@ const routes: Routes = [
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: {title: 'Login'}
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: {title: 'Register'}
   },
   {
     path: 'home',
@@ -36,7 +32,7 @@ const routes: Routes = [
       {
         path: 'create',
         component: RequestFormComponent,
-        data: {title: 'Request.Form'}
+        data: {title: 'Request.Create'}
       }
     ]
   },
@@ -50,7 +46,7 @@ const routes: Routes = [
           {
             path: 'list',
             component: MyRequestsListComponent,
-            data: {title: 'Request.List'},
+            data: {title: 'MyRequest.List'},
           }
         ]
       },
@@ -65,7 +61,58 @@ const routes: Routes = [
         ]
       }
     ]
-  }
+  },
+  {
+    path: 'user',
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: {title: 'User.Login'}
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        data: {title: 'User.Register'}
+      }
+    ]
+  },
+  {
+    path: 'terms',
+    children: [
+      {
+        path: 'terms-conditions',
+        component: TermsComponent,
+        data: {title: 'Terms.TermsConditions'}
+      },
+      {
+        path: 'privacy-policy',
+        component: PrivacyComponent,
+        data: {title: 'Terms.PrivacyPolicy'}
+      },
+      {
+        path: 'imprint',
+        component: ImprintComponent,
+        data: {title: 'Terms.Imprint'}
+      }
+    ]
+  },
+  {
+    path: 'about',
+    children: [
+      {
+        path: 'about-us',
+        component: AboutUsComponent,
+        data: {title: 'About.AboutUs'}
+      },
+      {
+        path: 'idea',
+        component: IdeaComponent,
+        data: {title: 'About.Idea'}
+      }
+    ]
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { User } from 'src/app/common/models/user';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { UserService } from '../user.service';
+import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +14,9 @@ export class RegisterComponent implements OnInit {
 
   user: User;
   faPaperPlane = faPaperPlane;
+  termsChecked = false;
   
-  constructor(private _userService: UserService, private _navigationService: NavigationService) {
+  constructor(private _userService: UserService, private _navigationService: NavigationService, private _utilititesService: UtilitiesService) {
     this.user = new User();
   }
 
@@ -22,7 +24,7 @@ export class RegisterComponent implements OnInit {
   }
 
   public cancelRegister(){
-    this._navigationService.navigateTo('login');
+    this._navigationService.navigateTo('user/login');
 
   }
 
@@ -35,7 +37,7 @@ export class RegisterComponent implements OnInit {
         this._navigationService.navigateTo("login");
       },
       err => {
-        alert("error");
+        this._utilititesService.handleError(err);
       }
     );
   }

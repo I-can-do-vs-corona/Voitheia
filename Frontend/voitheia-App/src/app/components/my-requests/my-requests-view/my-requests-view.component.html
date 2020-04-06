@@ -3,34 +3,34 @@
 </div>
 <div mat-dialog-content>
     <p>
-        <span class="label">{{'Request.Field.Label.Name' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.Name' | translate }}</span><br />
         {{item.firstName}} {{item.lastName}}
     </p>
     <p>
-        <span class="label">{{'Request.Field.Label.Type' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.Type' | translate }}</span><br />
         {{item.type}}
     </p>
     <p>
-        <span class="label">{{'Request.Field.Label.Description' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.Description' | translate }}</span><br />
         {{item.description}}
     </p>
     <p>
-        <span class="label">{{'Request.Field.Label.Distance' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.Distance' | translate }}</span><br />
         {{item.distanceToUser}}
     </p>
     <p>
-        <span class="label">{{'Request.Field.Label.Phone' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.Phone' | translate }}</span><br />
         {{item.phoneNumber}}
     </p>
     <p>
-        <span class="label">{{'Request.Field.Label.Address' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.Address' | translate }}</span><br />
         {{item.street}}<br />
         {{item.zip}} {{item.city}}
     </p>
 </div>
 
 <div mat-dialog-actions>
-    <button class="btn btn-outline-dark" (click)="onCancel()">{{'General.Buttons.Back' | translate }}</button>
-    <button class="btn btn-secondary" (click)="onCancelRequest()">{{'General.Buttons.Cancel' | translate }}</button>
-    <button class="btn btn-primary" (click)="onCloseRequest()">{{'General.Buttons.Complete' | translate }}</button>
+    <button mat-stroked-button (click)="onCancel()">{{'General.Buttons.Back' | translate }}</button>
+    <button mat-raised-button (click)="onCancelRequest()">{{'General.Buttons.Cancel' | translate }}</button>
+    <button mat-raised-button color="primary" (click)="onCloseRequest()">{{'General.Buttons.Complete' | translate }}</button>
 </div>

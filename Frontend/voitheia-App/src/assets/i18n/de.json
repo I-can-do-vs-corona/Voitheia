@@ -1,5 +1,6 @@
 {
     "General": {
+        "Slogan": "Tu etwas Gutes - Hilf jemandem.",
         "Buttons":{
             "Submit": "Absenden",
             "Next": "Weiter",
@@ -34,10 +35,51 @@
             "Text": {
                 "Error": "Es ist ein Fehler aufgetreten"
             }
+        },
+        "Field": {
+          "Label": {
+            "FirstName": "Vorname",
+            "LastName": "Nachname",
+            "Title": "Registrieren",
+            "Phone": "Telefonnummer",
+            "Name": "Name",
+            "Username": "Benutzername",
+            "Email": "E-Mail",
+            "Password": "Passwort",
+            "Street": "Strasse",
+            "ZipCode": "PLZ",
+            "City": "Ort",
+            "Type": "Ich benötige Unterstützung bei",
+            "Description": "Beschreibung",
+            "Distance": "Entfernung",
+            "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
+          }
+        },
+        "PageTitles": {
+          "Default": "Voitheia",
+          "Home": "Tu etwas Gutes - Hilf jemandem.",
+          "User": {
+            "Login": "Einloggen",
+            "Register": "Registrieren"
+          },
+          "Terms":{
+            "TermsConditions": "AGBs",
+            "PrivacyPolicy": "Datenschutzerklärung",
+            "Imprint": "Impressum"
+          },
+          "About": {
+            "AboutUs": "Wer wir sind",
+            "Idea": "Die Idee"
+          },
+          "Request": {
+            "Create": "Anfrage erstellen",
+            "List": "Liste der Anfragen"
+          },
+          "MyRequest": {
+            "List": "Liste meiner Anfragen"
+          }
         }
-
-    }
-  },
+    },
   "Home": {
     "Buttons": {
       "CreateRequest": "Ich brauche etwas",
@@ -53,19 +95,7 @@
     }
   },
   "Login": {
-    "Title": "Einloggen",
-    "Name": "E-Mail Adresse",
-    "Password": "Passwort"
-  },
-  "Register": {
-    "FirstName": "Vorname",
-    "LastName": "Nachname",
-    "Title": "Registrieren",
-    "Name": "E-Mail Adresse",
-    "Password": "Passwort",
-    "StreetAdress": "Adresse",
-    "ZipCode": "PLZ",
-    "City": "Ort"
+    "Title": "Einloggen"
   },
   "Request": {
     "Create": {
@@ -73,55 +103,49 @@
       "Stepper": {
         "Request": "Anfragedetails",
         "ContactInformation": "Kontaktdaten"
+      },
+      "Dialog": {
+          "Buttons": {
+              "NewRequest": "Neue Anfrage"
+          },
+          "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
       }
     },
     "Details": {
-      "Title": "Anfragedetails"
-    },
-    "Field": {
-      "Label": {
-        "FirstName": "Vorname",
-        "LastName": "Nachname",
-        "Title": "Registrieren",
-        "Name": "Benutzername",
-        "Password": "Passwort",
-        "StreetAdress": "Adresse",
-        "ZipCode": "PLZ",
-        "City": "Ort"
-    },
-    "Request": {
-        "Create": {
-            "Title": "Anfrage erstellen",
-            "Stepper": {
-                "Request": "Anfragedetails",
-                "ContactInformation": "Kontaktdaten"
-            },
-            "Dialog": {
-                "Buttons": {
-                    "NewRequest": "Neue Anfrage"
-                },
-                "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
-            }
+      "Title": "Anfragedetails",
+      "Dialogs": {
+        "Title": "Anfrage erfolgreich Angenommen!",
+        "Text": "Du hast die Anfrage erfolgreich angenommen. Vielen Dank fürs helfen!",
+        "MyRequestsButton": "Mein Anfragen anzeigen"
+      }
+    }
+  },
+  "MyRequest": {
+    "Details": {
+      "Dialogs": {
+        "Cancel": {
+          "Title": "Anfrage abgebrochen",
+          "Text": "Du hast die Anfrage erfolgreich abgebrochen. Sie wurde der liste an offenen Anfragen wieder hinzugefügt."
         },
-        "Details": {
-            "Title": "Anfragedetails"
-        },
-        "Field": {
-            "Label": {
-                "FirstName": "Vorname",
-                "LastName": "LastName",
-                "Name": "Name",
-                "Email": "E-Mail",
-                "Phone": "Telefonnummer",
-                "Address": "Adresse",
-                "Street": "Strasse & Hausnummer",
-                "PostalCode": "PLZ",
-                "City": "Ort",
-                "Type": "Ich benötige Unterstützung bei",
-                "Description": "Beschreibung",
-                "Distance": "Entfernung"
-            }
+        "Close": {
+          "Title": "Anfrage abgeschlossen",
+          "Text": "Du hast die Anfrage erfolgreich abgeschlossen. Vielen Dank für deinen Einsatz!"
         }
+      }
+    }
+  },
+  "Footer": {
+    "Links": {
+      "Idea": "Die Idee",
+      "AboutUs": "Wer wir sind",
+      "Terms": "AGB",
+      "PrivacyPolicy": "Datenschutz",
+      "Imprint": "Impressum"
+    },
+    "Titles": {
+      "About": "Über uns",
+      "Service": "Service",
+      "Contact": "Kontakt"
     }
   }
 }
