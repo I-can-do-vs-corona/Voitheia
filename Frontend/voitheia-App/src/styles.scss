@@ -69,11 +69,7 @@ body {
     }
   }
 
-  .container-fluid {
-    //padding:0;
-  }
-
-  .content-container{
+  #page-content > :last-child > :first-child{
     margin-bottom: $footer-distance;
     margin-top: $header-distance;
   }
