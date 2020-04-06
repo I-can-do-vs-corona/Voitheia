@@ -167,6 +167,17 @@ namespace ActiveCruzer.Controllers
                 return Unauthorized("You are not allowed to perform this action.");
         }
 
+        /// <summary>
+        /// get user account from logged in user
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        public ActionResult GetUser()
+        {
+            return Ok(_userBll.GetUserViaId(GetUserId()));
+        }
+
 
         protected void Dispose(bool disposing)
         {
