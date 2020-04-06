@@ -9,57 +9,57 @@
                         <div class="col-md">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Register.FirstName' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.FirstName' | translate"></span></mat-label>
                                     <input  matInput name="textareaInput" [(ngModel)]="user.firstName" #textareaInput="ngModel" value="Test" required>
                                 </mat-form-field>
                             </div>
                             <div class="form-group">
                                 
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Register.LastName' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.LastName' | translate"></span></mat-label>
                                     <input  matInput name="textareaInput" [(ngModel)]="user.lastName" #textareaInput="ngModel" value="Test" required>
                                 </mat-form-field>
                             </div>
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Register.Name' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
                                     <input  matInput name="textareaInput" [(ngModel)]="user.email" #textareaInput="ngModel" value="test@test2.com"required>
                                 </mat-form-field>
                             </div>
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Register.Password' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.Password' | translate"></span></mat-label>
                                     <input  type="password" matInput name="textareaInput" [(ngModel)]="user.password" #textareaInput="ngModel" value="test" required>
                                 </mat-form-field>
                             </div>
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Register.StreetAdress' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.Street' | translate"></span></mat-label>
                                     <input  matInput name="textareaInput" [(ngModel)]="user.street" #textareaInput="ngModel" value="Weißenburgerstr. 17" required>
                                 </mat-form-field>
                             </div>
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Register.ZipCode' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
                                     <input  matInput name="textareaInput" [(ngModel)]="user.zip" #textareaInput="ngModel" value="81667" required>
                                 </mat-form-field>
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Register.City' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.City' | translate"></span></mat-label>
                                     <input  matInput name="textareaInput" [(ngModel)]="user.city" #textareaInput="ngModel" value="München" required>
                                 </mat-form-field>
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
+                    </div>
                     <div>
-                       
-                        
-                        <button type="submit" class="btn btn-primary" (click)='send()'>
+                        <button type="submit" mat-raised-button color="primary" [disabled]="!RequestForm.form.valid || !termsChecked" (click)='send()'>
                             <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Submit' | translate }}
                         </button>
-                        <button type="submit" class="btn btn-outline-dark" (click)='cancelRegister()'>
+                        <button type="submit" mat-stroked-button (click)='cancelRegister()'>
                             {{'General.Buttons.Cancel' | translate }}
                         </button>
-                     
                     </div>
                 </form>
     </div>

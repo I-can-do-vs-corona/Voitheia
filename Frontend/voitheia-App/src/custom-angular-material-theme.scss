@@ -192,18 +192,31 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   @include angular-material-theme($altTheme);
 }
 
-
 // Specific component overrides, pieces that are not in line with the general theming
 
 // Handle buttons appropriately, with respect to line-height
 .mat-raised-button, .mat-stroked-button, .mat-flat-button {
   padding: 0 1.15em;
   margin: 0 .65em;
+  margin-right:$normal-spacing !important;
   min-width: 3em;
-  line-height: 36.4px
+  line-height: 36.4px;
+  border-radius: 20px !important;
 }
 
-.mat-standard-chip {
-  padding: .5em .85em;
-  min-height: 2.5em;
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-stepper-horizontal{
+    background-color: transparent;
+}
+
+[mat-dialog-title], #dialog-title{
+    text-align:center;
+    font-weight:$bold;
+
+    [mat-dialog-title]{
+        border-bottom:0;
+    }
 }

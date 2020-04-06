@@ -15,7 +15,7 @@
 </div>
 <div mat-dialog-content [innerHtml]="content"></div>
 <div mat-dialog-actions align="end">
-    <button *ngIf="!isUndefined(closeButtonText)" class="btn btn-outline-dark" (click)="close('Close')">{{closeButtonText}}</button>
-    <button *ngIf="!isUndefined(secondaryButtonText)" class="btn btn-secondary" (click)="close('Secondary')">{{secondaryButtonText}}</button>
-    <button *ngIf="!isUndefined(primaryButtonText)" class="btn btn-primary" (click)="close('Primary')">{{primaryButtonText}}</button>
+    <button *ngIf="!isUndefined(closeButtonText)" mat-stroked-button (click)="close('Close')">{{closeButtonText}}</button>
+    <button *ngIf="!isUndefined(secondaryButtonText)" mat-raised-button (click)="close('Secondary')">{{secondaryButtonText}}</button>
+    <button *ngIf="!isUndefined(primaryButtonText)" mat-raised-button color="primary" (click)="close('Primary')">{{primaryButtonText}}</button>
 </div>

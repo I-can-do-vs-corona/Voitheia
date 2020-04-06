@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   public registerUser(){
-    this._navigationService.navigateTo('register');
+    this._navigationService.navigateTo('user/register');
   }
 
   public login(){ 

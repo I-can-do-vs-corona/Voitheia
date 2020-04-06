@@ -3,19 +3,19 @@
         <table mat-table [dataSource]="requestDataSource">
             <!-- Firstname Column -->
             <ng-container matColumnDef="firstName">
-                <th mat-header-cell *matHeaderCellDef> {{'Request.Field.Label.FirstName' | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.FirstName' | translate }} </th>
                 <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
             </ng-container>
         
             <!-- RequestType Column -->
             <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef> {{'Request.Field.Label.Type' | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Type' | translate }} </th>
                 <td mat-cell *matCellDef="let element"> {{'General.Enums.RequestTypeEnum.' + element.type | translate}} </td>
             </ng-container>
         
             <!-- Distance to User Column -->
             <ng-container matColumnDef="distanceToUser">
-                <th mat-header-cell *matHeaderCellDef> {{'Request.Field.Label.Distance' | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Distance' | translate }} </th>
                 <td mat-cell *matCellDef="let element"> {{element.distanceToUser | distance }} </td>
             </ng-container>
         

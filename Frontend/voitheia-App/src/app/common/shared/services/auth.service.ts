@@ -55,10 +55,10 @@ export class AuthService {
       err => {
         console.log(err);
         if(err["status"] === 400){
-          alert("Login Error, please check email and password!");
+          this._utilitiesService.handleError("Login Error, please check email and password!");
         }
         else{
-          alert("Error");
+          this._utilitiesService.handleError("Error");
         }
       }
     );

@@ -30,7 +30,7 @@
             ],
             "styles": [
               "src/custom-angular-material-theme.scss",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/custom-bootstrap-theme.scss",
               "src/styles.scss"
             ],
             "scripts": []

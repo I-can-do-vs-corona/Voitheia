@@ -3,7 +3,7 @@
 :host {
   .box {
     padding: 2em;
-    background-color: $brand-secondary-color;
+    background-color: white;
     color: $black;
     height: 100%;
     margin-bottom: 15px;
@@ -13,15 +13,12 @@
   }
 
   .box:hover {
-    background-color: $brand-secondary-color-dark;
+    background-color: $brand-color;
   }
 
   #line1 {
     margin: 1em 0;
     font-size: $xxtra-large;
     font-weight: $bold;
-  }
-
-  .my-requests {
   }
 }

@@ -5,10 +5,13 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSelectChange } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestViewComponent } from '../request-view/request-view.component';
-import { RequestTypeEnum } from 'src/app/common/helper/enums';
+import { RequestTypeEnum, DialogIconTypeEnum } from 'src/app/common/helper/enums';
 import { MatPaginator } from '@angular/material/paginator';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { environment } from 'src/environments/environment';
+import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
+import { DialogService } from 'src/app/common/shared/services/dialog/dialog.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-request-list',
@@ -26,8 +29,7 @@ export class RequestListComponent implements OnInit {
 
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
 
-  constructor(private _requestService: RequestService,public _navigationService: NavigationService, public dialog: MatDialog) {
-    
+  constructor(private _requestService: RequestService, private _utilitiesService: UtilitiesService, private _dialogService: DialogService, private _translateService: TranslateService, private _navigationService: NavigationService, private _dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -62,7 +64,7 @@ export class RequestListComponent implements OnInit {
   
   openDetails(index:number){
     this.openedItem = this.requestDataSource.data[index];
-    const dialogRef = this.dialog.open(RequestViewComponent, {
+    const dialogRef = this._dialog.open(RequestViewComponent, {
       width: environment.dialogWidth,
       data: {item: this.openedItem}
     });
@@ -71,16 +73,17 @@ export class RequestListComponent implements OnInit {
       if(result){
         this._requestService.takeRequest(this.openedItem.id).subscribe(
           data => {
-            alert("angenommen & gespeichert")
+            this._translateService.get(['Request.Details.Dialogs.Title', 'Request.Details.Dialogs.Text', 'Request.Details.Dialogs.MyRequestsButton', 'General.Buttons.Close']).subscribe((res: string) => {
+              this._dialogService.showDialogTwoButtons(res['Request.Details.Dialogs.Title'], res['Request.Details.Dialogs.Text'], DialogIconTypeEnum.Success, res['Request.Details.Dialogs.MyRequestsButton'], res['General.Buttons.Close'], function(){this._navigationService.navigateTo("my-requests/list")}.bind(this));
+            });
             this.loadAllData();
           },
           err => {
-            alert("error");
+            this._utilitiesService.handleError(err);
           }
         );
-      }else{
-        this.openedItem = null;
       }
+      this.openedItem = null;
     });
   }
 
@@ -92,7 +95,7 @@ export class RequestListComponent implements OnInit {
         this.resultsLength = this.unfilteredResult.length;
       },
       err => {
-        alert("error");
+        this._utilitiesService.handleError(err);
       }
     );
   }

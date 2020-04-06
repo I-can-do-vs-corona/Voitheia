@@ -6,27 +6,6 @@ $gray-3: #848484;
 $gray-4: #585858;
 $gray-5: #151515;
 
-//Brand Color
-$brand-color: #FF9985;
-$brand-color-light: #FF9985;
-$brand-color-dark: #FF9985;
-
-$brand-secondary-color: #78E9FF;
-$brand-secondary-color-light: #78E9FF;
-$brand-secondary-color-dark: #4BA2B3;
-$brand-secondary-color-dark-dark:$black;
-
-$brand-warn-color:#ff0000;
-$brand-warn-color-light:#ffb3b3;
-$brand-warn-color-dark:$brand-warn-color;
-
-//a tag config
-$link-color: #FFFFFF;
-$link-text-decoration:underline;
-$link-hover-color: $brand-secondary-color-dark;
-$link-hover-text-decoration:underline;
-$link-hover-bgcolor: $brand-secondary-color-dark;
-
 $green: #6FB371;
 $red: #d90000;
 $dark-red: #850000;
@@ -36,6 +15,29 @@ $light-red-2: #fcb8b8;
 $light-red-3: #f2dede;
 $blue: #00a0de;
 $white: #FFFFFF;
+
+//Brand Color
+$brand-color: #78E9FF;
+$brand-color-light: #78E9FF;
+$brand-color-dark: #4BA2B3;
+
+$brand-secondary-color: #91FF96;
+$brand-secondary-color-light: #91FF96;
+$brand-secondary-color-dark: #6FB371;
+$brand-secondary-color-dark-dark:$black;
+
+$brand-warn-color:#ff0000;
+$brand-warn-color-light:#ffb3b3;
+$brand-warn-color-dark:$brand-warn-color;
+
+$brand-background-color: #FF9985;
+
+//a tag config
+$link-color: #FFFFFF;
+$link-text-decoration:none;
+$link-hover-color: $brand-color-dark;
+$link-hover-text-decoration:underline overline;
+$link-hover-bgcolor: transparent;
 
 $info-text: #31708f;
 $success-text: #3c763d;

@@ -9,23 +9,23 @@
                         <div class="col-md">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Login.Name' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
                                     <input  matInput name="textareaInput" [(ngModel)]="user.email" #textareaInput="ngModel" required>
                                 </mat-form-field>
                             </div>
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Login.Password' | translate"></span></mat-label>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.Password' | translate"></span></mat-label>
                                     <input  type="password" matInput name="textareaInput" [(ngModel)]="user.password" #textareaInput="ngModel" required>
                                 </mat-form-field>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary" (click)="login()">
+                        <button type="submit" mat-raised-button color="primary" (click)="login()">
                             <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Login' | translate }}
                         </button>
-                        <button type="submit" class="btn btn-outline-dark" (click)= "registerUser()">
+                        <button type="submit"mat-stroked-button (click)= "registerUser()">
                             <fa-icon [icon]="faUserPlus"></fa-icon> {{'General.Buttons.Register' | translate }}
                         </button>
                     </div>
