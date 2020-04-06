@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
@@ -13,6 +14,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Org.BouncyCastle.Crypto.Tls;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace ActiveCruzer.Controllers
@@ -124,6 +127,51 @@ namespace ActiveCruzer.Controllers
             }
 
             return Unauthorized();
+        }
+        /// <summary>
+        /// Delete user account
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpDelete]
+        [Route("Delete")]
+        public ActionResult DeleteUser([FromBody] int userId)
+        {
+            var claimsId = User.Claims.Where(a => a.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
+            var _user = _userBll.GetUserViaId(userId);
+            if(_user != null)
+            {
+                if (claimsId == _user.NormalizedUserName)
+                {
+                    string result = _userBll.DeleteUser(userId);
+                    if (result != null)
+                    {
+                        return Ok(result);
+                    }
+                    return BadRequest("User not found");
+                }
+                return Unauthorized("You are not allowed to perform this action.");
+            }
+            return Unauthorized("You are not allowed to perform this action.");
+        }
+
+        /// <summary>
+        /// Update user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPut]
+        [Route("Update")]
+        public ActionResult UpdateUser([FromBody] User user)
+        {
+            var _user = _userBll.UpdateUser(user);
+            if(_user != null)
+            {
+                return Ok(_user);
+            }
+            return BadRequest(user.UserName + " not found.");
         }
 
 

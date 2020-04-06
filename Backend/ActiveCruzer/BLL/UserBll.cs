@@ -66,6 +66,16 @@ namespace ActiveCruzer.BLL
             return _userManager.FindById(userId);
         }
 
+        public string DeleteUser(int userId)
+        {
+            return _userManager.DeleteUser(userId);
+        }
+
+        public User UpdateUser(User user)
+        {
+            return _userManager.UpdateUser(user);
+        }
+
         ///<Summary>
         /// Function to Dispose the BLL
         ///</Summary>
