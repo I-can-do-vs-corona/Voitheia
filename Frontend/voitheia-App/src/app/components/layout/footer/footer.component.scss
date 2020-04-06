@@ -19,7 +19,7 @@
 
   .list-unstyled {
     /* unvisited link */
-    a:link {
+    a, a:visited, a:focus, .hyperlink, .hyperlink:visited, .hyperlink:focus{
       color: $white;
     }
   }
