@@ -1,22 +1,20 @@
-<!-- <p>header works!</p> -->
-<!--<header class="container" id="header">
-  <div class="row justify-content-center">
-    <a (click)="_navigationService.navigateTo('home')">
-      <h1 class="center_title">Voitheia</h1>
-    </a>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+  <div class="container">
+      <a class="navbar-brand " (click)="_navigationService.navigateTo('home')">Voitheia</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto my-2 my-lg-0">
+              <li *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('login')" class="nav-item"><a class="nav-link login-btn js-scroll-trigger">
+                <fa-icon [icon]="faSignInAlt"></fa-icon>
+                Login</a></li>
+              <li *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('register')" class="nav-item"><a class="nav-link register-btn js-scroll-trigger">
+                Register</a></li>
+              <li *ngIf="isLoggedIn()" (click)="_navigationService.navigateTo('my-requests/list')" class="nav-item"><a class="nav-link login-btn js-scroll-trigger" >
+                {{'Home.Buttons.MyRequests' | translate }}</a></li>
+              <li *ngIf="isLoggedIn()" (click)= "logout()" class="nav-item"><a class="nav-link login-btn js-scroll-trigger" >
+                <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                Logout</a></li>
+          </ul>
+      </div>
   </div>
-</header>-->
-<nav class="navbar navbar-expand-lg justify-content-between" id="header">
-    <i id="logo"></i>
-    <a (click)="_navigationService.navigateTo('home')">
-      <h1 class="my-auto">Voitheia</h1>
-    </a>
-    <div class="ml-auto" id="navigation">
-      <a *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('login')">
-        <fa-icon [icon]="faSignInAlt"></fa-icon>
-      </a>
-      <a *ngIf="isLoggedIn()" (click)="logout()">
-        <fa-icon [icon]="faSignOutAlt"></fa-icon>
-      </a>
-    </div>
 </nav>

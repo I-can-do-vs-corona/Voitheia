@@ -10,5 +10,6 @@ export class NavigationService {
 
   navigateTo(route: string) {
     this._router.navigate(['/' + route]);
+    window.scrollTo(0,0);
   }
 }

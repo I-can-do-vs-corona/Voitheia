@@ -36,20 +36,19 @@
             }
         }
 
-    }
-  },
+    },
   "Home": {
     "Buttons": {
       "CreateRequest": "Ich brauche etwas",
       "MyRequests": "Meine Unterstützungsangebote",
       "ShowRequests": {
-        "LoggedIn": "Offene Anfragen anzeigen",
+        "LoggedIn": "Zu offenen Anfragen",
         "LoggedOut": "Ich möchte helfen"
       }
     },
     "Texts": {
       "Level1": "Erstelle selbst eine Anfrage oder biete deine Unterstützung an.",
-      "Level2": "In außergewöhnlichen Situationen und den vielen Einschränkungen, mit denen wir aufgrund des Coronavirus derzeit kämpfen, möchten wir mit dieser Community Helfende und Hilfesuchende verbinden. Du brauchst kurzfristig Unterstützung, beispielsweise beim Einkaufen, Kinder hüten oder jemanden, der mit deinem Hund Gassi geht? Erstelle eine Anfrage und jemand aus deiner Nachbarschaft wird dich kontaktieren, um dich zu unterstützen."
+      "Level2": "In außergewöhnlichen Situationen und den vielen Einschränkungen, mit denen wir aufgrund des Coronavirus derzeit kämpfen, möchten wir mit dieser Community Helfende und Hilfesuchende verbinden. Du brauchst kurzfristig Unterstützung, beispielsweise beim Einkaufen, Kinder hüten oder jemanden, der mit deinem Hund Gassi geht? Erstelle eine Anfrage und jemand aus deiner Nachbarschaft kann dich kontaktieren, um dich zu unterstützen."
     }
   },
   "Login": {
@@ -88,7 +87,9 @@
         "StreetAdress": "Adresse",
         "ZipCode": "PLZ",
         "City": "Ort"
-    },
+      }
+    }
+  },
     "Request": {
         "Create": {
             "Title": "Anfrage erstellen",
@@ -124,4 +125,4 @@
         }
     }
   }
-}
+

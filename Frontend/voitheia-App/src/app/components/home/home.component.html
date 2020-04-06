@@ -1,15 +1,42 @@
-<div *ngIf="isLoggedIn()">
+<header class="masthead">
+    <div class="container h-100">
+        <div style="margin-left: 10%; margin-top: 4.5rem;" class="row h-100 ">
+            <div class="col-lg-10 align-self-end">
+                <h1 class="text-white font-weight-bold">Help yourself<br>by helping others</h1>
+            </div>
+            <div class="col-lg-10 align-self-baseline">
+                <p class=" font-weight-light mb-5">
+                    {{'Home.Texts.Level1' | translate }}
+                    <br>
+                    {{'Home.Texts.Level2' | translate }}
+                </p>
+                <div class="">
+                    <a style="float:left" (click)="_navigationService.navigateTo('request/create')" class="btn btn-primary btn-xl" >{{'Home.Buttons.CreateRequest' | translate }}</a>
+                    <p style="float:left; " class="btn-or text-white-75 font-weight-light">oder</p>
+                    <a style="float:left" (click)="_navigationService.navigateTo('request/list')" class="btn btn-primary btn-xl " ><span *ngIf="isLoggedIn()">
+                        {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}
+                    </span>
+                    <span *ngIf="!isLoggedIn()">
+                        {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
+                    </span></a>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- <div *ngIf="isLoggedIn()">
     <a (click)="_navigationService.navigateTo('my-requests/list')">
         <div class="box text-center my-requests">
             {{'Home.Buttons.MyRequests' | translate }}
         </div>
     </a>
 </div>
-<!-- <a (click)="_navigationService.navigateTo('login')">
-    <div class="box text-center my-requests">
-        Login
-    </div>
-</a> -->
+
 <div class="row">
     <div class="col-md">
         <a (click)="_navigationService.navigateTo('request/create')">
@@ -40,4 +67,4 @@
     <div id="line2" class="col-md-8 offset-md-2">
         {{'Home.Texts.Level2' | translate }}
     </div>
-</div>
+</div> -->
