@@ -77,17 +77,17 @@
                             </button>
                             
                         </div>
-                    </div>
+                    
                     <div class="form-group">
-                        <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
+                        <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span  style="color: black;" [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
                     </div>
-                    <div>
+                    
                         <div id="login_msg">
                             <span>
                                 {{'Register.HasAccount' | translate }}
                             </span>
     
-                            <a  style="font-weight: 600;" class="hyperlink" (click)="_navigationService.navigateTo('login')">
+                            <a  style="font-weight: 600;" class="hyperlink" (click)="cancelRegister()">
                                 <span>
                                     {{'General.Buttons.Login' | translate }}
                                 </span>
@@ -105,3 +105,5 @@
                 </form>
     </div>
 </div>
+
+

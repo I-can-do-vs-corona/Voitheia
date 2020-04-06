@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   public isMenuCollapsed = true;
 
   constructor(public _navigationService: NavigationService, private _authService: AuthService) { 
-
+  }
   ngOnInit(): void {
     
   }

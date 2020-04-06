@@ -27,7 +27,7 @@
                         <div class="col-md">
                             <div class="form-group">
                                 <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Request.Field.Label.Description' | translate"></span>
+                                    <mat-label><span [innerHTML]="'General.Field.Label.Description' | translate"></span>
                                     </mat-label>
                                     <textarea matInput name="textareaInput" [(ngModel)]="request.description"
                                         #textareaInput="ngModel" required></textarea>
@@ -86,7 +86,6 @@
 
                     <div class="form-group">
                         <mat-form-field>
-                            <mat-label><span [innerHTML]="'General.Field.Label.LastName' | translate"></span></mat-label>
                             <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
                             <input matInput name="emailInput" [(ngModel)]="request.email" #emailInput="ngModel" />
                         </mat-form-field>
@@ -133,7 +132,7 @@
                             <div class="form-group">
                                 <mat-form-field>
                                     <mat-label><span [innerHTML]="'General.Field.Label.City' | translate"></span></mat-label>
-                                    </mat-label>
+                                    
                                     <input matInput name="cityInput" [(ngModel)]="request.city" #cityInput="ngModel"
                                         required />
                                 </mat-form-field>
@@ -146,7 +145,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
+                        <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span style="color: black" [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
                     </div>
         
                     <div>

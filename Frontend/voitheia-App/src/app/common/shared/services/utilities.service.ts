@@ -25,8 +25,8 @@ export class UtilitiesService {
   }
 
   handleError(error: any){
-    this._translate.get(['General.Dialogs.Title.Error', 'General.Dialogs.Text.Error', 'General.Buttons.Close']).subscribe((res: string) => {
-      this._dialogService.showDialogOneButton(res['General.Dialogs.Title.Error'], res['General.Dialogs.Text.Error'] + "<br />" + error, DialogIconTypeEnum.Error, res['General.Buttons.Close']);
+    this._translate.get(['General.Dialogs.Titles.Error', 'General.Dialogs.Text.Error', 'General.Buttons.Close']).subscribe((res: string) => {
+      this._dialogService.showDialogOneButton(res['General.Dialogs.Titles.Error'], res['General.Dialogs.Text.Error'] + "<br />" + error, DialogIconTypeEnum.Error, res['General.Buttons.Close']);
     });
   }
 }

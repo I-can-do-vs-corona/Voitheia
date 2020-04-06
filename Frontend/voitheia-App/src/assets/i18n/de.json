@@ -13,6 +13,7 @@
             "Close": "Schliessen",
             "Logout": "Abmelden"
         },
+
         "Enums": {
             "RequestTypeEnum": {
                 "Shopping": "Einkaufen",
@@ -35,6 +36,7 @@
             },
             "Text": {
                 "Error": "Es ist ein Fehler aufgetreten"
+                
             }
         },
         "Field": {
@@ -47,13 +49,13 @@
             "Username": "Benutzername",
             "Email": "E-Mail",
             "Password": "Passwort",
-            "Street": "Strasse",
+            "Street": "Strasse & Hausnummer",
             "ZipCode": "PLZ",
             "City": "Ort",
             "Type": "Ich benötige Unterstützung bei",
             "Description": "Beschreibung",
             "Distance": "Entfernung",
-            "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
+            "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
           }
         },
         "PageTitles": {
@@ -96,7 +98,11 @@
     }
   },
   "Login": {
-    "Title": "Einloggen"
+    "Title": "Einloggen",
+    "NoAccount": "Noch keinen Account? "
+  },
+  "Register": {
+    "HasAccount": "Bereits Registriert? "
   },
   "Request": {
     "Create": {
@@ -117,7 +123,7 @@
       "Dialogs": {
         "Title": "Anfrage erfolgreich Angenommen!",
         "Text": "Du hast die Anfrage erfolgreich angenommen. Vielen Dank fürs helfen!",
-        "MyRequestsButton": "Mein Anfragen anzeigen"
+        "MyRequestsButton": "Meine Anfragen anzeigen"
       }
     }
   },
@@ -149,4 +155,5 @@
       "Contact": "Kontakt"
     }
   }
+}
 
