@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
@@ -13,6 +14,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Org.BouncyCastle.Crypto.Tls;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace ActiveCruzer.Controllers
@@ -28,6 +31,7 @@ namespace ActiveCruzer.Controllers
 
         private UserBLL _userBll;
         private IGeoCodeBll _geoCodeBll;
+        private IMapper _mapper;
 
         private readonly IOptions<Jwt.JwtAuthentication> _jwtAuthentication;
 
@@ -39,6 +43,7 @@ namespace ActiveCruzer.Controllers
             IConfiguration configuration, ACDatabaseContext databaseContext)
         {
             _geoCodeBll = new GeoCodeBll(mapper, configuration);
+            _mapper = mapper;
             _userBll = new UserBLL(new UserManager(databaseContext),mapper);
             _jwtAuthentication = jwtAuthentication;
         }
@@ -124,6 +129,65 @@ namespace ActiveCruzer.Controllers
             }
 
             return Unauthorized();
+        }
+
+        /// <summary>
+        /// delete current loggedin user account. If code 200 returns, user and related references were succesful deleted. If 401 returns, user is not logged in.
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200"></response>
+        /// <response code="401"></response>
+        [Authorize]
+        [HttpDelete]
+        [Route("Delete")]
+        public ActionResult DeleteUser()
+        {
+            var _user = _userBll.GetUserViaId(GetUserId());
+            if(_user != null)
+            {
+                string result = _userBll.DeleteUser(GetUserId());
+                return Ok(result);
+            }
+            return Unauthorized("You are not allowed to perform this action.");
+        }
+
+        /// <summary>
+        /// Update user. If return code uis 200, the user was updated. If 401 is returned, the user is not the same user as he wants to update(unauthorized)
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        /// <response code="200"></response>
+        /// <response code="401"></response>
+        [Authorize]
+        [HttpPut]
+        [Route("Update")]
+        public ActionResult UpdateUser([FromBody] RegisterUserDTO user)
+        {
+                var _user = _userBll.UpdateUser(user, GetUserId());
+                if (_user != null)
+                {
+                    return Ok(_user);
+                }
+                return Unauthorized("You are not allowed to perform this action.");
+        }
+
+        /// <summary>
+        /// get user information from logged in user. If 200 returns all went well, otherwise 401 will be retured cause no user is logged in
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200"></response>
+        /// <response code="401"></response>
+        [Authorize]
+        [HttpGet]
+        [Route("GetUser")]
+        public ActionResult GetUser()
+        {
+            var user = _userBll.GetUserViaId(GetUserId());
+            if(user != null)
+            {
+                return Ok(user);
+            }
+            return Unauthorized("You are not allowed to perform this action.");
         }
 
 
