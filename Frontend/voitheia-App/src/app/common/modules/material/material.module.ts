@@ -52,4 +52,4 @@ import {MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIONS} from '@angular/material
     }
   ]
 })
-export class MaterialModule { }
+export class CustomMaterialModule { }

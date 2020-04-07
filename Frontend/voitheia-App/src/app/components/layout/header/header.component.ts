@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { AuthService } from 'src/app/common/shared/services/auth.service';
-import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit {
 
   faSignInAlt = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
+  faUser = faUser;
+
   unstickyHeaderHeight = 100;
   offset = 5;
   scrollFactor = 1.5;

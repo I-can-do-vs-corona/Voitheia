@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+registerLocaleData(localeDe);
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -14,7 +17,7 @@ import { RegisterComponent } from './components/user/register/register.component
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './common/modules/material/material.module';
+import { CustomMaterialModule } from './common/modules/material/material.module';
 import { HomeComponent } from './components/home/home.component';
 import { RequestFormComponent } from './components/request/request-form/request-form.component';
 import { RequestViewComponent } from './components/request/request-view/request-view.component';
@@ -32,6 +35,7 @@ import { IdeaComponent } from './components/about/idea/idea.component';
 import { AboutUsComponent } from './components/about/about-us/about-us.component';
 import { PageNotFoundComponent } from './components/misc/page-not-found/page-not-found.component';
 import { ImprintComponent } from './components/terms/imprint/imprint.component';
+import { CustomBootstrapModule } from './common/modules/bootstrap/bootstrap.module';
 
 
 @NgModule({
@@ -70,9 +74,10 @@ import { ImprintComponent } from './components/terms/imprint/imprint.component';
     }),
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CustomMaterialModule,
+    //CustomBootstrapModule
   ],
   providers: [
     {
@@ -83,7 +88,8 @@ import { ImprintComponent } from './components/terms/imprint/imprint.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
