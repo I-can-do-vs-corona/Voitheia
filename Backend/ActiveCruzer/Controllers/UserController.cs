@@ -130,11 +130,13 @@ namespace ActiveCruzer.Controllers
 
             return Unauthorized();
         }
+
         /// <summary>
-        /// Delete user account
+        /// delete current loggedin user account. If code 200 returns, user and related references were succesful deleted. If 401 returns, user is not logged in.
         /// </summary>
-        /// <param name="userId"></param>
         /// <returns></returns>
+        /// <response code="200"></response>
+        /// <response code="401"></response>
         [Authorize]
         [HttpDelete]
         [Route("Delete")]
@@ -150,10 +152,12 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
-        /// Update user
+        /// Update user. If return code uis 200, the user was updated. If 401 is returned, the user is not the same user as he wants to update(unauthorized)
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
+        /// <response code="200"></response>
+        /// <response code="401"></response>
         [Authorize]
         [HttpPut]
         [Route("Update")]
@@ -168,14 +172,22 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
-        /// get user account from logged in user
+        /// get user information from logged in user. If 200 returns all went well, otherwise 401 will be retured cause no user is logged in
         /// </summary>
         /// <returns></returns>
+        /// <response code="200"></response>
+        /// <response code="401"></response>
         [Authorize]
         [HttpGet]
+        [Route("GetUser")]
         public ActionResult GetUser()
         {
-            return Ok(_userBll.GetUserViaId(GetUserId()));
+            var user = _userBll.GetUserViaId(GetUserId());
+            if(user != null)
+            {
+                return Ok(user);
+            }
+            return Unauthorized("You are not allowed to perform this action.");
         }
 
 
