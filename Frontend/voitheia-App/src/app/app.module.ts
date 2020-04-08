@@ -6,6 +6,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/components/user/token.interceptor';
 import { FormsModule }   from '@angular/forms';
+import { CollapseModule, BsDropdownModule} from 'ngx-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -72,7 +73,10 @@ import { ImprintComponent } from './components/terms/imprint/imprint.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CollapseModule,
+    BsDropdownModule
+
   ],
   providers: [
     {

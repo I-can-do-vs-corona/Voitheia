@@ -1,7 +1,8 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, NgModule } from '@angular/core';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { AuthService } from 'src/app/common/shared/services/auth.service';
 import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-header',
@@ -9,13 +10,12 @@ import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  isCollapsed = true;
   faSignInAlt = faSignInAlt;
   faSignOutAlt = faSignOutAlt;
   unstickyHeaderHeight = 100;
   offset = 5;
   scrollFactor = 1.5;
-  public isMenuCollapsed = true;
 
   constructor(public _navigationService: NavigationService, private _authService: AuthService) { 
   }
@@ -42,6 +42,19 @@ export class HeaderComponent implements OnInit {
     else {
       let headerElement = document.getElementById('mainNav');
       headerElement.classList.remove('navbar-scrolled');
+    }
+  }
+
+  public hamburgerMenuToggle(){
+    this.isCollapsed = !this.isCollapsed;
+    let ham = document.getElementById("hamburger");
+    let content = document.getElementById("navbarSupportedContent");
+     if(this.isCollapsed){
+        ham.classList.add("collapsed");
+        content.classList.add("collapsing");
+     }else {
+       ham.classList.remove("collapsed");
+       content.classList.remove("collapsing");
     }
   }
 
