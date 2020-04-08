@@ -7,7 +7,7 @@
     width: 100%;
     height: auto;
     background-color: rgba(50, 50, 50, 1);
-    padding-top: 1rem;
+    padding-top: 1.5rem;
     font-size: $small;
   }
 
@@ -23,5 +23,9 @@
       color: $white;
     }
   }
+}
+
+h5 {
+  margin-top: 0px !important;;
 }
 

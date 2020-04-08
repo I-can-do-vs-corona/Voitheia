@@ -1,11 +1,16 @@
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-default navbar-light fixed-top py-3" id="mainNav">
   <div class="container">
       
       <i id="logo"></i>
       <a class="navbar-brand" (click)="_navigationService.navigateTo('home')">Voitheia</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"><span class="navbar-toggler-icon"></span></button>
-      <div class="collapse navbar-collapse">
+      <button id="hamburger" (click)="hamburgerMenuToggle()" class="navbar-toggle navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- <span class="navbar-toggler-icon"></span> -->
+        <span class="icon-bar top-bar"></span>
+	      <span class="icon-bar middle-bar"></span>
+	      <span class="icon-bar bottom-bar"></span>	
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" [collapse]=isCollapsed>
           <ul class="navbar-nav ml-auto my-2 my-lg-0">
               <li *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('user/login')" class="nav-item"><a class="nav-link login-btn noselect">
                 <fa-icon [icon]="faSignInAlt"></fa-icon>
