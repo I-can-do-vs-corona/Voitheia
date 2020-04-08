@@ -51,10 +51,8 @@ export class HeaderComponent implements OnInit {
     let content = document.getElementById("navbarSupportedContent");
      if(this.isCollapsed){
         ham.classList.add("collapsed");
-        content.classList.add("collapsing");
      }else {
        ham.classList.remove("collapsed");
-       content.classList.remove("collapsing");
     }
   }
 
