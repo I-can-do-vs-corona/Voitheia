@@ -9,6 +9,8 @@ namespace ActiveCruzer.BLL
         bool CheckPassword(string username, string credentialsPassword);
         User FindByUserName(string userName);
         User FindById(int userId);
+        string DeleteUser(int id);
+        RegisteringResult UpdateUser(User user, string credentialsPassword, int id);
     }
 
     public class RegisteringResult

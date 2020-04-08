@@ -70,6 +70,46 @@ namespace ActiveCruzer.BLL
             return _databaseContext.Users.Find(userId);
         }
 
+        public string DeleteUser(int userId)
+        {
+            var user = _databaseContext.Users.FirstOrDefault(usr => usr.Id == userId);
+            if(user != null)
+            {
+                var requests = _databaseContext.Request.Where(req => req.Volunteer == userId);
+                if(requests != null)
+                {
+                    foreach (Request req in requests)
+                    {
+                        req.Volunteer = null;
+                    }
+                    _databaseContext.UpdateRange(requests);
+                }
+                _databaseContext.Remove(user);
+                _databaseContext.SaveChanges();
+                return user.Email;
+            }
+            return null;
+        }
+
+        public RegisteringResult UpdateUser(User user, string credentialsPassword, int userId)
+        {
+
+            var _user = _databaseContext.Users.FirstOrDefault(usr => usr.Id == userId);
+            if(_user != null)
+            {
+                _user.Street = user.Street;
+                _user.City = user.City;
+                _user.Zip = user.Zip;
+                _user.Email = user.Email;
+                _user.PasswordHash = _passwordHasher.HashPassword(user, credentialsPassword);
+                _user.EmailConfirmed = user.EmailConfirmed;
+                _databaseContext.Users.Update(_user);
+                _databaseContext.SaveChanges();
+                return new RegisteringResult { Success = true };
+            }
+            return new RegisteringResult { Success = false };
+        }
+
         public void Dispose()
         {
         }
