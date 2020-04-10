@@ -130,9 +130,12 @@ namespace ActiveCruzer.Controllers
         /// <param name="emailToken"></param>
         /// <param name="email"></param>
         /// <returns></returns>
+        /// <response code="200"> returns if email was sucessfuly confirmed</response>
+        /// <response code="401"> returns if the link or e-mail is not valid</response>
+        /// <response code="400"> returns if the email was not able to be confirmed</response>
         [HttpGet]
         [Route("ConfirmEmail")]
-        public async Task<IActionResult> ConfirmEmail([FromQuery] string emailToken, string email)
+        public async Task<IActionResult> ConfirmEmail([FromBody] string emailToken, string email)
         {
             if(emailToken == null | email == null)
             {
@@ -171,11 +174,11 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
-        /// delete current loggedin user account. If code 200 returns, user and related references were succesful deleted. If 401 returns, user is not logged in.
+        /// delete current loggedin user account
         /// </summary>
         /// <returns></returns>
-        /// <response code="200"></response>
-        /// <response code="401"></response>
+        /// <response code="200"> returns if user and related references were sucessful deletet</response>
+        /// <response code="401"> returns if user is not logged in</response>
         [Authorize]
         [HttpDelete]
         [Route("Delete")]
