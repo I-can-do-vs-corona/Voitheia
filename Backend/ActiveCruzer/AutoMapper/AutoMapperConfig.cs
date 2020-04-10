@@ -69,6 +69,16 @@ namespace ActiveCruzer.AutoMapper
                 .ForMember(dest => dest.Type,
                     opts => opts.MapFrom(src => src.RequestType));
 
+            CreateMap<Request, MinimalRequestDto>()
+                .ForMember(dest => dest.Description,
+                    opts => opts.MapFrom(src => src.Description))
+                .ForMember(dest => dest.Id,
+                    opts => opts.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Status,
+                    opts => opts.MapFrom(src => src.Status))
+                .ForMember(dest => dest.Type,
+                    opts => opts.MapFrom(src => src.RequestType));
+
             CreateMap<Location, ValidatedAddress>()
                 .ForMember(dest => dest.ConfidenceLevel,
                     opts => opts.MapFrom(src => src.ConfidenceLevelType))
