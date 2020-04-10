@@ -106,7 +106,7 @@ namespace ActiveCruzer.BLL
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="requestId"></param>
-        public void UpdateAssignee(int userId, int requestId)
+        public void UpdateAssignee(string userId, int requestId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if(request != null)

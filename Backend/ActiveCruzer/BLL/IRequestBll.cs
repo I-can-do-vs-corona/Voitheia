@@ -16,7 +16,7 @@ namespace ActiveCruzer.BLL
 
         void UpdateStatus(int id, Request.RequestStatus status);
         Request GetRequest(int id);
-        void UpdateAssignee(int userId, int requestId);
+        void UpdateAssignee(string userId, int requestId);
         List<Request> GetRequestsViaGps(GeoCoordinate coordinates, int amount, int metersPerimeter);
     }
 }

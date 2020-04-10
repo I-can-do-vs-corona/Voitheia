@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 namespace ActiveCruzer.Models
 {
     [Table("Users")]
-    public class User : IdentityUser<int>
+    public class User : IdentityUser
     {
         public string Street { get; set; }
         public string City { get; set; }

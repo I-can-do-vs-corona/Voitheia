@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ActiveCruzer.Models.DTO.Request;
 using GeoCoordinatePortable;
+using Microsoft.AspNetCore.Identity;
 
 namespace ActiveCruzer.BLL
 {
@@ -14,18 +15,17 @@ namespace ActiveCruzer.BLL
     {
         private readonly IMapper _mapper;
         private readonly ACDatabaseContext _context;
-        private UserManager _userManager;
+        private UserManager<User> _userManager;
 
         /// <summary>
         /// basic constructur for MyRequests
         /// </summary>
         /// <param name="mapper"></param>
         /// <param name="context"></param>
-        public MyRequestBll(IMapper mapper, ACDatabaseContext context)
+        public MyRequestBll(IMapper mapper, UserManager<User> usermanager,ACDatabaseContext context)
         {
             _mapper = mapper;
             _context = context;
-            _userManager = new UserManager(context);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace ActiveCruzer.BLL
         /// <param name="requestId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public int TakeRequest(int requestId, int userId)
+        public int TakeRequest(int requestId, string userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if (request != null)
@@ -69,7 +69,7 @@ namespace ActiveCruzer.BLL
         /// </summary>
         /// <param name="requestId"></param>
         /// <param name="userId"></param>
-        public void AbortRequest(int requestId, int userId)
+        public void AbortRequest(int requestId, string userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if (request != null)
@@ -87,10 +87,10 @@ namespace ActiveCruzer.BLL
         /// <param name="requestId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public RequestDto GetRequest(int requestId, int userId)
+        public RequestDto GetRequest(int requestId, string userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
-            var user = _userManager.FindById(userId);
+            var user = _userManager.FindByIdAsync(userId).Result;
             var userCoordinate = new GeoCoordinate(user.Latitude, user.Longitude);
 
             if (request != null)
@@ -114,7 +114,7 @@ namespace ActiveCruzer.BLL
         /// <param name="requestId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public bool ExistsOnUser(int requestId, int userId)
+        public bool ExistsOnUser(int requestId, string userId)
         {
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if (request != null)
@@ -130,11 +130,11 @@ namespace ActiveCruzer.BLL
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public List<RequestDto> GetAllPendingFromUser(int userId)
+        public List<RequestDto> GetAllPendingFromUser(string userId)
         {
             var requests = _context.Request
                 .Where(it => it.Volunteer == userId && it.Status == Request.RequestStatus.Pending).ToList();
-            var user = _userManager.FindById(userId);
+            var user = _userManager.FindByIdAsync(userId).Result;
             var userCoordinate = new GeoCoordinate(user.Latitude, user.Longitude);
 
             return requests.Select(it => MapRequestAndCalculateDistance(it, userCoordinate)).ToList();
