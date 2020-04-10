@@ -44,12 +44,12 @@ namespace ActiveCruzer.Controllers
         /// <param name="mapper"></param>
         /// <param name="configuration"></param>
         /// <param name="requestBll"></param>
-        public RequestController(IMapper mapper, IConfiguration configuration, IRequestBll requestBll, ACDatabaseContext databaseContext)
+        public RequestController(IMapper mapper, IConfiguration configuration, IRequestBll requestBll, UserBLL userBll)
         {
             _mapper = mapper;
             _requestBll = requestBll;
+            _userBll = userBll;
             _geoCodeBll = new GeoCodeBll(_mapper, configuration);
-            _userBll = new UserBLL(new UserManager(databaseContext),mapper);
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace ActiveCruzer.Controllers
                 try
                 {
                     var userId = GetUserId();
-                    var user = _userBll.GetUserViaId(userId);
+                    var user = _userBll.GetUserViaId(userId).Result;
                     coordinates = new GeoCoordinate(user.Latitude, user.Longitude);
                 }
                 catch (Exception)

@@ -17,7 +17,7 @@ namespace ActiveCruzer.Models
     {
         [Key]
         public int Id { get; set; }
-        public int? Volunteer { get; set; }
+        public string Volunteer { get; set; }
         public RequestType RequestType { get; set; }
         public string Description { get; set; }
         public RequestStatus Status { get; set; }

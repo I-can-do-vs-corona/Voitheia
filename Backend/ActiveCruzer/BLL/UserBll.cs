@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using AutoMapper;
 using GeoCoordinatePortable;
+using Microsoft.AspNetCore.Identity;
 
 namespace ActiveCruzer.BLL
 {
@@ -12,69 +15,65 @@ namespace ActiveCruzer.BLL
     public class UserBLL
     {
         private bool disposed = false;
-        private IUserManager _userManager;
+        private UserManager<User> _userManager;
         private readonly IMapper _mapper;
+        private readonly SignInManager<User> _signInManager;
 
         ///<Summary>
         /// Constructor
         ///</Summary>
-        public UserBLL(IUserManager userManager, IMapper mapper)
+        public UserBLL(UserManager<User> userManager, IMapper mapper, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _mapper = mapper;
+            _signInManager = signInManager;
         }
 
-        ///<Summary>
-        /// Function to Save changed data. IS NOT USED!
-        ///</Summary>
-        public void Save()
-        {
-        }
-
-
-        public RegisteringResult Register(RegisterUserDTO credentials, GeoCoordinate validatedAddressCoordinates)
+        public async Task<IdentityResult> Register(RegisterUserDTO credentials,
+            GeoCoordinate validatedAddressCoordinates)
         {
             var user = _mapper.Map<User>(credentials);
             user.Longitude = validatedAddressCoordinates.Longitude;
             user.Latitude = validatedAddressCoordinates.Latitude;
-            var result = _userManager.CreateUser(user, credentials.Password);
+            return await _userManager.CreateAsync(user, credentials.Password);
+        }
 
-            if (result.Success)
+        public async Task<User> Login(CredentialsDTO credentials)
+        {
+            var user = await _userManager.FindByEmailAsync(credentials.Email);
+            if (user == null)
             {
-                return result;
+                return null;
             }
 
-            throw new Exception(result.ErrorMessage);
-        }
+            var passwordCorrect = await _userManager.CheckPasswordAsync(user, credentials.Password);
 
-        public User Login(CredentialsDTO credentials)
-        {
-            return _userManager.CheckPassword(credentials.Email, credentials.Password)
-                ? _userManager.FindByUserName(credentials.Email)
-                : null;
+            return passwordCorrect ? user : null;
         }
 
 
-        public User GetUser(string eMail)
+        public async Task<User> GetUser(string eMail)
         {
-            return _userManager.FindByUserName(eMail);
+            return await _userManager.FindByEmailAsync(eMail);
         }
 
 
-        public User GetUserViaId(in int userId)
+        public async Task<User> GetUserViaId(string userId)
         {
-            return _userManager.FindById(userId);
+            return await _userManager.FindByIdAsync(userId);
         }
 
-        public string DeleteUser(int userId)
+        public async Task<IdentityResult> DeleteUser(User user)
         {
-            return _userManager.DeleteUser(userId);
+
+            return await _userManager.DeleteAsync(user);
         }
 
-        public RegisteringResult UpdateUser(RegisterUserDTO registerUserDTO, int userId)
+        public async Task<IdentityResult> UpdateUser(UpdateUserDto updateUserDto, string userId)
         {
-            var user = _mapper.Map<User>(registerUserDTO);
-            return _userManager.UpdateUser(user, registerUserDTO.Password, userId);
+            var user = _mapper.Map<User>(updateUserDto);
+            user.Id = userId;
+            return await _userManager.UpdateAsync(user);
         }
 
         ///<Summary>
