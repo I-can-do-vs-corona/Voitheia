@@ -68,14 +68,6 @@ namespace ActiveCruzer.AutoMapper
                     opts => opts.MapFrom(src => src.LastName))
                 .ForMember(dest => dest.Zip,
                     opts => opts.MapFrom(src => src.Zip))
-                .ForMember(dest => dest.Email,
-                    opts => opts.MapFrom(src => src.Email))
-                .ForMember(dest => dest.NormalizedEmail,
-                    opts => opts.MapFrom(src => src.Email.ToLower()))
-                .ForMember(dest => dest.UserName,
-                    opts => opts.MapFrom(src => src.Email))
-                .ForMember(dest => dest.NormalizedUserName,
-                    opts => opts.MapFrom(src => src.Email.ToLower()))
                 .ForMember(dest => dest.Latitude,
                     opt => opt.Ignore())
                 .ForMember(dest => dest.Longitude,
