@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -12,6 +13,7 @@ using ActiveCruzer.Startup;
 using AutoMapper;
 using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +34,9 @@ namespace ActiveCruzer.Controllers
         private bool disposed = false;
 
         private UserBLL _userBll;
+        private UserManager<User> _userManager;
         private IGeoCodeBll _geoCodeBll;
+        private IEmailSenderBll _emailBll;
 
         private readonly IOptions<Jwt.JwtAuthentication> _jwtAuthentication;
 
@@ -41,11 +45,13 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="logger"></param>
         public UserController(IMapper mapper, IOptions<Jwt.JwtAuthentication> jwtAuthentication,
-            IConfiguration configuration, UserBLL userBll)
+            IConfiguration configuration, UserBLL userBll, UserManager<User> userManager, IEmailSenderBll emailBll)
         {
             _geoCodeBll = new GeoCodeBll(mapper, configuration);
             _jwtAuthentication = jwtAuthentication;
             _userBll = userBll;
+            _userManager = userManager;
+            _emailBll = emailBll;
         }
 
         /// <summary>
@@ -83,6 +89,13 @@ namespace ActiveCruzer.Controllers
                     {
                         User user = await _userBll.GetUser(credentials.Email);
                         var token = GenerateToken(user.UserName, user.Id, null);
+
+                        // email verification 
+                        var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var confirmationLink = Url.Action(nameof(ConfirmEmail), "User", new { emailToken, email = user.Email }, Request.Scheme);
+                        await _emailBll.SendEmailAsync(user.FirstName, user.Email, confirmationLink);
+
+
                         return Ok(new JwtDto
                         {
                             Token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -111,6 +124,32 @@ namespace ActiveCruzer.Controllers
             }
         }
 
+        /// <summary>
+        /// confirm email with token and email
+        /// </summary>
+        /// <param name="emailToken"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail([FromQuery] string emailToken, string email)
+        {
+            if(emailToken == null | email == null)
+            {
+                return Unauthorized("The link is not valid.");
+            }
+            var user = await _userBll.GetUser(email);
+            if(user != null)
+            {
+                var result = await _userManager.ConfirmEmailAsync(user, emailToken);
+                if (result.Succeeded)
+                {
+                    return Ok("E-Mail successfuly confirmed.");
+                }
+                return BadRequest();
+            }
+            return Unauthorized("User not valid.");
+        }
 
         [HttpPost]
         [Route("Login")]

@@ -57,11 +57,13 @@ namespace ActiveCruzer.Start
                     o.Password.RequiredLength = 8;
                     o.User.RequireUniqueEmail = true;
                 })
-                .AddEntityFrameworkStores<ACDatabaseContext>();
+                .AddEntityFrameworkStores<ACDatabaseContext>()
+                .AddDefaultTokenProviders();
 
             // register services for interface and related bll
             services.AddTransient<IMyRequestsBll, MyRequestBll>();
             services.AddTransient<IRequestBll, RequestBll>();
+            services.AddTransient<IEmailSenderBll, EmailSenderBll>();
             services.AddTransient<UserBLL>();
 
             services.InitJwt(_configuration);
