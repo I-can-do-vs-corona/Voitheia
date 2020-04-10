@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -12,6 +13,7 @@ using ActiveCruzer.Startup;
 using AutoMapper;
 using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +34,9 @@ namespace ActiveCruzer.Controllers
         private bool disposed = false;
 
         private UserBLL _userBll;
+        private UserManager<User> _userManager;
         private IGeoCodeBll _geoCodeBll;
+        private IEmailSenderBll _emailBll;
 
         private readonly IOptions<Jwt.JwtAuthentication> _jwtAuthentication;
 
@@ -41,11 +45,13 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="logger"></param>
         public UserController(IMapper mapper, IOptions<Jwt.JwtAuthentication> jwtAuthentication,
-            IConfiguration configuration, UserBLL userBll)
+            IConfiguration configuration, UserBLL userBll, UserManager<User> userManager, IEmailSenderBll emailBll)
         {
             _geoCodeBll = new GeoCodeBll(mapper, configuration);
             _jwtAuthentication = jwtAuthentication;
             _userBll = userBll;
+            _userManager = userManager;
+            _emailBll = emailBll;
         }
 
         /// <summary>
@@ -83,6 +89,13 @@ namespace ActiveCruzer.Controllers
                     {
                         User user = await _userBll.GetUser(credentials.Email);
                         var token = GenerateToken(user.UserName, user.Id, null);
+
+                        // email verification 
+                        var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var confirmationLink = Url.Action(nameof(ConfirmEmail), "User", new { emailToken, email = user.Email }, Request.Scheme);
+                        await _emailBll.SendEmailAsync(user.FirstName, user.Email, confirmationLink);
+
+
                         return Ok(new JwtDto
                         {
                             Token = new JwtSecurityTokenHandler().WriteToken(token),
@@ -111,6 +124,35 @@ namespace ActiveCruzer.Controllers
             }
         }
 
+        /// <summary>
+        /// confirm email with token and email
+        /// </summary>
+        /// <param name="emailToken"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        /// <response code="200"> returns if email was sucessfuly confirmed</response>
+        /// <response code="401"> returns if the link or e-mail is not valid</response>
+        /// <response code="400"> returns if the email was not able to be confirmed</response>
+        [HttpGet]
+        [Route("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail([FromBody] string emailToken, string email)
+        {
+            if(emailToken == null | email == null)
+            {
+                return Unauthorized("The link is not valid.");
+            }
+            var user = await _userBll.GetUser(email);
+            if(user != null)
+            {
+                var result = await _userManager.ConfirmEmailAsync(user, emailToken);
+                if (result.Succeeded)
+                {
+                    return Ok("E-Mail successfuly confirmed.");
+                }
+                return BadRequest();
+            }
+            return Unauthorized("User not valid.");
+        }
 
         [HttpPost]
         [Route("Login")]
@@ -132,11 +174,11 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
-        /// delete current loggedin user account. If code 200 returns, user and related references were succesful deleted. If 401 returns, user is not logged in.
+        /// delete current loggedin user account
         /// </summary>
         /// <returns></returns>
-        /// <response code="200"></response>
-        /// <response code="401"></response>
+        /// <response code="200"> returns if user and related references were sucessful deletet</response>
+        /// <response code="401"> returns if user is not logged in</response>
         [Authorize]
         [HttpDelete]
         [Route("Delete")]
