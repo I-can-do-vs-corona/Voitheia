@@ -80,7 +80,7 @@ namespace ActiveCruzer.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<GetRequestResponse> GetById(int id)
+        public ActionResult<GetMyRequestResponse> GetById(int id)
         {
             var userId = GetUserId();
             if (_requestBll.ExistsOnUser(id, userId))
@@ -142,11 +142,11 @@ namespace ActiveCruzer.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public ActionResult<GetAllRequestResponse> GetAll()
+        public ActionResult<GetAllMyRequestResponse> GetAll()
         {
             var userId = GetUserId();
             var requests = _requestBll.GetAllPendingFromUser(userId);
-            return Ok(new GetAllRequestResponse { Requests = requests, TotalCount = requests.Count});
+            return Ok(new GetAllMyRequestResponse { Requests = requests, TotalCount = requests.Count});
         }
 
         /// <summary>
