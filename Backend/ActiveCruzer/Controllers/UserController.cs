@@ -27,7 +27,7 @@ namespace ActiveCruzer.Controllers
     /// <summary>
     /// Controller to check if User is logged in
     /// </summary>
-    [Route("api/User")]
+    [Route("User")]
     [ApiController]
     public class UserController : BaseController
     {
