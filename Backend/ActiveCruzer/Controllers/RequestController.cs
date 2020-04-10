@@ -134,7 +134,7 @@ namespace ActiveCruzer.Controllers
 
             return Ok(new GetRequestResponse
             {
-                Request = _mapper.Map<RequestDto>(request)
+                Request = _mapper.Map<MinimalRequestDto>(request)
             });
         }
 
@@ -174,7 +174,7 @@ namespace ActiveCruzer.Controllers
             var requests = _requestBll.GetRequestsViaGps(coordinates, amount, metersPerimeter*2);
             var dtoRequests = requests.Select(it =>
             {
-                var dto = _mapper.Map<RequestDto>(it);
+                var dto = _mapper.Map<MinimalRequestDto>(it);
                 dto.DistanceToUser =
                     (int) coordinates.GetDistanceTo(new GeoCoordinate(it.Latitude, it.Longitude));
                 return dto;

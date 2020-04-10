@@ -171,7 +171,7 @@ namespace ActiveCruzer.Controllers
             }
 
             var requests = _requestBll.GetAllPendingFromUser(userId);
-            return Ok(new GetAllRequestResponse {Requests = requests, TotalCount = requests.Count});
+            return Ok(new GetAllMyRequestResponse { Requests = requests, TotalCount = requests.Count});
         }
 
         /// <summary>

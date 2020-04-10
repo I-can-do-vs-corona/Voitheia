@@ -26,6 +26,7 @@ namespace ActiveCruzer.BLL
         {
             _mapper = mapper;
             _context = context;
+            _userManager = usermanager;
         }
 
         /// <summary>

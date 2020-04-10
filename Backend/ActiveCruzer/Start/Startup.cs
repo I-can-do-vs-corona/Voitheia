@@ -57,6 +57,7 @@ namespace ActiveCruzer.Start
                     o.Password.RequiredLength = 8;
                     o.User.RequireUniqueEmail = true;
                 })
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ACDatabaseContext>();
 
             // register services for interface and related bll
