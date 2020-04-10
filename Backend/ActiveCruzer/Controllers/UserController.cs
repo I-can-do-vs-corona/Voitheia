@@ -160,14 +160,32 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpPut]
         [Route("Update")]
-        public ActionResult UpdateUser([FromBody] UpdateUserDto user)
+        public async Task<ActionResult> UpdateUser([FromBody] UpdateUserDto user)
         {
-                var _user = _userBll.UpdateUser(user, GetUserId());
+            var validatedAddress = _geoCodeBll.ValidateAddress(new GeoQuery
+            {
+                City = user.City,
+                Country = user.Country,
+                Street = user.Street,
+                Zip = user.Zip
+            });
+
+            if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High)
+            {
+                var _user = await _userBll.UpdateUser(user, GetUserId(), validatedAddress.Coordinates);
                 if (_user != null)
                 {
                     return Ok(_user);
                 }
+
                 return Unauthorized("You are not allowed to perform this action.");
+            }
+            return new ContentResult
+            {
+                StatusCode = 424,
+                Content = $"Status Code: {424}; FailedDependency; Address is invalid",
+                ContentType = "text/plain",
+            };
         }
 
         /// <summary>

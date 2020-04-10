@@ -57,7 +57,6 @@ namespace ActiveCruzer.Start
                     o.Password.RequiredLength = 8;
                     o.User.RequireUniqueEmail = true;
                 })
-                .AddSignInManager()
                 .AddEntityFrameworkStores<ACDatabaseContext>();
 
             // register services for interface and related bll

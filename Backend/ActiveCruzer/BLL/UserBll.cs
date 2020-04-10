@@ -17,16 +17,14 @@ namespace ActiveCruzer.BLL
         private bool disposed = false;
         private UserManager<User> _userManager;
         private readonly IMapper _mapper;
-        private readonly SignInManager<User> _signInManager;
 
         ///<Summary>
         /// Constructor
         ///</Summary>
-        public UserBLL(UserManager<User> userManager, IMapper mapper, SignInManager<User> signInManager)
+        public UserBLL(UserManager<User> userManager, IMapper mapper)
         {
             _userManager = userManager;
             _mapper = mapper;
-            _signInManager = signInManager;
         }
 
         public async Task<IdentityResult> Register(RegisterUserDTO credentials,
@@ -69,10 +67,16 @@ namespace ActiveCruzer.BLL
             return await _userManager.DeleteAsync(user);
         }
 
-        public async Task<IdentityResult> UpdateUser(UpdateUserDto updateUserDto, string userId)
+        public async Task<IdentityResult> UpdateUser(UpdateUserDto updateUserDto, string userId, GeoCoordinate validatedAddressCoordinates)
         {
-            var user = _mapper.Map<User>(updateUserDto);
-            user.Id = userId;
+            var user = await _userManager.FindByIdAsync(userId);
+            user.Longitude = validatedAddressCoordinates.Longitude;
+            user.Latitude = validatedAddressCoordinates.Latitude;
+            user.City = updateUserDto.City;
+            user.FirstName = updateUserDto.FirstName;
+            user.LastName = updateUserDto.LastName;
+            user.Street = updateUserDto.Street;
+            user.Zip = updateUserDto.Zip;
             return await _userManager.UpdateAsync(user);
         }
 
