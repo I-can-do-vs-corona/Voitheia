@@ -80,6 +80,12 @@ namespace ActiveCruzer.BLL
             return await _userManager.UpdateAsync(user);
         }
 
+        public async Task<bool> IsUserConfirmed(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            return user?.EmailConfirmed ?? false;
+        }
+
         ///<Summary>
         /// Function to Dispose the BLL
         ///</Summary>
@@ -104,5 +110,7 @@ namespace ActiveCruzer.BLL
             Dispose(true);
             //GC.SuppressFinalize(this);
         }
+
+
     }
 }
