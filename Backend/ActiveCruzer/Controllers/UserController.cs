@@ -242,9 +242,9 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpGet]
         [Route("GetUser")]
-        public ActionResult<UserDto> GetUser()
+        public async Task<ActionResult<UserDto>> GetUser()
         {
-            var user = _userBll.GetUserViaId(GetUserId());
+            var user = await _userBll.GetUserViaId(GetUserId());
             if(user != null)
             {
                 return Ok(_mapper.Map<UserDto>(user));
