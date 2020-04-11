@@ -7,6 +7,7 @@ namespace ActiveCruzer.BLL
 {
     public interface IEmailSenderBll : IDisposable
     {
-        Task SendEmailAsync(string firstname, string email, string message);
+        Task SendEmailConfirmationAsync(string firstname, string email, string message);
+        Task SendEmailPWTokenAsync(string firstname, string email, string message);
     }
 }

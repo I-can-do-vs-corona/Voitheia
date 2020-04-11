@@ -96,7 +96,7 @@ namespace ActiveCruzer.Controllers
                         // email verification 
                         var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         var confirmationLink = Url.Action(nameof(ConfirmEmail), "User", new { emailToken, email = user.Email }, Request.Scheme);
-                        await _emailBll.SendEmailAsync(user.FirstName, user.Email, confirmationLink);
+                        await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
 
 
                         return Ok(new JwtDto
@@ -155,6 +155,85 @@ namespace ActiveCruzer.Controllers
                 return BadRequest();
             }
             return Unauthorized("User not valid.");
+        }
+
+        /// <summary>
+        /// reset password with token email
+        /// </summary>
+        /// <param name="forgotPasswordDto"></param>
+        /// <returns></returns>
+        /// <response code="200"> returns if email mit password reset link was sent</response>
+        /// <response code="400"> returns if the input model was not valid (email required)</response>
+        /// <response code="404"> returns if the user cannot be found</response>
+        [HttpPost]
+        [Route("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordDto forgotPasswordDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Input is not valid.");
+            }
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+            if(user != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUri = Url.Action(nameof(ResetPassword), nameof(UserController), new { token, email = user.Email }, Request.Scheme);
+
+                await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
+                return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
+            }
+            return NotFound("User not found.");
+        }
+
+        /// <summary>
+        /// endpoint for creation of password reset token
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        /// <response code="200"> returns CredentialDto with email in it already set</response>
+        /// <response code="400"> returns if the input model was not valid (token, email)</response>
+        /// <response code="404"> returns if the user with the email was not found</response>
+        [HttpGet]
+        [Route("ResetPassword")]
+        public IActionResult ResetPassword(string token, string email)
+        {
+            var model = new ResetPasswordDto { Token = token, Email = email };
+            if(token != null && email != null)
+            {
+                var user = _userBll.GetUser(email);
+                if (user != null)
+                {
+                    return Ok(new ResetPasswordDto {Email = model.Email, Token = token });
+                }
+                return NotFound("User not found");
+            }
+            return BadRequest("Failed to create model.");
+        }
+
+        /// <summary>
+        /// reset password with giben credentialsDto
+        /// </summary>
+        /// <param name="resetPasswordDto"></param>
+        /// <returns></returns>
+        /// <response code="200"> returns if password reset was succesful</response>
+        /// <response code="400"> returns if the input model was not valid</response>
+        /// <response code="404"> returns if the user with the email was not found</response>
+        [HttpPost]
+        [Route("ResetPassword")]
+        public async Task <IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userBll.GetUser(resetPasswordDto.Email);
+                if(user != null)
+                {
+                    await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
+                    return Ok("Password reset sucessful.");
+                }
+                return NotFound("The user with the email could not be found.");
+            }
+            return BadRequest("Invalid input.");
         }
 
         [HttpPost]
