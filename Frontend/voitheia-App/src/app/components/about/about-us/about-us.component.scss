@@ -1,0 +1,14 @@
+@import '../../../../variables.scss';
+
+
+.w3-circle w3-hover-opacity {
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+}
+
+.team description {
+  font-size: x-small;
+  color: $brand-color;
+}
+
