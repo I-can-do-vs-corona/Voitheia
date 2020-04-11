@@ -167,7 +167,7 @@ namespace ActiveCruzer.Controllers
         /// <response code="404"> returns if the user cannot be found</response>
         [HttpPost]
         [Route("ForgotPassword")]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordDto forgotPasswordDto)
+        public async Task<IActionResult> ForgotPassword([FromBody]ForgotPasswordDto forgotPasswordDto)
         {
             if (!ModelState.IsValid)
             {
@@ -186,7 +186,7 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
-        /// endpoint for creation of password reset token
+        /// endpoint for creation of password reset link
         /// </summary>
         /// <param name="token"></param>
         /// <param name="email"></param>
@@ -196,7 +196,7 @@ namespace ActiveCruzer.Controllers
         /// <response code="404"> returns if the user with the email was not found</response>
         [HttpGet]
         [Route("ResetPassword")]
-        public IActionResult ResetPassword(string token, string email)
+        public IActionResult ResetPassword([FromBody]string token, string email)
         {
             var model = new ResetPasswordDto { Token = token, Email = email };
             if(token != null && email != null)
@@ -212,7 +212,7 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
-        /// reset password with giben credentialsDto
+        /// reset password with given credentialsDto
         /// </summary>
         /// <param name="resetPasswordDto"></param>
         /// <returns></returns>
@@ -221,7 +221,7 @@ namespace ActiveCruzer.Controllers
         /// <response code="404"> returns if the user with the email was not found</response>
         [HttpPost]
         [Route("ResetPassword")]
-        public async Task <IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        public async Task <IActionResult> ResetPassword([FromBody]ResetPasswordDto resetPasswordDto)
         {
             if (ModelState.IsValid)
             {
