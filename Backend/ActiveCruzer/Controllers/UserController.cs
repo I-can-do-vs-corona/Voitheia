@@ -177,7 +177,7 @@ namespace ActiveCruzer.Controllers
             if(user != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUri = Url.Action(nameof(ResetPassword), nameof(UserController), new { token, email = user.Email }, Request.Scheme);
+                var callbackUri = Url.Action(nameof(ResetPassword), "User", new { token, email = user.Email }, Request.Scheme);
 
                 await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
                 return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
