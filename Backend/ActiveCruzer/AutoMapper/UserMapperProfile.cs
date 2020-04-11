@@ -93,6 +93,17 @@ namespace ActiveCruzer.AutoMapper
                 .ForMember(dest => dest.AccessFailedCount,
                     opt => opt.Ignore());
 
+            CreateMap<User, UserDto>()
+                .ForMember(dest => dest.Street,
+                    opts => opts.MapFrom(src => src.Street))
+                .ForMember(dest => dest.City,
+                    opts => opts.MapFrom(src => src.City))
+                .ForMember(dest => dest.FirstName,
+                    opts => opts.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName,
+                    opts => opts.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.Zip,
+                    opts => opts.MapFrom(src => src.Zip));
 
         }
     }
