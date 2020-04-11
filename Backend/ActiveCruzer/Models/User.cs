@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace ActiveCruzer.Models
@@ -13,5 +14,6 @@ namespace ActiveCruzer.Models
         public string LastName { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public DateTime LastLogin { get; set; }
     }
 }
