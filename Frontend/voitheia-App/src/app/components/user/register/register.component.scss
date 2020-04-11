@@ -1,12 +1,10 @@
 @import '../../../../variables.scss';
 
-#login_msg{
-    color: $gray-3;
-    margin: auto;
-    width: 100%;
-    text-align: center;
-
+:host{
+    #login_msg{
+        color: $gray-3;
+        margin: auto;
+        width: 100%;
+        text-align: center;
+    }
 }
-
-
-

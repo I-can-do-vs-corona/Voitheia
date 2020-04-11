@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/common/models/user';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { UserService } from '../user.service';
 import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
+import { AuthService } from 'src/app/common/shared/services/auth.service';
+import { JwtDTO } from 'src/app/common/models/JwtDTO';
+import { RegisterUserDTO } from 'src/app/common/models/registerUserDTO';
 
 @Component({
   selector: 'app-register',
@@ -12,29 +12,20 @@ import { UtilitiesService } from 'src/app/common/shared/services/utilities.servi
 })
 export class RegisterComponent implements OnInit {
 
-  user: User;
-  faPaperPlane = faPaperPlane;
+  user: RegisterUserDTO;
   termsChecked = false;
   
-  constructor(private _userService: UserService, private _navigationService: NavigationService, private _utilitiesService: UtilitiesService) {
-    this.user = new User();
+  constructor(private _userService: UserService, private _authService: AuthService, private _utilitiesService: UtilitiesService) {
+    this.user = new RegisterUserDTO();
   }
 
   ngOnInit(): void {
   }
 
-  public cancelRegister(){
-    this._navigationService.navigateTo('user/login');
-
-  }
-
   public send(){    
     this._userService.registerUser(this.user).subscribe(
       data => {
-        //this._authService.setToken(data["token"]);
-        //TODO: Handle Login Success
-        
-        this._navigationService.navigateTo("user/login");
+        this._authService.handleSuccessfullLogin(data as JwtDTO);
       },
       err => {
         this._utilitiesService.handleError(err);

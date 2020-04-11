@@ -153,7 +153,7 @@
                             {{'General.Buttons.Back' | translate }}
                         </button>
                         <button type="submit" mat-raised-button color="primary" [disabled]="!RequestAddressForm.form.valid || !RequestForm.form.valid || !termsChecked" (click)="send()">
-                            <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Submit' | translate }}
+                            <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> {{'General.Buttons.Submit' | translate }}
                         </button>
                     </div>
                 </form>

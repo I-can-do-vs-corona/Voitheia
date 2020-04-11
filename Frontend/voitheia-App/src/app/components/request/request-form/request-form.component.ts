@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { RequestDTO } from 'src/app/common/models/requestDTO';
 import { RequestService } from '../request.service';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { RequestTypeEnum, DialogIconTypeEnum } from 'src/app/common/helper/enums';
 import { DialogService } from 'src/app/common/shared/services/dialog/dialog.service';
@@ -14,8 +13,6 @@ import { UtilitiesService } from 'src/app/common/shared/services/utilities.servi
   styleUrls: ['./request-form.component.scss']
 })
 export class RequestFormComponent implements OnInit {
-
-  faPaperPlane = faPaperPlane;
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
 
   termsChecked = false;

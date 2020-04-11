@@ -1,93 +1,101 @@
 {
-    "General": {
-        "Slogan": "Tu etwas Gutes - Hilf jemandem.",
-        "Buttons":{
-            "Submit": "Absenden",
-            "Next": "Weiter",
-            "Back": "Zurück",
-            "Cancel": "Abbrechen",
-            "Accept": "Annehmen",
-            "Login": "Einloggen",
-            "Register": "Registrieren",
-            "Complete": "Abschließen",
-            "Close": "Schliessen",
-            "Logout": "Abmelden"
-        },
-
-        "Enums": {
-            "RequestTypeEnum": {
-                "Shopping": "Einkaufen",
-                "Childcare": "Kinderbetreuung",
-                "Medical": "Medizinische Unterstützung",
-                "Petcare": "Haustierbetreuung",
-                "Other": "Anderes"
-            }
-        },
-        "Errors": {
-            "Required": "Feld ist erforderlich."
-        },
-        "Dialogs": {
-            "Titles": {
-                "Error": "Fehler",
-                "Warning": "Warnung",
-                "Info": "Information",
-                "Question": "Frage",
-                "Success": "Erfolg"
-            },
-            "Text": {
-                "Error": "Es ist ein Fehler aufgetreten"
-                
-            }
-        },
-        "Field": {
-          "Label": {
-            "FirstName": "Vorname",
-            "LastName": "Nachname",
-            "Title": "Registrieren",
-            "Phone": "Telefonnummer",
-            "Name": "Name",
-            "Username": "Benutzername",
-            "Email": "E-Mail",
-            "Password": "Passwort",
-            "Street": "Strasse & Hausnummer",
-            "ZipCode": "PLZ",
-            "City": "Ort",
-            "Type": "Ich benötige Unterstützung bei",
-            "Description": "Beschreibung",
-            "Distance": "Entfernung",
-            "Address":"Adresse",
-            "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
+  "General": {
+      "Slogan": "Tu etwas Gutes - Hilf jemandem.",
+      "Buttons":{
+          "Submit": "Absenden",
+          "Next": "Weiter",
+          "Back": "Zurück",
+          "Cancel": "Abbrechen",
+          "Accept": "Annehmen",
+          "Login": "Einloggen",
+          "Register": "Registrieren",
+          "Complete": "Abschließen",
+          "Close": "Schliessen",
+          "Logout": "Abmelden"
+      },
+      "Enums": {
+          "RequestTypeEnum": {
+              "Shopping": "Einkaufen",
+              "Childcare": "Kinderbetreuung",
+              "Medical": "Medizinische Unterstützung",
+              "Petcare": "Haustierbetreuung",
+              "Other": "Anderes"
           }
-        },
-        "PageTitles": {
-          "Default": "Voitheia",
-          "Home": "Tu etwas Gutes - Hilf jemandem.",
-          "User": {
-            "Login": "Einloggen",
-            "Register": "Registrieren"
+      },
+      "Errors": {
+          "Required": "Feld ist erforderlich."
+      },
+      "Dialogs": {
+          "Titles": {
+              "Error": "Fehler",
+              "Warning": "Warnung",
+              "Info": "Information",
+              "Question": "Frage",
+              "Success": "Erfolg"
           },
-          "Terms":{
-            "TermsConditions": "AGBs",
-            "PrivacyPolicy": "Datenschutzerklärung",
-            "Imprint": "Impressum"
-          },
-          "About": {
-            "AboutUs": "Wer wir sind",
-            "Idea": "Die Idee"
-          },
-          "Request": {
-            "Create": "Anfrage erstellen",
-            "List": "Liste der Anfragen"
-          },
-          "MyRequest": {
-            "List": "Liste meiner Anfragen"
+          "Text": {
+              "Error": "Es ist ein Fehler aufgetreten"
+              
           }
+      },
+      "Field": {
+        "Label": {
+          "FirstName": "Vorname",
+          "LastName": "Nachname",
+          "Title": "Registrieren",
+          "Phone": "Telefonnummer",
+          "Name": "Name",
+          "Username": "Benutzername",
+          "Email": "E-Mail",
+          "Password": "Passwort",
+          "Street": "Strasse & Hausnummer",
+          "ZipCode": "PLZ",
+          "City": "Ort",
+          "Type": "Ich benötige Unterstützung bei",
+          "Description": "Beschreibung",
+          "Distance": "Entfernung",
+          "Address":"Adresse",
+          "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
         }
-    },
+      },
+      "PageTitles": {
+        "Default": "Voitheia",
+        "Home": "Tu etwas Gutes - Hilf jemandem.",
+        "User": {
+          "Login": "Einloggen",
+          "Register": "Registrieren",
+          "Profile": {
+            "View": "Profil",
+            "Edit": "Profil bearbeiten"
+          }
+        },
+        "Terms":{
+          "TermsConditions": "AGBs",
+          "PrivacyPolicy": "Datenschutzerklärung",
+          "Imprint": "Impressum"
+        },
+        "About": {
+          "AboutUs": "Wer wir sind",
+          "Idea": "Die Idee"
+        },
+        "Request": {
+          "Create": "Anfrage erstellen",
+          "List": "Liste der Anfragen"
+        },
+        "MyRequest": {
+          "List": "Liste meiner Anfragen"
+        }
+      }
+  },
+  "Navigation": {
+    "Buttons": {
+      "MyRequests": "Meine Unterstützungsangebote",
+      "Profile": "Profil"
+    }
+  },
   "Home": {
     "Buttons": {
       "CreateRequest": "Ich brauche etwas",
-      "MyRequests": "Meine Unterstützungsangebote",
       "ShowRequests": {
         "LoggedIn": "Zu offenen Anfragen",
         "LoggedOut": "Ich möchte helfen"
@@ -98,13 +106,23 @@
       "Level2": "In außergewöhnlichen Situationen und den vielen Einschränkungen, mit denen wir aufgrund des Coronavirus derzeit kämpfen, möchten wir mit dieser Community Helfende und Hilfesuchende verbinden. Du brauchst kurzfristig Unterstützung, beispielsweise beim Einkaufen, Kinder hüten oder jemanden, der mit deinem Hund Gassi geht? Erstelle eine Anfrage und jemand aus deiner Nachbarschaft kann dich kontaktieren, um dich zu unterstützen."
     }
   },
-  "Login": {
-    "Title": "Einloggen",
-    "NoAccount": "Noch keinen Account? "
-  },
-  "Register": {
-    "Title": "Registrieren",
-    "HasAccount": "Bereits Registriert? "
+  "User": {
+    "Login": {
+      "Title": "Einloggen",
+      "NoAccount": "Noch keinen Account? "
+    },
+    "Register": {
+      "Title": "Registrieren",
+      "HasAccount": "Bereits Registriert? "
+    },
+    "Profile": {
+      "View": {
+        "Title": "Benutzerprofil"
+      },
+      "Edit": {
+        "Title": "Benutzerprofil bearbeiten"
+      }
+    }
   },
   "Request": {
     "Create": {

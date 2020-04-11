@@ -1,19 +1,16 @@
-export class User {
+export class UpdateUserDTO {
     email: string;
     firstName: string;
     lastName: string;
-    password: string;
     street: string;
     zip: string;
     city: string;
     country: string;
 
-
     constructor() {
         this.email = "";
         this.firstName = "";
         this.lastName = "";
-        this.password = "";
         this.street = "";
         this.zip = "";
         this.zip = "";

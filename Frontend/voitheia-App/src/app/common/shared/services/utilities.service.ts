@@ -26,7 +26,8 @@ export class UtilitiesService {
 
   handleError(error: any){
     this._translate.get(['General.Dialogs.Titles.Error', 'General.Dialogs.Text.Error', 'General.Buttons.Close']).subscribe((res: string) => {
-      this._dialogService.showDialogOneButton(res['General.Dialogs.Titles.Error'], res['General.Dialogs.Text.Error'] + "<br />" + error, DialogIconTypeEnum.Error, res['General.Buttons.Close']);
+      var errorText = (typeof error === 'string')? error : error.message;
+      this._dialogService.showDialogOneButton(res['General.Dialogs.Titles.Error'], res['General.Dialogs.Text.Error'] + "<br />" + errorText, DialogIconTypeEnum.Error, res['General.Buttons.Close']);
     });
   }
 }
