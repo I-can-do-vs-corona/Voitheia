@@ -38,6 +38,7 @@ namespace ActiveCruzer.Controllers
         private IGeoCodeBll _geoCodeBll;
         private IEmailSenderBll _emailBll;
 
+        private readonly IMapper _mapper;
         private readonly IOptions<Jwt.JwtAuthentication> _jwtAuthentication;
 
         /// <summary>
@@ -45,9 +46,11 @@ namespace ActiveCruzer.Controllers
         /// </summary>
         /// <param name="logger"></param>
         public UserController(IMapper mapper, IOptions<Jwt.JwtAuthentication> jwtAuthentication,
-            IConfiguration configuration, UserBLL userBll, UserManager<User> userManager, IEmailSenderBll emailBll)
+            IConfiguration configuration, UserBLL userBll, UserManager<User> userManager,
+            IEmailSenderBll emailBll)
         {
             _geoCodeBll = new GeoCodeBll(mapper, configuration);
+            _mapper = mapper;
             _jwtAuthentication = jwtAuthentication;
             _userBll = userBll;
             _userManager = userManager;
@@ -239,12 +242,12 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpGet]
         [Route("GetUser")]
-        public ActionResult GetUser()
+        public ActionResult<UserDto> GetUser()
         {
             var user = _userBll.GetUserViaId(GetUserId());
             if(user != null)
             {
-                return Ok(user);
+                return Ok(_mapper.Map<UserDto>(user));
             }
             return Unauthorized("You are not allowed to perform this action.");
         }
