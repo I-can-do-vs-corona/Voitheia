@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using AutoMapper;
 using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ActiveCruzer.BLL
 {
@@ -33,6 +36,7 @@ namespace ActiveCruzer.BLL
             var user = _mapper.Map<User>(credentials);
             user.Longitude = validatedAddressCoordinates.Longitude;
             user.Latitude = validatedAddressCoordinates.Latitude;
+            user.LastLogin = DateTime.Today;
             return await _userManager.CreateAsync(user, credentials.Password);
         }
 
@@ -84,6 +88,26 @@ namespace ActiveCruzer.BLL
         {
             var user = await _userManager.FindByIdAsync(userId);
             return user?.EmailConfirmed ?? false;
+        }
+
+        public async void SetLoginDate(User user)
+        {
+            user.LastLogin = DateTime.Today;
+            await _userManager.UpdateAsync(user);
+        }
+
+        public async Task<bool> OverdueUsersDeleted()
+        {
+            var users =  _userManager.Users.Where(x => x.LastLogin <= DateTime.Today.AddMonths(-6));
+            if(users != null)
+            {
+                foreach (User usr in users)
+                {
+                    await DeleteUser(usr);
+                }
+                return true;
+            }
+            return false;
         }
 
         ///<Summary>
