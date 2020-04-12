@@ -20,7 +20,7 @@ namespace ActiveCruzer.Scheduler
         /// <summary>
         ///  runs every day at 1 AM
         /// </summary>
-        protected override string Schedule => "* * * * *";
+        protected override string Schedule => "* 18 * * *";
 
         public override Task ProcessInScope(IServiceProvider serviceProvider)
         {
