@@ -1,84 +1,70 @@
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<body id="myPage">
 
-  <!-- Team Container -->
-  <div class="w3-container w3-padding-64 w3-center" id="team">
-    <h1>Wer wir sind</h1>
-    <p>Wir sind ein Team aus 9 Entwicklern, Bastlern, kreativen Köpfen und enthusiastischen Weltverbesserern.</p>
+<!-- Team Container -->
+<div class="container-fluid text-center text-justify">
+  <h1> {{'AboutUs.Texts.AboutUs' | translate }} </h1>
+  <p> {{'AboutUs.Texts.Text1' | translate }} </p>
 
-    <!--Reihe1-->
-    <div class="w3-row">
-      <br>
-      <div class="w3-quarter">
-        <img src="/assets/images/Team_Lukas.jpg" alt="Lukas" style="width:45%" class="w3-circle w3-hover-opacity">
-        <h3>Lukas</h3>
-        <p>...der im Hintergrund die Fäden zieht</p>
-        <h6> Backend-Entwicklung <br /> Data Security</h6>
-      </div>
+  <!--Row 1: Names-->
+  <div class="pt-4 row justify-content-center">
+    <br>
+    <div class="col-md-3 text-center w-100">
+      <img src="/assets/images/Team_Lukas.jpg" alt="Lukas" class="rounded-circle mx-auto d-block" width="120" height="120">
+      <h4>Lukas</h4>
+      <p>{{'AboutUs.Texts.Lukas' | translate }}</p>
+      <h6 class="tasks"> Backend-Entwicklung <br /> Data Security</h6>
+    </div>
 
-      <div class="w3-quarter">
-        <img src="/assets/images/Team_Andi.jpg" alt="Andi" style="width:45%" class="w3-circle w3-hover-opacity">
-        <h3>Andi</h3>
-        <p>...der am hinteren Ende alles rettet</p>
+    <div class="col-md-3 text-center">
+      <img src="/assets/images/Team_Andi.jpg" alt="Andi" class="rounded-circle mx-auto d-block" width="120" height="120">
+      <h4>Andi</h4>
+        <p>{{'AboutUs.Texts.Andi' | translate }}</p>
         <h6> Backend-Entwicklung</h6>
       </div>
 
-      <div class="w3-quarter">
-        <img src="/assets/images/Team_Sebastian.jpg" alt="Sebastian" style="width:45%" class="w3-circle w3-hover-opacity">
-        <h3>Sebastian</h3>
-        <p>...der immer sicherstellt, dass wir auf Wolke 7 schweben</p>
-        <h6> Cloud-Anbindung </h6>
+    <div class="col-md-3 text-center">
+      <img src="/assets/images/Team_Sebastian.jpg" alt="Sebastian" class="rounded-circle mx-auto d-block" width="120" height="120">
+      <h4>Sebastian</h4>
+        <p>{{'AboutUs.Texts.Sebastian' | translate }}</p>
+        <h6> Cloud-Connection </h6>
       </div>
 
-      <div class="w3-quarter">
-        <img src="/assets/images/Team_Benedikt.jpg" alt="Benedikt" style="width:45%" class="w3-circle w3-hover-opacity">
-        <h3>Benedikt</h3>
-        <p>...der das Ganze nutzbar macht </p>
+    <div class="col-md-3 text-center">
+      <img src="/assets/images/Team_Benedikt.jpg" alt="Benedikt" class="rounded-circle mx-auto d-block" width="120" height="120">
+      <h4>Benedikt</h4>
+        <p>{{'AboutUs.Texts.Benedikt' | translate }}</p>
         <h6> Frontend-Entwicklung</h6>
       </div>
-
     </div>
 
-    <!--Reihe 2-->
-    <div class="w3-row">
-      <br>
-      <div class="w3-quarter">
-        <img src="/assets/images/Team_Kevin.jpg" alt="Kevin" style="width:45%" class="w3-circle w3-hover-opacity">
-        <h3>Kevin</h3>
-        <p>...der Allrounder <br /></p>
-        <h6> Backend-Entwicklung <br />Frontend-Entwicklung <br /> Design </h6>
-      </div>
-
-      <div class="w3-quarter">
-        <img src="/assets/images/Team_Christoph.jpg" alt="Christoph" style="width:45%" class="w3-circle w3-hover-opacity">
-        <h3>Christoph</h3>
-        <p>...der uns mobil macht <br/>  </p>
-        <h6> App Entwicklung</h6>
-      </div>
-
-      <div class="w3-quarter">
-        <img src="/assets/images/Team_Helen.jpg" alt="Helen" style="width:45%" class="w3-circle w3-hover-opacity">
-        <h3>Helen</h3>
-        <p>...die uns kritisch über die Schulter schaut</p>
-        <h6> Content & Marketing </h6>
-      </div>
-
-      <div class="w3-quarter">
-        <img src="/assets/images/Team_Sophie.jpg" alt="Sophie" style="width:45%" class="w3-circle w3-hover-opacity">
-        <h3>Sophie</h3>
-        <p>...die das Ganze mit Leben füllt </p>
-        <h6> Content & Marketing</h6>
-      </div>
-
+  <!--Row 2 -->
+  <div class="pt-4 row justify-content-center">
+    <br>
+    <div class="col-md-3 text-center">
+      <img src="/assets/images/Team_Kevin.jpg" alt="Kevin" class="rounded-circle mx-auto d-block" width="120" height="120">
+      <h4>Kevin</h4>
+      <p>{{'AboutUs.Texts.Kevin' | translate }}<br /></p>
+      <h6> Backend-Entwicklung <br />Frontend-Entwicklung <br /> Design </h6>
     </div>
-  </div>
 
-</body>
+    <div class="col-md-3 text-center">
+      <img src="/assets/images/Team_Christoph.jpg" alt="Christoph" class="rounded-circle mx-auto d-block" width="120" height="120">
+      <h4>Christoph</h4>
+      <p>{{'AboutUs.Texts.Christoph' | translate }}<br />  </p>
+      <h6> App Development</h6>
+    </div>
 
+    <div class="col-md-3 text-center">
+      <img src="/assets/images/Team_Helen.jpg" alt="Helen" class="rounded-circle mx-auto d-block" width="120" height="120">
+      <h4>Helen</h4>
+      <p>{{'AboutUs.Texts.Helen' | translate }}</p>
+      <h6> Content & Marketing</h6>
+    </div>
 
+    <div class="col-md-3 text-center">
+      <img src="/assets/images/Team_Sophie.jpg" alt="Sophie" class="rounded-circle mx-auto d-block" width="120" height="120">
+      <h4>Sophie</h4>
+      <p>{{'AboutUs.Texts.Sophie' | translate }}</p>
+      <h6> Content & Marketing</h6>
+    </div>
+    </div>
 

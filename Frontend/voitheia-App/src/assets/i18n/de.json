@@ -1,89 +1,89 @@
 {
-    "General": {
-        "Slogan": "Tu etwas Gutes - Hilf jemandem.",
-        "Buttons":{
-            "Submit": "Absenden",
-            "Next": "Weiter",
-            "Back": "Zurück",
-            "Cancel": "Abbrechen",
-            "Accept": "Annehmen",
-            "Login": "Einloggen",
-            "Register": "Registrieren",
-            "Complete": "Abschließen",
-            "Close": "Schliessen",
-            "Logout": "Abmelden"
-        },
-
-        "Enums": {
-            "RequestTypeEnum": {
-                "Shopping": "Einkaufen",
-                "Childcare": "Kinderbetreuung",
-                "Medical": "Medizinische Unterstützung",
-                "Petcare": "Haustierbetreuung",
-                "Other": "Anderes"
-            }
-        },
-        "Errors": {
-            "Required": "Feld ist erforderlich."
-        },
-        "Dialogs": {
-            "Titles": {
-                "Error": "Fehler",
-                "Warning": "Warnung",
-                "Info": "Information",
-                "Question": "Frage",
-                "Success": "Erfolg"
-            },
-            "Text": {
-                "Error": "Es ist ein Fehler aufgetreten"
-                
-            }
-        },
-        "Field": {
-          "Label": {
-            "FirstName": "Vorname",
-            "LastName": "Nachname",
-            "Title": "Registrieren",
-            "Phone": "Telefonnummer",
-            "Name": "Name",
-            "Username": "Benutzername",
-            "Email": "E-Mail",
-            "Password": "Passwort",
-            "Street": "Strasse & Hausnummer",
-            "ZipCode": "PLZ",
-            "City": "Ort",
-            "Type": "Ich benötige Unterstützung bei",
-            "Description": "Beschreibung",
-            "Distance": "Entfernung",
-            "Address":"Adresse",
-            "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
-          }
-        },
-        "PageTitles": {
-          "Default": "Voitheia",
-          "Home": "Tu etwas Gutes - Hilf jemandem.",
-          "User": {
-            "Login": "Einloggen",
-            "Register": "Registrieren"
-          },
-          "Terms":{
-            "TermsConditions": "AGBs",
-            "PrivacyPolicy": "Datenschutzerklärung",
-            "Imprint": "Impressum"
-          },
-          "About": {
-            "AboutUs": "Wer wir sind",
-            "Idea": "Die Idee"
-          },
-          "Request": {
-            "Create": "Anfrage erstellen",
-            "List": "Liste der Anfragen"
-          },
-          "MyRequest": {
-            "List": "Liste meiner Anfragen"
-          }
-        }
+  "General": {
+    "Slogan": "Tu etwas Gutes - Hilf jemandem.",
+    "Buttons": {
+      "Submit": "Absenden",
+      "Next": "Weiter",
+      "Back": "Zurück",
+      "Cancel": "Abbrechen",
+      "Accept": "Annehmen",
+      "Login": "Einloggen",
+      "Register": "Registrieren",
+      "Complete": "Abschließen",
+      "Close": "Schliessen",
+      "Logout": "Abmelden"
     },
+
+    "Enums": {
+      "RequestTypeEnum": {
+        "Shopping": "Einkaufen",
+        "Childcare": "Kinderbetreuung",
+        "Medical": "Medizinische Unterstützung",
+        "Petcare": "Haustierbetreuung",
+        "Other": "Anderes"
+      }
+    },
+    "Errors": {
+      "Required": "Feld ist erforderlich."
+    },
+    "Dialogs": {
+      "Titles": {
+        "Error": "Fehler",
+        "Warning": "Warnung",
+        "Info": "Information",
+        "Question": "Frage",
+        "Success": "Erfolg"
+      },
+      "Text": {
+        "Error": "Es ist ein Fehler aufgetreten"
+
+      }
+    },
+    "Field": {
+      "Label": {
+        "FirstName": "Vorname",
+        "LastName": "Nachname",
+        "Title": "Registrieren",
+        "Phone": "Telefonnummer",
+        "Name": "Name",
+        "Username": "Benutzername",
+        "Email": "E-Mail",
+        "Password": "Passwort",
+        "Street": "Strasse & Hausnummer",
+        "ZipCode": "PLZ",
+        "City": "Ort",
+        "Type": "Ich benötige Unterstützung bei",
+        "Description": "Beschreibung",
+        "Distance": "Entfernung",
+        "Address": "Adresse",
+        "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
+      }
+    },
+    "PageTitles": {
+      "Default": "Voitheia",
+      "Home": "Tu etwas Gutes - Hilf jemandem.",
+      "User": {
+        "Login": "Einloggen",
+        "Register": "Registrieren"
+      },
+      "Terms": {
+        "TermsConditions": "AGBs",
+        "PrivacyPolicy": "Datenschutzerklärung",
+        "Imprint": "Impressum"
+      },
+      "About": {
+        "AboutUs": "Wer wir sind",
+        "Idea": "Die Idee"
+      },
+      "Request": {
+        "Create": "Anfrage erstellen",
+        "List": "Liste der Anfragen"
+      },
+      "MyRequest": {
+        "List": "Liste meiner Anfragen"
+      }
+    }
+  },
   "Home": {
     "Buttons": {
       "CreateRequest": "Ich brauche etwas",
@@ -114,10 +114,10 @@
         "ContactInformation": "Kontaktdaten"
       },
       "Dialog": {
-          "Buttons": {
-              "NewRequest": "Neue Anfrage"
-          },
-          "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
+        "Buttons": {
+          "NewRequest": "Neue Anfrage"
+        },
+        "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
       }
     },
     "Details": {
@@ -156,6 +156,32 @@
       "Service": "Service",
       "Contact": "Kontakt"
     }
+  },
+
+  "Idea": {
+    "Texts": {
+      "Idea": "Die Idee",
+      "Text1": "Im Rahmen des des #WirvsVirus Hackathons der Bundesregierung im März 2020 haben wir zueinander gefunden – unter ganz besonderen Umständen. Ohne uns einmal persönlich getroffen zu haben, fingen wir an, uns einer besondere Challenge zu widmen: Wie können wir unsere Mitmenschen unterstützen, mit neuen Herausforderungen umzugehen, die Corona uns stellt: Einkaufen, obwohl man einer Risikogruppe angehört? Kinder betreuen und von zuhause unterrichten, und währenddessen das Homeoffice schmeißen? Und dann auch noch mit dem Hund Gassi gehen?",
+      "Text2": "Gleichzeitig gibt es doch so viele, die gerne helfen wollen, und dabei einfach nicht wissen, wie.",
+      "Vision": "Wir möchten Menschen zusammenbringen, die sich unterstützen und sich gemeinsam diesen Herausforderungen stellen."
+    }
+  },
+
+  "AboutUs": {
+    "Texts": {
+      "AboutUs": "Wer wir sind",
+      "Text1": "Wir sind ein Team aus 9 Entwicklern, Bastlern, kreativen Köpfen und enthusiastischen Weltverbesserern.",
+      "Lukas": "...der im Hintergrund die Fäden zieht",
+      "Andi": "...der im Hinterzimmer aufräumt",
+      "Sebastian": "...der sicherstellt, dass wir immer auf Wolke 7 schweben",
+      "Benedikt": "...der das Ganze nutzbar macht",
+      "Kevin": "...der Allrounder",
+      "Christoph": "...der uns mobil macht",
+      "Helen": "...die uns kritisch über die Schulter schaut",
+      "Sophie": "...die das Ganze mit Leben füllt"
+    }
   }
+
 }
+
 

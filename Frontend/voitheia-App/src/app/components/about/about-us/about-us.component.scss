@@ -1,4 +1,5 @@
 @import '../../../../variables.scss';
+@import '../../../../custom-bootstrap-theme.scss';
 
 
 .w3-circle w3-hover-opacity {
@@ -7,8 +8,8 @@
   -moz-border-radius: 100%;
 }
 
-.team description {
-  font-size: x-small;
-  color: $brand-color;
+.tasks {
+  font-size:medium;
+  color: white;
 }
 
