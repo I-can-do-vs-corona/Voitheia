@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Buffers.Text;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Threading.Tasks;
+using System.Web;
 using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
@@ -18,11 +22,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.IdentityModel.Tokens;
 using Org.BouncyCastle.Crypto.Tls;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
@@ -101,8 +107,14 @@ namespace ActiveCruzer.Controllers
 
                         // email verification 
                         var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var confirmationLink = "https://voitheia.org/confirm-email?token=" + emailToken + "&email=" + credentials.Email;
-                        await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
+                        var queryParams = new Dictionary<string, string>()
+                        {
+                            {"emailToken", emailToken },
+                            {"email", credentials.Email }
+                        };
+                        var callbackUri = QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
+                        //var callbackUri = Url.Action(null, "https://voitheia.org/confirm-email", new { emailToken, email = credentials.Email }, Request.Scheme);
+                       await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, callbackUri);
 
 
                         return Ok(new JwtDto
@@ -180,8 +192,12 @@ namespace ActiveCruzer.Controllers
             if(user != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUri = "https://voitheia.org/reset-password?token=" + token + "&email=" + forgotPasswordDto.email;
-
+                var queryParams = new Dictionary<string, string>()
+                        {
+                            {"token",token },
+                            {"email", forgotPasswordDto.email }
+                        };
+                var callbackUri = QueryHelpers.AddQueryString("https://voitheia.org/reset-password", queryParams);
                 await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
                 return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
             }
@@ -382,7 +398,13 @@ namespace ActiveCruzer.Controllers
             if(user != null)
             {
                 var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var confirmationLink = "https://voitheia.org/confirm-email?token=" + emailToken + "&email=" + user.Email;
+                //var confirmationLink = "https://voitheia.org/user/confirm-email?token=" + emailToken + "&email=" + user.Email;
+                var queryParams = new Dictionary<string, string>()
+                        {
+                            {"emailToken", emailToken },
+                            {"email", confirmationEmailDto.Email }
+                        };
+                var confirmationLink = QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
                 await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
                 return Ok("Confirmation email sent.");
             }
