@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
@@ -18,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
@@ -290,6 +292,27 @@ namespace ActiveCruzer.Controllers
                 Content = $"Status Code: {424}; FailedDependency; Address is invalid",
                 ContentType = "text/plain",
             };
+        }
+
+        [Authorize]
+        [HttpPut]
+        [Route("SetNewEmail")]
+        [Produces("application/json")]
+        public async Task<IActionResult> SetNewEmail(SetNewEmailDto setNewEmailDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userBll.GetUserViaId(GetUserId());
+                if(user != null)
+                {
+                    user.Email = setNewEmailDto.newEmail;
+                    user.UserName = setNewEmailDto.newEmail;
+                    await _userManager.UpdateAsync(user);
+                    return Ok("Email sucessfuly updated");
+                }
+                return Unauthorized("You are not allowed to perform this action.");
+            }
+            return BadRequest("Invalid model.");
         }
 
         /// <summary>
