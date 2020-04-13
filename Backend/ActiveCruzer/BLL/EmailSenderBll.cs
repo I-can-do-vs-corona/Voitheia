@@ -28,7 +28,7 @@ namespace ActiveCruzer.BLL
 
         }
 
-        public Task SendEmailAsync(string firstname, string email, string mess)
+        public Task SendEmailConfirmationAsync(string firstname, string email, string mess)
         {
             try
             {
@@ -67,6 +67,46 @@ namespace ActiveCruzer.BLL
 
             return Task.CompletedTask;
         }
+        public Task SendEmailPWTokenAsync(string firstname, string email, string mess)
+        {
+            try
+            {
+                // build credentials
+                var credentials = new NetworkCredential(_emailconfiguration.Sender, _emailconfiguration.Password);
+
+                // message
+                var message = new MailMessage()
+                {
+                    From = new MailAddress(_emailconfiguration.Sender, _emailconfiguration.SenderName),
+                    Subject = "Voitheia Password Reset",
+                    Body = mess,
+                    IsBodyHtml = true
+                };
+
+                // add sender
+                message.To.Add(new MailAddress(email));
+
+                // Smtp client
+                var client = new SmtpClient()
+                {
+                    Port = _emailconfiguration.MailPort,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Host = _emailconfiguration.MailServer,
+                    EnableSsl = true,
+                    Credentials = credentials
+                };
+
+                client.Send(message);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException(e.Message);
+            }
+
+            return Task.CompletedTask;
+        }
+
     }
 
     public class EmailConfiguration

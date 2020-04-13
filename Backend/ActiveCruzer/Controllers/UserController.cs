@@ -15,6 +15,7 @@ using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -95,8 +96,9 @@ namespace ActiveCruzer.Controllers
 
                         // email verification 
                         var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var confirmationLink = Url.Action(nameof(ConfirmEmail), "User", new { emailToken, email = user.Email }, Request.Scheme);
-                        await _emailBll.SendEmailAsync(user.FirstName, user.Email, confirmationLink);
+                        var confirmationLink = "https://voitheia.org/confirmEmail?token=" + emailToken + "?email=" + credentials.Email;
+                        //var confirmationLink = Url.Action(nameof(ConfirmEmail), "User", new { emailToken, email = user.Email }, Request.Scheme);
+                        await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
 
 
                         return Ok(new JwtDto
@@ -136,7 +138,7 @@ namespace ActiveCruzer.Controllers
         /// <response code="200"> returns if email was sucessfuly confirmed</response>
         /// <response code="401"> returns if the link or e-mail is not valid</response>
         /// <response code="400"> returns if the email was not able to be confirmed</response>
-        [HttpGet]
+        [HttpPost]
         [Route("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail([FromBody] string emailToken, string email)
         {
@@ -155,6 +157,59 @@ namespace ActiveCruzer.Controllers
                 return BadRequest();
             }
             return Unauthorized("User not valid.");
+        }
+
+        /// <summary>
+        /// reset password with token email
+        /// </summary>
+        /// <param name="forgotPasswordDto"></param>
+        /// <returns></returns>
+        /// <response code="200"> returns if email mit password reset link was sent</response>
+        /// <response code="400"> returns if the input model was not valid (email required)</response>
+        /// <response code="404"> returns if the user cannot be found</response>
+        [HttpPut]
+        [Route("ForgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody]ForgotPasswordDto forgotPasswordDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Input is not valid.");
+            }
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+            if(user != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUri = "https://voitheia.org/resetpassword?token=" + token + "?email=" + forgotPasswordDto.Email;
+
+                await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
+                return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
+            }
+            return NotFound("User not found.");
+        }
+
+        /// <summary>
+        /// reset password with given model (email, token, password)
+        /// </summary>
+        /// <param name="resetPasswordDto"></param>
+        /// <returns></returns>
+        /// <response code="200"> returns if password reset was succesful</response>
+        /// <response code="400"> returns if the input model was not valid</response>
+        /// <response code="404"> returns if the user with the email was not found</response>
+        [HttpPost]
+        [Route("ResetPassword")]
+        public async Task <IActionResult> ResetPassword([FromBody]ResetPasswordDto resetPasswordDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userBll.GetUser(resetPasswordDto.Email);
+                if(user != null)
+                {
+                    await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
+                    return Ok("Password reset sucessful.");
+                }
+                return NotFound("The user with the email could not be found.");
+            }
+            return BadRequest("Invalid input.");
         }
 
         [HttpPost]

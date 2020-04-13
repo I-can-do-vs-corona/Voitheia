@@ -96,7 +96,7 @@ namespace ActiveCruzer.Controllers
                         // email verification 
                         var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         var confirmationLink = Url.Action(nameof(ConfirmEmail), "User", new { emailToken, email = user.Email }, Request.Scheme);
-                        await _emailBll.SendEmailAsync(user.FirstName, user.Email, confirmationLink);
+                        await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
 
 
                         return Ok(new JwtDto
