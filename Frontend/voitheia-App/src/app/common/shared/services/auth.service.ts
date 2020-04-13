@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UtilitiesService } from './utilities.service';
-import { User } from '../../models/User';
-import { LoginCredentials } from '../../models/loginCredentials';
+import { CredentialsDTO } from '../../models/credentialsDTO';
 import { NavigationService } from './navigation.service';
 import * as moment from 'moment';
+import { JwtDTO } from '../../models/JwtDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(private _httpClient: HttpClient, private _utilitiesService: UtilitiesService, private _navigationService: NavigationService) {}
 
-  getExpiration() {
+  getExpiration(): moment.Moment {
     return moment.utc(localStorage.getItem("validUntil"));
   }
 
@@ -21,11 +21,11 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  getToken(){
+  getToken(): string{
     return localStorage.getItem('token');
   }
 
-  isLoggedIn() {
+  isLoggedIn():boolean{
     var loggedIn;
 
     if (this.getToken() === null) {
@@ -33,7 +33,6 @@ export class AuthService {
     } else{
       loggedIn = moment().isSameOrBefore(this.getExpiration());
     }
-
     if(!loggedIn){
       this.delSession();
     }
@@ -46,11 +45,10 @@ export class AuthService {
     this._navigationService.navigateTo('home');
   }
 
-  login(user: User) {
-    this._httpClient.post(this._utilitiesService.getAPIUrl() + 'api/user/login',  new LoginCredentials(user.email, user.password), {withCredentials: false}).subscribe(
+  login(userCredentials: CredentialsDTO) {
+    this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/login',  userCredentials, {withCredentials: false}).subscribe(
       data => {
-        this.setSession(data);
-        this._navigationService.navigateTo('home');
+        this.handleSuccessfullLogin(data as JwtDTO);
       },
       err => {
         console.log(err);
@@ -64,13 +62,18 @@ export class AuthService {
     );
   }
 
+  handleSuccessfullLogin(authResult: JwtDTO){
+    this.setSession(authResult);
+    this._navigationService.navigateTo('user/profile');
+  }
+
+  private setSession(authResult: JwtDTO) {
+    localStorage.setItem('token', authResult.token);
+    localStorage.setItem("validUntil", authResult.validUntil.toString());
+  } 
+
   private delSession() {
     localStorage.removeItem('token');
     localStorage.removeItem('validUntil');
   }
-
-  private setSession(authResult) {
-    localStorage.setItem('token', authResult.token);
-    localStorage.setItem("validUntil", authResult.validUntil);
-  } 
 }

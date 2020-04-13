@@ -1,108 +1,158 @@
 <div class="row">
-    <div class="col-md-6 offset-md-3 form-container">
-        <h3 class="form-header">{{'Register.Title' | translate }}</h3>
-        <!-- <mat-horizontal-stepper>
-            <mat-step [label]="'Request.Create.Stepper.Request' | translate"> -->
-                <form #RequestForm="ngForm" novalidate>
-                    
-                        
-                        <div class="row">
-                            <div class="col-md-6 ">
-                                <mat-form-field>
-                                    <mat-label><span [innerHTML]="'General.Field.Label.FirstName' | translate"></span></mat-label>
-                                    <input  matInput name="textareaInput" [(ngModel)]="user.firstName" #textareaInput="ngModel" value="Test" required>
-                                </mat-form-field>
-                    
-                            </div>
-                            <div class="col-md-6 ">
-                                
-                                <mat-form-field>
-                                    <mat-label><span [innerHTML]="'General.Field.Label.LastName' | translate"></span></mat-label>
-                                    <input  matInput name="textareaInput" [(ngModel)]="user.lastName" #textareaInput="ngModel" value="Test" required>
-                                </mat-form-field>
-                            </div>
-                            
-                        </div> 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <mat-form-field>
-                                        <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
-                                        <input  matInput name="textareaInput" [(ngModel)]="user.email" #textareaInput="ngModel" value="email@provider.com"required>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <mat-form-field>
-                                        <mat-label><span [innerHTML]="'General.Field.Label.Password' | translate"></span></mat-label>
-                                        <input  type="password" matInput name="textareaInput" [(ngModel)]="user.password" #textareaInput="ngModel" value="test" required>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <mat-form-field>
-                                        <mat-label><span [innerHTML]="'General.Field.Label.Street' | translate"></span></mat-label>
-                                        <input  matInput name="textareaInput" [(ngModel)]="user.street" #textareaInput="ngModel" value="Weißenburgerstr. 17" required>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <mat-form-field>
-                                        <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
-                                        <input  matInput name="textareaInput" [(ngModel)]="user.zip" #textareaInput="ngModel" value="81667" required>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <mat-form-field>
-                                        <mat-label><span [innerHTML]="'General.Field.Label.City' | translate"></span></mat-label>
-                                        <input  matInput name="textareaInput" [(ngModel)]="user.city" #textareaInput="ngModel" value="München" required>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                        </div>     
-                        <div class="form-group">
-                            <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span  style="color: black;" [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
-                        </div>
-                        <div class="form-submit-btn">
-                            <button style="width: 100%" type="submit" mat-raised-button color="primary" (click)="send()">
-                                <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Submit' | translate }}
-                            </button>
-                        </div>
-                    
-                    
-                    
-                        <div id="login_msg">
-                            <span>
-                                {{'Register.HasAccount' | translate }}
-                            </span>
-    
-                            <a  style="font-weight: 600;" class="hyperlink" (click)="cancelRegister()">
-                                <span>
-                                    {{'General.Buttons.Login' | translate }}
-                                </span>
-                               </a>
-                          
-                        </div>               
-                    <!-- <div>
-                        <button type="submit" mat-raised-button color="primary" [disabled]="!RequestForm.form.valid || !termsChecked" (click)='send()'>
-                            <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Submit' | translate }}
-                        </button>
-                        <button type="submit" mat-stroked-button (click)='cancelRegister()'>
-                            {{'General.Buttons.Cancel' | translate }}
-                        </button>
-                    </div> -->
-                </form>
+    <div class="col-md-6 offset-md-3 content-container">
+        <h3 class="content-header">{{'User.Register.Title' | translate }}</h3>
+        <form #RegisterForm="ngForm" novalidate>
+            <div class="row">
+                <div class="col-md-6 ">
+                    <mat-form-field>
+                        <mat-label><span [innerHTML]="'General.Field.Label.FirstName' | translate"></span></mat-label>
+                        <input  matInput name="firstNameInput" [(ngModel)]="user.firstName" #firstNameInput="ngModel" required>
+                        <mat-error *ngIf="firstNameInput.invalid">
+                            <mat-error *ngIf="firstNameInput.errors.required">
+                                <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 ">
+                    <mat-form-field>
+                        <mat-label><span [innerHTML]="'General.Field.Label.LastName' | translate"></span></mat-label>
+                        <input  matInput name="lastNameInput" [(ngModel)]="user.lastName" #lastNameInput="ngModel" required>
+                        <mat-error *ngIf="lastNameInput.invalid">
+                            <mat-error *ngIf="lastNameInput.errors.required">
+                                <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <mat-label><span [innerHTML]="'General.Field.Label.Street' | translate"></span></mat-label>
+                            <input  matInput name="streetInput" [(ngModel)]="user.street" #streetInput="ngModel" required>
+                            <mat-error *ngIf="streetInput.invalid">
+                                <mat-error *ngIf="streetInput.errors.required">
+                                    <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
+                            <input  matInput name="zipInput" [(ngModel)]="user.zip" #zipInput="ngModel" value="81667" required>
+                            <mat-error *ngIf="zipInput.invalid">
+                                <mat-error *ngIf="zipInput.errors.required">
+                                    <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <mat-label><span [innerHTML]="'General.Field.Label.City' | translate"></span></mat-label>
+                            <input  matInput name="cityInput" [(ngModel)]="user.city" #cityInput="ngModel" value="München" required>
+                            <mat-error *ngIf="cityInput.invalid">
+                                <mat-error *ngIf="cityInput.errors.required">
+                                    <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>     
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
+                            <input matInput name="emailInput" [(ngModel)]="user.email" #emailInput="ngModel" required email>
+                            <mat-error *ngIf="emailInput.invalid">
+                                <mat-error *ngIf="emailInput.errors.required">
+                                    <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                                </mat-error>
+                                <mat-error *ngIf="emailInput.errors.email">
+                                    <span [innerHTML]="'General.Input.Error.Email' | translate"></span>
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <mat-label><span [innerHTML]="'General.Field.Label.Password' | translate"></span></mat-label>
+                            <input matInput name="passwordInput" [(ngModel)]="user.password" #passwordInput="ngModel" value="test"
+                            [type]="hidePW ? 'password' : 'text'"
+                            requried [pattern]="passwordRegEx" minlength="8" equal="passwordRepeatInput" equalReverse="true">
+                            <fa-icon matSuffix [icon]="['far', 'eye']" (click)="hidePW = !hidePW" *ngIf="hidePW"></fa-icon>
+                            <fa-icon matSuffix [icon]="['far', 'eye-slash']" (click)="hidePW = !hidePW" *ngIf="!hidePW"></fa-icon>
+                            <fa-icon matSuffix [icon]="['fas', 'key']" class="hint-icon"></fa-icon>
+                        </mat-form-field>
+                        <password-strength-meter [password]="user.password"></password-strength-meter>
+                        <mat-error *ngIf="passwordInput.invalid">
+                            <mat-error *ngIf="passwordInput.errors.required">
+                                <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                            </mat-error>
+                            <mat-error *ngIf="passwordInput.errors.minlength">
+                                <span [innerHTML]="'General.Input.Error.MinLength' | translate:{count : 8}"></span>
+                            </mat-error>
+                            <mat-error *ngIf="passwordInput.errors.pattern">
+                                <span [innerHTML]="'General.Input.Error.PasswordPattern' | translate"></span>
+                            </mat-error>
+                        </mat-error>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <mat-form-field>
+                            <mat-label><span [innerHTML]="'General.Field.Label.RepeatPassword' | translate"></span></mat-label>
+                            <input  type="password" matInput name="passwordRepeatInput" [(ngModel)]="repeatPassword" #passwordRepeatInput="ngModel" [readOnly]="!hidePW" [disabled]="passwordInput.invalid"
+                            required equal="passwordInput">
+                            <fa-icon matSuffix [icon]="['fas', 'key']" class="hint-icon"></fa-icon>
+                            <mat-error *ngIf="passwordRepeatInput.invalid">
+                                <mat-error *ngIf="passwordRepeatInput.errors.required">
+                                    <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                                </mat-error>
+                                <mat-error *ngIf="passwordRepeatInput.errors.equal">
+                                    <span [innerHTML]="'General.Input.Error.Equal' | translate"></span>
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
+            </div>
+            <div class="form-submit-btn">
+                <button style="width: 100%" type="submit" mat-raised-button color="primary" (click)="send()" [disabled]="!RegisterForm.form.valid || !termsChecked">
+                    <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> {{'General.Buttons.Submit' | translate }}
+                </button>
+            </div>
+            <div id="login_msg">
+                <span>
+                    {{'User.Register.HasAccount' | translate }}
+                </span>
+                <a class="hyperlink" routerLink="/user/login">
+                    <span>
+                        {{'General.Buttons.Login' | translate }}
+                    </span>
+                </a>
+            </div>
+        </form>
     </div>
 </div>
 

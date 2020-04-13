@@ -1,46 +1,55 @@
 {
   "General": {
+    "DateFormat" : "DD.MM.YYYY HH:mm",
     "Slogan": "Tu etwas Gutes - Hilf jemandem.",
-    "Buttons": {
-      "Submit": "Absenden",
-      "Next": "Weiter",
-      "Back": "Zurück",
-      "Cancel": "Abbrechen",
-      "Accept": "Annehmen",
-      "Login": "Einloggen",
-      "Register": "Registrieren",
-      "Complete": "Abschließen",
-      "Close": "Schliessen",
-      "Logout": "Abmelden"
+    "Buttons":{
+        "Submit": "Absenden",
+        "Next": "Weiter",
+        "Back": "Zurück",
+        "Cancel": "Abbrechen",
+        "Accept": "Annehmen",
+        "Login": "Einloggen",
+        "Register": "Registrieren",
+        "Complete": "Abschließen",
+        "Close": "Schliessen",
+        "Logout": "Abmelden",
+        "Delete": "Löschen"
     },
-
     "Enums": {
-      "RequestTypeEnum": {
-        "Shopping": "Einkaufen",
-        "Childcare": "Kinderbetreuung",
-        "Medical": "Medizinische Unterstützung",
-        "Petcare": "Haustierbetreuung",
-        "Other": "Anderes"
-      }
+        "RequestTypeEnum": {
+            "Shopping": "Einkaufen",
+            "Childcare": "Kinderbetreuung",
+            "Medical": "Medizinische Unterstützung",
+            "Petcare": "Haustierbetreuung",
+            "Other": "Anderes"
+        }
     },
-    "Errors": {
-      "Required": "Feld ist erforderlich.",
-      "PetInsurance": "Hinweis: Bitte frage nur nach Haustierbetreuung, wenn du auch eine Haftpflichtversicherung für dein Haustier hast, die Haustierbetreuung absichert.",
-      "GeneralInsurance": "Hinweis: Bitte frage nur nach Kinderbetreuung, wenn in deiner Haftpflichtversicherung Gefälligkeitsschäden abgedeckt sind.",
-      "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden..."
+    "Input": {
+      "Error": {
+        "Required": "Feld ist erforderlich.",
+        "Email": "Eingabe ist keine gültige E-mail adresse.",
+        "PasswordPattern": "Mindestens ein kleiner Buchstabe, ein grosser Buchstabe, eine Zahl und ein spezial Zeichen.",
+        "MinLength" : "Du musst mindestens {{count}} Zeichen angeben.",
+        "MaxLength" : "Du kannst maximal {{count}} Zeichen angeben.",
+        "Equal": "Passwörter stimmen nicht überein.",
+        "NotEqual": "Neues Passwort darf nicht das gleiche wei das alte sein.",
+        "PetInsurance": "Hinweis: Bitte frage nur nach Haustierbetreuung, wenn du auch eine Haftpflichtversicherung für dein Haustier hast, die Haustierbetreuung absichert.",
+        "GeneralInsurance": "Hinweis: Bitte frage nur nach Kinderbetreuung, wenn in deiner Haftpflichtversicherung Gefälligkeitsschäden abgedeckt sind.",
+        "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden..."
+      }
     },
     "Dialogs": {
-      "Titles": {
-        "Error": "Fehler",
-        "Warning": "Warnung",
-        "Info": "Information",
-        "Question": "Frage",
-        "Success": "Erfolg"
-      },
-      "Text": {
-        "Error": "Es ist ein Fehler aufgetreten"
-
-      }
+        "Titles": {
+            "Error": "Fehler",
+            "Warning": "Warnung",
+            "Info": "Information",
+            "Question": "Frage",
+            "Success": "Erfolg"
+        },
+        "Text": {
+            "Error": "Es ist ein Fehler aufgetreten"
+            
+        }
     },
     "Field": {
       "Label": {
@@ -52,12 +61,17 @@
         "Username": "Benutzername",
         "Email": "E-Mail",
         "Password": "Passwort",
+        "RepeatPassword": "Passwort wiederholen",
+        "RegsiteredSince": "Mitglied seit",
         "Street": "Strasse & Hausnummer",
         "ZipCode": "PLZ",
         "City": "Ort",
         "Type": "Ich benötige Unterstützung bei",
         "Description": "Beschreibung",
         "Distance": "Entfernung",
+        "CurrentPassword": "Aktuelles Password",
+        "NewPassword": "Neues Password",
+        "NewPasswordRepeat": "Neues Password wiederholen"
         "Address": "Adresse",
         "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu.",
         "Hint": "Wie kann dein(e) Helfer(in) dich kontaktieren? Hinweis: Sobald dein(e) Helfer(in) die Anfrage angenommen hat, bekommt er/sie ausschließlich deine Telefonnummer und deinen Vornamen zu sehen."
@@ -68,7 +82,12 @@
       "Home": "Tu etwas Gutes - Hilf jemandem.",
       "User": {
         "Login": "Einloggen",
-        "Register": "Registrieren"
+        "Register": "Registrieren",
+        "ConfirmEmail": "E-mail bestätigen",
+        "Profile": {
+          "View": "Profil",
+          "Edit": "Profil bearbeiten"
+        }
       },
       "Terms": {
         "TermsConditions": "AGBs",
@@ -85,13 +104,22 @@
       },
       "MyRequest": {
         "List": "Liste meiner Anfragen"
+      },
+      "Misc": {
+        "PageNotFound": "Webseite nicht gefunden",
+        "Countdown": "Countdown"
       }
+    }
+  },
+  "Navigation": {
+    "Buttons": {
+      "MyRequests": "Meine Unterstützungsangebote",
+      "Profile": "Profil"
     }
   },
   "Home": {
     "Buttons": {
       "CreateRequest": "Ich brauche etwas",
-      "MyRequests": "Meine Unterstützungsangebote",
       "ShowRequests": {
         "LoggedIn": "Zu offenen Anfragen",
         "LoggedOut": "Ich möchte helfen"
@@ -102,13 +130,81 @@
       "Level2": "In außergewöhnlichen Situationen und den vielen Einschränkungen, mit denen wir aufgrund des Coronavirus derzeit kämpfen, möchten wir mit dieser Community Helfende und Hilfesuchende verbinden. Du brauchst kurzfristig Unterstützung, beispielsweise beim Einkaufen, Kinder hüten oder jemanden, der mit deinem Hund Gassi geht? Erstelle eine Anfrage und jemand aus deiner Nachbarschaft kann dich kontaktieren, um dich zu unterstützen."
     }
   },
-  "Login": {
-    "Title": "Einloggen",
-    "NoAccount": "Noch keinen Account? "
-  },
-  "Register": {
-    "Title": "Registrieren",
-    "HasAccount": "Bereits Registriert? "
+  "User": {
+    "Login": {
+      "Title": "Einloggen",
+      "NoAccount": "Noch keinen Account? "
+    },
+    "Register": {
+      "Title": "Registrieren",
+      "HasAccount": "Bereits Registriert? "
+    },
+    "ConfirmEmail": {
+      "Title": "Email bestätigen",
+      "Messages": {
+        "Success": {
+          "Title": "E-mail erfolgreich bestätigt",
+          "Text": "Deine E-mail wurde erfolgreich besätigt. Du kannst ab jetzt Anfragen annehmen und anderen helfen. <b>Danke für deinen Einsatz!</b>"
+        },
+        "Error": {
+          "Title": "Fehler beim bestätigen der E-mail",
+          "Text": "Leider gab es einen Fehler beim bestätigen deiner E-mail. Bitte versuch es später erneut."
+        }
+      }
+    },
+    "ChangePassword": {
+      "Title": "Passwort ändern",
+      "Messages": {
+        "Error": {
+          "Title": "Fehler beim ändern des Passworts",
+          "Text": "Leider ist ein Fehler beim ändern deines Passwortes aufgetreten. Bitte versuch es später noch einmal."
+        }
+      }
+    },
+    "Profile": {
+      "View": {
+        "Title": "Benutzerprofil",
+        "Section": {
+          "AccountInformation": {
+            "Title": "Kontoinformation",
+            "SessionValidUntil": "Session gültig bis",
+            "DeleteAccount": "Benutzerkonto löschen"
+          },
+          "UserData": "Benutzerdaten",
+          "ResendConfirmationMail": {
+            "Text": "Deine E-mail addresse ist noch nicht bestätigt. Diese muss bestätigt sein um Anfragen annehmen zu können.",
+            "Link": "Erneut senden"
+          }
+        },
+        "Dialogs": {
+          "Delete": {
+            "Title": "Benutzerkonto wirklich löschen?",
+            "Text": "Bist du sicher, dass du dein Benutzerkonto löschen willst? Alle damit verbundenen Daten werden ebenfalls gelöscht. Deine angenommenen Aufträge werden wieder frei gegeben."
+          },
+          "Deleted": {
+            "Title": "Benutzerkonto wurde gelöscht",
+            "Text": "Dein Benuterkonto wurde erfolgreich gelöscht. Du wirst nun ausgeloggt. Wir hoffen dich in Zukunft wieder als Unterstützer willkommen zu heissen."
+          },
+          "resendConfirmationMail": {
+            "Title": "Bestätigungsmail verschickt",
+            "Text": "Die Bestätigungsmail wurde erneut verschickt."
+          }
+        }
+      },
+      "Edit": {
+        "Title": "Benutzerprofil bearbeiten",
+        "Messages": {
+          "Success": {
+            "Title": "Daten aktualisiert!",
+            "Text": "Deine Daten wurden erfolgreich aktualisiert."
+          },
+          "Error": {
+            "Title": "Fehler bei der aktualisierung!",
+            "Text": "Leider gab es einen fehler beim aktualisiseren deiner Daten. Bitte versuch es später erneut."
+          }
+        }
+      }
+    }
   },
   "Request": {
     "Create": {
@@ -161,7 +257,6 @@
       "Contact": "Kontakt"
     }
   },
-
   "Idea": {
     "Texts": {
       "Idea": "Die Idee",
@@ -188,7 +283,4 @@
       }
     }
   }
-
 }
-
-

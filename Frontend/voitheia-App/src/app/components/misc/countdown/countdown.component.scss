@@ -1,0 +1,16 @@
+@import '../../../../variables.scss';
+
+:host{
+    .content-container{
+        /deep/ .countdown{
+            .measurements{
+                text-align:center;
+                margin: $normal-spacing;
+            }
+
+            .divider {
+                font-size: 30px;
+               }
+        }
+    }
+}

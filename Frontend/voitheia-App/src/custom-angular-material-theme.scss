@@ -151,7 +151,7 @@ $mat-primary: (
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
-    darker: $light-primary-text,
+    darker: $black,
   )
 );
 $theme-primary: mat-palette($mat-primary, main, lighter, darker);
@@ -202,6 +202,14 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   min-width: 3em;
   line-height: 36.4px;
   border-radius: 20px !important;
+}
+
+button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+  color:$black;
+}
+
+button.mat-primary:hover, .mat-raised-button.mat-primary:hover, .mat-fab.mat-primary:hover, .mat-mini-fab.mat-primary:hover{
+  background-color: $brand-color-dark;
 }
 
 .mat-form-field {

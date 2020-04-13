@@ -1,7 +1,6 @@
 import { Component, OnInit, HostListener, NgModule } from '@angular/core';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { AuthService } from 'src/app/common/shared/services/auth.service';
-import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -11,13 +10,12 @@ import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit {
   isCollapsed = true;
-  faSignInAlt = faSignInAlt;
-  faSignOutAlt = faSignOutAlt;
+
   unstickyHeaderHeight = 100;
   offset = 5;
   scrollFactor = 1.5;
 
-  constructor(public _navigationService: NavigationService, private _authService: AuthService) { 
+  constructor(private _authService: AuthService) { 
   }
   ngOnInit(): void {
     
@@ -55,9 +53,6 @@ export class HeaderComponent implements OnInit {
        ham.classList.remove("collapsed");
     }
   }
-
- 
-
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(e) {

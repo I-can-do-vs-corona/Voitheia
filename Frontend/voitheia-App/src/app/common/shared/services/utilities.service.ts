@@ -4,13 +4,18 @@ import { environment } from '../../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from './dialog/dialog.service';
 import { DialogIconTypeEnum } from '../../helper/enums';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilitiesService {
 
-  constructor(private _translate: TranslateService, private _dialogService: DialogService) { }
+  public passwordRegEx: string;
+
+  constructor(private _translate: TranslateService, private _dialogService: DialogService) {
+    this.passwordRegEx = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-ZäöåüÅÖÄÜ]).{8,}$';
+  }
 
   getAPIUrl() {
     return environment.apiBaseUrl;
@@ -26,7 +31,8 @@ export class UtilitiesService {
 
   handleError(error: any){
     this._translate.get(['General.Dialogs.Titles.Error', 'General.Dialogs.Text.Error', 'General.Buttons.Close']).subscribe((res: string) => {
-      this._dialogService.showDialogOneButton(res['General.Dialogs.Titles.Error'], res['General.Dialogs.Text.Error'] + "<br />" + error, DialogIconTypeEnum.Error, res['General.Buttons.Close']);
+      var errorText = (typeof error === 'string')? error : error.message;
+      this._dialogService.showDialogOneButton(res['General.Dialogs.Titles.Error'], res['General.Dialogs.Text.Error'] + "<br />" + errorText, DialogIconTypeEnum.Error, res['General.Buttons.Close']);
     });
   }
 }

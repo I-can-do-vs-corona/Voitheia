@@ -1,28 +1,34 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-default navbar-light fixed-top py-3" id="mainNav">
   <div class="container">
-      
       <i id="logo"></i>
-      <a class="navbar-brand" (click)="_navigationService.navigateTo('home')">Voitheia</a>
-      <button id="hamburger" (click)="hamburgerMenuToggle()" class="navbar-toggle navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <!-- <span class="navbar-toggler-icon"></span> -->
+      <a class="navbar-brand"routerLink="/home">Voitheia</a>
+      <button id="hamburger" *ngIf="!isLoggedIn()" (click)="hamburgerMenuToggle()" class="navbar-toggle navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="icon-bar top-bar"></span>
 	      <span class="icon-bar middle-bar"></span>
 	      <span class="icon-bar bottom-bar"></span>	
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" [collapse]=isCollapsed>
-          <ul class="navbar-nav ml-auto my-2 my-lg-0">
-              <li *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('user/login')" class="nav-item"><a class="nav-link login-btn noselect">
-                <fa-icon [icon]="faSignInAlt"></fa-icon>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+          <ul class="navbar-nav ml-auto my-2 my-lg-0" *ngIf="!isLoggedIn()">
+              <li routerLink="/user/login" routerLinkActive="active" class="nav-item"><a class="nav-link login-btn noselect">
                 {{'General.Buttons.Login' | translate }}</a></li>
-              <li *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('user/register')" class="nav-item"><a class="nav-link register-btn noselect">
+              <li routerLink="/user/register" routerLinkActive="active" class="nav-item"><a class="nav-link register-btn noselect">
                 {{'General.Buttons.Register' | translate }}</a></li>
-              <li *ngIf="isLoggedIn()" (click)="_navigationService.navigateTo('my-requests/list')" class="nav-item"><a class="nav-link login-btn noselect" >
-                {{'Home.Buttons.MyRequests' | translate }}</a></li>
-              <li *ngIf="isLoggedIn()" (click)= "logout()" class="nav-item"><a class="nav-link login-btn noselect" >
-                <fa-icon [icon]="faSignOutAlt"></fa-icon>
-                {{'General.Buttons.Logout' | translate }}</a></li>
           </ul>
+      </div>
+      <div *ngIf="isLoggedIn()" class="userMenuIcon" placement="bottom-right" [ngbPopover]="userMenuLoggedInPopContent"><!-- popoverTitle="{{'General.Header.UserMenu.Title.LoggedOut' | translate}}" #userMenu="ngbPopover" triggers="manual" (click)="userMenu.close()" (mouseenter)="userMenu.open()">-->
+        <fa-icon [icon]="['fas', 'user']"></fa-icon>
+        <ng-template #userMenuLoggedInPopContent>
+          <ul>
+            <li routerLink="/my-requests/list" routerLinkActive="active"><a class="nav-link login-btn noselect" >
+              {{'Navigation.Buttons.MyRequests' | translate }}</a></li>
+            <li routerLink="/user/profile" routerLinkActive="active"><a class="nav-link login-btn noselect" >
+              {{'Navigation.Buttons.Profile' | translate }}</a></li>
+            <li (click)= "logout()"><a class="nav-link login-btn noselect" >
+              <fa-icon [icon]="['fas', 'power-off']"></fa-icon>
+              {{'General.Buttons.Logout' | translate }}</a></li>
+          </ul>
+        </ng-template>
       </div>
   </div>
 </nav>

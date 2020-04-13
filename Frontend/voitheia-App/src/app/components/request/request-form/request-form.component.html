@@ -1,6 +1,6 @@
 <div class="row ">
-    <div class="col-md-6 offset-md-3 form-container">
-        <h3 class="form-header">{{'Request.Create.Title' | translate }}</h3>
+    <div class="col-md-6 offset-md-3 content-container">
+        <h3 class="content-header">{{'Request.Create.Title' | translate }}</h3>
         <mat-horizontal-stepper>
             <mat-step [label]="'Request.Create.Stepper.Request' | translate">
                 <form #RequestForm="ngForm" novalidate>
@@ -160,7 +160,7 @@
                             {{'General.Buttons.Back' | translate }}
                         </button>
                         <button type="submit" mat-raised-button color="primary" [disabled]="!RequestAddressForm.form.valid || !RequestForm.form.valid || !termsChecked" (click)="send()">
-                            <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Submit' | translate }}
+                            <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> {{'General.Buttons.Submit' | translate }}
                         </button>
                     </div>
                 </form>

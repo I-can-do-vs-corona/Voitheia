@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3 content-container">
+        <h3 class="content-header">{{'User.Profile.View.Title' | translate }}</h3>
+        <div class="row section">
+            <div class="col-12">
+                <div id="avatar">
+                    <img src="../../../../../assets/images/avatar-placeholder.png" class="float-right" />
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="!userData.emailConfirmed">
+            <p>{{'User.Profile.View.Section.ResendConfirmationMail.Text' | translate}}</p>
+            <a (click)="resendEmailConfirmationMail()">{{'User.Profile.View.Section.ResendConfirmationMail.Link' | translate}}</a>
+        </div>
+        <div class="row section">
+            <div class="col-12 info-block">
+                <div class="header">
+                    <span><b>{{'User.Profile.View.Section.UserData' | translate }}</b></span>
+                    <button mat-raised-button color="primary" class="float-right" (click)="openEditUserDataDialog()">
+                        <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+                    </button>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="row label">
+                    <div class="col-12">
+                        {{'General.Field.Label.Name' | translate}}
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="col-12">
+                        {{userData.firstName}} {{userData.lastName}}
+                    </div>
+                </div>
+                <div class="row label">
+                    <div class="col-12">
+                        {{'General.Field.Label.Address' | translate}}
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                {{userData.street}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                {{userData.zip}}
+                            </div>
+                            <div class="col-md-10">
+                                {{userData.city}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row section">
+            <div class="col-12 info-block">
+                <div class="header">
+                    <span><b>{{'User.Profile.View.Section.AccountInformation.Title' | translate }}</b></span>
+                </div>
+                <div class="row label">
+                    <div class="col-12">
+                        {{'General.Field.Label.Username' | translate}}
+                        <!--<button mat-raised-button color="primary" class="float-right">
+                            <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+                        </button>-->
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="col-12">
+                        {{userData.email}}
+                    </div>
+                </div>
+                <div class="row label">
+                    <div class="col-12">
+                        {{'General.Field.Label.Password' | translate}}
+                        <button mat-raised-button color="primary" class="float-right" (click)="openSetPasswordDialog()">
+                            <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="col-12">
+                        *****
+                    </div>
+                </div>
+                <div class="row label">
+                    <div class="col-12">
+                        {{'General.Field.Label.RegsiteredSince' | translate}}
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="col-12">
+                        {{(userData.createdOn | amLocale:'de' | amDateFormat:('General.DateFormat' | translate))}}
+                    </div>
+                </div>
+                <div class="row label">
+                    <div class="col-12">
+                        {{'User.Profile.View.Section.AccountInformation.SessionValidUntil' | translate}}
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="col-12">
+                        {{(sessionValidUntil | amLocale:'de' | amDateFormat:('General.DateFormat' | translate))}}
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="col-12">
+                        <button mat-stroked-button color="warn" (click)="openDeleteAccountDialog()"><fa-icon [icon]="['fas', 'trash-alt']"></fa-icon> {{'User.Profile.View.Section.AccountInformation.DeleteAccount' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

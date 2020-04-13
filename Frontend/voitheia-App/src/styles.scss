@@ -74,25 +74,29 @@ body {
     margin-top: $header-distance;
   }
   
-  .form-container {
+  .content-container {
     background-color: white;
     padding: 2rem 4rem; 
     border-radius: 8px;
     color:$default-text;
-  }
 
-  .form-header {
-    color: black;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 3rem;
-  }
+    .label{
+      text-decoration: underline;
+    }
 
-  .form-submit-btn {
-    margin: auto;
-    width: 50%;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    .content-header {
+      color: black;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+  
+    .form-submit-btn {
+      margin: auto;
+      width: 50%;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
   }
 
   a, a:visited, a:focus, .hyperlink, .hyperlink:visited, .hyperlink:focus{
@@ -132,6 +136,3 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
   transition: background-color 5000s ease-in-out 0s;
 }
-
-
-

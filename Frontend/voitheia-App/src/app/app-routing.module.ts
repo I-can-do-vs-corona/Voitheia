@@ -13,6 +13,10 @@ import { AboutUsComponent } from './components/about/about-us/about-us.component
 import { IdeaComponent } from './components/about/idea/idea.component';
 import { PageNotFoundComponent } from './components/misc/page-not-found/page-not-found.component';
 import { ImprintComponent } from './components/terms/imprint/imprint.component';
+import { ProfileViewComponent } from './components/user/profile/profile-view/profile-view.component';
+import { ProfileEditComponent } from './components/user/profile/profile-edit/profile-edit.component';
+import { CountdownComponent } from './components/misc/countdown/countdown.component';
+import { ConfirmEmailComponent } from './components/user/confirm-email/confirm-email.component';
 
 
 const routes: Routes = [
@@ -27,14 +31,9 @@ const routes: Routes = [
     data: {title: 'Home'}
   },
   {
-    path: 'request',
-    children: [
-      {
-        path: 'create',
-        component: RequestFormComponent,
-        data: {title: 'Request.Create'}
-      }
-    ]
+    path: 'request/create',
+    component: RequestFormComponent,
+    data: {title: 'Request.Create'}
   },
   {
     path: '', // authenticated Area
@@ -46,7 +45,7 @@ const routes: Routes = [
           {
             path: 'list',
             component: MyRequestsListComponent,
-            data: {title: 'MyRequest.List'},
+            data: {title: 'MyRequest.List'}
           }
         ]
       },
@@ -56,7 +55,22 @@ const routes: Routes = [
           {
             path: 'list',
             component: RequestListComponent,
-            data: {title: 'Request.List'},
+            data: {title: 'Request.List'}
+          }
+        ]
+      },
+      {
+        path: 'user',
+        children: [
+          {
+            path: 'profile',
+            component: ProfileViewComponent,
+            data: {title: 'Profile.View'}
+          },
+          {
+            path: 'profile/edit',
+            component: ProfileEditComponent,
+            data: {title: 'Profile.Edit'}
           }
         ]
       }
@@ -74,6 +88,11 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
         data: {title: 'User.Register'}
+      },
+      {
+        path: 'confirm-email',
+        component: ConfirmEmailComponent,
+        data: {title: 'User.ConfirmEmail'}
       }
     ]
   },
@@ -112,7 +131,15 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '**', component: PageNotFoundComponent }
+  { 
+    path: 'countdown',
+    component: CountdownComponent,
+    data: {title: 'Misc.Countdown'} },
+  { 
+    path: '**',
+    component: PageNotFoundComponent,
+    data: {title: 'Misc.PageNotFound'}
+  }
 ];
 
 @NgModule({
