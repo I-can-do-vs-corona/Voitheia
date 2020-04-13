@@ -15,6 +15,7 @@ using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -220,7 +221,7 @@ namespace ActiveCruzer.Controllers
 
             if (user != null)
             {
-                _userBll.SetLoginDate(user);
+                await _userBll.SetLoginDate(user);
                 var token = GenerateToken(user.UserName, user.Id, credentials.MinutesValid);
                 return Ok(new JwtDto
                 {
@@ -325,6 +326,52 @@ namespace ActiveCruzer.Controllers
             }
 
             base.Dispose(disposing);
+        }
+        /// <summary>
+        /// send email confirmation again with given email
+        /// </summary>
+        /// <param name="confirmationEmailDto"></param>
+        /// <returns></returns>
+        /// <response code="200"> Confirmation email sucessfuly sent</response>
+        /// <response code="400"> Input is invalid, please check your model</response>
+        /// <response code="401"> The current user is not logged in</response>
+        [HttpPut]
+        [Route("SendConfirmationMailAgain")]
+        public async Task<IActionResult> SendConfirmationMailAgain(ConfirmationEmailDto confirmationEmailDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Input is not valid.");
+            }
+            var user = await _userBll.GetUser(confirmationEmailDto.Email);
+            if(user != null)
+            {
+                var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var confirmationLink = "https://voitheia.org/confirmEmail?token=" + emailToken + "?email=" + user.Email;
+                await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
+                return Ok("Confirmation email sent.");
+            }
+            return Unauthorized("User not found.");
+        }
+
+        /// <summary>
+        /// set new password for logged in user
+        /// </summary>
+        /// <param name="newPasswordDto"></param>
+        /// <returns></returns>
+        /// <response code="200"> Password sucessfuly changed</response>
+        /// <response code="400"> Model is invalid or change process resulted in eror</response>
+        [HttpPost]
+        [Route("SetNewPassword")]
+        public async Task<IActionResult> SetNewPassword(NewPasswordDto newPasswordDto)
+        {
+            var user = await _userBll.GetUserViaId(GetUserId());
+            var result = await _userManager.ChangePasswordAsync(user, newPasswordDto.OldPassword, newPasswordDto.NewPassword);
+            if (result.Succeeded)
+            {
+                return Ok("Password sucessfuly changed.");
+            }
+            return BadRequest("Error in password changing. Please try again or contact the support.");
         }
 
 

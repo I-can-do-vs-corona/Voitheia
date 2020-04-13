@@ -96,7 +96,7 @@ namespace ActiveCruzer.BLL
             return user?.EmailConfirmed ?? false;
         }
 
-        public async void SetLoginDate(User user)
+        public async Task SetLoginDate(User user)
         {
             user.LastLogin = DateTime.Today;
             await _userManager.UpdateAsync(user);
