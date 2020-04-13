@@ -97,8 +97,7 @@ namespace ActiveCruzer.Controllers
 
                         // email verification 
                         var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var confirmationLink = "https://voitheia.org/confirmEmail?token=" + emailToken + "?email=" + credentials.Email;
-                        //var confirmationLink = Url.Action(nameof(ConfirmEmail), "User", new { emailToken, email = user.Email }, Request.Scheme);
+                        var confirmationLink = "https://voitheia.org/confirm-email?token=" + emailToken + "&email=" + credentials.Email;
                         await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
 
 
@@ -133,7 +132,7 @@ namespace ActiveCruzer.Controllers
         /// <summary>
         /// confirm email with email and token
         /// </summary>
-        /// <param name="confirmationEmailDto"></param>
+        /// <param name="confirmationEmailTokenDto"></param>
         /// <returns></returns>
         /// <response code="200"> returns if email was sucessfuly confirmed</response>
         /// <response code="401"> returns if the link or e-mail is not valid</response>
@@ -150,7 +149,7 @@ namespace ActiveCruzer.Controllers
                 {
                     return Ok("E-Mail successfuly confirmed.");
                 }
-                return BadRequest();
+                return BadRequest("Something went wrong with the confirmation of your email. Please try again or contact the support.");
             }
             return Unauthorized("User not valid.");
         }
@@ -175,7 +174,7 @@ namespace ActiveCruzer.Controllers
             if(user != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUri = "https://voitheia.org/resetpassword?token=" + token + "?email=" + forgotPasswordDto.Email;
+                var callbackUri = "https://voitheia.org/reset-password?token=" + token + "&email=" + forgotPasswordDto.Email;
 
                 await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
                 return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
@@ -342,7 +341,7 @@ namespace ActiveCruzer.Controllers
             if(user != null)
             {
                 var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var confirmationLink = "https://voitheia.org/confirmEmail?token=" + emailToken + "?email=" + user.Email;
+                var confirmationLink = "https://voitheia.org/confirm-email?token=" + emailToken + "&email=" + user.Email;
                 await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
                 return Ok("Confirmation email sent.");
             }
