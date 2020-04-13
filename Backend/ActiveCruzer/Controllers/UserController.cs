@@ -69,6 +69,7 @@ namespace ActiveCruzer.Controllers
         [Authorize()]
         [HttpGet]
         [Route("LoggedIn")]
+        [Produces("application/json")]
         public ActionResult LoggedIn()
         {
             //If the execution reaches this code the user is logged in.
@@ -77,6 +78,7 @@ namespace ActiveCruzer.Controllers
 
         [HttpPost]
         [Route("Register")]
+        [Produces("application/json")]
         public async Task<ActionResult<JwtDto>> Register([FromBody] RegisterUserDTO credentials)
         {
             if (ModelState.IsValid)
@@ -139,12 +141,13 @@ namespace ActiveCruzer.Controllers
         /// <response code="400"> returns if the email was not able to be confirmed</response>
         [HttpPost]
         [Route("ConfirmEmail")]
+        [Produces("application/json")]
         public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmationEmailTokenDto confirmationEmailTokenDto)
         {
-            var user = await _userBll.GetUser(confirmationEmailTokenDto.Email);
+            var user = await _userBll.GetUser(confirmationEmailTokenDto.email);
             if(user != null)
             {
-                var result = await _userManager.ConfirmEmailAsync(user, confirmationEmailTokenDto.EmailToken);
+                var result = await _userManager.ConfirmEmailAsync(user, confirmationEmailTokenDto.emailToken);
                 if (result.Succeeded)
                 {
                     return Ok("E-Mail successfuly confirmed.");
@@ -164,17 +167,18 @@ namespace ActiveCruzer.Controllers
         /// <response code="404"> returns if the user cannot be found</response>
         [HttpPut]
         [Route("ForgotPassword")]
+        [Produces("application/json")]
         public async Task<IActionResult> ForgotPassword([FromBody]ForgotPasswordDto forgotPasswordDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Input is not valid.");
             }
-            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.email);
             if(user != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUri = "https://voitheia.org/reset-password?token=" + token + "&email=" + forgotPasswordDto.Email;
+                var callbackUri = "https://voitheia.org/reset-password?token=" + token + "&email=" + forgotPasswordDto.email;
 
                 await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
                 return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
@@ -192,14 +196,15 @@ namespace ActiveCruzer.Controllers
         /// <response code="404"> returns if the user with the email was not found</response>
         [HttpPost]
         [Route("ResetPassword")]
+        [Produces("application/json")]
         public async Task <IActionResult> ResetPassword([FromBody]ResetPasswordDto resetPasswordDto)
         {
             if (ModelState.IsValid)
             {
-                var user = await _userBll.GetUser(resetPasswordDto.Email);
+                var user = await _userBll.GetUser(resetPasswordDto.email);
                 if(user != null)
                 {
-                    await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
+                    await _userManager.ResetPasswordAsync(user, resetPasswordDto.token, resetPasswordDto.password);
                     return Ok("Password reset sucessful.");
                 }
                 return NotFound("The user with the email could not be found.");
@@ -209,6 +214,7 @@ namespace ActiveCruzer.Controllers
 
         [HttpPost]
         [Route("Login")]
+        [Produces("application/json")]
         public async Task<ActionResult<JwtDto>> Login([FromBody] CredentialsDTO credentials)
         {
             User user = await _userBll.Login(credentials); 
@@ -236,6 +242,7 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpDelete]
         [Route("Delete")]
+        [Produces("application/json")]
         public async Task<ActionResult> DeleteUser()
         {
             var user = await _userBll.GetUserViaId(GetUserId());
@@ -256,6 +263,7 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpPut]
         [Route("Update")]
+        [Produces("application/json")]
         public async Task<ActionResult> UpdateUser([FromBody] UpdateUserDto user)
         {
             var validatedAddress = _geoCodeBll.ValidateAddress(new GeoQuery
@@ -293,6 +301,7 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpGet]
         [Route("GetUser")]
+        [Produces("application/json")]
         public async Task<ActionResult<UserDto>> GetUser()
         {
             var user = await _userBll.GetUserViaId(GetUserId());
@@ -331,6 +340,7 @@ namespace ActiveCruzer.Controllers
         /// <response code="401"> The current user is not logged in</response>
         [HttpPut]
         [Route("SendConfirmationMailAgain")]
+        [Produces("application/json")]
         public async Task<IActionResult> SendConfirmationMailAgain(ConfirmationEmailDto confirmationEmailDto)
         {
             if (!ModelState.IsValid)
@@ -357,10 +367,11 @@ namespace ActiveCruzer.Controllers
         /// <response code="400"> Model is invalid or change process resulted in eror</response>
         [HttpPost]
         [Route("SetNewPassword")]
+        [Produces("application/json")]
         public async Task<IActionResult> SetNewPassword(NewPasswordDto newPasswordDto)
         {
             var user = await _userBll.GetUserViaId(GetUserId());
-            var result = await _userManager.ChangePasswordAsync(user, newPasswordDto.OldPassword, newPasswordDto.NewPassword);
+            var result = await _userManager.ChangePasswordAsync(user, newPasswordDto.oldPassword, newPasswordDto.newPassword);
             if (result.Succeeded)
             {
                 return Ok("Password sucessfuly changed.");
