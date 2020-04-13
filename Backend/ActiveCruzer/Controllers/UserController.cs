@@ -165,6 +165,7 @@ namespace ActiveCruzer.Controllers
 
             if (user != null)
             {
+                _userBll.SetLoginDate(user);
                 var token = GenerateToken(user.UserName, user.Id, credentials.MinutesValid);
                 return Ok(new JwtDto
                 {

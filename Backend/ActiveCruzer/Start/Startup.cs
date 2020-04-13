@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
+using ActiveCruzer.Scheduler;
 using ActiveCruzer.Startup;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -65,6 +66,8 @@ namespace ActiveCruzer.Start
             services.AddTransient<IRequestBll, RequestBll>();
             services.AddTransient<IEmailSenderBll, EmailSenderBll>();
             services.AddTransient<UserBLL>();
+
+            services.AddHostedService<ScheduleTask>();
 
             services.InitJwt(_configuration);
 
