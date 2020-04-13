@@ -40,7 +40,7 @@ namespace ActiveCruzer.BLL
                 {
                     From = new MailAddress(_emailconfiguration.Sender, _emailconfiguration.SenderName),
                     Subject = "Voitheia E-Mail Bestätigung",
-                    Body = "Hallo und Willkommen zu Voitheia! "+ firstname + ",<br><br>Bitte bestätigen Sie Ihre E-Mail Adresse um die volle FUnktionalität von Voitheia zu geniesen.<br>Bitten klicken Sie hierzu auf den folgenden Link.<br>" + mess + "<br>Mit freundlichen Grüßen,<br><br> Voitheia Service Team",
+                    Body = "Hallo und Willkommen zu Voitheia, "+ firstname + "!,<br><br>Bitte bestätigen Sie Ihre E-Mail Adresse um die volle Funktionalität von Voitheia zu geniesen.<br>Bitten klicken Sie hierzu auf den folgenden Link.<br>" + mess + "<br>Mit freundlichen Grüßen,<br><br> Voitheia Service Team",
                     IsBodyHtml = true
                 };
 
@@ -79,7 +79,7 @@ namespace ActiveCruzer.BLL
                 {
                     From = new MailAddress(_emailconfiguration.Sender, _emailconfiguration.SenderName),
                     Subject = "Voitheia Password Reset",
-                    Body = mess,
+                    Body = "Hallo und Willkommen zu Voitheia, " + firstname + "!,<br><br>Bitte bestätigen Sie Ihre E-Passwort Änderung.<br>Bitten klicken Sie hierzu auf den folgenden Link.<br>" + mess + "<br>Mit freundlichen Grüßen,<br><br> Voitheia Service Team",
                     IsBodyHtml = true
                 };
 
