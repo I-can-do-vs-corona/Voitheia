@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SetNewPasswordDTO } from 'src/app/common/models/setNewPasswordDTO';
 import { UserService } from '../user.service';
+import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
 
 @Component({
   selector: 'app-change-password',
@@ -12,11 +13,14 @@ export class ChangePasswordComponent implements OnInit {
 
   hidePW = false;
   showError = false;
+
+  passwordRegEx = '';
   
   changePasswordCredentials: SetNewPasswordDTO;
 
-  constructor(public dialogRef: MatDialogRef<ChangePasswordComponent>, private _userService: UserService) {
+  constructor(public dialogRef: MatDialogRef<ChangePasswordComponent>, private _userService: UserService, private _utilitiesService: UtilitiesService) {
     this.changePasswordCredentials = new SetNewPasswordDTO;
+    this.passwordRegEx = _utilitiesService.passwordRegEx;
   }
 
   ngOnInit(): void {
