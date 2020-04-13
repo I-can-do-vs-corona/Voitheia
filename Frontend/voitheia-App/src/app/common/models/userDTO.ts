@@ -3,13 +3,16 @@ import * as moment from 'moment';
 
 export class UserDTO extends UpdateUserDTO  {
     email: string;
-    registerDate: Date;
+    createdOn: Date;
+    lastLogin: Date;
+    emailConfirmed: boolean;
 
     constructor() {
         super();
 
         this.email = "";
-        //var now = new Date;
-        this.registerDate = new Date(localStorage.getItem("validUntil"));
+        this.createdOn = new Date();
+        this.lastLogin = new Date();
+        this.emailConfirmed = false;
     }
 }

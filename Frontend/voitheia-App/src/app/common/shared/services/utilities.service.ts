@@ -11,7 +11,11 @@ import { AuthService } from './auth.service';
 })
 export class UtilitiesService {
 
-  constructor(private _translate: TranslateService, private _dialogService: DialogService) { }
+  public passwordRegEx: string;
+
+  constructor(private _translate: TranslateService, private _dialogService: DialogService) {
+    this.passwordRegEx = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-ZäöåüÅÖÄÜ]).{8,}$';
+  }
 
   getAPIUrl() {
     return environment.apiBaseUrl;

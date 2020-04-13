@@ -29,7 +29,12 @@ export class RequestListComponent implements OnInit {
 
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
 
-  constructor(private _requestService: RequestService, private _utilitiesService: UtilitiesService, private _dialogService: DialogService, private _translateService: TranslateService, private _navigationService: NavigationService, private _dialog: MatDialog) {
+  constructor(private _requestService: RequestService,
+              private _utilitiesService: UtilitiesService,
+              private _dialogService: DialogService,
+              private _translateService: TranslateService,
+              private _navigationService: NavigationService,
+              private _dialog: MatDialog) {
   }
 
   ngOnInit(): void {

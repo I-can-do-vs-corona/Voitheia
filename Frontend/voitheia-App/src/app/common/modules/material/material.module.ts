@@ -11,6 +11,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import {MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIONS} from '@angular/material/checkbox';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -24,7 +26,9 @@ import {MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIONS} from '@angular/material
     MatDialogModule,
     MatPaginatorModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule
   ],
   exports: [
     MatInputModule,
@@ -35,7 +39,9 @@ import {MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIONS} from '@angular/material
     MatDialogModule,
     MatPaginatorModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule
   ],
   providers: [
     {

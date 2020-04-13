@@ -16,6 +16,7 @@ import { ImprintComponent } from './components/terms/imprint/imprint.component';
 import { ProfileViewComponent } from './components/user/profile/profile-view/profile-view.component';
 import { ProfileEditComponent } from './components/user/profile/profile-edit/profile-edit.component';
 import { CountdownComponent } from './components/misc/countdown/countdown.component';
+import { ConfirmEmailComponent } from './components/user/confirm-email/confirm-email.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'myrequests',
+        path: 'my-requests',
         children: [
           {
             path: 'list',
@@ -87,6 +88,11 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
         data: {title: 'User.Register'}
+      },
+      {
+        path: 'confirm-email',
+        component: ConfirmEmailComponent,
+        data: {title: 'User.ConfirmEmail'}
       }
     ]
   },

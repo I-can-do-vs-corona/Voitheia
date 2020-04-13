@@ -8,11 +8,15 @@
                 </div>
             </div>
         </div>
+        <div class="alert alert-success" role="alert" *ngIf="!userData.emailConfirmed">
+            <p>{{'User.Profile.View.Section.ResendConfirmationMail.Text' | translate}}</p>
+            <a (click)="resendEmailConfirmationMail()">{{'User.Profile.View.Section.ResendConfirmationMail.Link' | translate}}</a>
+        </div>
         <div class="row section">
             <div class="col-12 info-block">
                 <div class="header">
                     <span><b>{{'User.Profile.View.Section.UserData' | translate }}</b></span>
-                    <button mat-button color="primary" class="float-right"> <!--(click)="changePersonalData('PersonalData')"-->
+                    <button mat-raised-button color="primary" class="float-right" (click)="openEditUserDataDialog()">
                         <fa-icon [icon]="['fas', 'edit']"></fa-icon>
                     </button>
                     <div class="clearfix"></div>
@@ -53,12 +57,14 @@
         </div>
 
         <div class="row section">
-            <div class="col-12">
-                <b>{{'User.Profile.View.Section.AccountInformation.Title' | translate }}</b>
+            <div class="col-12 info-block">
+                <div class="header">
+                    <span><b>{{'User.Profile.View.Section.AccountInformation.Title' | translate }}</b></span>
+                </div>
                 <div class="row label">
                     <div class="col-12">
                         {{'General.Field.Label.Username' | translate}}
-                        <!--<button mat-button color="primary" class="float-right">
+                        <!--<button mat-raised-button color="primary" class="float-right">
                             <fa-icon [icon]="['fas', 'edit']"></fa-icon>
                         </button>-->
                     </div>
@@ -71,9 +77,9 @@
                 <div class="row label">
                     <div class="col-12">
                         {{'General.Field.Label.Password' | translate}}
-                        <!--<button mat-button color="primary" class="float-right">
+                        <button mat-raised-button color="primary" class="float-right" (click)="openSetPasswordDialog()">
                             <fa-icon [icon]="['fas', 'edit']"></fa-icon>
-                        </button>-->
+                        </button>
                     </div>
                 </div>
                 <div class="row content">
@@ -88,7 +94,7 @@
                 </div>
                 <div class="row content">
                     <div class="col-12">
-                        {{(userData.registerDate | amLocale:'de' | amDateFormat:('General.DateFormat' | translate))}}
+                        {{(userData.createdOn | amLocale:'de' | amDateFormat:('General.DateFormat' | translate))}}
                     </div>
                 </div>
                 <div class="row label">

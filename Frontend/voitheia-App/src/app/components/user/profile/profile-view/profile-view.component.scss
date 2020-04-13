@@ -6,6 +6,22 @@
             margin-bottom:$normal-spacing;
         }
 
+        .info-block{
+            border:1px solid $gray-4;
+            border-radius: $third-spacing;
+            margin-bottom: $normal-spacing;
+
+            .header{
+                background-color:$gray-1;
+                margin-left:-15px;
+                margin-right:-15px;
+                padding: $third-spacing 15px;
+                
+                border-top-left-radius: $third-spacing;
+                border-top-right-radius: $third-spacing;
+            }
+        }
+
         #avatar{
             height:150px;
 

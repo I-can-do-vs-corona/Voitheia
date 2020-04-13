@@ -14,9 +14,13 @@ export class RegisterComponent implements OnInit {
 
   user: RegisterUserDTO;
   termsChecked = false;
+  repeatPassword = "";
+  hidePW = true;
+  passwordRegEx = '';
   
   constructor(private _userService: UserService, private _authService: AuthService, private _utilitiesService: UtilitiesService) {
     this.user = new RegisterUserDTO();
+    this.passwordRegEx = _utilitiesService.passwordRegEx;
   }
 
   ngOnInit(): void {

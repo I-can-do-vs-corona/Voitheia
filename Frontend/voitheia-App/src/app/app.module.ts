@@ -6,7 +6,6 @@ import localeDe from '@angular/common/locales/de';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from 'src/app/components/user/token.interceptor';
 import { FormsModule }   from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -40,12 +39,22 @@ import { MomentModule } from 'ngx-moment';
 import 'moment/locale/de';
 import { CountdownComponent } from './components/misc/countdown/countdown.component';
 import { CountdownModule } from "ng2-date-countdown";
+import { ConfirmEmailComponent } from './components/user/confirm-email/confirm-email.component';
+import { TokenInterceptor } from './common/helper/token.interceptor';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { EqualValidator, NotEqualValidator, GreaterThanValidator, RequireFieldValidator, RequireFieldIfSetValidator } from './common/helper/formValidation';
+import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     KeysPipe,
+    EqualValidator,
+    NotEqualValidator,
+    GreaterThanValidator,
+    RequireFieldValidator,
+    RequireFieldIfSetValidator,
     LoginComponent,
     RegisterComponent,
     FooterComponent,
@@ -66,7 +75,9 @@ import { CountdownModule } from "ng2-date-countdown";
     ImprintComponent,
     ProfileEditComponent,
     ProfileViewComponent,
-    CountdownComponent
+    CountdownComponent,
+    ConfirmEmailComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +93,8 @@ import { CountdownModule } from "ng2-date-countdown";
     BrowserAnimationsModule,
     FormsModule,
     MomentModule,
-    CountdownModule ,
+    CountdownModule,
+    PasswordStrengthMeterModule,
     CustomMaterialModule,
     CustomBootstrapModule,
     CustomFontawesomeModule
