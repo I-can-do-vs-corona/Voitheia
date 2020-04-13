@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(private _httpClient: HttpClient, private _utilitiesService: UtilitiesService, private _navigationService: NavigationService) {}
 
-  getExpiration() {
+  getExpiration(): moment.Moment {
     return moment.utc(localStorage.getItem("validUntil"));
   }
 
@@ -21,11 +21,11 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  getToken(){
+  getToken(): string{
     return localStorage.getItem('token');
   }
 
-  isLoggedIn() {
+  isLoggedIn():boolean{
     var loggedIn;
 
     if (this.getToken() === null) {
@@ -64,7 +64,7 @@ export class AuthService {
 
   handleSuccessfullLogin(authResult: JwtDTO){
     this.setSession(authResult);
-    this._navigationService.navigateTo('myrequests/list');
+    this._navigationService.navigateTo('user/profile');
   }
 
   private setSession(authResult: JwtDTO) {

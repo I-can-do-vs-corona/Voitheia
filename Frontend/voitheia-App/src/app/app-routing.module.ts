@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './components/misc/page-not-found/page-not
 import { ImprintComponent } from './components/terms/imprint/imprint.component';
 import { ProfileViewComponent } from './components/user/profile/profile-view/profile-view.component';
 import { ProfileEditComponent } from './components/user/profile/profile-edit/profile-edit.component';
+import { CountdownComponent } from './components/misc/countdown/countdown.component';
 
 
 const routes: Routes = [
@@ -124,7 +125,15 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '**', component: PageNotFoundComponent }
+  { 
+    path: 'countdown',
+    component: CountdownComponent,
+    data: {title: 'Misc.Countdown'} },
+  { 
+    path: '**',
+    component: PageNotFoundComponent,
+    data: {title: 'Misc.PageNotFound'}
+  }
 ];
 
 @NgModule({

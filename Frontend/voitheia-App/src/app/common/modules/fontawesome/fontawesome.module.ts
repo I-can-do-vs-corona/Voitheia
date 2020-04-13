@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faPaperPlane, faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane, faUser, faPowerOff, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -18,6 +18,6 @@ import { faPaperPlane, faUser, faPowerOff } from '@fortawesome/free-solid-svg-ic
 export class CustomFontawesomeModule {
   constructor(library: FaIconLibrary) {
     // library.addIconPacks(fas);
-    library.addIcons(faPaperPlane, faUser, faPowerOff);
+    library.addIcons(faPaperPlane, faUser, faPowerOff, faEdit, faTrashAlt);
   }
 }

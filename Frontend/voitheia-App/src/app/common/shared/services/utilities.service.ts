@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from './dialog/dialog.service';
 import { DialogIconTypeEnum } from '../../helper/enums';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'

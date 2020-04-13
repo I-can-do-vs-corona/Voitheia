@@ -1,0 +1,23 @@
+@import '../../../../../variables.scss';
+
+:host{
+    .section{
+        .content{
+            margin-bottom:$normal-spacing;
+        }
+
+        #avatar{
+            height:150px;
+
+            img{
+                border-radius: 50%;
+                width: 150px;
+                height: 100%;
+                border: 2px solid $gray-3;
+                background-color: $gray-2;
+            }
+
+            margin-bottom: $dubble-spacing;
+        }
+    }
+}

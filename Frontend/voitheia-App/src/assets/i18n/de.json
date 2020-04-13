@@ -1,91 +1,98 @@
 {
   "General": {
-      "Slogan": "Tu etwas Gutes - Hilf jemandem.",
-      "Buttons":{
-          "Submit": "Absenden",
-          "Next": "Weiter",
-          "Back": "Zurück",
-          "Cancel": "Abbrechen",
-          "Accept": "Annehmen",
-          "Login": "Einloggen",
-          "Register": "Registrieren",
-          "Complete": "Abschließen",
-          "Close": "Schliessen",
-          "Logout": "Abmelden"
-      },
-      "Enums": {
-          "RequestTypeEnum": {
-              "Shopping": "Einkaufen",
-              "Childcare": "Kinderbetreuung",
-              "Medical": "Medizinische Unterstützung",
-              "Petcare": "Haustierbetreuung",
-              "Other": "Anderes"
-          }
-      },
-      "Errors": {
-          "Required": "Feld ist erforderlich."
-      },
-      "Dialogs": {
-          "Titles": {
-              "Error": "Fehler",
-              "Warning": "Warnung",
-              "Info": "Information",
-              "Question": "Frage",
-              "Success": "Erfolg"
-          },
-          "Text": {
-              "Error": "Es ist ein Fehler aufgetreten"
-              
-          }
-      },
-      "Field": {
-        "Label": {
-          "FirstName": "Vorname",
-          "LastName": "Nachname",
-          "Title": "Registrieren",
-          "Phone": "Telefonnummer",
-          "Name": "Name",
-          "Username": "Benutzername",
-          "Email": "E-Mail",
-          "Password": "Passwort",
-          "Street": "Strasse & Hausnummer",
-          "ZipCode": "PLZ",
-          "City": "Ort",
-          "Type": "Ich benötige Unterstützung bei",
-          "Description": "Beschreibung",
-          "Distance": "Entfernung",
-          "Address":"Adresse",
-          "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
+    "DateFormat" : "DD.MM.YYYY HH:mm",
+    "Slogan": "Tu etwas Gutes - Hilf jemandem.",
+    "Buttons":{
+        "Submit": "Absenden",
+        "Next": "Weiter",
+        "Back": "Zurück",
+        "Cancel": "Abbrechen",
+        "Accept": "Annehmen",
+        "Login": "Einloggen",
+        "Register": "Registrieren",
+        "Complete": "Abschließen",
+        "Close": "Schliessen",
+        "Logout": "Abmelden",
+        "Delete": "Löschen"
+    },
+    "Enums": {
+        "RequestTypeEnum": {
+            "Shopping": "Einkaufen",
+            "Childcare": "Kinderbetreuung",
+            "Medical": "Medizinische Unterstützung",
+            "Petcare": "Haustierbetreuung",
+            "Other": "Anderes"
         }
-      },
-      "PageTitles": {
-        "Default": "Voitheia",
-        "Home": "Tu etwas Gutes - Hilf jemandem.",
-        "User": {
-          "Login": "Einloggen",
-          "Register": "Registrieren",
-          "Profile": {
-            "View": "Profil",
-            "Edit": "Profil bearbeiten"
-          }
+    },
+    "Errors": {
+        "Required": "Feld ist erforderlich."
+    },
+    "Dialogs": {
+        "Titles": {
+            "Error": "Fehler",
+            "Warning": "Warnung",
+            "Info": "Information",
+            "Question": "Frage",
+            "Success": "Erfolg"
         },
-        "Terms":{
-          "TermsConditions": "AGBs",
-          "PrivacyPolicy": "Datenschutzerklärung",
-          "Imprint": "Impressum"
-        },
-        "About": {
-          "AboutUs": "Wer wir sind",
-          "Idea": "Die Idee"
-        },
-        "Request": {
-          "Create": "Anfrage erstellen",
-          "List": "Liste der Anfragen"
-        },
-        "MyRequest": {
-          "List": "Liste meiner Anfragen"
+        "Text": {
+            "Error": "Es ist ein Fehler aufgetreten"
+            
         }
+    },
+    "Field": {
+      "Label": {
+        "FirstName": "Vorname",
+        "LastName": "Nachname",
+        "Title": "Registrieren",
+        "Phone": "Telefonnummer",
+        "Name": "Name",
+        "Username": "Benutzername",
+        "Email": "E-Mail",
+        "Password": "Passwort",
+        "RegsiteredSince": "Mitglied seit",
+        "Street": "Strasse & Hausnummer",
+        "ZipCode": "PLZ",
+        "City": "Ort",
+        "Type": "Ich benötige Unterstützung bei",
+        "Description": "Beschreibung",
+        "Distance": "Entfernung",
+        "Address":"Adresse",
+        "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
       }
+    },
+    "PageTitles": {
+      "Default": "Voitheia",
+      "Home": "Tu etwas Gutes - Hilf jemandem.",
+      "User": {
+        "Login": "Einloggen",
+        "Register": "Registrieren",
+        "Profile": {
+          "View": "Profil",
+          "Edit": "Profil bearbeiten"
+        }
+      },
+      "Terms":{
+        "TermsConditions": "AGBs",
+        "PrivacyPolicy": "Datenschutzerklärung",
+        "Imprint": "Impressum"
+      },
+      "About": {
+        "AboutUs": "Wer wir sind",
+        "Idea": "Die Idee"
+      },
+      "Request": {
+        "Create": "Anfrage erstellen",
+        "List": "Liste der Anfragen"
+      },
+      "MyRequest": {
+        "List": "Liste meiner Anfragen"
+      },
+      "Misc": {
+        "PageNotFound": "Webseite nicht gefunden",
+        "Countdown": "Countdown"
+      }
+    }
   },
   "Navigation": {
     "Buttons": {
@@ -117,7 +124,25 @@
     },
     "Profile": {
       "View": {
-        "Title": "Benutzerprofil"
+        "Title": "Benutzerprofil",
+        "Section": {
+          "AccountInformation": {
+            "Title": "Kontoinformation",
+            "SessionValidUntil": "Session gültig bis",
+            "DeleteAccount": "Benutzerkonto löschen"
+          },
+          "UserData": "Benutzerdaten"
+        },
+        "Dialogs": {
+          "Delete": {
+            "Title": "Benutzerkonto wirklich löschen?",
+            "Text": "Bist du sicher, dass du dein Benutzerkonto löschen willst? Alle damit verbundenen Daten werden ebenfalls gelöscht. Deine angenommenen Aufträge werden wieder frei gegeben."
+          },
+          "Deleted": {
+            "Title": "Benutzerkonto wurde gelöscht",
+            "Text": "Dein Benuterkonto wurde erfolgreich gelöscht. Du wirst nun ausgeloggt. Wir hoffen dich in Zukunft wieder als Unterstützer willkommen zu heissen."
+          }
+        }
       },
       "Edit": {
         "Title": "Benutzerprofil bearbeiten"
@@ -174,6 +199,9 @@
       "Service": "Service",
       "Contact": "Kontakt"
     }
+  },
+  "Misc": {
+
   }
 }
 

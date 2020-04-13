@@ -12,20 +12,6 @@ export class DialogService {
 
   constructor(private _dialog: MatDialog, private _translate: TranslateService) { }
 
-  test(){
-    const dialogRef = this._dialog.open(DialogComponent, {
-      width: environment.dialogWidth
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result === "Primary"){
-        alert("Primary");
-      }else if(result === "Secondary"){
-        alert("Secondary");
-      }
-    });
-  }
-
   showDialogOneButton(title: string, content: string, dialogIconType: DialogIconTypeEnum, primaryButtonText: string, primaryButtonCallback: Function = null){
     const dialogRef = this._dialog.open(DialogComponent, {
       width: environment.dialogWidth

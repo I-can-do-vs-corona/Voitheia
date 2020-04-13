@@ -15,6 +15,10 @@ export class UserService {
   }
 
   getUserData() {
-    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'User/GetUser', {withCredentials: false});
+    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'user/getuser', {withCredentials: false});
+  }
+
+  deleteAccount() {
+    return this._httpClient.delete(this._utilitiesService.getAPIUrl() + 'user/Delete', {withCredentials: false});
   }
 }

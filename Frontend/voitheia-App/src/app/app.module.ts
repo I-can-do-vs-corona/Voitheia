@@ -36,6 +36,10 @@ import { CustomBootstrapModule } from './common/modules/bootstrap/bootstrap.modu
 import { CustomFontawesomeModule } from './common/modules/fontawesome/fontawesome.module';
 import { ProfileEditComponent } from './components/user/profile/profile-edit/profile-edit.component';
 import { ProfileViewComponent } from './components/user/profile/profile-view/profile-view.component';
+import { MomentModule } from 'ngx-moment';
+import 'moment/locale/de';
+import { CountdownComponent } from './components/misc/countdown/countdown.component';
+import { CountdownModule } from "ng2-date-countdown";
 
 
 @NgModule({
@@ -61,7 +65,8 @@ import { ProfileViewComponent } from './components/user/profile/profile-view/pro
     PageNotFoundComponent,
     ImprintComponent,
     ProfileEditComponent,
-    ProfileViewComponent
+    ProfileViewComponent,
+    CountdownComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +81,8 @@ import { ProfileViewComponent } from './components/user/profile/profile-view/pro
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    MomentModule,
+    CountdownModule ,
     CustomMaterialModule,
     CustomBootstrapModule,
     CustomFontawesomeModule
