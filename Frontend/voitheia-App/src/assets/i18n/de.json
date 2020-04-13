@@ -171,14 +171,16 @@
     "Texts": {
       "AboutUs": "Wer wir sind",
       "Text1": "Wir sind ein Team aus 9 Entwicklern, Bastlern, kreativen Köpfen und enthusiastischen Weltverbesserern.",
-      "Lukas": "...der im Hintergrund die Fäden zieht",
-      "Andi": "...der im Hinterzimmer aufräumt",
-      "Sebastian": "...der sicherstellt, dass wir immer auf Wolke 7 schweben",
-      "Benedikt": "...der das Ganze nutzbar macht",
-      "Kevin": "...der Allrounder",
-      "Christoph": "...der uns mobil macht",
-      "Helen": "...die uns kritisch über die Schulter schaut",
-      "Sophie": "...die das Ganze mit Leben füllt"
+      "TeamMember": {
+        "Lukas": "...der im Hintergrund die Fäden zieht",
+        "Andi": "...der im Hinterzimmer aufräumt",
+        "Sebastian": "...der sicherstellt, dass wir immer auf Wolke 7 schweben",
+        "Benedikt": "...der das Ganze nutzbar macht",
+        "Kevin": "...der Allrounder",
+        "Christoph": "...der uns mobil macht",
+        "Helen": "...die uns kritisch über die Schulter schaut",
+        "Sophie": "...die das Ganze mit Leben füllt"
+      }
     }
   }
 
