@@ -1,5 +1,6 @@
 ﻿using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 
@@ -8,7 +9,7 @@ namespace ActiveCruzer.DAL.DataContext
     /// <summary>
     /// Context for database connection
     /// </summary>
-    public class ACDatabaseContext : DbContext
+    public class ACDatabaseContext : IdentityDbContext<User>
     {
         /// <summary>
         /// init db context
@@ -26,17 +27,11 @@ namespace ActiveCruzer.DAL.DataContext
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Request>();
-            modelBuilder.Entity<User>();
         }
 
         /// <summary>
         /// database model requests
         /// </summary>
         public Microsoft.EntityFrameworkCore.DbSet<ActiveCruzer.Models.Request> Request { get; set; }
-
-        /// <summary>
-        /// database model for registering a user
-        /// </summary>
-        public Microsoft.EntityFrameworkCore.DbSet<User> Users { get; set; }
     }
 }

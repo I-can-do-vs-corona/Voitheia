@@ -44,12 +44,12 @@ namespace ActiveCruzer.Controllers
         /// <param name="mapper"></param>
         /// <param name="configuration"></param>
         /// <param name="requestBll"></param>
-        public RequestController(IMapper mapper, IConfiguration configuration, IRequestBll requestBll, ACDatabaseContext databaseContext)
+        public RequestController(IMapper mapper, IConfiguration configuration, IRequestBll requestBll, UserBLL userBll)
         {
             _mapper = mapper;
             _requestBll = requestBll;
+            _userBll = userBll;
             _geoCodeBll = new GeoCodeBll(_mapper, configuration);
-            _userBll = new UserBLL(new UserManager(databaseContext),mapper);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace ActiveCruzer.Controllers
 
             return Ok(new GetRequestResponse
             {
-                Request = _mapper.Map<RequestDto>(request)
+                Request = _mapper.Map<MinimalRequestDto>(request)
             });
         }
 
@@ -162,7 +162,7 @@ namespace ActiveCruzer.Controllers
                 try
                 {
                     var userId = GetUserId();
-                    var user = _userBll.GetUserViaId(userId);
+                    var user = _userBll.GetUserViaId(userId).Result;
                     coordinates = new GeoCoordinate(user.Latitude, user.Longitude);
                 }
                 catch (Exception)
@@ -174,7 +174,7 @@ namespace ActiveCruzer.Controllers
             var requests = _requestBll.GetRequestsViaGps(coordinates, amount, metersPerimeter*2);
             var dtoRequests = requests.Select(it =>
             {
-                var dto = _mapper.Map<RequestDto>(it);
+                var dto = _mapper.Map<MinimalRequestDto>(it);
                 dto.DistanceToUser =
                     (int) coordinates.GetDistanceTo(new GeoCoordinate(it.Latitude, it.Longitude));
                 return dto;

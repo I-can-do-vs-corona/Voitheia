@@ -32,7 +32,10 @@
         "MinLength" : "Du musst mindestens {{count}} Zeichen angeben.",
         "MaxLength" : "Du kannst maximal {{count}} Zeichen angeben.",
         "Equal": "Passwörter stimmen nicht überein.",
-        "NotEqual": "Neues Passwort darf nicht das gleiche wei das alte sein."
+        "NotEqual": "Neues Passwort darf nicht das gleiche wei das alte sein.",
+        "PetInsurance": "Hinweis: Bitte frage nur nach Haustierbetreuung, wenn du auch eine Haftpflichtversicherung für dein Haustier hast, die Haustierbetreuung absichert.",
+        "GeneralInsurance": "Hinweis: Bitte frage nur nach Kinderbetreuung, wenn in deiner Haftpflichtversicherung Gefälligkeitsschäden abgedeckt sind.",
+        "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden..."
       }
     },
     "Dialogs": {
@@ -66,11 +69,12 @@
         "Type": "Ich benötige Unterstützung bei",
         "Description": "Beschreibung",
         "Distance": "Entfernung",
-        "Address":"Adresse",
-        "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu.",
         "CurrentPassword": "Aktuelles Password",
         "NewPassword": "Neues Password",
         "NewPasswordRepeat": "Neues Password wiederholen"
+        "Address": "Adresse",
+        "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu.",
+        "Hint": "Wie kann dein(e) Helfer(in) dich kontaktieren? Hinweis: Sobald dein(e) Helfer(in) die Anfrage angenommen hat, bekommt er/sie ausschließlich deine Telefonnummer und deinen Vornamen zu sehen."
       }
     },
     "PageTitles": {
@@ -85,7 +89,7 @@
           "Edit": "Profil bearbeiten"
         }
       },
-      "Terms":{
+      "Terms": {
         "TermsConditions": "AGBs",
         "PrivacyPolicy": "Datenschutzerklärung",
         "Imprint": "Impressum"
@@ -210,10 +214,10 @@
         "ContactInformation": "Kontaktdaten"
       },
       "Dialog": {
-          "Buttons": {
-              "NewRequest": "Neue Anfrage"
-          },
-          "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
+        "Buttons": {
+          "NewRequest": "Neue Anfrage"
+        },
+        "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
       }
     },
     "Details": {
@@ -253,8 +257,30 @@
       "Contact": "Kontakt"
     }
   },
-  "Misc": {
+  "Idea": {
+    "Texts": {
+      "Idea": "Die Idee",
+      "Text1": "Im Rahmen des des #WirvsVirus Hackathons der Bundesregierung im März 2020 haben wir zueinander gefunden – unter ganz besonderen Umständen. Ohne uns einmal persönlich getroffen zu haben, fingen wir an, uns einer besondere Challenge zu widmen: Wie können wir unsere Mitmenschen unterstützen, mit neuen Herausforderungen umzugehen, die Corona uns stellt: Einkaufen, obwohl man einer Risikogruppe angehört? Kinder betreuen und von zuhause unterrichten, und währenddessen das Homeoffice schmeißen? Und dann auch noch mit dem Hund Gassi gehen?",
+      "Text2": "Gleichzeitig gibt es doch so viele, die gerne helfen wollen, und dabei einfach nicht wissen, wie.",
+      "Text3": "Voitheia kommt aus dem Griechischen und bedeutet helfen (original Βοήθεια).",
+      "Vision": "Wir möchten Menschen zusammenbringen, die sich unterstützen und sich gemeinsam diesen Herausforderungen stellen."
+    }
+  },
 
+  "AboutUs": {
+    "Texts": {
+      "AboutUs": "Wer wir sind",
+      "Text1": "Wir sind ein Team aus 9 Entwicklern, Bastlern, kreativen Köpfen und enthusiastischen Weltverbesserern.",
+      "TeamMember": {
+        "Lukas": "...der im Hintergrund die Fäden zieht",
+        "Andi": "...der im Hinterzimmer aufräumt",
+        "Sebastian": "...der sicherstellt, dass wir immer auf Wolke 7 schweben",
+        "Benedikt": "...der das Ganze nutzbar macht",
+        "Kevin": "...der Allrounder",
+        "Christoph": "...der uns mobil macht",
+        "Helen": "...die uns kritisch über die Schulter schaut",
+        "Sophie": "...die das Ganze mit Leben füllt"
+      }
+    }
   }
 }
-
