@@ -294,11 +294,19 @@ namespace ActiveCruzer.Controllers
             };
         }
 
+        /// <summary>
+        /// change email & username
+        /// </summary>
+        /// <param name="setNewEmailDto"></param>
+        /// <returns></returns>
+        /// <response code="200">Email was updated</response>
+        /// <response code="401">The logged in user is not updated user</response>
+        /// <response code="400">An invalid model was provided</response>
         [Authorize]
         [HttpPut]
         [Route("SetNewEmail")]
         [Produces("application/json")]
-        public async Task<IActionResult> SetNewEmail(SetNewEmailDto setNewEmailDto)
+        public async Task<IActionResult> ChangeEmail(SetNewEmailDto setNewEmailDto)
         {
             if (ModelState.IsValid)
             {
