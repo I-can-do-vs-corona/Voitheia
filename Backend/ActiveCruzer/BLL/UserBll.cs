@@ -36,7 +36,8 @@ namespace ActiveCruzer.BLL
             var user = _mapper.Map<User>(credentials);
             user.Longitude = validatedAddressCoordinates.Longitude;
             user.Latitude = validatedAddressCoordinates.Latitude;
-            user.LastLogin = DateTime.Today;
+            user.LastLogin = DateTime.UtcNow;
+            user.CreatedOn = DateTime.UtcNow;
             return await _userManager.CreateAsync(user, credentials.Password);
         }
 
@@ -49,6 +50,11 @@ namespace ActiveCruzer.BLL
             }
 
             var passwordCorrect = await _userManager.CheckPasswordAsync(user, credentials.Password);
+            if(passwordCorrect == true)
+            {
+                user.LastLogin = DateTime.UtcNow;
+                await _userManager.UpdateAsync(user);
+            }
 
             return passwordCorrect ? user : null;
         }

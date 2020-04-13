@@ -103,7 +103,11 @@ namespace ActiveCruzer.AutoMapper
                 .ForMember(dest => dest.LastName,
                     opts => opts.MapFrom(src => src.LastName))
                 .ForMember(dest => dest.Zip,
-                    opts => opts.MapFrom(src => src.Zip));
+                    opts => opts.MapFrom(src => src.Zip))
+                .ForMember(dest => dest.CreatedOn,
+                    opts => opts.MapFrom(src => src.CreatedOn))
+                .ForMember(dest => dest.EmailConfirmed,
+                    opts => opts.MapFrom(src => src.EmailConfirmed));
 
         }
     }
