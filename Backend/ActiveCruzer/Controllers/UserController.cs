@@ -131,26 +131,21 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
-        /// confirm email with token and email
+        /// confirm email with email and token
         /// </summary>
-        /// <param name="emailToken"></param>
-        /// <param name="email"></param>
+        /// <param name="confirmationEmailDto"></param>
         /// <returns></returns>
         /// <response code="200"> returns if email was sucessfuly confirmed</response>
         /// <response code="401"> returns if the link or e-mail is not valid</response>
         /// <response code="400"> returns if the email was not able to be confirmed</response>
         [HttpPost]
         [Route("ConfirmEmail")]
-        public async Task<IActionResult> ConfirmEmail([FromBody] string emailToken, string email)
+        public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmationEmailTokenDto confirmationEmailTokenDto)
         {
-            if(emailToken == null | email == null)
-            {
-                return Unauthorized("The link is not valid.");
-            }
-            var user = await _userBll.GetUser(email);
+            var user = await _userBll.GetUser(confirmationEmailTokenDto.Email);
             if(user != null)
             {
-                var result = await _userManager.ConfirmEmailAsync(user, emailToken);
+                var result = await _userManager.ConfirmEmailAsync(user, confirmationEmailTokenDto.EmailToken);
                 if (result.Succeeded)
                 {
                     return Ok("E-Mail successfuly confirmed.");
