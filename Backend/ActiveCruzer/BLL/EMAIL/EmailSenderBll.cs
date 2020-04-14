@@ -114,7 +114,6 @@ namespace ActiveCruzer.BLL
                     client.EnableSsl = true;
                     client.Credentials = credentials;
                     client.Send(message);
-                    Trace.WriteLine("Email sent!");
                 };
             }
             catch (Exception e)
@@ -154,17 +153,16 @@ namespace ActiveCruzer.BLL
                 message.To.Add(new MailAddress(email));
 
                 // Smtp client
-                var client = new SmtpClient()
+                using (var client = new SmtpClient())
                 {
-                    Port = _emailconfiguration.MailPort,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = _emailconfiguration.MailServer,
-                    EnableSsl = true,
-                    Credentials = credentials
+                    client.Port = _emailconfiguration.MailPort;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.UseDefaultCredentials = false;
+                    client.Host = _emailconfiguration.MailServer;
+                    client.EnableSsl = true;
+                    client.Credentials = credentials;
+                    client.Send(message);
                 };
-
-                client.Send(message);
             }
             catch (Exception e)
             {
@@ -202,17 +200,16 @@ namespace ActiveCruzer.BLL
                 message.To.Add(new MailAddress(email));
 
                 // Smtp client
-                var client = new SmtpClient()
+                using (var client = new SmtpClient())
                 {
-                    Port = _emailconfiguration.MailPort,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = _emailconfiguration.MailServer,
-                    EnableSsl = true,
-                    Credentials = credentials
+                    client.Port = _emailconfiguration.MailPort;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.UseDefaultCredentials = false;
+                    client.Host = _emailconfiguration.MailServer;
+                    client.EnableSsl = true;
+                    client.Credentials = credentials;
+                    client.Send(message);
                 };
-
-                client.Send(message);
             }
             catch (Exception e)
             {
