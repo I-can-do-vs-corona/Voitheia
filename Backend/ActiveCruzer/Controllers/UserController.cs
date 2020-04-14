@@ -109,7 +109,7 @@ namespace ActiveCruzer.Controllers
                         var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         var queryParams = new Dictionary<string, string>()
                         {
-                            {"emailToken", emailToken },
+                            {"token", emailToken },
                             {"email", credentials.Email }
                         };
                         var callbackUri = QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
@@ -401,7 +401,7 @@ namespace ActiveCruzer.Controllers
                 //var confirmationLink = "https://voitheia.org/user/confirm-email?token=" + emailToken + "&email=" + user.Email;
                 var queryParams = new Dictionary<string, string>()
                         {
-                            {"emailToken", emailToken },
+                            {"token", emailToken },
                             {"email", confirmationEmailDto.Email }
                         };
                 var confirmationLink = QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
