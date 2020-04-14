@@ -12,9 +12,9 @@
     <None Remove="DAL\Repositories\**" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BLL\EMAIL\TEMPLATES\Template-DeleteUser\.vs\VSWorkspaceState.json" />
-    <Content Include="BLL\EMAIL\TEMPLATES\Template-EmailConfirm\.vs\VSWorkspaceState.json" />
-    <Content Include="BLL\EMAIL\TEMPLATES\Template-PasswordReset\.vs\VSWorkspaceState.json" />
+    <Content Include="wwwroot\TEMPLATES\Template-DeleteUser\.vs\VSWorkspaceState.json" />
+    <Content Include="wwwroot\TEMPLATES\Template-EmailConfirm\.vs\VSWorkspaceState.json" />
+    <Content Include="wwwroot\TEMPLATES\Template-PasswordReset\.vs\VSWorkspaceState.json" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
@@ -42,16 +42,19 @@
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BLL\EMAIL\TEMPLATES\Template-DeleteUser\.vs\slnx.sqlite" />
-    <None Include="BLL\EMAIL\TEMPLATES\Template-DeleteUser\.vs\Voitheia-Kontolöschen Email\config\applicationhost.config" />
-    <None Include="BLL\EMAIL\TEMPLATES\Template-EmailConfirm\.vs\slnx.sqlite" />
-    <None Include="BLL\EMAIL\TEMPLATES\Template-EmailConfirm\.vs\Voitheia_Bestätigungsmail\config\applicationhost.config" />
-    <None Include="BLL\EMAIL\TEMPLATES\Template-PasswordReset\.vs\slnx.sqlite" />
-    <None Include="BLL\EMAIL\TEMPLATES\Template-PasswordReset\.vs\Voitheia-Passwortvergessen Email\config\applicationhost.config" />
+    <None Include="wwwroot\TEMPLATES\Template-DeleteUser\.vs\slnx.sqlite" />
+    <None Include="wwwroot\TEMPLATES\Template-DeleteUser\.vs\Voitheia-Kontolöschen Email\config\applicationhost.config" />
+    <None Include="wwwroot\TEMPLATES\Template-EmailConfirm\.vs\slnx.sqlite" />
+    <None Include="wwwroot\TEMPLATES\Template-EmailConfirm\.vs\Voitheia_Bestätigungsmail\config\applicationhost.config" />
+    <None Include="wwwroot\TEMPLATES\Template-PasswordReset\.vs\slnx.sqlite" />
+    <None Include="wwwroot\TEMPLATES\Template-PasswordReset\.vs\Voitheia-Passwortvergessen Email\config\applicationhost.config" />
+    <None Include="wwwroot\TEMPLATES\Template-DeleteUser\index.html" />
+    <None Include="wwwroot\TEMPLATES\Template-EmailConfirm\index.html" />
+    <None Include="wwwroot\TEMPLATES\Template-PasswordReset\index.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\EMAIL\TEMPLATES\Template-DeleteUser\.vs\Voitheia-Kontolöschen Email\v16\" />
-    <Folder Include="BLL\EMAIL\TEMPLATES\Template-EmailConfirm\.vs\Voitheia_Bestätigungsmail\v16\" />
-    <Folder Include="BLL\EMAIL\TEMPLATES\Template-PasswordReset\.vs\Voitheia-Passwortvergessen Email\v16\" />
+    <Folder Include="wwwroot\TEMPLATES\Template-DeleteUser\.vs\Voitheia-Kontolöschen Email\v16\" />
+    <Folder Include="wwwroot\TEMPLATES\Template-EmailConfirm\.vs\Voitheia_Bestätigungsmail\v16\" />
+    <Folder Include="wwwroot\TEMPLATES\Template-PasswordReset\.vs\Voitheia-Passwortvergessen Email\v16\" />
   </ItemGroup>
 </Project>

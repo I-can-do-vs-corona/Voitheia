@@ -35,33 +35,21 @@ namespace ActiveCruzer.BLL
             _emailconfiguration.Sender = "info@voitheia.org";
             _emailconfiguration.Password = configuration["EmailPasswort"];
             _env = env;
-            confirmationTemplate = _env.ContentRootPath
-                + Path.DirectorySeparatorChar.ToString()
-                + "BLL"
-                + Path.DirectorySeparatorChar.ToString()
-                + "EMAIL"
+            confirmationTemplate = _env.WebRootPath
                 + Path.DirectorySeparatorChar.ToString()
                 + "TEMPLATES"
                 + Path.DirectorySeparatorChar.ToString()
                 + "Template-EmailConfirm"
                 + Path.DirectorySeparatorChar.ToString()
                 + "index.html";
-            passwordResetTemplate = _env.ContentRootPath
-                + Path.DirectorySeparatorChar.ToString()
-                + "BLL"
-                + Path.DirectorySeparatorChar.ToString()
-                + "EMAIL"
+            passwordResetTemplate = _env.WebRootPath
                 + Path.DirectorySeparatorChar.ToString()
                 + "TEMPLATES"
                 + Path.DirectorySeparatorChar.ToString()
                 + "Template-PasswordReset"
                 + Path.DirectorySeparatorChar.ToString()
                 + "index.html";
-            deleteUserTemplate = _env.ContentRootPath
-                + Path.DirectorySeparatorChar.ToString()
-                + "BLL"
-                + Path.DirectorySeparatorChar.ToString()
-                + "EMAIL"
+            deleteUserTemplate = _env.WebRootPath
                 + Path.DirectorySeparatorChar.ToString()
                 + "TEMPLATES"
                 + Path.DirectorySeparatorChar.ToString()
