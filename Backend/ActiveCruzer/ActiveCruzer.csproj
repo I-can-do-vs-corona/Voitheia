@@ -12,6 +12,18 @@
     <None Remove="DAL\Repositories\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessen Email\.vs\VSWorkspaceState.json" />
+    <Content Include="BLL\EMAIL\TEMPLATES\Voitheia_Bestaetigungsmail\.vs\VSWorkspaceState.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Kontoloeschen Email\.vs\slnx.sqlite" />
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Kontoloeschen Email\.vs\Voitheia-Kontolöschen Email\config\applicationhost.config" />
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessen Email\.vs\slnx.sqlite" />
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessen Email\.vs\Voitheia-Passwortvergessen Email\config\applicationhost.config" />
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia_Bestaetigungsmail\.vs\slnx.sqlite" />
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia_Bestaetigungsmail\.vs\Voitheia_Bestätigungsmail\config\applicationhost.config" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="BingMapsRESTToolkit" Version="1.1.4" />
@@ -26,6 +38,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MimeKit" Version="2.6.0" />
     <PackageReference Include="MySql.Data" Version="8.0.19" />
     <PackageReference Include="NCrontab" Version="3.3.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
@@ -33,5 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BLL\EMAIL\TEMPLATES\Voitheia-Kontoloeschen Email\.vs\Voitheia-Kontolöschen Email\v16\" />
+    <Folder Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessen Email\.vs\Voitheia-Passwortvergessen Email\v16\" />
+    <Folder Include="BLL\EMAIL\TEMPLATES\Voitheia_Bestaetigungsmail\.vs\Voitheia_Bestätigungsmail\v16\" />
   </ItemGroup>
 </Project>
