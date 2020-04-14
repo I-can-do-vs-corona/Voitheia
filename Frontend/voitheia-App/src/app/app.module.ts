@@ -42,8 +42,12 @@ import { CountdownModule } from "ng2-date-countdown";
 import { ConfirmEmailComponent } from './components/user/confirm-email/confirm-email.component';
 import { TokenInterceptor } from './common/helper/token.interceptor';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
-import { EqualValidator, NotEqualValidator, GreaterThanValidator, RequireFieldValidator, RequireFieldIfSetValidator } from './common/helper/formValidation';
 import { ChangePasswordComponent } from './components/user/change-password/change-password.component';
+import { EqualValidator } from './common/helper/formValidators/equalValidator';
+import { NotEqualValidator } from './common/helper/formValidators/notEqualValidator';
+import { RequireFieldValidator } from './common/helper/formValidators/requireFieldValidator';
+import { GreaterThanValidator } from './common/helper/formValidators/greaterThanValidator';
+import { RequireFieldIfSetValidator } from './common/helper/formValidators/requireFieldIfSetValidator';
 
 
 @NgModule({

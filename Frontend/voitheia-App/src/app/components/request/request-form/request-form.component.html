@@ -19,13 +19,13 @@
                         </mat-radio-group>
                         <mat-error *ngIf="typeInput.invalid">
                           <mat-error *ngIf="typeInput.errors.required">
-                            <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                           </mat-error>
                         </mat-error>
                       </div>
                     </div>
-                    <div><span style="color: red" [innerHTML]="'General.Errors.PetInsurance' | translate"></span></div>
-                    <div><span style="color: red" [innerHTML]="'General.Errors.GeneralInsurance' | translate"></span></div>
+                    <div><span style="color: red" [innerHTML]="'General.Input.Error.PetInsurance' | translate"></span></div>
+                    <div><span style="color: red" [innerHTML]="'General.Input.Error.GeneralInsurance' | translate"></span></div>
                     <div class="col-md">
                       <div class="form-group">
                         <mat-form-field>
@@ -37,11 +37,11 @@
                         </mat-form-field>
                         <mat-error *ngIf="textareaInput.invalid">
                           <mat-error *ngIf="textareaInput.errors.required">
-                            <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                           </mat-error>
                         </mat-error>
                       </div>
-                      <div><span style="color: grey" [innerHTML]="'General.Errors.Details' | translate"></span></div>
+                      <div><span style="color: grey" [innerHTML]="'General.Input.Error.Details' | translate"></span></div>
                     </div>
                   </div>
                     <div>
@@ -66,7 +66,7 @@
                         </mat-form-field>
                         <mat-error *ngIf="firstnameInput.invalid">
                           <mat-error *ngIf="firstnameInput.errors.required">
-                            <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                           </mat-error>
                         </mat-error>
                       </div>
@@ -82,7 +82,7 @@
                         </mat-form-field>
                         <mat-error *ngIf="lastnameInput.invalid">
                           <mat-error *ngIf="lastnameInput.errors.required">
-                            <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                           </mat-error>
                         </mat-error>
                       </div>
@@ -105,7 +105,7 @@
                         </mat-form-field>
                         <mat-error *ngIf="phoneInput.invalid">
                             <mat-error *ngIf="phoneInput.errors.required">
-                                <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                                <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                             </mat-error>
                         </mat-error>
                     </div>
@@ -117,7 +117,7 @@
                         </mat-form-field>
                         <mat-error *ngIf="addressInput.invalid">
                             <mat-error *ngIf="addressInput.errors.required">
-                                <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                                <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                             </mat-error>
                         </mat-error>
                     </div>
@@ -130,7 +130,7 @@
                                 </mat-form-field>
                                 <mat-error *ngIf="zipcodeInput.invalid">
                                     <mat-error *ngIf="zipcodeInput.errors.required">
-                                        <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                                        <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                                     </mat-error>
                                 </mat-error>
                             </div>
@@ -145,14 +145,14 @@
                                 </mat-form-field>
                                 <mat-error *ngIf="cityInput.invalid">
                                     <mat-error *ngIf="cityInput.errors.required">
-                                        <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                                        <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                                     </mat-error>
                                 </mat-error>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span style="color: black" [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
+                        <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
                     </div>
         
                     <div>

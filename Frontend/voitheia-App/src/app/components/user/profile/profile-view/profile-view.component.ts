@@ -4,7 +4,7 @@ import { UtilitiesService } from 'src/app/common/shared/services/utilities.servi
 import { UserDTO } from 'src/app/common/models/userDTO';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'src/app/common/shared/services/dialog/dialog.service';
-import { DialogIconTypeEnum } from 'src/app/common/helper/enums';
+import { DialogIconTypeEnum } from 'src/app/common/helper/enums/dialog-icon-type.enum';
 import { AuthService } from 'src/app/common/shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
