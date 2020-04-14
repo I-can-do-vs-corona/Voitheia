@@ -1,6 +1,7 @@
 using System;
 using System.Configuration;
 using System.Security.Claims;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using ActiveCruzer.BLL;
@@ -71,7 +72,8 @@ namespace ActiveCruzer.Start
 
             services.InitJwt(_configuration);
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
+
             services.AddAutoMapper(GetType().Assembly);
 
             services.AddCors(o => o.AddPolicy(MyAllowSpecificOrigins, builder =>
