@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MimeKit;
 using MimeKit.Text;
+using MySql.Data.MySqlClient.Memcached;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -42,7 +43,7 @@ namespace ActiveCruzer.BLL
                 + Path.DirectorySeparatorChar.ToString()
                 + "TEMPLATES"
                 + Path.DirectorySeparatorChar.ToString()
-                + "Voitheia_Bestaetigungsmail"
+                + "Template-EmailConfirm"
                 + Path.DirectorySeparatorChar.ToString()
                 + "index.html";
             passwordResetTemplate = _env.ContentRootPath
@@ -53,7 +54,7 @@ namespace ActiveCruzer.BLL
                 + Path.DirectorySeparatorChar.ToString()
                 + "TEMPLATES"
                 + Path.DirectorySeparatorChar.ToString()
-                + "Voitheia-Passwortvergessenmail"
+                + "Template-PasswordReset"
                 + Path.DirectorySeparatorChar.ToString()
                 + "index.html";
             deleteUserTemplate = _env.ContentRootPath
@@ -64,7 +65,7 @@ namespace ActiveCruzer.BLL
                 + Path.DirectorySeparatorChar.ToString()
                 + "TEMPLATES"
                 + Path.DirectorySeparatorChar.ToString()
-                + "Voitheia-Kontoloeschenmail"
+                + "Template-DeleteUser"
                 + Path.DirectorySeparatorChar.ToString()
                 + "index.html";
         }
@@ -104,17 +105,17 @@ namespace ActiveCruzer.BLL
                 message.To.Add(new MailAddress(email));
 
                 // Smtp client
-                var client = new SmtpClient()
+                using(var client = new SmtpClient())
                 {
-                    Port = _emailconfiguration.MailPort,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Host = _emailconfiguration.MailServer,
-                    EnableSsl = true,
-                    Credentials = credentials
+                    client.Port = _emailconfiguration.MailPort;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.UseDefaultCredentials = false;
+                    client.Host = _emailconfiguration.MailServer;
+                    client.EnableSsl = true;
+                    client.Credentials = credentials;
+                    client.Send(message);
+                    Trace.WriteLine("Email sent!");
                 };
-
-                client.Send(message);
             }
             catch (Exception e)
             {
@@ -172,7 +173,6 @@ namespace ActiveCruzer.BLL
 
             return Task.CompletedTask;
         }
-
         public Task SendDeleteEmailAsync(string firstname, string email)
         {
             try
