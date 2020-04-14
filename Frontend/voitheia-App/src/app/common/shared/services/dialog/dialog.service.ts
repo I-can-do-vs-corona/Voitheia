@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DialogComponent } from './dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
-import { DialogIconTypeEnum } from 'src/app/common/helper/enums';
+import { DialogIconTypeEnum } from 'src/app/common/helper/enums/dialog-icon-type.enum';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({

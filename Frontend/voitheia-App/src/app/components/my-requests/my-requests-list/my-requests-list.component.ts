@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestResponseDTO } from 'src/app/common/models/requestResponseDTO';
 import { MatTableDataSource } from '@angular/material/table';
-import { RequestTypeEnum, DialogIconTypeEnum } from 'src/app/common/helper/enums';
+import { DialogIconTypeEnum } from 'src/app/common/helper/enums/dialog-icon-type.enum';
 import { MyRequestsService } from '../my-requests.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MyRequestsViewComponent } from '../my-requests-view/my-requests-view.component';
-import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { environment } from 'src/environments/environment';
 import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
 import { DialogService } from 'src/app/common/shared/services/dialog/dialog.service';
 import { TranslateService } from '@ngx-translate/core';
+import { RequestTypeEnum } from 'src/app/common/helper/enums/request-type.enum';
 
 @Component({
   selector: 'app-my-requests-list',

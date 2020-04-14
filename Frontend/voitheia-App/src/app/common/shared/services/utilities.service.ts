@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from './dialog/dialog.service';
-import { DialogIconTypeEnum } from '../../helper/enums';
+import { DialogIconTypeEnum } from '../../helper/enums/dialog-icon-type.enum';
 import { AuthService } from './auth.service';
 
 @Injectable({

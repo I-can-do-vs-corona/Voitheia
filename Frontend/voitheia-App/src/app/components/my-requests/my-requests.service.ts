@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
-import { RequestPatchStatusEnum } from 'src/app/common/helper/enums';
+import { RequestPatchStatusEnum } from 'src/app/common/helper/enums/request-patch-status.enum';
 
 @Injectable({
   providedIn: 'root'
