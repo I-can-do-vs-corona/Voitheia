@@ -22,6 +22,9 @@ export class ConfirmEmailComponent implements OnInit {
     this.confirmEmail = new ConfirmEmailDTO();
     
     this.confirmEmail.emailToken = this._navigationService.getRouteParameter("token");
+    if(this.confirmEmail.emailToken === ""){
+      this.confirmEmail.emailToken = this._navigationService.getRouteParameter("emailToken");
+    }
 
     this.confirmEmail.email = this._navigationService.getRouteParameter("email");
 
