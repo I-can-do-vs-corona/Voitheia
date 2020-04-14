@@ -197,7 +197,7 @@ namespace ActiveCruzer.Controllers
                             {"token",token },
                             {"email", forgotPasswordDto.email }
                         };
-                var callbackUri = QueryHelpers.AddQueryString("https://voitheia.org/reset-password", queryParams);
+                var callbackUri = QueryHelpers.AddQueryString("https://voitheia.org/user/reset-password", queryParams);
                 await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
                 return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
             }

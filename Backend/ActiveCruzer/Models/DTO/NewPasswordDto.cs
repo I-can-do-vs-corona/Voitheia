@@ -17,7 +17,7 @@ namespace ActiveCruzer.Models.DTO
         public string newPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("newPassword", ErrorMessage = "The password and confirmation password do not match.")]
         public string confirmNewPassword { get; set; }
     }
 }
