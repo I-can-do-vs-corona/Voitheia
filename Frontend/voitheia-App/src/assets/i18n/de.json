@@ -1,36 +1,36 @@
 {
   "General": {
-    "DateFormat" : "DD.MM.YYYY HH:mm",
+    "DateFormat": "DD.MM.YYYY HH:mm",
     "Slogan": "Tu etwas Gutes - Hilf jemandem.",
-    "Buttons":{
-        "Submit": "Absenden",
-        "Next": "Weiter",
-        "Back": "Zurück",
-        "Cancel": "Abbrechen",
-        "Accept": "Annehmen",
-        "Login": "Einloggen",
-        "Register": "Registrieren",
-        "Complete": "Abschließen",
-        "Close": "Schliessen",
-        "Logout": "Abmelden",
-        "Delete": "Löschen"
+    "Buttons": {
+      "Submit": "Absenden",
+      "Next": "Weiter",
+      "Back": "Zurück",
+      "Cancel": "Abbrechen",
+      "Accept": "Annehmen",
+      "Login": "Einloggen",
+      "Register": "Registrieren",
+      "Complete": "Abschließen",
+      "Close": "Schliessen",
+      "Logout": "Abmelden",
+      "Delete": "Löschen"
     },
     "Enums": {
-        "RequestTypeEnum": {
-            "Shopping": "Einkaufen",
-            "Childcare": "Kinderbetreuung",
-            "Medical": "Medizinische Unterstützung",
-            "Petcare": "Haustierbetreuung",
-            "Other": "Anderes"
-        }
+      "RequestTypeEnum": {
+        "Shopping": "Einkaufen",
+        "Childcare": "Kinderbetreuung",
+        "Medical": "Medizinische Unterstützung",
+        "Petcare": "Haustierbetreuung",
+        "Other": "Anderes"
+      }
     },
     "Input": {
       "Error": {
         "Required": "Feld ist erforderlich.",
         "Email": "Eingabe ist keine gültige E-mail adresse.",
         "PasswordPattern": "Mindestens ein kleiner Buchstabe, ein grosser Buchstabe, eine Zahl und ein spezial Zeichen.",
-        "MinLength" : "Du musst mindestens {{count}} Zeichen angeben.",
-        "MaxLength" : "Du kannst maximal {{count}} Zeichen angeben.",
+        "MinLength": "Du musst mindestens {{count}} Zeichen angeben.",
+        "MaxLength": "Du kannst maximal {{count}} Zeichen angeben.",
         "Equal": "Passwörter stimmen nicht überein.",
         "NotEqual": "Neues Passwort darf nicht das gleiche wei das alte sein.",
         "PetInsurance": "Hinweis: Bitte frage nur nach Haustierbetreuung, wenn du auch eine Haftpflichtversicherung für dein Haustier hast, die Haustierbetreuung absichert.",
@@ -39,17 +39,17 @@
       }
     },
     "Dialogs": {
-        "Titles": {
-            "Error": "Fehler",
-            "Warning": "Warnung",
-            "Info": "Information",
-            "Question": "Frage",
-            "Success": "Erfolg"
-        },
-        "Text": {
-            "Error": "Es ist ein Fehler aufgetreten"
-            
-        }
+      "Titles": {
+        "Error": "Fehler",
+        "Warning": "Warnung",
+        "Info": "Information",
+        "Question": "Frage",
+        "Success": "Erfolg"
+      },
+      "Text": {
+        "Error": "Es ist ein Fehler aufgetreten"
+
+      }
     },
     "Field": {
       "Label": {
@@ -247,7 +247,7 @@
     "Links": {
       "Idea": "Die Idee",
       "AboutUs": "Wer wir sind",
-      "Terms": "AGB",
+      "Terms": "Nutzungsbedingungen",
       "PrivacyPolicy": "Datenschutz",
       "Imprint": "Impressum"
     },
@@ -282,5 +282,74 @@
         "Sophie": "...die das Ganze mit Leben füllt"
       }
     }
+  },
+
+  "Imprint": {
+    "Imprint": "Impressum",
+    "LegalRemark": "Informationspflicht laut § 5 TMG.",
+    "Operator": "Betreiber von Voitheia ist"
+  },
+
+  "Terms": {
+    "Terms": "Nutzungsbedingungen für Voitheia",
+    "IntroductionTitle": "1. Einleitung",
+    "Introduction": {
+      "Purpose": "1.1. Nutzer von Voitheia und Nutzungszweck",
+      "PurposeText": "Nutzer dürfen die Funktionen dieser Webseite („Voitheia“) ausschließlich als Privatperson nutzen. Dafür gelten die nachfolgenden Bestimmungen: Voitheia darf durch jede registrierte natürliche Person („Nutzer“, konkret sowohl Helfer als auch Anfragenede) zu privaten Zwecken unentgeltlich genutzt werden. Ein Anspruch auf Nutzung besteht nicht. Der Betreiber von Voitheia ist berechtigt, die Registrierung einzelner Nutzer ohne Angabe von Gründen zurückzuweisen. Bitte finden Sie weitere Details zum Betreiber auf",
+      "Registration": "1.2. Registrierung",
+      "RegistrationText": "Die Nutzung von Voitheia setzt die Registrierung des Nutzers mit Anlegung eines Nutzeraccounts voraus. Bei der Registrierung erhält der Nutzer eine Bestätigungsaufforderung per Mail. Der Account kann erst nach erfolgter Bestätigung (Verifizierung)  genutzt werden. Der Nutzer hat die Daten für den Nutzeraccount vollständig und korrekt anzugeben sowie stets aktuell zu halten. Für den Umgang mit diesen Daten gelten die auch die Bestimmungen von ",
+      "Function": "1.3. Funktion und Zweck von Voitheia",
+      "FunctionText": "Voitheia dient dazu, im ausschließlich privaten und nicht gewerblichen Kontext, Kontakte für Gefälligkeiten zu vermitteln („Nachbarschaftshilfe“). Konkreter können Unterstützungsleistungen unentgeltlich von Unterstützungsbedürftigen (Anfragern) angefragt werden, die dann von freiwilligen Helfern (Helfern) angenommen und ausgeführt werden. Im Weiteren werden die Funktionen de Weibseite erst aus Anfrager, und anschließend aus Helfersicht beschrieben. Anfrager können aus einer Auswahl verschiedener Unterstützungsangebote eines oder mehrere auswählen. Angebote können beispielsweise Einkaufen, Wegbegleitung zum Arzt oder Rezeptabholung in Apotheken,  Kinderbetreuung oder Haustierbetreuung sein. Zusammen mit dieser Anfrage gibt der Anfrager seine persönlichen Daten, wie Adresse und Telefonnummer an. Wenn die Anfrage nicht innerhalb von fünf Tagen angenommen wird, wird sie als nicht mehr relevant angesehen und automatisch gelöscht. Helfer müssen sich im ersten Schritt registrieren. Sobald ein Nutzerprofil angelegt ist, können sie in einer Übersicht die Anfrageangebote aus ihrer Umgebung, sortiert nach Entfernung, sehen. Der Helfer sieht vom Anfrager dabei  nur Vorname, Anfragetyp und Entfernung in Km. Erst nach Annahme einer Anfrage kann der Helfer die Telefonnummer des Anfragers sehen. Weitre Daten, wie Nachname oder Adresse, kann er weiterhin nicht sehen. Der Helfer kann den Anfrager mit Hilfe der Telefonnummer kontaktieren, um Details der Anfrage zu klären. Nach Abschluss der Unterstützungsleistung, kann der Helfer die Anfrage in seinem Profil als abgeschlossen markieren."
+    },
+    "Usage": "2. Nutzung von Voitheia",
+    "UsageText": "Jeder Nutzer kann die Nutzung von Voitheia jederzeit beenden, indem er sein Nutzerprofil löscht. Der Betreiber kann einen Nutzer jederzeit sperren oder die Nutzungsmöglichkeit endgültig entziehen, wenn ein Nutzer Voitheia rechtswidrig, insbesondere zu gewerblichen Zwecken oder nutzt, um Anfragern Schaden zuzufügen oder Voitheia in sonstiger Weise rechtswidrig, in anstößiger Weise oder in einer Form nutzt, die zu Beschwerden anderer Nutzer oder Dritter führt.",
+
+    "UserObligationsTitle": "3. Nutzerpflichten",
+    "UserObligations": {
+      "Confidentiality": "3.1 Vertraulichkeit",
+      "ConfidentialityText": "Nutzer dürfen Inhalte von Voitheia nur für sich privat verwenden und personenbezogene Daten von Nutzern, insbesondere Anfragern nicht weiterleiten oder veröffentlichen, etwa in sozialen Netzwerken oder auf andere Art und Weise. Ebenso ist eine weitergehende Verarbeitung personenbezogener Daten die über die Zweckerfüllung von Voitheia hinausgeht, untersagt. Daten und Informationen, die Nutzer insbesondere von Anfragern zur Hilfeleistung erhalten sind streng vertraulich zu behandeln und dürfen ausschließlich zum Zweck der unmittelbaren Hilfe für Anfagende genutzt werden, soweit dies für die Hilfeleistung erforderlich ist. Gern dürfen Nutzer jedoch für Voitheia werben, darauf aufmerksam machen (z.B. in sozialen Medien) oder von Ihren Webseiten hierauf verlinken.",
+      "Deficiencies": "3.2. Mitteilung von Mängeln",
+      "DeficienciesText": "Der Nutzer teilt Störungen bei der Nutzung von Voitheia unverzüglich an die unter Kundensupport angegebene Kontaktstelle mit.",
+      "LawfulUse": "3.3. Rechtmäßige Nutzung",
+      "LawfulUseText": "Der Nutzer ist verpflichtet, Voitheia nur rechtmäßig nach Maßgabe dieser Nutzungsbestimmungen und in Übereinstimmung mit dem anwendbaren Recht zu nutzen. "
+    },
+
+    "Transfer": "4. Übertragungs- und Verwertungsverbot",
+    "TransferText": "Es ist nicht gestattet, Voitheia selbst oder für Dritte entgeltlich oder unentgeltlich zu überlassen oder zu nutzen, Daten oder Funktionen hieraus zu veröffentlichen, zu lizenzieren, zu verkaufen oder anderweitig kommerziell zu nutzen oder zu verwerten.",
+
+    "UserContent": "5. Inhalte von Nutzern",
+    "UserContentText": "Die in Voitheia von Nutzern veröffentlichten Inhalte werden vom Betreiber grundsätzlich nicht geprüft und stellen nicht die Meinung des Betreibers dar. Der Betreiber behält sich aber vor, soweit Hinweise auf Missbrauch oder rechtswidrige Inhalte vorliegen, solche Inhalte zu prüfen und ggf. zu löschen. Mit der Veröffentlichung der Daten in Voitheia erklärt der Nutzer, dass diese frei von Rechten Dritter sind und räumt dem Betreiber hieran ein kostenloses, unbeschränktes einfaches Nutzungsrecht zum in diesen Nutzungsbedingungen beschriebenen Zweck ein.",
+
+    "WarrantyTitle": "6. Gewährleistung",
+    "Warranty": {
+      "Provision": "6.1 Kostenlose Bereitstellung und Ausschluss von Gewährleistungsrechten",
+      "ProvisionText": "Voitheia wird unentgeltlich und „wie sie ist“ („as-is“) zur Verfügung gestellt. Insbesondere wird keine Verfügbarkeits¬zusage übernommen. Gewährleistungsrechte des Betreibers sind im gesetzlich zulässigen Rahmen ausgeschlossen. Dies gilt auch für etwaigen Support. ",
+      "Correctnes": "6.2. Richtigkeit von Informationen",
+      "CorrectnesText": "Der Betreiber übernimmt keine Verantwortung für Vollständigkeit und Richtigkeit der mit Voitheia bereitgestellten Funktionen und Informationen. Darstellungen von Leistungen erfolgen ohne Gewähr für deren Richtigkeit und beinhalten weder ein Vertragsangebot noch einen Anspruch auf Abschluss eines Vertrages."
+    },
+
+    "LiabilityTitle": "7. Haftung",
+    "Liability": {
+      "OperatorLiability": "7.1. Haftung des Betreibers",
+      "OperatorLiabilityText": "Der Betreiber leistet keinen Schadenersatz oder Ersatz vergeblicher Aufwendungen, gleich aus welchem Rechtsgrund (z.B. rechtsgeschäftlichen und rechtsgeschäftsähnlichen Schuld¬verhältnissen, Pflichtverletzung und unerlaubter Handlung), mit Ausnahme von Vorsatz oder grober Fahrlässigkeit sowie für die Verletzung von Leben, Leib oder Gesundheit und nach den Vorschriften des Produkthaftungsgesetzes. Der Betreiber übernimmt zudem keine Haftung für Schäden oder sonstige Rechtsansprüche im Zusammenhang mit einer mit Hilfe von Voitheia erfolgten Kontaktaufnahme oder Ausführung einer Unterstützungsleistung (Gefälligkeitsleistungen zwischen Anfrager & Helfer). Ins¬besondere übernimmt der Betreiber keine Haftung für Schäden oder sonstige Rechtsansprüche weil eine Unterstützungsleistung nicht zustande kommt  oder nicht ordnungsgemäß durchgeführt wird.",
+      "Indemnification": "7.2. Haftungsfreistellung",
+      "IndemnificationText": "Wird der Betreiber von Voitheia von einem Dritten wegen eines Verstoßes des Nutzers gegen diese Nutzungsbedingungen in Anspruch genommen, stellt der Nutzer den Betreiber von sämtlichen Ansprüchen und Kosten frei, die dadurch unmittelbar oder mittelbar entstehen, einschließlich angemessener Kosten zur Rechtsverteidigung gegen einen solchen Anspruch. Dies gilt nicht, soweit der Nutzer einen Verstoß nicht zu vertreten hat. Der Betreiber behält sich vor, die Verteidigung gegen solche Ansprüche selbst zu übernehmen.",
+      "Scope": "7.3. Reichweite der Haftungsregelungen",
+      "ScopeText": "Die Haftung des Betreibers wird soweit rechtlich zulässig ausgeschlossen und eingeschränkt. Gesetzliche zwingende Rechte des Nutzers bleiben unberührt."
+    },
+
+    "FinalClausesTitle": "8. Schlussbestimmungen",
+    "FinalClauses": {
+      "SubjectChange": "8.1. Änderungsvorbehalt",
+      "SubjectChangeText": "Der Betreiber behält sich vor, diese Nutzungsbedingungen bei Bedarf anzupassen. Der Betreiber wird  Nutzer über wesentliche Änderungen der Nutzungsbedingungen informieren. Änderungen treten 30 Tage nach deren Veröffentlichung in Kraft. Ist ein Nutzer mit einer Änderung der Nutzungsbedingungen nicht einverstanden, wird er seinen Voitheia-Account löschen. Durch die weitere Nutzung von Voitheia erklärt der Nutzer sein Einverständnis mit den aktualisierten Nutzungsbedingungen.",
+      "Invalidity": "8.2. Unwirksamkeit einzelner Klauseln",
+      "InvalidityText": "Sollten einzelne Bestimmungen dieser Nutzungsbedingungen ungültig oder undurchsetzbar sein oder werden, berührt dies die Wirksamkeit der übrigen Bestimmungen nicht.",
+      "ApplicableLaw": "8.3. Anwendbares Recht",
+      "ApplicableLawText": "Diese Nutzungsbedingungen unterliegen dem für Inlandsgeschäfte maßgeblichen Recht der Bundesrepublik Deutschland. Das Übereinkommen der Vereinten Nationen über Verträge über den internationalen Warenkauf findet keine Anwendung."
+    },
+
+    "VSBG": "9. Hinweis gemäß § 36 Verbraucherstreitbeilegungsgesetz (VSBG)",
+    "VSBGText": "Der Betreiber wird nicht an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle im Sinne des deutschen Verbraucherstreitbeilegungsgesetzes (VSBG) teilnehmen und ist hierzu auch nicht verpflichtet."
+
   }
 }
