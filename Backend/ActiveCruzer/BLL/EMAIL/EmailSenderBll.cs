@@ -24,6 +24,7 @@ namespace ActiveCruzer.BLL
         private IHostingEnvironment _env;
         private string confirmationTemplate;
         private string passwordResetTemplate;
+        private string deleteUserTemplate;
         public EmailSenderBll(IConfiguration configuration, IHostingEnvironment env)
         {
             _emailconfiguration = new EmailConfiguration();
@@ -52,7 +53,18 @@ namespace ActiveCruzer.BLL
                 + Path.DirectorySeparatorChar.ToString()
                 + "TEMPLATES"
                 + Path.DirectorySeparatorChar.ToString()
-                + "Voitheia-Passwortvergessen"
+                + "Voitheia-Passwortvergessenmail"
+                + Path.DirectorySeparatorChar.ToString()
+                + "index.html";
+            deleteUserTemplate = _env.ContentRootPath
+                + Path.DirectorySeparatorChar.ToString()
+                + "BLL"
+                + Path.DirectorySeparatorChar.ToString()
+                + "EMAIL"
+                + Path.DirectorySeparatorChar.ToString()
+                + "TEMPLATES"
+                + Path.DirectorySeparatorChar.ToString()
+                + "Voitheia-Kontoloeschenmail"
                 + Path.DirectorySeparatorChar.ToString()
                 + "index.html";
         }
@@ -161,6 +173,55 @@ namespace ActiveCruzer.BLL
             return Task.CompletedTask;
         }
 
+        public Task SendDeleteEmailAsync(string firstname, string email)
+        {
+            try
+            {
+                // build credentials
+                var credentials = new NetworkCredential(_emailconfiguration.Sender, _emailconfiguration.Password);
+
+                string body = "";
+                using (StreamReader SourceReader = System.IO.File.OpenText(deleteUserTemplate))
+                {
+                    var builder = new StringBuilder();
+                    builder.Append(SourceReader.ReadToEnd());
+                    builder.Replace("{{FIRSTNAME}}", firstname);
+                    body = builder.ToString();
+                }
+
+                // message
+                var message = new MailMessage()
+                {
+                    From = new MailAddress(_emailconfiguration.Sender, _emailconfiguration.SenderName),
+                    Subject = "Voitheia Information Userlöschung",
+                    Body = body,
+                    IsBodyHtml = true
+                };
+
+                // add sender
+                message.To.Add(new MailAddress(email));
+
+                // Smtp client
+                var client = new SmtpClient()
+                {
+                    Port = _emailconfiguration.MailPort,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Host = _emailconfiguration.MailServer,
+                    EnableSsl = true,
+                    Credentials = credentials
+                };
+
+                client.Send(message);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException(e.Message);
+            }
+
+            return Task.CompletedTask;
+
+        }
     }
 
     public class EmailConfiguration

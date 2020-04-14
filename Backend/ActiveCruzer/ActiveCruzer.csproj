@@ -12,14 +12,14 @@
     <None Remove="DAL\Repositories\**" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessen Email\.vs\VSWorkspaceState.json" />
+    <Content Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessenmail\.vs\VSWorkspaceState.json" />
     <Content Include="BLL\EMAIL\TEMPLATES\Voitheia_Bestaetigungsmail\.vs\VSWorkspaceState.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Kontoloeschen Email\.vs\slnx.sqlite" />
-    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Kontoloeschen Email\.vs\Voitheia-Kontolöschen Email\config\applicationhost.config" />
-    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessen Email\.vs\slnx.sqlite" />
-    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessen Email\.vs\Voitheia-Passwortvergessen Email\config\applicationhost.config" />
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Kontoloeschenmail\.vs\slnx.sqlite" />
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Kontoloeschenmail\.vs\Voitheia-Kontolöschen Email\config\applicationhost.config" />
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessenmail\.vs\slnx.sqlite" />
+    <None Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessenmail\.vs\Voitheia-Passwortvergessen Email\config\applicationhost.config" />
     <None Include="BLL\EMAIL\TEMPLATES\Voitheia_Bestaetigungsmail\.vs\slnx.sqlite" />
     <None Include="BLL\EMAIL\TEMPLATES\Voitheia_Bestaetigungsmail\.vs\Voitheia_Bestätigungsmail\config\applicationhost.config" />
   </ItemGroup>
@@ -48,8 +48,8 @@
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\EMAIL\TEMPLATES\Voitheia-Kontoloeschen Email\.vs\Voitheia-Kontolöschen Email\v16\" />
-    <Folder Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessen Email\.vs\Voitheia-Passwortvergessen Email\v16\" />
+    <Folder Include="BLL\EMAIL\TEMPLATES\Voitheia-Kontoloeschenmail\.vs\Voitheia-Kontolöschen Email\v16\" />
+    <Folder Include="BLL\EMAIL\TEMPLATES\Voitheia-Passwortvergessenmail\.vs\Voitheia-Passwortvergessen Email\v16\" />
     <Folder Include="BLL\EMAIL\TEMPLATES\Voitheia_Bestaetigungsmail\.vs\Voitheia_Bestätigungsmail\v16\" />
   </ItemGroup>
 </Project>
