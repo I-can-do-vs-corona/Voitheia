@@ -83,7 +83,7 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return BadRequest("The provided adress is not valid. Please check for the spelling of the street. Accepted: Sankt-Boni. Invalid: St.-Boni.");
+                    return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "The provided adress is not valid. Please check for the spelling of the street. Accepted: Sankt-Boni. Invalid: St.-Boni." });
                     //return new ContentResult
                     //{
                     //    StatusCode = 424,
@@ -94,7 +94,7 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return BadRequest("Invalid model");
+                return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "Invalid model" });
             }
         }
 
@@ -116,7 +116,7 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return NotFound("This request did not exist.");
+                return NotFound(new ErrorModel {code = NotFound().StatusCode, errormessage = "This request did not exist." });
             }
         }
 
@@ -168,7 +168,7 @@ namespace ActiveCruzer.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest("User not logged in. Provide Longitude and Latitude");
+                    return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "User not logged in. Provide Longitude and Latitude" });
                 }
             }
 
