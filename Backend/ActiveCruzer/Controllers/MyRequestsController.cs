@@ -59,7 +59,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Forbid("Users email is not confirmed yet.");
             }
 
             if (ModelState.IsValid)
@@ -71,12 +71,12 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    return NotFound("This request did not exist.");
                 }
             }
             else
             {
-                return BadRequest(ModelState);
+                return BadRequest("Invalid model.");
             }
         }
 
@@ -95,7 +95,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Forbid("Users email is not confirmed yet");
             }
 
             if (_requestBll.ExistsOnUser(id, userId))
@@ -109,7 +109,7 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return NotFound();
+                return NotFound("No requests found.");
             }
         }
 
@@ -130,7 +130,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Forbid("Users email is not confirmed yet.");
             }
 
             if (_requestBll.ExistsOnUser(id, userId))
@@ -138,7 +138,7 @@ namespace ActiveCruzer.Controllers
                 if (_requestBll.IsNotClosed(id))
                 {
                     _requestBll.AbortRequest(id, userId);
-                    return Ok();
+                    return Ok("Request aborted-");
                 }
                 else
                 {
@@ -147,7 +147,7 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return NotFound(id);
+                return NotFound("This request did not exist.");
             }
         }
 
@@ -167,7 +167,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Forbid("Users email is not confirmed yet.");
             }
 
             var requests = _requestBll.GetAllPendingFromUser(userId);
@@ -190,7 +190,7 @@ namespace ActiveCruzer.Controllers
 
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Forbid("Users email is not confirmed yet.");
             }
 
             if (ModelState.IsValid)
@@ -202,12 +202,12 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return NotFound(id);
+                    return NotFound("This request did not exist.");
                 }
             }
             else
             {
-                return BadRequest(ModelState);
+                return BadRequest("Invalid model.");
             }
         }
     }
