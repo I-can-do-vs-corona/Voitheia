@@ -138,7 +138,7 @@ namespace ActiveCruzer.Controllers
                 if (_requestBll.IsNotClosed(id))
                 {
                     _requestBll.AbortRequest(id, userId);
-                    return Ok("Request aborted-");
+                    return Ok();
                 }
                 else
                 {

@@ -72,6 +72,8 @@ namespace ActiveCruzer.AutoMapper
             CreateMap<Request, MinimalRequestDto>()
                 .ForMember(dest => dest.Description,
                     opts => opts.MapFrom(src => src.Description))
+                .ForMember(dest => dest.FirstName,
+                    opts => opts.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.Id,
                     opts => opts.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Status,
