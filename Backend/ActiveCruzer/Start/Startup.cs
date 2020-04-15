@@ -72,7 +72,8 @@ namespace ActiveCruzer.Start
 
             services.InitJwt(_configuration);
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers();
+                //.AddNewtonsoftJson();
 
             services.AddAutoMapper(GetType().Assembly);
 

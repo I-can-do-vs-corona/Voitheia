@@ -266,7 +266,7 @@ namespace ActiveCruzer.Controllers
             var user = await _userBll.GetUserViaId(GetUserId());
             if(user != null)
             {
-                await _emailBll.SendDeleteEmailAsync(user.FirstName, user.Email);
+                //await _emailBll.SendDeleteEmailAsync(user.FirstName, user.Email);
                 var result = await _userBll.DeleteUser(user);
                 return Ok(result);
             }
