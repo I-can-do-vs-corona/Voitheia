@@ -125,23 +125,24 @@ namespace ActiveCruzer.Controllers
                     }
                     else
                     {
-                        return BadRequest(result.Errors);
+                        return BadRequest("Error in registration process. Please contact the support.");
                     }
                 }
                 else
                 {
-                    return new ContentResult
-                    {
-                        StatusCode = 424,
-                        Content = $"Status Code: {424}; FailedDependency; Address is invalid",
-                        ContentType = "text/plain",
-                    };
+                    //return new ContentResult
+                    //{
+                    //    StatusCode = 424,
+                    //    Content = $"Status Code: {424}; FailedDependency; Address is invalid",
+                    //    ContentType = "text/plain",
+                    //};
+                    return BadRequest("Invalid Address. Please check the street. Accepted: Sankt-Boni. Invalid: St.-Boni");
                 }
                 
             }
             else
             {
-                return BadRequest();
+                return BadRequest("Invalid model");
             }
         }
 
@@ -248,7 +249,7 @@ namespace ActiveCruzer.Controllers
                 });
             }
 
-            return Unauthorized();
+            return Unauthorized("Error. Please check your credentials");
         }
 
         /// <summary>
@@ -303,12 +304,13 @@ namespace ActiveCruzer.Controllers
 
                 return Unauthorized("You are not allowed to perform this action.");
             }
-            return new ContentResult
-            {
-                StatusCode = 424,
-                Content = $"Status Code: {424}; FailedDependency; Address is invalid",
-                ContentType = "text/plain",
-            };
+            return BadRequest("Invalid Address. Please check the street. Accepted: Sankt-Boni. Invalid: St.-Boni");
+            //return new ContentResult
+            //{
+            //    StatusCode = 424,
+            //    Content = $"Status Code: {424}; FailedDependency; Address is invalid",
+            //    ContentType = "text/plain",
+            //};
         }
 
         /// <summary>
