@@ -439,9 +439,9 @@ namespace ActiveCruzer.Controllers
                 }
                 return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Error in password changing. Please try again or contact the support." });
             }
-            return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Input is not valid." });
+            return BadRequest(new ErrorModel { code = 400, errormessage = "Invalid model" });
+            //return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Input is not valid." });
         }
-
 
         private JwtSecurityToken GenerateToken(string username, string id, int? credentialsMinutesValid)
         {
