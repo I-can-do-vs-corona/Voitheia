@@ -50,6 +50,7 @@ import { GreaterThanValidator } from './common/helper/formValidators/greaterThan
 import { RequireFieldIfSetValidator } from './common/helper/formValidators/requireFieldIfSetValidator';
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { ChangeEmailComponent } from './components/user/change-email/change-email.component';
+import { ReCaptchaModule } from 'angular2-recaptcha';
 
 
 @NgModule({
@@ -103,6 +104,7 @@ import { ChangeEmailComponent } from './components/user/change-email/change-emai
     MomentModule,
     CountdownModule,
     PasswordStrengthMeterModule,
+    ReCaptchaModule,
     CustomMaterialModule,
     CustomBootstrapModule,
     CustomFontawesomeModule

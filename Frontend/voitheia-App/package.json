@@ -30,6 +30,7 @@
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "angular-password-strength-meter": "^1.0.2",
+    "angular2-recaptcha": "^1.1.0",
     "bootstrap": "^4.4.1",
     "moment": "^2.24.0",
     "ng2-date-countdown": "^1.1.2",

@@ -33,8 +33,14 @@
         "PasswordPattern": "Mindestens ein kleiner Buchstabe, ein grosser Buchstabe, eine Zahl und ein spezial Zeichen.",
         "MinLength" : "Du musst mindestens {{count}} Zeichen angeben.",
         "MaxLength" : "Du kannst maximal {{count}} Zeichen angeben.",
-        "Equal": "Passwörter stimmen nicht überein.",
-        "NotEqual": "Neues Passwort darf nicht das gleiche wei das alte sein."
+        "Equal": {
+          "Password": "Passwörter stimmen nicht überein.",
+          "Email": "Email adressen stimmen nicht überein."
+        },
+        "NotEqual": {
+          "Password": "Neues Passwort darf nicht das gleiche wie das alte sein.",
+          "Email": "Neue Email adresse darf nicht die gleiche wie die alte sein."
+        }
       }
     },
     "Dialogs": {

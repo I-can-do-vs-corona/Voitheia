@@ -36,7 +36,7 @@
                       </mat-label>
                       <textarea matInput name="textareaInput" [(ngModel)]="request.description"
                                 #textareaInput="ngModel" required rows="5" maxlength="256"></textarea>
-                      <mat-hint align="end">{{textareaInput.value.length}} / 256</mat-hint>
+                      <mat-hint align="end">{{request.description.length}} / 256</mat-hint>
                       <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'Request.Create.Infos.Details' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
                     </mat-form-field>
                     <mat-error *ngIf="textareaInput.invalid">
@@ -94,8 +94,11 @@
                   <div class="form-group">
                       <mat-form-field>
                           <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
-                          <input matInput name="emailInput" [(ngModel)]="request.email" #emailInput="ngModel" type="email" />
-                          <fa-icon matSuffix [icon]="['far', 'envelope']" class="hint-icon"></fa-icon>
+                          <span matPrefix>
+                            <fa-icon [icon]="['far', 'envelope']"></fa-icon>
+                            &nbsp;
+                          </span>
+                          <input matInput name="emailInput" [(ngModel)]="request.email" #emailInput="ngModel" type="email" email />
                           <mat-error *ngIf="emailInput.invalid">
                             <mat-error *ngIf="emailInput.errors.email">
                                 <span [innerHTML]="'General.Input.Error.Email' | translate"></span>
@@ -106,8 +109,12 @@
                   <div class="form-group">
                       <mat-form-field>
                           <mat-label><span [innerHTML]="'General.Field.Label.Phone' | translate"></span></mat-label>
+                          <span matPrefix>
+                            <fa-icon [icon]="['fas', 'phone']"></fa-icon>
+                            &nbsp;
+                          </span>
                           <input matInput name="phoneInput" [(ngModel)]="request.phoneNumber" #phoneInput="ngModel"
-                              required number />
+                              required type="number" />
                       </mat-form-field>
                       <mat-error *ngIf="phoneInput.invalid">
                           <mat-error *ngIf="phoneInput.errors.required">
@@ -145,7 +152,6 @@
                           <div class="form-group">
                               <mat-form-field>
                                   <mat-label><span [innerHTML]="'General.Field.Label.City' | translate"></span></mat-label>
-                                  
                                   <input matInput name="cityInput" [(ngModel)]="request.city" #cityInput="ngModel"
                                       required />
                               </mat-form-field>
@@ -161,11 +167,13 @@
                       <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
                   </div>
       
+                  <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" (captchaExpired)="handleExpiredCaptcha()" [site_key]="reCaptchaKey" [language]="getreCaptchaLanguage()" *ngIf="reCaptchaKey !== ''"></re-captcha>
+
                   <div>
                       <button matStepperPrevious mat-raised-button>
                         {{'General.Buttons.Back' | translate }}
                       </button>
-                      <button type="submit" mat-raised-button color="primary" [disabled]="!RequestAddressForm.form.valid || !RequestForm.form.valid || !termsChecked" (click)="send()">
+                      <button type="submit" mat-raised-button color="primary" [disabled]="!RequestAddressForm.form.valid || !RequestForm.form.valid || !termsChecked || !reCaptchaValid" (click)="send()">
                         <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> {{'General.Buttons.Submit' | translate }}
                       </button>
                   </div>

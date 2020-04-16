@@ -12,9 +12,11 @@
     <form #ChangeEmailForm="ngForm" novalidate>
         <mat-form-field>
             <mat-label><span [innerHTML]="'General.Field.Label.CurrentEmail' | translate"></span></mat-label>
-            <input matInput name="oldEmailInput" [(ngModel)]="changeEmailCredentials.oldEmail" #oldEmailInput="ngModel" type="email"
+            <span matPrefix>
+              <fa-icon [icon]="['fas', 'user']"></fa-icon>&nbsp;<fa-icon [icon]="['far', 'envelope']"></fa-icon>&nbsp;
+            </span>
+            <input matInput name="oldEmailInput" [(ngModel)]="changeEmailCredentials.oldEmail" #oldEmailInput="ngModel" type="email" email
             required notEqual="newEmailInput" notEqualReverse="true" />
-            <fa-icon matSuffix [icon]="['far', 'envelope']"></fa-icon>
             <mat-error *ngIf="oldEmailInput.invalid">
                 <mat-error *ngIf="oldEmailInput.errors.required">
                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
@@ -27,9 +29,11 @@
     
         <mat-form-field>
           <mat-label><span [innerHTML]="'General.Field.Label.NewEmail' | translate"></span></mat-label>
-          <input matInput name="newEmailInput" [(ngModel)]="changeEmailCredentials.newEmail" #newEmailInput="ngModel" type="email"
+          <span matPrefix>
+            <fa-icon [icon]="['far', 'envelope']"></fa-icon>&nbsp;
+          </span>
+          <input matInput name="newEmailInput" [(ngModel)]="changeEmailCredentials.newEmail" #newEmailInput="ngModel" type="email" email
             required notEqual="oldEmailInput" equal="newEmailRepeatInput" equalReverse="true" />
-          <fa-icon matSuffix [icon]="['far', 'envelope']"></fa-icon>
           <mat-error *ngIf="newEmailInput.invalid">
             <mat-error *ngIf="newEmailInput.errors.required">
               <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
@@ -38,16 +42,18 @@
                 <span [innerHTML]="'General.Input.Error.Email' | translate"></span>
             </mat-error>
             <mat-error *ngIf="newEmailInput.errors.notEqual && !newEmailInput.errors.email">
-              <span [innerHTML]="'General.Input.Error.NotEqual' | translate"></span>
+              <span [innerHTML]="'General.Input.Error.NotEqual.Email' | translate"></span>
             </mat-error>
           </mat-error>
         </mat-form-field>
         
         <mat-form-field>
           <mat-label><span [innerHTML]="'General.Field.Label.NewEmailRepeat' | translate"></span></mat-label>
-          <input matInput name="newEmailRepeatInput" [(ngModel)]="changeEmailCredentials.newEmailConfirm" #newEmailRepeatInput="ngModel" [disabled]="newEmailInput.invalid" type="email"
+          <span matPrefix>
+            <fa-icon [icon]="['far', 'envelope']"></fa-icon>&nbsp;
+          </span>
+          <input matInput name="newEmailRepeatInput" [(ngModel)]="changeEmailCredentials.newEmailConfirm" #newEmailRepeatInput="ngModel" [disabled]="newEmailInput.invalid" type="email" email
             required equal="newEmailInput" />
-          <fa-icon matSuffix [icon]="['far', 'envelope']" class="hint-icon"></fa-icon>
           <mat-error *ngIf="newEmailRepeatInput.invalid">
             <mat-error *ngIf="newEmailRepeatInput.errors.required">
               <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
@@ -56,7 +62,7 @@
                 <span [innerHTML]="'General.Input.Error.Email' | translate"></span>
             </mat-error>
             <mat-error *ngIf="newEmailRepeatInput.errors.equal && !newEmailRepeatInput.errors.email">
-              <span [innerHTML]="'General.Input.Error.Equal' | translate"></span>
+              <span [innerHTML]="'General.Input.Error.Equal.Email' | translate"></span>
             </mat-error>
           </mat-error>
         </mat-form-field>

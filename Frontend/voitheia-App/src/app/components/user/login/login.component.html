@@ -2,24 +2,38 @@
     <div class="col-md-6 offset-md-3 content-container">
         <h3 class="content-header">{{'User.Login.Title' | translate }}</h3>
         <form #RequestForm="ngForm" novalidate>
-            <div class="row">
-                <div class="col-md">
-                    <div class="form-group">
-                        <mat-form-field>
-                            <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
-                            <input  matInput name="textareaInput" [(ngModel)]="user.email" #textareaInput="ngModel" required>
-                        </mat-form-field>
-                    </div>
-                    <div class="form-group">
-                        <mat-form-field>
-                            <mat-label><span [innerHTML]="'General.Field.Label.Password' | translate"></span></mat-label>
-                            <input  type="password" matInput name="textareaInput" [(ngModel)]="user.password" #textareaInput="ngModel" required>
-                        </mat-form-field>
-                    </div>
-                </div>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
+                    <span matPrefix><fa-icon [icon]="['fas', 'user']"></fa-icon> &nbsp;</span>
+                    <input type="email" email matInput name="emailInput" [(ngModel)]="user.email" #emailInput="ngModel" required>
+                    <mat-error *ngIf="emailInput.invalid">
+                        <mat-error *ngIf="emailInput.hasError('required')">
+                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                        </mat-error>
+                        <mat-error *ngIf="emailInput.hasError('email')">
+                            <span [innerHTML]="'General.Input.Error.Email' | translate"></span>
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
             </div>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label><span [innerHTML]="'General.Field.Label.Password' | translate"></span></mat-label>
+                    <span matPrefix><fa-icon [icon]="['fas', 'lock']"></fa-icon> &nbsp;</span>
+                    <input type="password" matInput name="passwordInput" [(ngModel)]="user.password" #passwordInput="ngModel" required>
+                    <mat-error *ngIf="passwordInput.invalid">
+                        <mat-error *ngIf="passwordInput.hasError('required')">
+                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" (captchaExpired)="handleExpiredCaptcha()" [site_key]="reCaptchaKey" [language]="getreCaptchaLanguage()" *ngIf="reCaptchaKey !== ''"></re-captcha>
+  
             <div class="form-submit-btn">
-                <button style="width: 100%" type="submit" mat-raised-button color="primary" (click)="login()">
+                <button style="width: 100%" type="submit" mat-raised-button color="primary" (click)="login()" [disabled]="RequestForm.invalid || !reCaptchaValid">
                     <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> {{'General.Buttons.Login' | translate }}
                 </button>                      
             </div>

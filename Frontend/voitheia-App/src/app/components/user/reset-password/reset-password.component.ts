@@ -6,6 +6,7 @@ import { NavigationService } from 'src/app/common/shared/services/navigation.ser
 import { TranslateService } from '@ngx-translate/core';
 import { UserService } from '../user.service';
 import { DialogIconTypeEnum } from 'src/app/common/helper/enums/dialog-icon-type.enum';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reset-password',
@@ -21,6 +22,9 @@ export class ResetPasswordComponent implements OnInit {
   email = '';
   passwordRegEx = '';
   resetPasswordCredentials = new ResetPasswordCredentials();
+  
+  reCaptchaKey = '';
+  reCaptchaValid = false;
 
   constructor(private _userService: UserService,
     private _utilitiesService: UtilitiesService,
@@ -30,6 +34,11 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.passwordRegEx = this._utilitiesService.passwordRegEx;
+
+    this.reCaptchaKey = environment.reCaptchaKey;
+    if (!this.reCaptchaKey || this.reCaptchaKey === '') {
+      this.reCaptchaValid = true;
+    }
 
     if (this._navigationService.routeParameterIsSet("token")) {
       this.resetPasswordCredentials.token = this._navigationService.getRouteParameter('token');
@@ -68,5 +77,22 @@ export class ResetPasswordComponent implements OnInit {
         this._utilitiesService.handleError(err);
       }
     );
+  }
+
+  handleCorrectCaptcha(event) {
+    this.reCaptchaValid = true;
+  }
+
+  handleExpiredCaptcha() {
+    this.reCaptchaValid = false;
+  }
+
+  getreCaptchaLanguage() {
+    if (this._translateService.currentLang === 'de') {
+      return 'de';
+    } else if (this._translateService.currentLang === 'se') {
+      return 'sv';
+    }
+    return 'en';
   }
 }

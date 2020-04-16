@@ -10,6 +10,7 @@ import { UtilitiesService } from 'src/app/common/shared/services/utilities.servi
 import { AuthService } from 'src/app/common/shared/services/auth.service';
 import { UserService } from '../../user/user.service';
 import { UserDTO } from 'src/app/common/models/userDTO';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-request-form',
@@ -20,6 +21,8 @@ export class RequestFormComponent implements OnInit {
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
 
   termsChecked = false;
+  reCaptchaKey = '';
+  reCaptchaValid = false;
 
   request: RequestDTO;
 
@@ -36,6 +39,11 @@ export class RequestFormComponent implements OnInit {
   ngOnInit(): void {
     if(!this._utilitiesService.isLive()){
       this._navigationService.navigateTo("countdown");
+    }
+
+    this.reCaptchaKey = environment.reCaptchaKey;
+    if (!this.reCaptchaKey || this.reCaptchaKey === '') {
+      this.reCaptchaValid = true;
     }
 
     if(this._authService.isLoggedIn()){
@@ -75,5 +83,22 @@ export class RequestFormComponent implements OnInit {
 
   number(input:string): number{
     return Number(input);
+  }
+
+  handleCorrectCaptcha(event) {
+    this.reCaptchaValid = true;
+  }
+
+  handleExpiredCaptcha() {
+    this.reCaptchaValid = false;
+  }
+
+  getreCaptchaLanguage() {
+    if (this._translateService.currentLang === 'de') {
+      return 'de';
+    } else if (this._translateService.currentLang === 'se') {
+      return 'sv';
+    }
+    return 'en';
   }
 }
