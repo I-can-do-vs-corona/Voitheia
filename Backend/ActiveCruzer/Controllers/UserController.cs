@@ -335,10 +335,14 @@ namespace ActiveCruzer.Controllers
                 var user = await _userBll.GetUserViaId(GetUserId());
                 if(user != null)
                 {
-                    user.Email = setNewEmailDto.newEmail;
-                    user.UserName = setNewEmailDto.newEmail;
-                    await _userManager.UpdateAsync(user);
-                    return Ok("Email sucessfuly updated");
+                    if(setNewEmailDto.oldEmail == user.Email)
+                    {
+                        user.Email = setNewEmailDto.newEmail;
+                        user.UserName = setNewEmailDto.newEmail;
+                        await _userManager.UpdateAsync(user);
+                        return Ok("Email sucessfuly updated");
+                    }
+                    return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "You are not allowed to perform this action." });
                 }
                 return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "You are not allowed to perform this action." });
             }
