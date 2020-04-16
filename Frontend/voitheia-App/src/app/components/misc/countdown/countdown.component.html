@@ -1,9 +1,42 @@
-<div class="row">
+  <div class="text-center text-justify">
+    <h3> Bald ist es soweit - Sei dabei, wenn die Plattform live geht!</h3>
+  </div>
+  <div class="row">
     <div class="col-md-6 offset-md-3 content-container">
-        <p>Registrierung öffnet</p><br />
-        <countdown [text]="text" units="Days | Hours | Minutes | Seconds"  [end]="registrationOpens"></countdown>
-        <br />
-        <p>GoLive</p><br />
-        <countdown [text]="text" units="Days | Hours | Minutes | Seconds"  [end]="goLive"></countdown>
+      <p>Voitheia Launch</p><br />
+      <countdown [text]="text" units="Days | Hours | Minutes | Seconds" [end]="goLive"></countdown>
     </div>
+  </div>
+
+<div class="container h-100">
+  <div style="margin-left: 10%; margin-top: 4.5rem; margin-bottom: 4rem;" class="row h-100 ">
+    <div class="col-lg-10 align-self-end">
+      <h1 class="text-white font-weight-bold">
+        {{'General.Slogan' | translate}}
+      </h1>
+    </div>
+    <div class="col-lg-10 align-self-baseline">
+      <p class=" font-weight-light mb-5">
+        {{'Home.Texts.Level1' | translate }}
+        <br>
+        {{'Home.Texts.Level2' | translate }}
+      </p>
+      <div class="row p-2">
+        <div class="col-md-4"> </div>
+        <div class="col-md-4">
+          <button class="mainpage-button" type="submit" mat-raised-button color="primary" routerLink="/request/list">
+            <p>Ich möchte helfen</p>
+            <span *ngIf="isLoggedIn()">
+              {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}
+            </span>
+            <span *ngIf="!isLoggedIn()">
+              {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="p-2"> <h4>Registriere dich schon heute als Voitheia-Helfer, und sei bereit für die ersten Untersützungsanfragen. Wir informieren dich nochmal per Email, wenn die Plattform gelauncht wurde. Frohes Helfen! </h4>
+      </div>
+    </div>
+  </div>
 </div>
