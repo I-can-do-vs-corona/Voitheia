@@ -13,6 +13,6 @@ export class UserDTO extends UpdateUserDTO  {
         this.email = "";
         this.createdOn = new Date();
         this.lastLogin = new Date();
-        this.emailConfirmed = false;
+        this.emailConfirmed = true;
     }
 }

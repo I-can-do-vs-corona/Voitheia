@@ -5,6 +5,8 @@ import { RegisterUserDTO } from 'src/app/common/models/registerUserDTO';
 import { UpdateUserDTO } from 'src/app/common/models/updateUserDTO';
 import { ConfirmEmailDTO } from 'src/app/common/models/confirmEmailDTO';
 import { SetNewPasswordDTO } from 'src/app/common/models/setNewPasswordDTO';
+import { ResetPasswordCredentials } from 'src/app/common/models/resetPasswordCredentialsDTO';
+import { SetNewEmailDTO } from 'src/app/common/models/setNewEmailDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +41,17 @@ export class UserService {
 
   changePassword(changePasswordDTO: SetNewPasswordDTO){
     return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/setNewPassword', changePasswordDTO, {withCredentials: false});
+  }
+
+  changeEmail(changeEmailDTO: SetNewEmailDTO){
+    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/setNewEmail', changeEmailDTO, {withCredentials: false});
+  }
+
+  sendResetPasswordMail(email: string){
+    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/forgotPassword', {email: email}, {withCredentials: false});
+  }
+
+  resetPassword(resetPasswordCredentials: ResetPasswordCredentials){
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/resetPassword', resetPasswordCredentials, {withCredentials: false});
   }
 }

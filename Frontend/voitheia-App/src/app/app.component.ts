@@ -21,6 +21,7 @@ export class AppComponent {
     private _titleService: Title) {
       _translate.addLangs(['de']); //, 'en', 'sv'
       _translate.setDefaultLang('de');
+      _translate.use("de");
 
       registerLocaleData(localeDe, 'de');
 

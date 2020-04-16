@@ -1,5 +1,9 @@
 <div class="row">
     <div class="col-md-6 offset-md-3 content-container">
-        <countdown [text]="text" units="Days | Hours | Minutes | Seconds"  end="April 22, 2020 10:00:00"></countdown>
+        <p>Registrierung öffnet</p><br />
+        <countdown [text]="text" units="Days | Hours | Minutes | Seconds"  [end]="registrationOpens"></countdown>
+        <br />
+        <p>GoLive</p><br />
+        <countdown [text]="text" units="Days | Hours | Minutes | Seconds"  [end]="goLive"></countdown>
     </div>
 </div>

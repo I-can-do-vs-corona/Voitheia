@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-md-8 offset-md-2">
-        <mat-form-field style="background-color: white; padding: 5px;">
+    <div class="col-md-6 offset-md-3 content-container">
+        <mat-form-field>
             <mat-label>{{'General.Field.Label.Type' | translate }}</mat-label>
             <mat-select multiple (selectionChange)="applyFilter($event)">
                 <mat-option *ngFor="let requestType of RequestTypeEnum | keys" [value]="requestType">

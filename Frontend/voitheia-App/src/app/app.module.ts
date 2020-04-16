@@ -48,6 +48,9 @@ import { NotEqualValidator } from './common/helper/formValidators/notEqualValida
 import { RequireFieldValidator } from './common/helper/formValidators/requireFieldValidator';
 import { GreaterThanValidator } from './common/helper/formValidators/greaterThanValidator';
 import { RequireFieldIfSetValidator } from './common/helper/formValidators/requireFieldIfSetValidator';
+import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
+import { ChangeEmailComponent } from './components/user/change-email/change-email.component';
+import { ReCaptchaModule } from 'angular2-recaptcha';
 
 
 @NgModule({
@@ -81,7 +84,9 @@ import { RequireFieldIfSetValidator } from './common/helper/formValidators/requi
     ProfileViewComponent,
     CountdownComponent,
     ConfirmEmailComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ResetPasswordComponent,
+    ChangeEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -99,6 +104,7 @@ import { RequireFieldIfSetValidator } from './common/helper/formValidators/requi
     MomentModule,
     CountdownModule,
     PasswordStrengthMeterModule,
+    ReCaptchaModule,
     CustomMaterialModule,
     CustomBootstrapModule,
     CustomFontawesomeModule

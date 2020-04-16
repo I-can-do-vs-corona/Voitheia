@@ -6,10 +6,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from 'src/app/common/shared/services/dialog/dialog.service';
 import { DialogIconTypeEnum } from 'src/app/common/helper/enums/dialog-icon-type.enum';
 import { AuthService } from 'src/app/common/shared/services/auth.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 import { environment } from 'src/environments/environment';
 import { ChangePasswordComponent } from '../../change-password/change-password.component';
+import { ChangeEmailComponent } from '../../change-email/change-email.component';
 
 @Component({
   selector: 'app-profile-view',
@@ -56,8 +57,8 @@ export class ProfileViewComponent implements OnInit {
   resendEmailConfirmationMail(){
     this._userService.sendConfirmationMailAgain(this.userData.email).subscribe(
       data => {
-        this._translateService.get(['User.Profile.View.Dialogs.resendConfirmationMail.Title', 'User.Profile.View.Dialogs.resendConfirmationMail.Text', 'General.Buttons.Close']).subscribe((res: string) => {
-          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.resendConfirmationMail.Title'], res['User.Profile.View.Dialogs.resendConfirmationMail.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close']);
+        this._translateService.get(['User.Profile.View.Dialogs.ResendConfirmationMail.Title', 'User.Profile.View.Dialogs.ResendConfirmationMail.Text', 'General.Buttons.Close']).subscribe((res: string) => {
+          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.ResendConfirmationMail.Title'], res['User.Profile.View.Dialogs.ResendConfirmationMail.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close']);
         });
       },
       err => {
@@ -73,8 +74,22 @@ export class ProfileViewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result === "Success"){
-        this._translateService.get(['User.Profile.View.Dialogs.Deleted.Title', 'User.Profile.View.Dialogs.Deleted.Text', 'General.Buttons.Close']).subscribe((res: string) => {
-          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.Deleted.Title'], res['User.Profile.View.Dialogs.Deleted.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this._authService.logout()}.bind(this));
+        this._translateService.get(['User.Profile.View.Dialogs.PasswordChanged.Title', 'User.Profile.View.Dialogs.PasswordChanged.Text', 'General.Buttons.Close']).subscribe((res: string) => {
+          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.PasswordChanged.Title'], res['User.Profile.View.Dialogs.PasswordChanged.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this._authService.logout()}.bind(this), true);
+        });
+      }
+    });
+  }
+
+  openSetEmailDialog(){
+    const dialogRef = this._dialog.open(ChangeEmailComponent, {
+      width: environment.dialogWidth
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === "Success"){
+        this._translateService.get(['User.Profile.View.Dialogs.EmailChanged.Title', 'User.Profile.View.Dialogs.EmailChanged.Text', 'General.Buttons.Close']).subscribe((res: string) => {
+          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.EmailChanged.Title'], res['User.Profile.View.Dialogs.EmailChanged.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this.loadUserData()}.bind(this), true);
         });
       }
     });
@@ -84,7 +99,7 @@ export class ProfileViewComponent implements OnInit {
     this._userService.deleteAccount().subscribe(
       data => {
         this._translateService.get(['User.Profile.View.Dialogs.Deleted.Title', 'User.Profile.View.Dialogs.Deleted.Text', 'General.Buttons.Close']).subscribe((res: string) => {
-          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.Deleted.Title'], res['User.Profile.View.Dialogs.Deleted.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this._authService.logout()}.bind(this));
+          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.Deleted.Title'], res['User.Profile.View.Dialogs.Deleted.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this._authService.logout()}.bind(this), true);
         });
       },
       err => {

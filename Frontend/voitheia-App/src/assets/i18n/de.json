@@ -2,18 +2,20 @@
   "General": {
     "DateFormat": "DD.MM.YYYY HH:mm",
     "Slogan": "Tu etwas Gutes - Hilf jemandem.",
-    "Buttons": {
-      "Submit": "Absenden",
-      "Next": "Weiter",
-      "Back": "Zurück",
-      "Cancel": "Abbrechen",
-      "Accept": "Annehmen",
-      "Login": "Einloggen",
-      "Register": "Registrieren",
-      "Complete": "Abschließen",
-      "Close": "Schliessen",
-      "Logout": "Abmelden",
-      "Delete": "Löschen"
+    "Buttons":{
+        "Submit": "Absenden",
+        "Next": "Weiter",
+        "Back": "Zurück",
+        "Cancel": "Abbrechen",
+        "Accept": "Annehmen",
+        "Login": "Einloggen",
+        "Register": "Registrieren",
+        "Complete": "Abschließen",
+        "Close": "Schliessen",
+        "Logout": "Abmelden",
+        "Delete": "Löschen",
+        "ResetPassword": "Password zurück setzen",
+        "ChangePassword": "Password ändern"
     },
     "Enums": {
       "RequestTypeEnum": {
@@ -29,13 +31,17 @@
         "Required": "Feld ist erforderlich.",
         "Email": "Eingabe ist keine gültige E-mail adresse.",
         "PasswordPattern": "Mindestens ein kleiner Buchstabe, ein grosser Buchstabe, eine Zahl und ein spezial Zeichen.",
-        "MinLength": "Du musst mindestens {{count}} Zeichen angeben.",
-        "MaxLength": "Du kannst maximal {{count}} Zeichen angeben.",
-        "Equal": "Passwörter stimmen nicht überein.",
-        "NotEqual": "Neues Passwort darf nicht das gleiche wei das alte sein.",
-        "PetInsurance": "Hinweis: Bitte frage nur nach Haustierbetreuung, wenn du auch eine Haftpflichtversicherung für dein Haustier hast, die Haustierbetreuung absichert.",
-        "GeneralInsurance": "Hinweis: Bitte frage nur nach Kinderbetreuung, wenn in deiner Haftpflichtversicherung Gefälligkeitsschäden abgedeckt sind.",
-        "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden..."
+        "MinLength" : "Du musst mindestens {{count}} Zeichen angeben.",
+        "MaxLength" : "Du kannst maximal {{count}} Zeichen angeben.",
+        "Equal": {
+          "Password": "Passwörter stimmen nicht überein.",
+          "Email": "Email adressen stimmen nicht überein."
+        },
+        "NotEqual": {
+          "Password": "Neues Passwort darf nicht das gleiche wie das alte sein.",
+          "Email": "Neue Email adresse darf nicht die gleiche wie die alte sein."
+        }
+
       }
     },
     "Dialogs": {
@@ -60,6 +66,9 @@
         "Name": "Name",
         "Username": "Benutzername",
         "Email": "E-Mail",
+        "CurrentEmail": "Aktuelle E-Mail",
+        "NewEmail": "Neue E-Mail",
+        "NewEmailRepeat": "Neue E-Mail wiederholen",
         "Password": "Passwort",
         "RepeatPassword": "Passwort wiederholen",
         "RegsiteredSince": "Mitglied seit",
@@ -87,7 +96,8 @@
         "Profile": {
           "View": "Profil",
           "Edit": "Profil bearbeiten"
-        }
+        },
+        "ResetPassword": "Passwort zurück setzen"
       },
       "Terms": {
         "TermsConditions": "AGBs",
@@ -132,8 +142,7 @@
   },
   "User": {
     "Login": {
-      "Title": "Einloggen",
-      "NoAccount": "Noch keinen Account? "
+      "Title": "Einloggen"
     },
     "Register": {
       "Title": "Registrieren",
@@ -161,6 +170,32 @@
         }
       }
     },
+    "ChangeEmail": {
+      "Title": "Email ändern",
+      "Messages": {
+        "Error": {
+          "Title": "Fehler beim ändern deiner email",
+          "Text": "Leider ist ein Fehler beim ändern deiner Email aufgetreten. Bitte versuch es später noch einmal."
+        }
+      }
+    },
+    "ResetPassword": {
+      "Title": "Passwort wiederherstellen",
+      "Buttons": {
+        "SendResetPasswordMail": "Wiederherstellungs email schicken",
+        "ResetPassword": "Passwort zurücksetzen"
+      },
+      "Dialogs": {
+        "ResetMailSent": {
+          "Title": "Wiederherstellungs email erfolgreich verschickt",
+          "Text": "Die wiederherstellungs email wurde erfolgreich verschickt."
+        },
+        "PasswordReseted": {
+          "Title": "Passwort erfolgreich geändert",
+          "Text": "Das Passwort wurde erfolgreich geändert."
+        }
+      }
+    },
     "Profile": {
       "View": {
         "Title": "Benutzerprofil",
@@ -185,9 +220,17 @@
             "Title": "Benutzerkonto wurde gelöscht",
             "Text": "Dein Benuterkonto wurde erfolgreich gelöscht. Du wirst nun ausgeloggt. Wir hoffen dich in Zukunft wieder als Unterstützer willkommen zu heissen."
           },
-          "resendConfirmationMail": {
+          "ResendConfirmationMail": {
             "Title": "Bestätigungsmail verschickt",
             "Text": "Die Bestätigungsmail wurde erneut verschickt."
+          },
+          "PasswordChanged": {
+            "Title": "Password erfolgreich geändert",
+            "Text": "Dein password wurde erfolgreich geändert. Du wirst nun ausgeloggt."
+          },
+          "EmailChanged": {
+            "Title": "Email erfolgreich geändert",
+            "Text": "Dein email wurde erfolgreich geändert. Du solltest in kürze eine verifizierungs email erhalten. Du musst deine neue email verifizieren bevor du weitere Aufträge annehmen kannst."
           }
         }
       },
@@ -218,6 +261,11 @@
           "NewRequest": "Neue Anfrage"
         },
         "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
+      },
+      "Infos": {
+        "PetInsurance": "Hinweis: Bitte frage nur nach Haustierbetreuung, wenn du auch eine Haftpflichtversicherung für dein Haustier hast, die Haustierbetreuung absichert.",
+        "GeneralInsurance": "Hinweis: Bitte frage nur nach Kinderbetreuung, wenn in deiner Haftpflichtversicherung Gefälligkeitsschäden abgedeckt sind.",
+        "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden..."
       }
     },
     "Details": {

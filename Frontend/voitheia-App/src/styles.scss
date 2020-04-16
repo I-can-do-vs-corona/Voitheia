@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+//@import './custom-angular-material-theme.scss';
 @import './variables.scss';
-@import './custom-angular-material-theme.scss';
 
 @font-face {
     //https://www.fontfabric.com/fonts/kelson-sans/#font-styles
@@ -80,10 +80,6 @@ body {
     border-radius: 8px;
     color:$default-text;
 
-    .label{
-      text-decoration: underline;
-    }
-
     .content-header {
       color: black;
       font-weight: 700;
@@ -99,7 +95,11 @@ body {
     }
   }
 
-  a, a:visited, a:focus, .hyperlink, .hyperlink:visited, .hyperlink:focus{
+  .label{
+    text-decoration: underline;
+  }
+
+  a, a:visited, a:focus, a:not([href]), .hyperlink, .hyperlink:visited, .hyperlink:focus{
     color: $link-color;
     text-decoration: $link-text-decoration;
   }
@@ -118,7 +118,12 @@ body {
     color: $link-hover-color;
     text-decoration: $link-hover-text-decoration;
     background-color: $link-hover-bgcolor;
-  } 
+  }
+  
+  .info-icon{
+    color: $info-text;
+    font-size: $medium;
+  }
 }
 
 /* Change autocomplete styles in WebKit */
