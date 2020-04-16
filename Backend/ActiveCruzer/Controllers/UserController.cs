@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Buffers.Text;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Security.Policy;
 using System.Threading.Tasks;
+using System.Web;
 using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
@@ -15,11 +20,15 @@ using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
+using Microsoft.IdentityModel.Tokens;
 using Org.BouncyCastle.Crypto.Tls;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
@@ -68,6 +77,7 @@ namespace ActiveCruzer.Controllers
         [Authorize()]
         [HttpGet]
         [Route("LoggedIn")]
+        [Produces("application/json")]
         public ActionResult LoggedIn()
         {
             //If the execution reaches this code the user is logged in.
@@ -76,6 +86,7 @@ namespace ActiveCruzer.Controllers
 
         [HttpPost]
         [Route("Register")]
+        [Produces("application/json")]
         public async Task<ActionResult<JwtDto>> Register([FromBody] RegisterUserDTO credentials)
         {
             if (ModelState.IsValid)
@@ -96,9 +107,14 @@ namespace ActiveCruzer.Controllers
 
                         // email verification 
                         var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var confirmationLink = "https://voitheia.org/confirmEmail?token=" + emailToken + "?email=" + credentials.Email;
-                        //var confirmationLink = Url.Action(nameof(ConfirmEmail), "User", new { emailToken, email = user.Email }, Request.Scheme);
-                        await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
+                        var queryParams = new Dictionary<string, string>()
+                        {
+                            {"token", emailToken },
+                            {"email", credentials.Email }
+                        };
+                        var callbackUri = QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
+                        //var callbackUri = Url.Action(null, "https://voitheia.org/confirm-email", new { emailToken, email = credentials.Email }, Request.Scheme);
+                       await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, callbackUri);
 
 
                         return Ok(new JwtDto
@@ -130,31 +146,27 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
-        /// confirm email with token and email
+        /// confirm email with email and token
         /// </summary>
-        /// <param name="emailToken"></param>
-        /// <param name="email"></param>
+        /// <param name="confirmationEmailTokenDto"></param>
         /// <returns></returns>
         /// <response code="200"> returns if email was sucessfuly confirmed</response>
         /// <response code="401"> returns if the link or e-mail is not valid</response>
         /// <response code="400"> returns if the email was not able to be confirmed</response>
         [HttpPost]
         [Route("ConfirmEmail")]
-        public async Task<IActionResult> ConfirmEmail([FromBody] string emailToken, string email)
+        [Produces("application/json")]
+        public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmationEmailTokenDto confirmationEmailTokenDto)
         {
-            if(emailToken == null | email == null)
-            {
-                return Unauthorized("The link is not valid.");
-            }
-            var user = await _userBll.GetUser(email);
+            var user = await _userBll.GetUser(confirmationEmailTokenDto.email);
             if(user != null)
             {
-                var result = await _userManager.ConfirmEmailAsync(user, emailToken);
+                var result = await _userManager.ConfirmEmailAsync(user, confirmationEmailTokenDto.emailToken);
                 if (result.Succeeded)
                 {
                     return Ok("E-Mail successfuly confirmed.");
                 }
-                return BadRequest();
+                return BadRequest("Something went wrong with the confirmation of your email. Please try again or contact the support.");
             }
             return Unauthorized("User not valid.");
         }
@@ -169,18 +181,23 @@ namespace ActiveCruzer.Controllers
         /// <response code="404"> returns if the user cannot be found</response>
         [HttpPut]
         [Route("ForgotPassword")]
+        [Produces("application/json")]
         public async Task<IActionResult> ForgotPassword([FromBody]ForgotPasswordDto forgotPasswordDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Input is not valid.");
             }
-            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+            var user = await _userManager.FindByEmailAsync(forgotPasswordDto.email);
             if(user != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUri = "https://voitheia.org/resetpassword?token=" + token + "?email=" + forgotPasswordDto.Email;
-
+                var queryParams = new Dictionary<string, string>()
+                        {
+                            {"token",token },
+                            {"email", forgotPasswordDto.email }
+                        };
+                var callbackUri = QueryHelpers.AddQueryString("https://voitheia.org/user/reset-password", queryParams);
                 await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
                 return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
             }
@@ -197,14 +214,15 @@ namespace ActiveCruzer.Controllers
         /// <response code="404"> returns if the user with the email was not found</response>
         [HttpPost]
         [Route("ResetPassword")]
+        [Produces("application/json")]
         public async Task <IActionResult> ResetPassword([FromBody]ResetPasswordDto resetPasswordDto)
         {
             if (ModelState.IsValid)
             {
-                var user = await _userBll.GetUser(resetPasswordDto.Email);
+                var user = await _userBll.GetUser(resetPasswordDto.email);
                 if(user != null)
                 {
-                    await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
+                    await _userManager.ResetPasswordAsync(user, resetPasswordDto.token, resetPasswordDto.password);
                     return Ok("Password reset sucessful.");
                 }
                 return NotFound("The user with the email could not be found.");
@@ -214,13 +232,14 @@ namespace ActiveCruzer.Controllers
 
         [HttpPost]
         [Route("Login")]
+        [Produces("application/json")]
         public async Task<ActionResult<JwtDto>> Login([FromBody] CredentialsDTO credentials)
         {
             User user = await _userBll.Login(credentials); 
 
             if (user != null)
             {
-                _userBll.SetLoginDate(user);
+                await _userBll.SetLoginDate(user);
                 var token = GenerateToken(user.UserName, user.Id, credentials.MinutesValid);
                 return Ok(new JwtDto
                 {
@@ -241,11 +260,13 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpDelete]
         [Route("Delete")]
+        [Produces("application/json")]
         public async Task<ActionResult> DeleteUser()
         {
             var user = await _userBll.GetUserViaId(GetUserId());
             if(user != null)
             {
+                await _emailBll.SendDeleteEmailAsync(user.FirstName, user.Email);
                 var result = await _userBll.DeleteUser(user);
                 return Ok(result);
             }
@@ -261,6 +282,7 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpPut]
         [Route("Update")]
+        [Produces("application/json")]
         public async Task<ActionResult> UpdateUser([FromBody] UpdateUserDto user)
         {
             var validatedAddress = _geoCodeBll.ValidateAddress(new GeoQuery
@@ -290,6 +312,35 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
+        /// change email & username
+        /// </summary>
+        /// <param name="setNewEmailDto"></param>
+        /// <returns></returns>
+        /// <response code="200">Email was updated</response>
+        /// <response code="401">The logged in user is not updated user</response>
+        /// <response code="400">An invalid model was provided</response>
+        [Authorize]
+        [HttpPut]
+        [Route("SetNewEmail")]
+        [Produces("application/json")]
+        public async Task<IActionResult> ChangeEmail(SetNewEmailDto setNewEmailDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userBll.GetUserViaId(GetUserId());
+                if(user != null)
+                {
+                    user.Email = setNewEmailDto.newEmail;
+                    user.UserName = setNewEmailDto.newEmail;
+                    await _userManager.UpdateAsync(user);
+                    return Ok("Email sucessfuly updated");
+                }
+                return Unauthorized("You are not allowed to perform this action.");
+            }
+            return BadRequest("Invalid model.");
+        }
+
+        /// <summary>
         /// get user information from logged in user. If 200 returns all went well, otherwise 401 will be retured cause no user is logged in
         /// </summary>
         /// <returns></returns>
@@ -298,6 +349,7 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpGet]
         [Route("GetUser")]
+        [Produces("application/json")]
         public async Task<ActionResult<UserDto>> GetUser()
         {
             var user = await _userBll.GetUserViaId(GetUserId());
@@ -325,6 +377,60 @@ namespace ActiveCruzer.Controllers
             }
 
             base.Dispose(disposing);
+        }
+        /// <summary>
+        /// send email confirmation again with given email
+        /// </summary>
+        /// <param name="confirmationEmailDto"></param>
+        /// <returns></returns>
+        /// <response code="200"> Confirmation email sucessfuly sent</response>
+        /// <response code="400"> Input is invalid, please check your model</response>
+        /// <response code="401"> The current user is not logged in</response>
+        [HttpPut]
+        [Route("SendConfirmationMailAgain")]
+        [Produces("application/json")]
+        public async Task<IActionResult> SendConfirmationMailAgain(ConfirmationEmailDto confirmationEmailDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Input is not valid.");
+            }
+            var user = await _userBll.GetUser(confirmationEmailDto.Email);
+            if(user != null)
+            {
+                var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                //var confirmationLink = "https://voitheia.org/user/confirm-email?token=" + emailToken + "&email=" + user.Email;
+                var queryParams = new Dictionary<string, string>()
+                        {
+                            {"token", emailToken },
+                            {"email", confirmationEmailDto.Email }
+                        };
+                var confirmationLink = QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
+                await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
+                return Ok("Confirmation email sent.");
+            }
+            return Unauthorized("User not found.");
+        }
+
+        /// <summary>
+        /// set new password for logged in user
+        /// </summary>
+        /// <param name="newPasswordDto"></param>
+        /// <returns></returns>
+        /// <response code="200"> Password sucessfuly changed</response>
+        /// <response code="400"> Model is invalid or change process resulted in eror</response>
+        [HttpPost]
+        [Route("SetNewPassword")]
+        [Produces("application/json")]
+        public async Task<IActionResult> SetNewPassword(NewPasswordDto newPasswordDto)
+        {
+            var user = await _userBll.GetUserViaId(GetUserId());
+            var result = await _userManager.ChangePasswordAsync(user, newPasswordDto.oldPassword, newPasswordDto.newPassword);
+            if (result.Succeeded)
+            {
+                return Ok("Password sucessfuly changed.");
+            }
+            return BadRequest("Error in password changing. Please try again or contact the support.");
         }
 
 
