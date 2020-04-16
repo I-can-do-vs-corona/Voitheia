@@ -24,6 +24,7 @@ export class NotEqualValidator implements Validator {
     }
 
     validate(control: AbstractControl): { [key: string]: any } {
+        
         if (!control.value || control.value === '') {
             return null;
         }
@@ -44,9 +45,11 @@ export class NotEqualValidator implements Validator {
 
         // value not equal and reverse
         if (otherControl && control.value !== otherControl.value && this.isReverse) {
-            delete otherControl.errors['notEqual'];
-            if (!Object.keys(otherControl.errors).length) {
-                otherControl.setErrors(null);
+            if(typeof otherControl.errors !== 'undefined' && otherControl.errors !== null){
+                delete otherControl.errors['notEqual'];
+                if (!Object.keys(otherControl.errors).length) {
+                    otherControl.setErrors(null);
+                }
             }
         }
 

@@ -8,7 +8,7 @@
                         <mat-label><span [innerHTML]="'General.Field.Label.FirstName' | translate"></span></mat-label>
                         <input  matInput name="firstNameInput" [(ngModel)]="user.firstName" #firstNameInput="ngModel" required>
                         <mat-error *ngIf="firstNameInput.invalid">
-                            <mat-error *ngIf="firstNameInput.errors.required">
+                            <mat-error *ngIf="firstNameInput.hasError('required')">
                                 <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                             </mat-error>
                         </mat-error>
@@ -19,7 +19,7 @@
                         <mat-label><span [innerHTML]="'General.Field.Label.LastName' | translate"></span></mat-label>
                         <input  matInput name="lastNameInput" [(ngModel)]="user.lastName" #lastNameInput="ngModel" required>
                         <mat-error *ngIf="lastNameInput.invalid">
-                            <mat-error *ngIf="lastNameInput.errors.required">
+                            <mat-error *ngIf="lastNameInput.hasError('required')">
                                 <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                             </mat-error>
                         </mat-error>
@@ -74,7 +74,8 @@
                     <div class="form-group">
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
-                            <input matInput name="emailInput" [(ngModel)]="user.email" #emailInput="ngModel" required email>
+                            <input matInput name="emailInput" [(ngModel)]="user.email" #emailInput="ngModel" required type="email">
+                            <fa-icon matSuffix [icon]="['far', 'envelope']" class="hint-icon"></fa-icon>
                             <mat-error *ngIf="emailInput.invalid">
                                 <mat-error *ngIf="emailInput.errors.required">
                                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
@@ -119,7 +120,7 @@
                     <div class="form-group">
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'General.Field.Label.RepeatPassword' | translate"></span></mat-label>
-                            <input  type="password" matInput name="passwordRepeatInput" [(ngModel)]="repeatPassword" #passwordRepeatInput="ngModel" [readOnly]="!hidePW" [disabled]="passwordInput.invalid"
+                            <input matInput type="password" matInput name="passwordRepeatInput" [(ngModel)]="repeatPassword" #passwordRepeatInput="ngModel" [readOnly]="!hidePW" [disabled]="passwordInput.invalid"
                             required equal="passwordInput">
                             <fa-icon matSuffix [icon]="['fas', 'key']" class="hint-icon"></fa-icon>
                             <mat-error *ngIf="passwordRepeatInput.invalid">

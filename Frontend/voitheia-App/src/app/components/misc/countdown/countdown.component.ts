@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
+import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 
 @Component({
   selector: 'app-countdown',
@@ -18,9 +21,18 @@ export class CountdownComponent implements OnInit {
     MilliSeconds: "Millisekunden"
   };
 
-  constructor() { }
+  goLive: Date;
+  registrationOpens: Date;
+
+  constructor(private _utilitiesService: UtilitiesService, private _navigationService: NavigationService) { }
 
   ngOnInit(): void {
+    this.goLive = environment.goLiveDate;
+    this.registrationOpens = environment.registerOpenDate;
+
+    if(this._utilitiesService.isLive()){
+      this._navigationService.navigateTo("home");
+    }
   }
 
 }

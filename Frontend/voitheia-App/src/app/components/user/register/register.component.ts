@@ -4,6 +4,7 @@ import { UtilitiesService } from 'src/app/common/shared/services/utilities.servi
 import { AuthService } from 'src/app/common/shared/services/auth.service';
 import { JwtDTO } from 'src/app/common/models/JwtDTO';
 import { RegisterUserDTO } from 'src/app/common/models/registerUserDTO';
+import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 
 @Component({
   selector: 'app-register',
@@ -18,12 +19,15 @@ export class RegisterComponent implements OnInit {
   hidePW = true;
   passwordRegEx = '';
   
-  constructor(private _userService: UserService, private _authService: AuthService, private _utilitiesService: UtilitiesService) {
+  constructor(private _userService: UserService, private _authService: AuthService, private _utilitiesService: UtilitiesService, private _navigationService: NavigationService) {
     this.user = new RegisterUserDTO();
     this.passwordRegEx = _utilitiesService.passwordRegEx;
   }
 
   ngOnInit(): void {
+    if(!this._utilitiesService.isRegistrationOpen()){
+      this._navigationService.navigateTo("countdown");
+    }
   }
 
   public send(){    

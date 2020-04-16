@@ -64,27 +64,14 @@
                 <div class="row label">
                     <div class="col-12">
                         {{'General.Field.Label.Username' | translate}}
-                        <!--<button mat-raised-button color="primary" class="float-right">
-                            <fa-icon [icon]="['fas', 'edit']"></fa-icon>
-                        </button>-->
-                    </div>
-                </div>
-                <div class="row content">
-                    <div class="col-12">
-                        {{userData.email}}
-                    </div>
-                </div>
-                <div class="row label">
-                    <div class="col-12">
-                        {{'General.Field.Label.Password' | translate}}
-                        <button mat-raised-button color="primary" class="float-right" (click)="openSetPasswordDialog()">
+                        <button mat-raised-button color="primary" class="float-right" (click)="openSetEmailDialog()">
                             <fa-icon [icon]="['fas', 'edit']"></fa-icon>
                         </button>
                     </div>
                 </div>
                 <div class="row content">
                     <div class="col-12">
-                        *****
+                        {{userData.email}}
                     </div>
                 </div>
                 <div class="row label">
@@ -109,7 +96,18 @@
                 </div>
                 <div class="row content">
                     <div class="col-12">
-                        <button mat-stroked-button color="warn" (click)="openDeleteAccountDialog()"><fa-icon [icon]="['fas', 'trash-alt']"></fa-icon> {{'User.Profile.View.Section.AccountInformation.DeleteAccount' | translate}}</button>
+                        <button mat-stroked-button color="primary" (click)="openSetPasswordDialog()">
+                            <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+                            {{'General.Buttons.ChangePassword' | translate}}
+                        </button>
+                    </div>
+                </div>
+                <div class="row content">
+                    <div class="col-12">
+                        <button mat-stroked-button color="warn" (click)="openDeleteAccountDialog()">
+                            <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
+                            {{'User.Profile.View.Section.AccountInformation.DeleteAccount' | translate}}
+                        </button>
                     </div>
                 </div>
             </div>

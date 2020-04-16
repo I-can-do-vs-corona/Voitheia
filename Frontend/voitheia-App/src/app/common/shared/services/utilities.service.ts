@@ -4,7 +4,7 @@ import { environment } from '../../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from './dialog/dialog.service';
 import { DialogIconTypeEnum } from '../../helper/enums/dialog-icon-type.enum';
-import { AuthService } from './auth.service';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +31,29 @@ export class UtilitiesService {
 
   handleError(error: any){
     this._translate.get(['General.Dialogs.Titles.Error', 'General.Dialogs.Text.Error', 'General.Buttons.Close']).subscribe((res: string) => {
-      var errorText = (typeof error === 'string')? error : error.message;
+      let errorText = "";
+      if(typeof error === 'string'){
+        errorText = error;
+      }
+      else if(typeof error.error !== 'undefined' && Array.isArray(error.error)){
+        errorText = error.error[0].errormessage;
+      }
+      else if(typeof error.error !== 'undefined' && typeof error.error.errormessage !== 'undefined' && error.error.errormessage !== ""){
+        errorText = error.error.errormessage;
+      }
+      else {
+        errorText = error.message;
+      }
+
       this._dialogService.showDialogOneButton(res['General.Dialogs.Titles.Error'], res['General.Dialogs.Text.Error'] + "<br />" + errorText, DialogIconTypeEnum.Error, res['General.Buttons.Close']);
     });
+  }
+
+  isLive(): boolean{
+    return moment(environment.goLiveDate).isSameOrBefore();
+  }
+
+  isRegistrationOpen(): boolean{
+    return moment(environment.registerOpenDate).isSameOrBefore();
   }
 }

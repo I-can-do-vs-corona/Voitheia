@@ -24,8 +24,13 @@
                 </button>                      
             </div>
             <div id="register_msg">
+                <a routerLink="/user/reset-password" routerLinkActive="active">
+                    <span>
+                        {{'General.Buttons.ResetPassword' | translate }}
+                    </span>
+                </a>
                 <span>
-                    {{'User.Login.NoAccount' | translate }}
+                    -
                 </span>
                 <a routerLink="/user/register" routerLinkActive="active">
                     <span>

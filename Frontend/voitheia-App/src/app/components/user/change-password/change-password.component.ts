@@ -32,7 +32,6 @@ export class ChangePasswordComponent implements OnInit {
 
   onSave(): void {
     this.showError = false;
-    debugger;
     this._userService.changePassword(this.changePasswordCredentials).subscribe(
       data => {
         this.dialogRef.close("Success");

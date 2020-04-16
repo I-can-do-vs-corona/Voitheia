@@ -10,6 +10,7 @@ import { UtilitiesService } from 'src/app/common/shared/services/utilities.servi
 import { DialogService } from 'src/app/common/shared/services/dialog/dialog.service';
 import { TranslateService } from '@ngx-translate/core';
 import { RequestTypeEnum } from 'src/app/common/helper/enums/request-type.enum';
+import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 
 @Component({
   selector: 'app-my-requests-list',
@@ -24,11 +25,14 @@ export class MyRequestsListComponent implements OnInit {
 
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
   
-  constructor(private _myRequestsService: MyRequestsService, private _dialog: MatDialog, private _utilitiesService: UtilitiesService, private _dialogService: DialogService, private _translateService: TranslateService) { }
+  constructor(private _myRequestsService: MyRequestsService, private _dialog: MatDialog, private _utilitiesService: UtilitiesService, private _dialogService: DialogService, private _translateService: TranslateService, private _navigationService: NavigationService) { }
 
   ngOnInit(): void {
-      this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
-      this.loadAllData();
+    if(!this._utilitiesService.isLive()){
+      this._navigationService.navigateTo("countdown");
+    }
+    this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
+    this.loadAllData();
   }
 
   openDetails(index:number){

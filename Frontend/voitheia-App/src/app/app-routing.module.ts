@@ -17,6 +17,7 @@ import { ProfileViewComponent } from './components/user/profile/profile-view/pro
 import { ProfileEditComponent } from './components/user/profile/profile-edit/profile-edit.component';
 import { CountdownComponent } from './components/misc/countdown/countdown.component';
 import { ConfirmEmailComponent } from './components/user/confirm-email/confirm-email.component';
+import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -93,6 +94,11 @@ const routes: Routes = [
         path: 'confirm-email',
         component: ConfirmEmailComponent,
         data: {title: 'User.ConfirmEmail'}
+      },
+      {
+        path: 'reset-password',
+        component: ResetPasswordComponent,
+        data: {title: 'User.ResetPassword'}
       }
     ]
   },

@@ -39,9 +39,12 @@ export class RequestListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
-      this.requestDataSource.paginator = this.paginator;
-      this.loadAllData();
+    if(!this._utilitiesService.isLive()){
+      this._navigationService.navigateTo("countdown");
+    }
+    this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
+    this.requestDataSource.paginator = this.paginator;
+    this.loadAllData();
   }
 
   applyFilter(event: MatSelectChange) {
