@@ -399,5 +399,10 @@
     "VSBG": "9. Hinweis gemäß § 36 Verbraucherstreitbeilegungsgesetz (VSBG)",
     "VSBGText": "Der Betreiber wird nicht an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle im Sinne des deutschen Verbraucherstreitbeilegungsgesetzes (VSBG) teilnehmen und ist hierzu auch nicht verpflichtet."
 
+  },
+
+  "ErrorPageNotFound": {
+    "PageNotFound": "Seite nicht gefunden",
+    "PageNotFoundText": "Die Seite, die du suchst, exisitiert wohl nicht. Dafür kannst du dir süße Kätzchen ansehen."
   }
 }
