@@ -83,17 +83,18 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return new ContentResult
-                    {
-                        StatusCode = 424,
-                        Content = $"Status Code: {424}; FailedDependency; Address is invalid",
-                        ContentType = "text/plain",
-                    };
+                    return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "The provided adress is not valid. Please check for the spelling of the street. Accepted: Sankt-Boni. Invalid: St.-Boni." });
+                    //return new ContentResult
+                    //{
+                    //    StatusCode = 424,
+                    //    Content = $"Status Code: {424}; FailedDependency; Address is invalid",
+                    //    ContentType = "text/plain",
+                    //};
                 }
             }
             else
             {
-                return BadRequest(ModelState);
+                return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "Invalid model" });
             }
         }
 
@@ -111,11 +112,11 @@ namespace ActiveCruzer.Controllers
             if (_requestBll.Exists(id))
             {
                 _requestBll.Delete(id);
-                return Ok();
+                return Ok("Request deleted");
             }
             else
             {
-                return NotFound(id);
+                return NotFound(new ErrorModel {code = NotFound().StatusCode, errormessage = "This request did not exist." });
             }
         }
 
@@ -167,7 +168,7 @@ namespace ActiveCruzer.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest("User not logged in. Provide Longitude and Latitude");
+                    return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "User not logged in. Provide Longitude and Latitude" });
                 }
             }
 

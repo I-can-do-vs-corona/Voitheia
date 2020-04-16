@@ -22,6 +22,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Pomelo.EntityFrameworkCore.MySql;
+using ActiveCruzer.Controllers;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace ActiveCruzer.Start
 {
@@ -72,7 +76,14 @@ namespace ActiveCruzer.Start
 
             services.InitJwt(_configuration);
 
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers()
+                // custom invalid model behavior
+                .ConfigureApiBehaviorOptions(opt =>
+                    opt.InvalidModelStateResponseFactory = actionresult =>
+                    {
+                        return InvalidModel(actionresult);
+                    });
+                //.AddNewtonsoftJson();
 
             services.AddAutoMapper(GetType().Assembly);
 
@@ -84,6 +95,17 @@ namespace ActiveCruzer.Start
             }));
 
             services.InitSwagger();
+        }
+
+        private BadRequestObjectResult InvalidModel(ActionContext context)
+        {
+            return new BadRequestObjectResult(context.ModelState
+              .Where(modelError => modelError.Value.Errors.Count > 0)
+              .Select(modelError => new ErrorModel
+              {
+                  code = 400,
+                  errormessage = "Invalid Model."
+              }));
         }
 
 

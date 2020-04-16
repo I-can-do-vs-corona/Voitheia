@@ -59,7 +59,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Unauthorized(new ErrorModel {code = Unauthorized().StatusCode, errormessage=  "Email is not confirmed yet" });
             }
 
             if (ModelState.IsValid)
@@ -71,12 +71,12 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return NotFound();
+                    return NotFound(new ErrorModel {code = NotFound().StatusCode, errormessage = "This request did not exist." });
                 }
             }
             else
             {
-                return BadRequest(ModelState);
+                return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "Invalid model." });
             }
         }
 
@@ -95,7 +95,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
             }
 
             if (_requestBll.ExistsOnUser(id, userId))
@@ -109,7 +109,7 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return NotFound();
+                return NotFound(new ErrorModel {code = NotFound().StatusCode, errormessage = "No requests found." });
             }
         }
 
@@ -130,7 +130,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
             }
 
             if (_requestBll.ExistsOnUser(id, userId))
@@ -142,12 +142,12 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return BadRequest("The request is already closed");
+                    return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "No requests found." });
                 }
             }
             else
             {
-                return NotFound(id);
+                return NotFound(new ErrorModel {code = NotFound().StatusCode, errormessage = "This request did not exist." });
             }
         }
 
@@ -167,7 +167,7 @@ namespace ActiveCruzer.Controllers
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
             }
 
             var requests = _requestBll.GetAllPendingFromUser(userId);
@@ -190,7 +190,7 @@ namespace ActiveCruzer.Controllers
 
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Forbid();
+                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
             }
 
             if (ModelState.IsValid)
@@ -202,12 +202,12 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return NotFound(id);
+                    return NotFound(new ErrorModel { code = NotFound().StatusCode, errormessage = "This request did not exist." });
                 }
             }
             else
             {
-                return BadRequest(ModelState);
+                return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "Invalid model." });
             }
         }
     }

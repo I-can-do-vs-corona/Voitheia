@@ -8,6 +8,7 @@ namespace ActiveCruzer.Models.DTO.Request
     public class MinimalRequestDto
     {
         public int Id { get; set; }
+        public string FirstName { get; set; }
         public string Description { get; set; }
         /// <summary>
         /// Distance to the currently logged in users registered address
