@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ActiveCruzer.Models.DTO
 {
-    public class ForgotPasswordDto
+    public class ConfirmationEmailDto
     {
         [Required]
         [EmailAddress]
-        public string email { get; set; }
+        public string Email { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Bcpg.OpenPgp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,5 +10,6 @@ namespace ActiveCruzer.BLL
     {
         Task SendEmailConfirmationAsync(string firstname, string email, string message);
         Task SendEmailPWTokenAsync(string firstname, string email, string message);
+        Task SendDeleteEmailAsync(string firstname, string email);
     }
 }
