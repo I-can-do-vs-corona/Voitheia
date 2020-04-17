@@ -30,7 +30,7 @@
       "Error": {
         "Required": "Feld ist erforderlich.",
         "Email": "Eingabe ist keine gültige E-mail adresse.",
-        "PasswordPattern": "Mindestens ein kleiner Buchstabe, ein grosser Buchstabe, eine Zahl und ein spezial Zeichen.",
+        "PasswordPattern": "Mindestens ein kleiner Buchstabe, ein grosser Buchstabe, eine Zahl und ein Sonderzeichen.",
         "MinLength" : "Du musst mindestens {{count}} Zeichen angeben.",
         "MaxLength" : "Du kannst maximal {{count}} Zeichen angeben.",
         "Equal": {
