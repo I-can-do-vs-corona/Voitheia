@@ -95,7 +95,7 @@
     i#logo{
       height: 50px;
       width: 50px;
-      background-image: url(../../../../assets/images/logo_transparent.svg);
+      background-image: url(../../../../assets/images/logos/voitheia_white.svg);
       background-repeat: no-repeat;
       background-size: contain;
       margin-right: $half-spacing;
@@ -220,7 +220,7 @@
       }
   
       #mainNav.navbar-scrolled i#logo {
-        background-image: url(../../../../assets/images/logo_transparent_black.svg);
+        background-image: url(../../../../assets/images/logos/voitheia_black.svg);
       }
   
     #mainNav.navbar-scrolled {

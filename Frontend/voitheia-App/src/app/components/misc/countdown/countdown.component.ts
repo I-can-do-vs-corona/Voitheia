@@ -35,9 +35,4 @@ export class CountdownComponent implements OnInit {
       this._navigationService.navigateTo("home");
     }
   }
-
-  public isLoggedIn(){
-    return this._authService.isLoggedIn();
-  }
-
 }
