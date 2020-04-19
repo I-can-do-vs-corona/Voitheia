@@ -2,6 +2,9 @@
 
 :host{
     .content-container{
+        margin-top:100px;
+        margin-bottom:100px;
+
         /deep/ .countdown{
             .measurements{
                 text-align:center;
@@ -12,5 +15,9 @@
                 font-size: 30px;
                }
         }
+    }
+
+    .mainpage-button{
+        margin-bottom:50px;
     }
 }

@@ -23,16 +23,18 @@ export class CountdownComponent implements OnInit {
   };
 
   goLive: Date;
-  registrationOpens: Date;
 
   constructor(private _utilitiesService: UtilitiesService, private _navigationService: NavigationService, private _authService: AuthService) { }
 
   ngOnInit(): void {
     this.goLive = environment.goLiveDate;
-    this.registrationOpens = environment.registerOpenDate;
 
     if(this._utilitiesService.isLive()){
       this._navigationService.navigateTo("home");
     }
+  }
+
+  registrationOpen(){
+    return this._utilitiesService.isRegistrationOpen();
   }
 }

@@ -1,5 +1,8 @@
-  <div class="text-center text-justify">
-    <h3> Bald ist es soweit - Sei dabei, wenn die Plattform live geht!</h3>
+<div class="text-center text-justify">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h3> Bald ist es soweit - Sei dabei, wenn die Plattform live geht!</h3>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-6 offset-md-3 content-container">
@@ -7,31 +10,27 @@
       <countdown [text]="text" units="Days | Hours | Minutes | Seconds" [end]="goLive"></countdown>
     </div>
   </div>
-
-<div class="container h-100">
-  <div style="margin-left: 10%; margin-top: 4.5rem; margin-bottom: 4rem;" class="row h-100 ">
-    <div class="col-lg-10 align-self-end">
-      <h1 class="text-white font-weight-bold">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h1>
         {{'General.Slogan' | translate}}
       </h1>
-    </div>
-    <div class="col-lg-10 align-self-baseline">
-      <p class=" font-weight-light mb-5">
+      <p class="font-weight-light mb-5 text-left">
         {{'Home.Texts.Level1' | translate }}
         <br>
         {{'Home.Texts.Level2' | translate }}
       </p>
-      <div class="row p-2">
-        <div class="col-md-4"> </div>
-        <div class="col-md-4">
-          <button class="mainpage-button" type="submit" mat-raised-button color="primary" routerLink="/user/register">
-            <span>
-              {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
-            </span>
-          </button>
-        </div>
-      </div>
-      <div class="p-2"> <h4>Registriere dich schon heute als Voitheia-Helfer, und sei bereit für die ersten Untersützungsanfragen. Wir informieren dich nochmal per Email, wenn die Plattform gelauncht wurde. Frohes Helfen! </h4>
+    </div>
+  </div>
+  <div class="row" *ngIf="registrationOpen()">
+    <div class="col-md-10 offset-md-1">
+      <button class="mainpage-button" type="submit" mat-raised-button color="primary" routerLink="/user/register">
+        <span>
+          {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
+        </span>
+      </button>
+      <div>
+        <h4>Registriere dich schon heute als Voitheia-Helfer, und sei bereit für die ersten Untersützungsanfragen. Wir informieren dich nochmal per Email, wenn die Plattform gelauncht wurde. Frohes Helfen! </h4>
       </div>
     </div>
   </div>
