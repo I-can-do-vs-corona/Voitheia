@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 //@import './custom-angular-material-theme.scss';
-@import './variables.scss';
+@import './scss/variables.scss';
+
+//FontAwesome
+@import "./scss/fontAwesome/fontawesome.scss";
+@import "./scss/fontAwesome/solid.scss";
 
 @font-face {
     //https://www.fontfabric.com/fonts/kelson-sans/#font-styles
@@ -126,6 +130,96 @@ body {
 
     &:hover{
       color: $info-text;
+    }
+  }
+
+  .alert{
+    border-left-width: $third-spacing;
+    border-radius: 0;
+
+    :first-child{
+      @extend %fa-icon;
+      @extend .fas;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    
+      &:before {
+        margin-right:$normal-spacing;
+        font-size: $largest;
+      }
+    }
+
+    &.alert-primary{
+      border-color: $brand-color-dark;
+      color: $brand-color-dark;
+      background-color: $brand-color-light;
+    }
+
+    &.alert-secondary{
+      border-color: $brand-secondary-color-dark;
+      color: $brand-secondary-color-dark;
+      background-color: $brand-secondary-color-light;
+    }
+
+    &.alert-success{
+      border-color: $success-text;
+      color: $success-text;
+      background-color: $success-bg;
+
+      :first-child{      
+        &:before {
+          content: fa-content($fa-var-check-circle);
+        }
+      }
+    }
+
+    &.alert-danger{
+      border-color: $danger-text;
+      color: $danger-text;
+      background-color: $danger-bg;
+
+      :first-child{      
+        &:before {
+          content: fa-content($fa-var-times-circle);
+        }
+      }
+    }
+
+    &.alert-warning{
+      border-color: $warning-text;
+      color: $warning-text;
+      background-color: $warning-bg;
+
+      :first-child{      
+        &:before {
+          content: fa-content($fa-var-exclamation-circle);
+        }
+      }
+    }
+
+    &.alert-info{
+      border-color: $info-text;
+      color: $info-text;
+      background-color: $info-bg;
+
+      :first-child{      
+        &:before {
+          content: fa-content($fa-var-info-circle);
+        }
+      }
+    }
+
+    &.alert-question{ //Custom
+      border-color: $question-text;
+      color: $question-text;
+      background-color: $question-bg;
+
+      :first-child{      
+        &:before {
+          content: fa-content($fa-var-question-circle);
+        }
+      }
     }
   }
 }

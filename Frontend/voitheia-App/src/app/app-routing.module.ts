@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './components/user/register/register.component';
 import { LoginComponent } from './components/user/login/login.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/misc/home/home.component';
 import { RequestListComponent } from './components/request/request-list/request-list.component';
 import { RequestFormComponent } from './components/request/request-form/request-form.component';
 import { MyRequestsListComponent } from './components/my-requests/my-requests-list/my-requests-list.component';

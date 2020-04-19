@@ -8,17 +8,16 @@ $gray-5: #151515;
 
 //Brand Color
 $brand-color: #78E9F0; //#FF9985;
-$brand-color-light: #78E9FF; //#FF9985;
-$brand-color-dark: #4BA2B3;//#FF9985;
+$brand-color-light: lighten( $brand-color, 10% );// #78E9FF; //#FF9985;
+$brand-color-dark: darken( $brand-color, 10% );//#4BA2B3;//#FF9985;
 
 $brand-secondary-color: #91FF96;
-$brand-secondary-color-light: rgb(188, 255, 191); //subject to change?
-$brand-secondary-color-dark: #6fB371;
-$brand-secondary-color-dark-dark:$black;
+$brand-secondary-color-light: lighten( $brand-secondary-color, 10% );//rgb(188, 255, 191); //subject to change?
+$brand-secondary-color-dark: darken( $brand-secondary-color, 10% );//#6fB371;
 
 $brand-warn-color:#ff0000;
-$brand-warn-color-light:#ffb3b3;
-$brand-warn-color-dark:$brand-warn-color;
+$brand-warn-color-light:lighten( $brand-warn-color, 10% );//#ffb3b3;
+$brand-warn-color-dark:darken( $brand-warn-color, 10% );//$brand-warn-color;
 
 //a tag config
 $link-color: $brand-color;
@@ -39,16 +38,24 @@ $white: #FFFFFF;
 
 $info-text: #31708f;
 $success-text: #3c763d;
-$error-text: $dark-red;
+$danger-text: $dark-red; //for bootstrap
+$error-text: $danger-text; //for Angular Material
 $warning-text: #8a6d3b;
 $question-text: $info-text;
-$default-text: $gray-5;
+$default-text: $gray-5; //for Angular Material
 
-$info-bg: #d9edf7;
-$success-bg: #dff0d8;
-$error-bg: $light-red-2;
-$warning-bg: #fcf8e3;
-$question-bg: $info-bg;
+$info-bg: lighten($info-text,50%);//#d9edf7;
+$success-bg: lighten($success-text,50%);//#dff0d8;
+$danger-bg: lighten($danger-text,50%);//$light-red-2;
+$error-bg: lighten($error-text,50%);//$light-red-2;
+$warning-bg: lighten($warning-text,50%);//#fcf8e3;
+$question-bg: lighten($question-text,50%);//$info-bg;
+
+$info-border: $info-text;
+$success-border: $success-text;
+$error-border: $error-text;
+$warning-border: $warning-text;
+$question-border: $question-text;
 
 $gray-separators: $gray-3;
 $gray-separators-light: $gray-4;

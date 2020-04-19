@@ -15,7 +15,7 @@ import { RegisterComponent } from './components/user/register/register.component
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from './common/modules/material/material.module';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/misc/home/home.component';
 import { RequestFormComponent } from './components/request/request-form/request-form.component';
 import { RequestViewComponent } from './components/request/request-view/request-view.component';
 import { TermsComponent } from './components/terms/terms/terms.component';
