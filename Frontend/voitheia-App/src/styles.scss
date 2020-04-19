@@ -121,8 +121,12 @@ body {
   }
   
   .info-icon{
-    color: $info-text;
+    color: $gray-2;
     font-size: $medium;
+
+    &:hover{
+      color: $info-text;
+    }
   }
 }
 

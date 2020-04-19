@@ -46,10 +46,16 @@
                     <div class="form-group">
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
-                            <input  matInput name="zipInput" [(ngModel)]="user.zip" #zipInput="ngModel" required>
-                            <mat-error *ngIf="zipInput.invalid">
-                                <mat-error *ngIf="zipInput.errors.required">
+                            <input matInput numberLength="5" name="zipcodeInput" [(ngModel)]="user.zip" #zipcodeInput="ngModel" zipCodeWithinRange required>
+                            <mat-error *ngIf="zipcodeInput.invalid">
+                                <mat-error *ngIf="zipcodeInput.errors.required">
                                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                                </mat-error>
+                                <mat-error *ngIf="zipcodeInput.errors.numberLength">
+                                    <span>{{'General.Input.Error.numberLength' | translate:{count : 5} }}</span>
+                                </mat-error>
+                                <mat-error *ngIf="zipcodeInput.errors.zipCodeWithinRange && !zipcodeInput.errors.numberLength">
+                                    <span>{{'General.Input.Error.zipCodeWithinRange' | translate}}</span>
                                 </mat-error>
                             </mat-error>
                         </mat-form-field>

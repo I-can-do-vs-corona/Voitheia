@@ -15,9 +15,9 @@
                         <span [innerHTML]="'General.Enums.RequestTypeEnum.' + RequestTypeEnum[requestType] | translate"></span>
                       </mat-radio-button>
                     </mat-radio-group>
-                    <mat-error *ngIf="typeInput.invalid">
+                    <mat-error *ngIf="typeInput.touched && typeInput.invalid">
                       <mat-error *ngIf="typeInput.errors.required">
-                        <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                        <span>{{'General.Input.Error.Required' | translate}}</span>
                       </mat-error>
                     </mat-error>
                   </div>
@@ -34,14 +34,14 @@
                       <mat-label>
                         <span [innerHTML]="'General.Field.Label.Description' | translate"></span>
                       </mat-label>
-                      <textarea matInput name="textareaInput" [(ngModel)]="request.description"
-                                #textareaInput="ngModel" required rows="5" maxlength="256"></textarea>
-                      <mat-hint align="end">{{request.description.length}} / 256</mat-hint>
+                      <textarea matInput name="descriptionInput" [(ngModel)]="request.description"
+                                #descriptionInput="ngModel" required rows="5" maxlength="2000"></textarea>
+                      <mat-hint align="end">{{request.description.length}} / 2000</mat-hint>
                       <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'Request.Create.Infos.Details' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
                     </mat-form-field>
-                    <mat-error *ngIf="textareaInput.invalid">
-                      <mat-error *ngIf="textareaInput.errors.required">
-                        <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                    <mat-error *ngIf="descriptionInput.touched && descriptionInput.invalid">
+                      <mat-error *ngIf="descriptionInput.errors.required">
+                        <span>{{'General.Input.Error.Required' | translate}}</span>
                       </mat-error>
                     </mat-error>
                   </div>
@@ -64,12 +64,12 @@
                           <mat-label>
                             <span [innerHTML]="'General.Field.Label.FirstName' | translate"></span>
                           </mat-label>
-                          <input matInput name="firstnameInput" [(ngModel)]="request.firstName"
-                                 #firstnameInput="ngModel" required />
+                          <input matInput name="firstNameInput" [(ngModel)]="request.firstName"
+                                 #firstNameInput="ngModel" required />
                         </mat-form-field>
-                        <mat-error *ngIf="firstnameInput.invalid">
-                          <mat-error *ngIf="firstnameInput.errors.required">
-                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                        <mat-error *ngIf="firstNameInput.touched && firstNameInput.invalid">
+                          <mat-error *ngIf="firstNameInput.errors.required">
+                            <span>{{'General.Input.Error.Required' | translate}}</span>
                           </mat-error>
                         </mat-error>
                       </div>
@@ -80,12 +80,12 @@
                           <mat-label>
                             <span [innerHTML]="'General.Field.Label.LastName' | translate"></span>
                           </mat-label>
-                          <input matInput name="lastnameInput" [(ngModel)]="request.lastName"
-                                 #lastnameInput="ngModel" required />
+                          <input matInput name="lastNameInput" [(ngModel)]="request.lastName"
+                                 #lastNameInput="ngModel" required />
                         </mat-form-field>
-                        <mat-error *ngIf="lastnameInput.invalid">
-                          <mat-error *ngIf="lastnameInput.errors.required">
-                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                        <mat-error *ngIf="lastNameInput.touched && lastNameInput.invalid">
+                          <mat-error *ngIf="lastNameInput.errors.required">
+                            <span>{{'General.Input.Error.Required' | translate}}</span>
                           </mat-error>
                         </mat-error>
                       </div>
@@ -99,9 +99,9 @@
                             &nbsp;
                           </span>
                           <input matInput name="emailInput" [(ngModel)]="request.email" #emailInput="ngModel" type="email" email />
-                          <mat-error *ngIf="emailInput.invalid">
+                          <mat-error *ngIf="emailInput.touched && emailInput.invalid">
                             <mat-error *ngIf="emailInput.errors.email">
-                                <span [innerHTML]="'General.Input.Error.Email' | translate"></span>
+                                <span>{{'General.Input.Error.Email' | translate}}</span>
                             </mat-error>
                         </mat-error>
                       </mat-form-field>
@@ -116,9 +116,9 @@
                           <input matInput name="phoneInput" [(ngModel)]="request.phoneNumber" #phoneInput="ngModel"
                               required type="number" />
                       </mat-form-field>
-                      <mat-error *ngIf="phoneInput.invalid">
+                      <mat-error *ngIf="phoneInput.touched && phoneInput.invalid">
                           <mat-error *ngIf="phoneInput.errors.required">
-                              <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                              <span>{{'General.Input.Error.Required' | translate}}</span>
                           </mat-error>
                       </mat-error>
                   </div>
@@ -128,9 +128,9 @@
                           <input matInput name="addressInput" [(ngModel)]="request.street" #addressInput="ngModel"
                               required />
                       </mat-form-field>
-                      <mat-error *ngIf="addressInput.invalid">
+                      <mat-error *ngIf="addressInput.touched && addressInput.invalid">
                           <mat-error *ngIf="addressInput.errors.required">
-                              <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                            <span>{{'General.Input.Error.Required' | translate}}</span>
                           </mat-error>
                       </mat-error>
                   </div>
@@ -139,12 +139,19 @@
                           <div class="form-group">
                               <mat-form-field>
                                   <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
-                                  <input matInput name="zipcodeInput" [(ngModel)]="request.zip" #zipcodeInput="ngModel" required />
+                                  <input matInput type="number" numberLength="5" name="zipcodeInput" [(ngModel)]="request.zip" #zipcodeInput="ngModel" zipCodeWithinRange required />
+                                  <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'Request.Create.Infos.ZipCode' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
                               </mat-form-field>
-                              <mat-error *ngIf="zipcodeInput.invalid">
-                                  <mat-error *ngIf="zipcodeInput.errors.required">
-                                      <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
-                                  </mat-error>
+                              <mat-error *ngIf="zipcodeInput.touched && zipcodeInput.invalid">
+                                <mat-error *ngIf="zipcodeInput.errors.required">
+                                  <span>{{'General.Input.Error.Required' | translate}}</span>
+                                </mat-error>
+                                <mat-error *ngIf="zipcodeInput.errors.numberLength">
+                                  <span >{{'General.Input.Error.numberLength' | translate:{count : 5} }}</span>
+                                </mat-error>
+                                <mat-error *ngIf="zipcodeInput.errors.zipCodeWithinRange && !zipcodeInput.errors.numberLength">
+                                  <span>{{'General.Input.Error.zipCodeWithinRange' | translate}}</span>
+                                </mat-error>
                               </mat-error>
                           </div>
                       </div>
@@ -155,16 +162,16 @@
                                   <input matInput name="cityInput" [(ngModel)]="request.city" #cityInput="ngModel"
                                       required />
                               </mat-form-field>
-                              <mat-error *ngIf="cityInput.invalid">
+                              <mat-error *ngIf="cityInput.touched && cityInput.invalid">
                                   <mat-error *ngIf="cityInput.errors.required">
-                                      <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                                      <span>{{'General.Input.Error.Required' | translate}}</span>
                                   </mat-error>
                               </mat-error>
                           </div>
                       </div>
                   </div>
                   <div class="form-group">
-                      <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
+                      <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHTML]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
                   </div>
       
                   <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" (captchaExpired)="handleExpiredCaptcha()" [site_key]="reCaptchaKey" [language]="getreCaptchaLanguage()" *ngIf="reCaptchaKey !== ''"></re-captcha>

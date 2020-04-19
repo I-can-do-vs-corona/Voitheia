@@ -51,6 +51,8 @@ import { RequireFieldIfSetValidator } from './common/helper/formValidators/requi
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { ChangeEmailComponent } from './components/user/change-email/change-email.component';
 import { ReCaptchaModule } from 'angular2-recaptcha';
+import { ZipCodeWithinRangeValidator } from './common/helper/formValidators/zipCodeWithinRangeValidator';
+import { NumberLengthValidator } from './common/helper/formValidators/numberLengthValidator';
 
 
 @NgModule({
@@ -62,6 +64,8 @@ import { ReCaptchaModule } from 'angular2-recaptcha';
     GreaterThanValidator,
     RequireFieldValidator,
     RequireFieldIfSetValidator,
+    ZipCodeWithinRangeValidator,
+    NumberLengthValidator,
     LoginComponent,
     RegisterComponent,
     FooterComponent,

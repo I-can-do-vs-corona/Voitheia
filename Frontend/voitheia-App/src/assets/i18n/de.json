@@ -40,8 +40,9 @@
         "NotEqual": {
           "Password": "Neues Passwort darf nicht das gleiche wie das alte sein.",
           "Email": "Neue Email adresse darf nicht die gleiche wie die alte sein."
-        }
-
+        },
+        "numberLength": "Die Eingabe muss {{count}} stellen haben.",
+        "zipCodeWithinRange": "PLZ nicht im erlauben Bereich."
       }
     },
     "Dialogs": {
@@ -54,7 +55,6 @@
       },
       "Text": {
         "Error": "Es ist ein Fehler aufgetreten"
-
       }
     },
     "Field": {
@@ -265,7 +265,8 @@
       "Infos": {
         "PetInsurance": "Hinweis: Bitte frage nur nach Haustierbetreuung, wenn du auch eine Haftpflichtversicherung für dein Haustier hast, die Haustierbetreuung absichert.",
         "GeneralInsurance": "Hinweis: Bitte frage nur nach Kinderbetreuung, wenn in deiner Haftpflichtversicherung Gefälligkeitsschäden abgedeckt sind.",
-        "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden..."
+        "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden...",
+        "ZipCode": "Aktuell ist die App nur für den raum München freigeschaltet. PLZ im Bereich von 80331 bis 85540."
       }
     },
     "Details": {
