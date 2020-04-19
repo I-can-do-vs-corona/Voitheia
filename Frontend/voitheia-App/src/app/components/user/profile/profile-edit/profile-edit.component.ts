@@ -14,7 +14,6 @@ export class ProfileEditComponent implements OnInit {
 
   userData: UpdateUserDTO;
   showSuccess = false;
-  showError = false;
 
   constructor(public dialogRef: MatDialogRef<ProfileEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserDTO,
@@ -34,24 +33,19 @@ export class ProfileEditComponent implements OnInit {
   }
 
   onSave(): void {
-    this.showError = false;
     this.showSuccess = false;
     this._userService.updateUserData(this.userData).subscribe(
       data => {
         this.showSuccess = true;
       },
       err => {
-        this.showError = true;
+        this._utilitiesService.handleError(err);
       }
     )
   }
 
-  dismissAlert(alertName: string){
-    if(alertName === "Success"){
-      this.showSuccess = false;
-    } else if(alertName === "Error"){
-      this.showError = false;
-    }
+  dismissAlert(){
+    this.showSuccess = false;
   }
 
   ngOnInit(): void {

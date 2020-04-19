@@ -123,6 +123,17 @@ body {
     text-decoration: $link-hover-text-decoration;
     background-color: $link-hover-bgcolor;
   }
+
+  //Not needed at the moment
+  a[href^="http://"], a[href^="https://"]  {
+    @extend %fa-icon;
+    @extend .fas;
+
+    &:after {
+      margin-left:$half-spacing;
+      content: fa-content($fa-var-external-link-alt);
+    }
+  }
   
   .info-icon{
     color: $gray-2;
@@ -137,7 +148,7 @@ body {
     border-left-width: $third-spacing;
     border-radius: 0;
 
-    :first-child{
+    >:first-child{
       @extend %fa-icon;
       @extend .fas;
       display: inline-flex;
@@ -167,7 +178,7 @@ body {
       color: $success-text;
       background-color: $success-bg;
 
-      :first-child{      
+      >:first-child{      
         &:before {
           content: fa-content($fa-var-check-circle);
         }
@@ -179,7 +190,7 @@ body {
       color: $danger-text;
       background-color: $danger-bg;
 
-      :first-child{      
+      >:first-child{      
         &:before {
           content: fa-content($fa-var-times-circle);
         }
@@ -191,7 +202,7 @@ body {
       color: $warning-text;
       background-color: $warning-bg;
 
-      :first-child{      
+      >:first-child{      
         &:before {
           content: fa-content($fa-var-exclamation-circle);
         }
@@ -203,7 +214,7 @@ body {
       color: $info-text;
       background-color: $info-bg;
 
-      :first-child{      
+      >:first-child{      
         &:before {
           content: fa-content($fa-var-info-circle);
         }
@@ -215,7 +226,7 @@ body {
       color: $question-text;
       background-color: $question-bg;
 
-      :first-child{      
+      >:first-child{      
         &:before {
           content: fa-content($fa-var-question-circle);
         }

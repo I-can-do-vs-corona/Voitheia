@@ -26,6 +26,35 @@
         "Other": "Anderes"
       }
     },
+    "Field": {
+      "Label": {
+        "FirstName": "Vorname",
+        "LastName": "Nachname",
+        "Title": "Registrieren",
+        "Phone": "Telefonnummer",
+        "Name": "Name",
+        "Username": "Benutzername",
+        "Email": "E-Mail",
+        "CurrentEmail": "Aktuelle E-Mail",
+        "NewEmail": "Neue E-Mail",
+        "NewEmailRepeat": "Neue E-Mail wiederholen",
+        "Password": "Passwort",
+        "RepeatPassword": "Passwort wiederholen",
+        "RegsiteredSince": "Mitglied seit",
+        "Street": "Strasse & Hausnummer",
+        "ZipCode": "PLZ",
+        "City": "Ort",
+        "Type": "Ich benötige Unterstützung bei",
+        "Description": "Beschreibung",
+        "Distance": "Entfernung",
+        "CurrentPassword": "Aktuelles Password",
+        "NewPassword": "Neues Password",
+        "NewPasswordRepeat": "Neues Password wiederholen",
+        "Address": "Adresse",
+        "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu.",
+        "Hint": "Wie kann dein(e) Helfer(in) dich kontaktieren? Hinweis: Sobald dein(e) Helfer(in) die Anfrage angenommen hat, bekommt er/sie ausschließlich deine Telefonnummer und deinen Vornamen zu sehen."
+      }
+    },
     "Input": {
       "Error": {
         "Required": "Feld ist erforderlich.",
@@ -55,35 +84,6 @@
       },
       "Text": {
         "Error": "Es ist ein Fehler aufgetreten"
-      }
-    },
-    "Field": {
-      "Label": {
-        "FirstName": "Vorname",
-        "LastName": "Nachname",
-        "Title": "Registrieren",
-        "Phone": "Telefonnummer",
-        "Name": "Name",
-        "Username": "Benutzername",
-        "Email": "E-Mail",
-        "CurrentEmail": "Aktuelle E-Mail",
-        "NewEmail": "Neue E-Mail",
-        "NewEmailRepeat": "Neue E-Mail wiederholen",
-        "Password": "Passwort",
-        "RepeatPassword": "Passwort wiederholen",
-        "RegsiteredSince": "Mitglied seit",
-        "Street": "Strasse & Hausnummer",
-        "ZipCode": "PLZ",
-        "City": "Ort",
-        "Type": "Ich benötige Unterstützung bei",
-        "Description": "Beschreibung",
-        "Distance": "Entfernung",
-        "CurrentPassword": "Aktuelles Password",
-        "NewPassword": "Neues Password",
-        "NewPasswordRepeat": "Neues Password wiederholen",
-        "Address": "Adresse",
-        "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu.",
-        "Hint": "Wie kann dein(e) Helfer(in) dich kontaktieren? Hinweis: Sobald dein(e) Helfer(in) die Anfrage angenommen hat, bekommt er/sie ausschließlich deine Telefonnummer und deinen Vornamen zu sehen."
       }
     },
     "PageTitles": {

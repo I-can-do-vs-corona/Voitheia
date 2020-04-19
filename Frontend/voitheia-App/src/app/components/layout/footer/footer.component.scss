@@ -22,10 +22,15 @@
     a, a:visited, a:focus, .hyperlink, .hyperlink:visited, .hyperlink:focus{
       color: $white;
     }
+
+    .CGI, .Hackathon{  
+      &:after {
+        display:none;
+      }
+    }
+  }
+  
+  h5 {
+    margin-top: 0px;
   }
 }
-
-h5 {
-  margin-top: 0px !important;;
-}
-
