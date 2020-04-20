@@ -17,5 +17,6 @@ namespace ActiveCruzer.Models
         public DateTime LastLogin { get; set; }
         public DateTime CreatedOn { get; set; }
         public DateTime TermsAccepted { get; set; }
+        public byte[] ProfilPicture { get; set; }
     }
 }
