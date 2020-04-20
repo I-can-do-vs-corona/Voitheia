@@ -12,5 +12,6 @@ namespace ActiveCruzer.Models.DTO.Request
         public string City { get; set; }
         public MinimalUserDto AssignedUser { get; set; }
         public bool Author { get; set; }
+        public byte [] ProfilePicture { get; set; }
     }
 }

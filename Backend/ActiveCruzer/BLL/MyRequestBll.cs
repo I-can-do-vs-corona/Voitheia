@@ -211,7 +211,7 @@ namespace ActiveCruzer.BLL
             {
                 mapped.Author = false;
             }
-            mapped.AssignedUser = new MinimalUserDto { FirstName = user.FirstName, Email = user.Email, PhoneNumber = user.PhoneNumber };
+            mapped.AssignedUser = new MinimalUserDto { FirstName = user.FirstName, Email = user.Email, PhoneNumber = user.PhoneNumber, ProfilePicture = user.ProfilPicture };
             return mapped;
         }
     }
