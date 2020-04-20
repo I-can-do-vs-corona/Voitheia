@@ -14,5 +14,6 @@ namespace ActiveCruzer.Models.DTO
         public DateTime CreatedOn { get; set; }
         public DateTime LastLogin { get; set; }
         public bool EmailConfirmed { get; set; }
+        public byte[] ProfilePicture { get; set; }
     }
 }
