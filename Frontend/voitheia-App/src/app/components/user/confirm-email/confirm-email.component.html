@@ -3,12 +3,16 @@
         <h3 class="content-header">{{'User.ConfirmEmail.Title' | translate }}</h3>
         <mat-spinner class="m-auto" *ngIf="processing"></mat-spinner>
         <div class="alert alert-success" role="alert" *ngIf="!processing && confirmSuccess">
-            <h4 class="alert-heading">{{'User.ConfirmEmail.Messages.Success.Title' | translate }}</h4>
-            <p [innerHtml]="'User.ConfirmEmail.Messages.Success.Text' | translate"></p>
+            <div class="alert-content">
+                <h4 class="alert-heading">{{'User.ConfirmEmail.Messages.Success.Title' | translate }}</h4>
+                <p [innerHtml]="'User.ConfirmEmail.Messages.Success.Text' | translate"></p>
+            </div>
         </div>
         <div class="alert alert-danger" role="alert" *ngIf="!processing && !confirmSuccess">
-            <h4 class="alert-heading">{{'User.ConfirmEmail.Messages.Error.Title' | translate }}</h4>
-            <p>{{'User.ConfirmEmail.Messages.Error.Text' | translate }}</p>
+            <div class="alert-content">
+                <h4 class="alert-heading">{{'User.ConfirmEmail.Messages.Error.Title' | translate }}</h4>
+                <p>{{'User.ConfirmEmail.Messages.Error.Text' | translate }}</p>
+            </div>
         </div>
     </div>
 </div>

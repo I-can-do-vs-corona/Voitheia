@@ -1,4 +1,4 @@
-@import '../../../../variables.scss';
+@import '../../../../scss/variables.scss';
 
 :host{
   
@@ -95,7 +95,7 @@
     i#logo{
       height: 50px;
       width: 50px;
-      background-image: url(../../../../assets/images/logo_transparent.svg);
+      background-image: url(../../../../assets/images/logos/voitheia_white.svg);
       background-repeat: no-repeat;
       background-size: contain;
       margin-right: $half-spacing;
@@ -186,6 +186,7 @@
         box-shadow: none;
         background-color: transparent;
       }
+
       #mainNav .navbar-brand {
         color: rgb(255, 255, 255);
         font-size: xx-large;
@@ -220,26 +221,27 @@
       }
   
       #mainNav.navbar-scrolled i#logo {
-        background-image: url(../../../../assets/images/logo_transparent_black.svg);
+        background-image: url(../../../../assets/images/logos/voitheia_black.svg);
       }
   
     #mainNav.navbar-scrolled {
       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
       background-color: #fff;
+      color:$black;
     }
     #mainNav.navbar-scrolled .navbar-brand {
-      color: #212529;
+      color: $black;
     }
   
     #mainNav.navbar-scrolled .navbar-brand:hover {
       color: $brand-color;
     }
     #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link {
-      color: #212529;
+      color: $black;
     }  
   
     #mainNav.navbar-scrolled .navbar-nav .nav-item .register-btn {
-      border-color: #212529;
+      border-color: $black;
     }
     #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link:hover {
       cursor: pointer;

@@ -29,8 +29,8 @@
               "src/web.config"
             ],
             "styles": [
-              "src/custom-angular-material-theme.scss",
-              "src/custom-bootstrap-theme.scss",
+              "src/scss/custom-angular-material-theme.scss",
+              "src/scss/custom-bootstrap-theme.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -54,8 +54,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "6mb"
                 },
                 {
                   "type": "anyComponentStyle",

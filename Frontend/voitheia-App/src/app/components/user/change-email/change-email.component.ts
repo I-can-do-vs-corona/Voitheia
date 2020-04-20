@@ -10,11 +10,9 @@ import { UtilitiesService } from 'src/app/common/shared/services/utilities.servi
   styleUrls: ['./change-email.component.scss']
 })
 export class ChangeEmailComponent implements OnInit {
-  showError = false;
-  
   changeEmailCredentials: SetNewEmailDTO;
 
-  constructor(public dialogRef: MatDialogRef<ChangeEmailComponent>, private _userService: UserService) {
+  constructor(public dialogRef: MatDialogRef<ChangeEmailComponent>, private _userService: UserService, private _utilitiesService: UtilitiesService) {
     this.changeEmailCredentials = new SetNewEmailDTO;
   }
 
@@ -26,19 +24,14 @@ export class ChangeEmailComponent implements OnInit {
   }
 
   onSave(): void {
-    this.showError = false;
     this._userService.changeEmail(this.changeEmailCredentials).subscribe(
       data => {
         this.dialogRef.close("Success");
       },
       err => {
-        this.showError = true;
+        this._utilitiesService.handleError(err);
       }
     )
-  }
-
-  dismissAlert(){
-    this.showError = false;
   }
 
 }

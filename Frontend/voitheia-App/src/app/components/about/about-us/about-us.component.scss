@@ -1,14 +1,9 @@
-;
+@import '../../../../scss/variables.scss';
 
-
-.w3-circle w3-hover-opacity {
-  border-radius: 100%;
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
+:host{
+  img{
+    width:120px;
+    height:120px;
+    margin-bottom: $half-spacing;
+  }
 }
-
-.tasks {
-  font-size:medium;
-  color: white;
-}
-

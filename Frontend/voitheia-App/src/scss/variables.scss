@@ -1,0 +1,92 @@
+// Basic colors
+$black: #262626;
+$gray-1: #D8D8D8;
+$gray-2: #A4A4A4;
+$gray-3: #848484;
+$gray-4: #585858;
+$gray-5: #151515;
+
+//Brand Color
+$brand-color: #78E9F0; //#FF9985;
+$brand-color-light: lighten( $brand-color, 10% );// #78E9FF; //#FF9985;
+$brand-color-dark: darken( $brand-color, 10% );//#4BA2B3;//#FF9985;
+
+$brand-secondary-color: #91FF96;
+$brand-secondary-color-light: lighten( $brand-secondary-color, 10% );//rgb(188, 255, 191); //subject to change?
+$brand-secondary-color-dark: darken( $brand-secondary-color, 10% );//#6fB371;
+
+$brand-warn-color:#ff0000;
+$brand-warn-color-light:lighten( $brand-warn-color, 10% );//#ffb3b3;
+$brand-warn-color-dark:darken( $brand-warn-color, 10% );//$brand-warn-color;
+
+//a tag config
+$link-color: $brand-color;
+$link-text-decoration:underline;
+$link-hover-color: $brand-color-dark;
+$link-hover-text-decoration:underline;
+$link-hover-bgcolor: transparent;
+
+$green: #6FB371;
+$red: #d90000;
+$dark-red: #850000;
+$dark-red-2: #a94442;
+$light-red-1: #ffe3e3;
+$light-red-2: #fcb8b8;
+$light-red-3: #f2dede;
+$blue: #00a0de;
+$white: #FFFFFF;
+
+$info-text: #31708f;
+$success-text: #3c763d;
+$danger-text: $dark-red; //for bootstrap
+$error-text: $danger-text; //for Angular Material
+$warning-text: #8a6d3b;
+$question-text: $info-text;
+$default-text: $gray-5; //for Angular Material
+
+$info-bg: lighten($info-text,50%);//#d9edf7;
+$success-bg: lighten($success-text,50%);//#dff0d8;
+$danger-bg: lighten($danger-text,50%);//$light-red-2;
+$error-bg: lighten($error-text,50%);//$light-red-2;
+$warning-bg: lighten($warning-text,50%);//#fcf8e3;
+$question-bg: lighten($question-text,50%);//$info-bg;
+
+$info-border: $info-text;
+$success-border: $success-text;
+$error-border: $error-text;
+$warning-border: $warning-text;
+$question-border: $question-text;
+
+$gray-separators: $gray-3;
+$gray-separators-light: $gray-4;
+$gray-table-separators: $gray-1;
+
+// Font sizes
+$largest: 2.5556em;
+$xxtra-large: 1.778em;
+$xtra-large: 1.5em;
+$large: 1.33em;
+$medium: 1.1667em;
+$base-font-size: 16px;
+$normal: 1em; // 16
+$small: 0.834em;
+$xtra-small: 0.667em;
+
+// Font weights
+$bold: 800;
+$semibold: 700;
+$light: 400;
+$thin: 300;
+
+//Spacing
+$normal-spacing: $normal;//15px;
+$half-spacing: $normal-spacing / 2;//7px;
+$third-spacing: $normal-spacing / 3;//5px;
+$quarter-spacing: $normal-spacing / 4;//3px;
+$dubble-spacing: $normal-spacing * 2;//30px;
+
+$header-height: 100px;
+
+//Default Margins to footer
+$footer-distance: 6rem;
+$header-distance: 2rem;

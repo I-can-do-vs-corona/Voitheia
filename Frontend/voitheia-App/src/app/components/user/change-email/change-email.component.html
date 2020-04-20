@@ -2,13 +2,6 @@
     <h3>{{'User.ChangeEmail.Title' | translate }}</h3>
 </div>
 <div mat-dialog-content>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showError">
-        <h4 class="alert-heading">{{'User.ChangeEmail.Messages.Error.Title' | translate}}</h4>
-        <p>{{'User.ChangeEmail.Messages.Error.Text' | translate}}</p>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismissAlert()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
     <form #ChangeEmailForm="ngForm" novalidate>
         <mat-form-field>
             <mat-label><span [innerHTML]="'General.Field.Label.CurrentEmail' | translate"></span></mat-label>
