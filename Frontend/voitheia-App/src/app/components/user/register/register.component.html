@@ -47,6 +47,7 @@
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
                             <input matInput numberLength="5" name="zipcodeInput" [(ngModel)]="user.zip" #zipcodeInput="ngModel" zipCodeWithinRange required>
+                            <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'Request.Create.Infos.ZipCode' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
                             <mat-error *ngIf="zipcodeInput.invalid">
                                 <mat-error *ngIf="zipcodeInput.errors.required">
                                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>

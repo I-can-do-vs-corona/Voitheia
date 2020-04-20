@@ -148,16 +148,43 @@ body {
     border-left-width: $third-spacing;
     border-radius: 0;
 
-    >:first-child{
-      @extend %fa-icon;
-      @extend .fas;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    
-      &:before {
-        margin-right:$normal-spacing;
-        font-size: $largest;
+    margin: $normal-spacing 0 !important;
+    padding: $half-spacing $normal-spacing;
+    display: inline-block;
+    width:100%;
+    min-height:calc(#{$largest} + #{$half-spacing} + #{$half-spacing});
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px -5px rgba($black,.5);
+
+    @extend %fa-icon;
+    @extend .fas;
+  
+    &:before {
+      margin-right:$quarter-spacing;
+      font-size: $largest;
+
+      content: '';
+    }
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    .alert-content{
+      float: right;
+      //large = size of icon, quarter-spacing = margin of :before, quarter-spacing = margin of alert-content, quarter-spacing = to make it a bit smaller than 100% together with icon
+      width: calc(100% - #{$largest} - #{$quarter-spacing} - #{$quarter-spacing} - #{$quarter-spacing});
+    }
+
+    @media screen and (max-width: 768px)
+    {
+      > :first-child {
+        margin-top: 10px;
+      }
+
+      .alert-content {
+        float: none;
+        width: 100%;
       }
     }
 
@@ -165,12 +192,30 @@ body {
       border-color: $brand-color-dark;
       color: $brand-color-dark;
       background-color: $brand-color-light;
+
+      &:before {
+        display:none;
+      }
+
+      .alert-content{
+        float: none;
+        width: 100%;
+      }
     }
 
     &.alert-secondary{
       border-color: $brand-secondary-color-dark;
       color: $brand-secondary-color-dark;
       background-color: $brand-secondary-color-light;
+
+      &:before {
+        display:none;
+      }
+
+      .alert-content{
+        float: none;
+        width: 100%;
+      }
     }
 
     &.alert-success{
@@ -178,10 +223,8 @@ body {
       color: $success-text;
       background-color: $success-bg;
 
-      >:first-child{      
-        &:before {
-          content: fa-content($fa-var-check-circle);
-        }
+      &:before {
+        content: fa-content($fa-var-check-circle);
       }
     }
 
@@ -190,10 +233,8 @@ body {
       color: $danger-text;
       background-color: $danger-bg;
 
-      >:first-child{      
-        &:before {
-          content: fa-content($fa-var-times-circle);
-        }
+      &:before {
+        content: fa-content($fa-var-times-circle);
       }
     }
 
@@ -202,10 +243,8 @@ body {
       color: $warning-text;
       background-color: $warning-bg;
 
-      >:first-child{      
-        &:before {
-          content: fa-content($fa-var-exclamation-circle);
-        }
+      &:before {
+        content: fa-content($fa-var-exclamation-circle);
       }
     }
 
@@ -214,10 +253,8 @@ body {
       color: $info-text;
       background-color: $info-bg;
 
-      >:first-child{      
-        &:before {
-          content: fa-content($fa-var-info-circle);
-        }
+      &:before {
+        content: fa-content($fa-var-info-circle);
       }
     }
 
@@ -226,10 +263,8 @@ body {
       color: $question-text;
       background-color: $question-bg;
 
-      >:first-child{      
-        &:before {
-          content: fa-content($fa-var-question-circle);
-        }
+      &:before {
+        content: fa-content($fa-var-question-circle);
       }
     }
   }

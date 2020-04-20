@@ -12,7 +12,6 @@ import { UtilitiesService } from 'src/app/common/shared/services/utilities.servi
 export class ChangePasswordComponent implements OnInit {
 
   hidePW = true;
-  showError = false;
 
   passwordRegEx = '';
   
@@ -31,19 +30,14 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   onSave(): void {
-    this.showError = false;
     this._userService.changePassword(this.changePasswordCredentials).subscribe(
       data => {
         this.dialogRef.close("Success");
       },
       err => {
-        this.showError = true;
+        this._utilitiesService.handleError(err);
       }
     )
-  }
-
-  dismissAlert(){
-    this.showError = false;
   }
 
 }

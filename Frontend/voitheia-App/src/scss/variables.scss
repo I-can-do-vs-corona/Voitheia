@@ -79,11 +79,11 @@ $light: 400;
 $thin: 300;
 
 //Spacing
-$normal-spacing: 15px;
-$half-spacing: 7px;
-$third-spacing: 5px;
-$quarter-spacing: 3px;
-$dubble-spacing: 30px;
+$normal-spacing: $normal;//15px;
+$half-spacing: $normal-spacing / 2;//7px;
+$third-spacing: $normal-spacing / 3;//5px;
+$quarter-spacing: $normal-spacing / 4;//3px;
+$dubble-spacing: $normal-spacing * 2;//30px;
 
 $header-height: 100px;
 

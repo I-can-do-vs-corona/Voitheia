@@ -23,10 +23,10 @@
                   </div>
                   
                   <div class="alert alert-warning" role="alert" *ngIf="number(request.type) === RequestTypeEnum.Petcare">
-                    <span>{{'Request.Create.Infos.PetInsurance' | translate}}</span>
+                    <div class="alert-content"><span>{{'Request.Create.Infos.PetInsurance' | translate}}</span></div>
                   </div>
                   <div class="alert alert-warning" role="alert" *ngIf="number(request.type) === RequestTypeEnum.Childcare">
-                    <span>{{'Request.Create.Infos.GeneralInsurance' | translate}}</span>
+                    <div class="alert-content"><span>{{'Request.Create.Infos.GeneralInsurance' | translate}}</span></div>
                   </div>
 
                   <div class="form-group">
@@ -55,7 +55,7 @@
             <mat-step [label]="'Request.Create.Stepper.ContactInformation' | translate">
                 <form #RequestAddressForm="ngForm" novalidate>
                   <div class="alert alert-info" role="alert">
-                    <span>{{'General.Field.Label.Hint' | translate}}</span>
+                    <div class="alert-content"><span>{{'General.Field.Label.Hint' | translate}}</span></div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">

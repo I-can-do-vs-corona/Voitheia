@@ -3,8 +3,10 @@
 </div>
 <div mat-dialog-content>
     <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="showSuccess">
-        <h4 class="alert-heading">{{'User.Profile.Edit.Messages.Success.Title' | translate}}</h4>
-        <p>{{'User.Profile.Edit.Messages.Success.Text' | translate}}</p>
+        <div class="alert-content">
+            <h4 class="alert-heading">{{'User.Profile.Edit.Messages.Success.Title' | translate}}</h4>
+            <p>{{'User.Profile.Edit.Messages.Success.Text' | translate}}</p>
+        </div>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismissAlert()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -70,6 +72,7 @@
                     <mat-form-field>
                         <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
                         <input matInput numberLength="5" name="zipcodeInput" [(ngModel)]="userData.zip" #zipcodeInput="ngModel" required zipCodeWithinRange />
+                        <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'Request.Create.Infos.ZipCode' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
                     </mat-form-field>
                     <mat-error *ngIf="zipcodeInput.touched && zipcodeInput.invalid">
                         <mat-error *ngIf="zipcodeInput.errors.required">
