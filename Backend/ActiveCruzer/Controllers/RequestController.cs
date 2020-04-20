@@ -78,7 +78,19 @@ namespace ActiveCruzer.Controllers
                     request.Latitude = validatedAddress.Coordinates.Latitude;
                     request.Status = Models.Request.RequestStatus.Open;
                     request.CreatedOn = DateTime.UtcNow;
-                    var id = _requestBll.CreateRequest(request);
+                    int id;
+                    try
+                    {
+                        var userId = GetUserId();
+                        var _id = _requestBll.CreateRequest(request, GetUserId());
+                        id = _id;
+                    }
+                    catch(Exception e)
+                    {
+                        var _id = _requestBll.CreateRequest(request, null);
+                        id = _id;
+                    }
+                    
                     return CreatedAtAction(nameof(GetById), new {id}, new CreateRequestResponseDto {Id = id});
                 }
                 else

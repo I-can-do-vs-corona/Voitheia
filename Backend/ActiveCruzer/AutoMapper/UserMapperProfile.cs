@@ -55,7 +55,9 @@ namespace ActiveCruzer.AutoMapper
                 .ForMember(dest => dest.ConcurrencyStamp,
                     opts => opts.Ignore())
                 .ForMember(dest => dest.AccessFailedCount,
-                    opt => opt.Ignore());
+                    opt => opt.Ignore())
+                .ForMember(dest => dest.TermsAccepted,
+                    opts => opts.MapFrom(src => src.TermsAccepted));
 
             CreateMap<UpdateUserDto, User>()
                 .ForMember(dest => dest.Street,

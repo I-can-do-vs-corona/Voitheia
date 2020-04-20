@@ -13,6 +13,7 @@ namespace ActiveCruzer.BLL
         RequestDto GetRequest(int requestId, string userId);
         bool ExistsOnUser(int id, string userId);
         List<RequestDto> GetAllPendingFromUser(string hardcodedUser);
+        List<RequestComplexDto> GetAllPendingComplex(string userId);
         bool Exists(int requestId);
         bool IsNotClosed(int id);
     }

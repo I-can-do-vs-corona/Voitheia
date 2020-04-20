@@ -6,6 +6,7 @@ using ActiveCruzer.Models.Geo;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using ActiveCruzer.Models.DTO;
 
 namespace ActiveCruzer.Models
 {
@@ -31,6 +32,7 @@ namespace ActiveCruzer.Models
         public string Street { get; set; }
         public string Zip { get; set; }
         public string City { get; set; }
+        public string CreatedBy { get; set; }
 
 
         public Request()

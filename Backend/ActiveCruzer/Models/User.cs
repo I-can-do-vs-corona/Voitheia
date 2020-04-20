@@ -16,5 +16,6 @@ namespace ActiveCruzer.Models
         public double Longitude { get; set; }
         public DateTime LastLogin { get; set; }
         public DateTime CreatedOn { get; set; }
+        public DateTime TermsAccepted { get; set; }
     }
 }
