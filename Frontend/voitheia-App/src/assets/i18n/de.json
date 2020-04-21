@@ -154,30 +154,14 @@
         "Success": {
           "Title": "E-mail erfolgreich bestätigt",
           "Text": "Deine E-mail wurde erfolgreich besätigt. Du kannst ab jetzt Anfragen annehmen und anderen helfen. <b>Danke für deinen Einsatz!</b>"
-        },
-        "Error": {
-          "Title": "Fehler beim bestätigen der E-mail",
-          "Text": "Leider gab es einen Fehler beim bestätigen deiner E-mail. Bitte versuch es später erneut."
         }
       }
     },
     "ChangePassword": {
-      "Title": "Passwort ändern",
-      "Messages": {
-        "Error": {
-          "Title": "Fehler beim ändern des Passworts",
-          "Text": "Leider ist ein Fehler beim ändern deines Passwortes aufgetreten. Bitte versuch es später noch einmal."
-        }
-      }
+      "Title": "Passwort ändern"
     },
     "ChangeEmail": {
-      "Title": "Email ändern",
-      "Messages": {
-        "Error": {
-          "Title": "Fehler beim ändern deiner email",
-          "Text": "Leider ist ein Fehler beim ändern deiner Email aufgetreten. Bitte versuch es später noch einmal."
-        }
-      }
+      "Title": "Email ändern"
     },
     "ResetPassword": {
       "Title": "Passwort wiederherstellen",
