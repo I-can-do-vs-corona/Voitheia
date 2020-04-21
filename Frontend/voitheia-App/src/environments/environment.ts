@@ -4,14 +4,16 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "https://activecruzer.azurewebsites.net/",
+  apiBaseUrl: "https://activecruzerdev.azurewebsites.net/",
   requestDistance: "10000",
   requestAmount: "1000",
   defaultSessionLifetimeMinutes: 360,
   dialogWidth: "450px",
   registerOpenDate: new Date(2020, 3, 1, 8, 0, 0),
-  goLiveDate: new Date(2020, 4, 4, 8, 0, 0),
-  reCaptchaKey: "6Lc1GOoUAAAAAAxQau6hK3a7rsXjNatarq4pAk6o"
+  goLiveDate: new Date(2020, 3, 4, 8, 0, 0),
+  reCaptchaKey: "",//"6Lc1GOoUAAAAAAxQau6hK3a7rsXjNatarq4pAk6o",
+  zipCodeCheckActive: true,
+  zipCodeLength: 5
 };
 
 /*

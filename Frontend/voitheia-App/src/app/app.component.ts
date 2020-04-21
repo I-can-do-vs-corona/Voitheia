@@ -5,6 +5,7 @@ import localeDe from '@angular/common/locales/de';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -58,4 +59,8 @@ export class AppComponent {
       });
 
       }
+
+  isProduction(): boolean{
+    return environment.production;
+  }
 }

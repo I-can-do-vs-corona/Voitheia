@@ -15,7 +15,7 @@ import { RegisterComponent } from './components/user/register/register.component
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from './common/modules/material/material.module';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/misc/home/home.component';
 import { RequestFormComponent } from './components/request/request-form/request-form.component';
 import { RequestViewComponent } from './components/request/request-view/request-view.component';
 import { TermsComponent } from './components/terms/terms/terms.component';
@@ -51,6 +51,8 @@ import { RequireFieldIfSetValidator } from './common/helper/formValidators/requi
 import { ResetPasswordComponent } from './components/user/reset-password/reset-password.component';
 import { ChangeEmailComponent } from './components/user/change-email/change-email.component';
 import { ReCaptchaModule } from 'angular2-recaptcha';
+import { ZipCodeWithinRangeValidator } from './common/helper/formValidators/zipCodeWithinRangeValidator';
+import { NumberLengthValidator } from './common/helper/formValidators/numberLengthValidator';
 
 
 @NgModule({
@@ -62,6 +64,8 @@ import { ReCaptchaModule } from 'angular2-recaptcha';
     GreaterThanValidator,
     RequireFieldValidator,
     RequireFieldIfSetValidator,
+    ZipCodeWithinRangeValidator,
+    NumberLengthValidator,
     LoginComponent,
     RegisterComponent,
     FooterComponent,

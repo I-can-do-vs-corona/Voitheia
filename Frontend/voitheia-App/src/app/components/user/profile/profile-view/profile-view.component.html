@@ -4,13 +4,15 @@
         <div class="row section">
             <div class="col-12">
                 <div id="avatar">
-                    <img src="../../../../../assets/images/avatar-placeholder.png" class="float-right" />
+                    <img src="../../../../../assets/images/placeholder.jpg" class="float-right rounded-circle" />
                 </div>
             </div>
         </div>
         <div class="alert alert-success" role="alert" *ngIf="!userData.emailConfirmed">
-            <p>{{'User.Profile.View.Section.ResendConfirmationMail.Text' | translate}}</p>
-            <a (click)="resendEmailConfirmationMail()">{{'User.Profile.View.Section.ResendConfirmationMail.Link' | translate}}</a>
+            <div class="alert-content">
+                <p>{{'User.Profile.View.Section.ResendConfirmationMail.Text' | translate}}</p>
+                <a (click)="resendEmailConfirmationMail()">{{'User.Profile.View.Section.ResendConfirmationMail.Link' | translate}}</a>
+            </div>
         </div>
         <div class="row section">
             <div class="col-12 info-block">
