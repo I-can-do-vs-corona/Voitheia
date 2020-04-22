@@ -97,7 +97,8 @@ namespace ActiveCruzer.Controllers
                     Zip = credentials.Zip
                 });
 
-                if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High)
+                if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High ||
+                    validatedAddress.ConfidenceLevel == ConfidenceLevel.Medium)
                 {
                     var result = await _userBll.Register(credentials, validatedAddress.Coordinates);
                     if (result.Succeeded)
@@ -297,8 +298,9 @@ namespace ActiveCruzer.Controllers
                 Zip = user.Zip
             });
 
-            if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High)
-            {
+            if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High ||
+                validatedAddress.ConfidenceLevel == ConfidenceLevel.Medium)
+            { 
                 var _user = await _userBll.UpdateUser(user, GetUserId(), validatedAddress.Coordinates);
                 if (_user != null)
                 {

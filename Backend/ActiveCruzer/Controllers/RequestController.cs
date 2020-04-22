@@ -68,7 +68,8 @@ namespace ActiveCruzer.Controllers
             if (ModelState.IsValid)
             {
                 var validatedAddress = _geoCodeBll.ValidateAddress(_mapper.Map<GeoQuery>(req));
-                if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High)
+                if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High ||
+                    validatedAddress.ConfidenceLevel == ConfidenceLevel.Medium)
                 {
                     var request = _mapper.Map<Request>(req);
                     request.Zip = validatedAddress.Zip;
