@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ActiveCruzer.DAL.DataContext;
@@ -7,6 +8,7 @@ using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using AutoMapper;
 using GeoCoordinatePortable;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -107,6 +109,17 @@ namespace ActiveCruzer.BLL
         public async Task SetLoginDate(User user)
         {
             user.LastLogin = DateTime.Today;
+            await _userManager.UpdateAsync(user);
+        }
+
+        public async Task ChangeProfilePicture(IFormFile image, string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            using (var ms = new MemoryStream())
+            {
+                image.CopyTo(ms);
+                user.ProfilPicture = ms.ToArray();
+            }
             await _userManager.UpdateAsync(user);
         }
 

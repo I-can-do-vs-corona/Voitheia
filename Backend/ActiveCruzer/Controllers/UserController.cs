@@ -18,6 +18,7 @@ using ActiveCruzer.Startup;
 using AutoMapper;
 using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -432,6 +433,33 @@ namespace ActiveCruzer.Controllers
             }
             return Ok(new ErrorModel { code = Ok().StatusCode, errormessage = "Confirmation email sent." });
 
+        }
+
+        /// <summary>
+        /// change profil picture
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        /// <response code="200"> Profile picture sucessful changed</response>
+        /// <response code="401"> The current user is not logged in</response>
+        /// <response code="400"> No picture was provided</response>
+        [Authorize]
+        [HttpPost]
+        [Route("ChangeProfilePicture")]
+        [Produces("application/json")]
+        public async Task<ActionResult> ChangeProfilePicture([FromForm] ProfilePictureDto pictureUpload)
+        {
+            if (pictureUpload.image != null)
+            {
+                var user = await _userBll.GetUserViaId(GetUserId());
+                if (user != null)
+                {
+                    await _userBll.ChangeProfilePicture(pictureUpload.image, GetUserId());
+                    return Ok("Profile picture succesful changed.");
+                }
+                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Please log in to perform this action" });
+            }
+            return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "No picture provided." });
         }
 
         /// <summary>

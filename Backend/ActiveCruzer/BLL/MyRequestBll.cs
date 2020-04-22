@@ -203,6 +203,7 @@ namespace ActiveCruzer.BLL
         {
             var mapped = _mapper.Map<RequestComplexDto>(request);
             var user = await _userManager.FindByIdAsync(request.Volunteer);
+            var userCreator = await _userManager.FindByIdAsync(request.CreatedBy);
             if(userId == request.CreatedBy)
             {
                 mapped.Author = true;
@@ -211,7 +212,11 @@ namespace ActiveCruzer.BLL
             {
                 mapped.Author = false;
             }
-            mapped.AssignedUser = new MinimalUserDto { FirstName = user.FirstName, Email = user.Email, PhoneNumber = user.PhoneNumber };
+            if (userCreator != null)
+            {
+                mapped.CreaterUser = new MinimalUserDto { FirstName = userCreator.FirstName, Email = userCreator.Email, PhoneNumber = userCreator.PhoneNumber, ProfilePicture = userCreator.ProfilPicture };
+            }
+            mapped.AssignedUser = new MinimalUserDto { FirstName = user.FirstName, Email = user.Email, PhoneNumber = user.PhoneNumber, ProfilePicture = user.ProfilPicture };
             return mapped;
         }
     }
