@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { RequestResponseDTO } from 'src/app/common/models/requestResponseDTO';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MyRequestDTO } from 'src/app/common/models/myRequestDTO';
 
 @Component({
   selector: 'app-my-requests-view',
@@ -9,11 +9,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class MyRequestsViewComponent implements OnInit {
 
-  item: RequestResponseDTO;
+  item: MyRequestDTO;
   
   constructor(
     public dialogRef: MatDialogRef<MyRequestsViewComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: RequestResponseDTO) {
+    @Inject(MAT_DIALOG_DATA) public data: MyRequestDTO) {
       this.item = data["item"];
     }
 

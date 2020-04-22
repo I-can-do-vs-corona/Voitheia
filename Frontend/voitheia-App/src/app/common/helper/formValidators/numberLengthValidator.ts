@@ -19,7 +19,7 @@ export class NumberLengthValidator implements Validator {
             return null;
         }
 
-        if (!control.value || typeof control.value !== "number") {
+        if (!control.value || isNaN(Number(control.value))) {
             return null;
         }
 
@@ -38,7 +38,9 @@ export class NumberLengthValidator implements Validator {
 
         maxNumber = parseInt(numberString);
         
-        if (control.value < minNumber || control.value > maxNumber) {
+        let value = parseInt(control.value);
+
+        if (value < minNumber || value > maxNumber) {
             return {
                 numberLength: true
             };

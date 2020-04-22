@@ -25,12 +25,14 @@ export class ZipCodeWithinRangeValidator implements Validator {
 
         let withinOneRange = false;
 
-        if (!control.value || typeof control.value !== "number" || isNaN(Number(control.value))) {
+        if (!control.value || isNaN(Number(control.value))) {
             return null;
         }
 
+        let value = parseInt(control.value);
+
         for (let index = 0; index < ranges.length; index++ ) {
-            if(control.value >= ranges[index].min && control.value <= ranges[index].max){
+            if(value >= ranges[index].min && value <= ranges[index].max){
                 withinOneRange = true;
             }
         }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
-import { RequestPatchStatusEnum } from 'src/app/common/helper/enums/request-patch-status.enum';
+import { RequestStatusEnum } from 'src/app/common/helper/enums/request-status.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class MyRequestsService {
   constructor(private _httpClient: HttpClient, private _utilitiesService: UtilitiesService) {}
 
   getMyRequests(){
-    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'myrequests', {withCredentials: false});
+    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'myrequests/getAllComplex', {withCredentials: false});
   }
 
   cancelRequest(id: number){
@@ -20,7 +20,7 @@ export class MyRequestsService {
 
   closeRequest(id: number){
     return this._httpClient.patch(this._utilitiesService.getAPIUrl() + 'myrequests/' + id,{
-      "newRequestStatus": RequestPatchStatusEnum[RequestPatchStatusEnum.Closed]
+      "newRequestStatus": RequestStatusEnum[RequestStatusEnum.Closed]
     }, {withCredentials: false});
   }
 }

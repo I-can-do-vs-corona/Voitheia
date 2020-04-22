@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  public send(){    
+  public send(){
     this._userService.registerUser(this.user).subscribe(
       data => {
         this._authService.handleSuccessfullLogin(data as JwtDTO);

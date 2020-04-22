@@ -1,11 +1,25 @@
-import { UserDTO } from './userDTO';
+import * as moment from 'moment';
 
-export class RegisterUserDTO extends UserDTO  {
+export class RegisterUserDTO {
+    email: string;
+    firstName: string;
+    lastName: string;
     password: string;
+    street: string;
+    zip: string;
+    city: string;
+    country: string;
+    termsAccepted: string;
 
     constructor() {
-        super();
-
+        this.email = "";
+        this.firstName = "";
+        this.lastName = "";
         this.password = "";
+        this.street = "";
+        this.zip = "";
+        this.city = "";
+        this.country = "Deutschland";
+        this.termsAccepted = moment.utc().format("YYYY-MM-DDTHH:mm:ss.SSSZ");
     }
 }

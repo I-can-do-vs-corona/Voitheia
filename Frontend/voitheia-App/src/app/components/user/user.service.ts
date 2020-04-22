@@ -54,4 +54,10 @@ export class UserService {
   resetPassword(resetPasswordCredentials: ResetPasswordCredentials){
     return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/resetPassword', resetPasswordCredentials, {withCredentials: false});
   }
+
+  updateProfilePicture(fileToUpload: File){
+    let formData = new FormData();
+    formData.append("image", fileToUpload);
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/changeProfilePicture', formData, {withCredentials: false});
+  }
 }

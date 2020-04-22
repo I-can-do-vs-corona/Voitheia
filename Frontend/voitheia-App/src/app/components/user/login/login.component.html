@@ -7,7 +7,7 @@
                     <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
                     <span matPrefix><fa-icon [icon]="['fas', 'user']"></fa-icon> &nbsp;</span>
                     <input type="email" email matInput name="emailInput" [(ngModel)]="user.email" #emailInput="ngModel" required>
-                    <mat-error *ngIf="emailInput.invalid">
+                    <mat-error *ngIf="(emailInput.touched || emailInput.dirty) && emailInput.invalid">
                         <mat-error *ngIf="emailInput.hasError('required')">
                             <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                         </mat-error>
@@ -22,7 +22,7 @@
                     <mat-label><span [innerHTML]="'General.Field.Label.Password' | translate"></span></mat-label>
                     <span matPrefix><fa-icon [icon]="['fas', 'lock']"></fa-icon> &nbsp;</span>
                     <input type="password" matInput name="passwordInput" [(ngModel)]="user.password" #passwordInput="ngModel" required>
-                    <mat-error *ngIf="passwordInput.invalid">
+                    <mat-error *ngIf="(passwordInput.touched || passwordInput.dirty) && passwordInput.invalid">
                         <mat-error *ngIf="passwordInput.hasError('required')">
                             <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                         </mat-error>

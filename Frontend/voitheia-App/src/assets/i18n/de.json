@@ -15,7 +15,8 @@
         "Logout": "Abmelden",
         "Delete": "Löschen",
         "ResetPassword": "Password zurück setzen",
-        "ChangePassword": "Password ändern"
+        "ChangePassword": "Password ändern",
+        "Change": "Ändern"
     },
     "Enums": {
       "RequestTypeEnum": {
@@ -180,6 +181,20 @@
         }
       }
     },
+    "ProfilePictureUpload": {
+      "Title": "Profilbild hochladen",
+      "Labels": {
+        "Name": "Dateiname",
+        "Extension": "Dateiendung",
+        "Size": "Dateigrösse",
+        "Dimensions": "Masse"
+      },
+      "Errors": {
+        "Extension": "Die Datei muss ein PNG sein.",
+        "Dimensions": "Die Datei darf maximal die Abmasse {{width}} x {{height}} haben.",
+        "Size": "Die Datei darf maximal {{size}} gross sein."
+      }
+    },
     "Profile": {
       "View": {
         "Title": "Benutzerprofil",
@@ -215,6 +230,10 @@
           "EmailChanged": {
             "Title": "Email erfolgreich geändert",
             "Text": "Dein email wurde erfolgreich geändert. Du solltest in kürze eine verifizierungs email erhalten. Du musst deine neue email verifizieren bevor du weitere Aufträge annehmen kannst."
+          },
+          "ProfilePictureUpload": {
+            "Title": "Profilbild erfolgreich geändert",
+            "Text": "Dein profilbild wurde erfolgreich geändert."
           }
         }
       },

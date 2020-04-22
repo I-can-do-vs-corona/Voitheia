@@ -4,7 +4,12 @@
             <!-- Firstname Column -->
             <ng-container matColumnDef="firstName">
                 <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.FirstName' | translate }} </th>
-                <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+                <td mat-cell *matCellDef="let element">
+                    <div class="profile-picture-container">
+                        <img class="profile-picture" [profile-picture]="element.assignedUser.profilePicture" hidden="true">
+                    </div>
+                    {{element.firstName}}
+                </td>
             </ng-container>
         
             <!-- RequestType Column -->

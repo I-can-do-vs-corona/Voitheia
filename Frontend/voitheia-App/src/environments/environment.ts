@@ -13,7 +13,13 @@ export const environment = {
   goLiveDate: new Date(2020, 3, 4, 8, 0, 0),
   reCaptchaKey: "",//"6Lc1GOoUAAAAAAxQau6hK3a7rsXjNatarq4pAk6o",
   zipCodeCheckActive: true,
-  zipCodeLength: 5
+  zipCodeLength: 5,
+  //In bytes
+  profilePictureMaxSize: 1048576, //= 1MB
+  //in Pixel
+  profilePictureMaxWidth: 500,
+  profilePictureMaxHeight: 500,
+  profilePictureAllowedTypes: ['image/png']
 };
 
 /*

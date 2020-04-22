@@ -9,5 +9,11 @@ export const environment = {
   goLiveDate: new Date(2020, 4, 1, 18, 0, 0),
   reCaptchaKey: "", //6LeJGOoUAAAAAFb1h7wSDXNl64oVQ0-QC_2RITYM
   zipCodeCheckActive: true,
-  zipCodeLength: 5
+  zipCodeLength: 5,
+  //In bytes
+  profilePictureMaxSize: 1048576, //= 1MB
+  //in Pixel
+  profilePictureMaxWidth: 500,
+  profilePictureMaxHeight: 500,
+  profilePictureAllowedTypes: ['image/png']
 };

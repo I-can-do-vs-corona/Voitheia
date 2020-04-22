@@ -1,5 +1,6 @@
-export class UpdateUserDTO {
-    firstName: string;
+import { MinimalUserDTO } from './minimalUserDTO';
+
+export class UpdateUserDTO extends MinimalUserDTO {
     lastName: string;
     street: string;
     zip: string;
@@ -7,7 +8,8 @@ export class UpdateUserDTO {
     country: string;
 
     constructor() {
-        this.firstName = "";
+        super();
+
         this.lastName = "";
         this.street = "";
         this.zip = "";

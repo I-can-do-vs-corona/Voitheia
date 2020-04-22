@@ -21,5 +21,17 @@
         background-color: rgb(173, 173, 173);
         border: 2px solid rgb(149, 207, 218);;
       }
+
+      .profile-picture-container{
+        width:30px;
+        height:30px;
+        float: left;
+        margin-right: $quarter-spacing;
+        margin-bottom: 0;
+        
+        .profile-picture{
+          border-width: 1px;
+        }
+      }
 }
 
