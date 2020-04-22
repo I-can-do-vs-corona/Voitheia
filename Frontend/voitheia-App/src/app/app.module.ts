@@ -53,12 +53,18 @@ import { ChangeEmailComponent } from './components/user/change-email/change-emai
 import { ReCaptchaModule } from 'angular2-recaptcha';
 import { ZipCodeWithinRangeValidator } from './common/helper/formValidators/zipCodeWithinRangeValidator';
 import { NumberLengthValidator } from './common/helper/formValidators/numberLengthValidator';
+import { ProfilePictureDirective } from './common/helper/directives/profile-picture.directive';
+import { ProfilePictureUploadComponent } from './components/user/profile/profile-picture-upload/profile-picture-upload.component';
+import { FilesizePipe } from './common/helper/pipes/filesize.pipe';
+import { inputNumberValidator } from './common/helper/formValidators/inputNumberValidator';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     KeysPipe,
+    FilesizePipe,
+    DistancePipe,
     EqualValidator,
     NotEqualValidator,
     GreaterThanValidator,
@@ -66,6 +72,8 @@ import { NumberLengthValidator } from './common/helper/formValidators/numberLeng
     RequireFieldIfSetValidator,
     ZipCodeWithinRangeValidator,
     NumberLengthValidator,
+    inputNumberValidator,
+    ProfilePictureDirective,
     LoginComponent,
     RegisterComponent,
     FooterComponent,
@@ -77,7 +85,6 @@ import { NumberLengthValidator } from './common/helper/formValidators/numberLeng
     RequestListComponent,
     MyRequestsListComponent,
     MyRequestsViewComponent,
-    DistancePipe,
     DialogComponent,
     PrivacyComponent,
     IdeaComponent,
@@ -90,7 +97,8 @@ import { NumberLengthValidator } from './common/helper/formValidators/numberLeng
     ConfirmEmailComponent,
     ChangePasswordComponent,
     ResetPasswordComponent,
-    ChangeEmailComponent
+    ChangeEmailComponent,
+    ProfilePictureUploadComponent
   ],
   imports: [
     BrowserModule,

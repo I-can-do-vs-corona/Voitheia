@@ -7,7 +7,7 @@
                     <mat-form-field>
                         <mat-label><span [innerHTML]="'General.Field.Label.FirstName' | translate"></span></mat-label>
                         <input  matInput name="firstNameInput" [(ngModel)]="user.firstName" #firstNameInput="ngModel" required>
-                        <mat-error *ngIf="firstNameInput.invalid">
+                        <mat-error *ngIf="(firstNameInput.touched || firstNameInput.dirty) && firstNameInput.invalid">
                             <mat-error *ngIf="firstNameInput.hasError('required')">
                                 <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                             </mat-error>
@@ -18,7 +18,7 @@
                     <mat-form-field>
                         <mat-label><span [innerHTML]="'General.Field.Label.LastName' | translate"></span></mat-label>
                         <input  matInput name="lastNameInput" [(ngModel)]="user.lastName" #lastNameInput="ngModel" required>
-                        <mat-error *ngIf="lastNameInput.invalid">
+                        <mat-error *ngIf="(lastNameInput.touched || lastNameInput.dirty) && lastNameInput.invalid">
                             <mat-error *ngIf="lastNameInput.hasError('required')">
                                 <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                             </mat-error>
@@ -32,7 +32,7 @@
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'General.Field.Label.Street' | translate"></span></mat-label>
                             <input  matInput name="streetInput" [(ngModel)]="user.street" #streetInput="ngModel" required>
-                            <mat-error *ngIf="streetInput.invalid">
+                            <mat-error *ngIf="(streetInput.touched || streetInput.dirty) && streetInput.invalid">
                                 <mat-error *ngIf="streetInput.errors.required">
                                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                                 </mat-error>
@@ -46,9 +46,9 @@
                     <div class="form-group">
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
-                            <input matInput numberLength="5" name="zipcodeInput" [(ngModel)]="user.zip" #zipcodeInput="ngModel" zipCodeWithinRange required>
+                            <input matInput numberLength="5" name="zipcodeInput" [(ngModel)]="user.zip" #zipcodeInput="ngModel" zipCodeWithinRange inputNumber required />
                             <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'Request.Create.Infos.ZipCode' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
-                            <mat-error *ngIf="zipcodeInput.invalid">
+                            <mat-error *ngIf="(zipcodeInput.touched || zipcodeInput.dirty) && zipcodeInput.invalid">
                                 <mat-error *ngIf="zipcodeInput.errors.required">
                                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                                 </mat-error>
@@ -67,7 +67,7 @@
                         <mat-form-field>
                             <mat-label><span [innerHTML]="'General.Field.Label.City' | translate"></span></mat-label>
                             <input  matInput name="cityInput" [(ngModel)]="user.city" #cityInput="ngModel" required>
-                            <mat-error *ngIf="cityInput.invalid">
+                            <mat-error *ngIf="(cityInput.touched || cityInput.dirty) && cityInput.invalid">
                                 <mat-error *ngIf="cityInput.errors.required">
                                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                                 </mat-error>
@@ -85,7 +85,7 @@
                                 <fa-icon [icon]="['far', 'envelope']" class="hint-icon"></fa-icon>&nbsp;
                             </span>
                             <input matInput name="emailInput" [(ngModel)]="user.email" #emailInput="ngModel" required type="email" email>
-                            <mat-error *ngIf="emailInput.invalid">
+                            <mat-error *ngIf="(emailInput.touched || emailInput.dirty) && emailInput.invalid">
                                 <mat-error *ngIf="emailInput.errors.required">
                                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                                 </mat-error>
@@ -110,7 +110,7 @@
                             requried [pattern]="passwordRegEx" minlength="8" equal="passwordRepeatInput" equalReverse="true">
                             <fa-icon matSuffix [icon]="['far', 'eye']" (click)="hidePW = !hidePW" *ngIf="hidePW"></fa-icon>
                             <fa-icon matSuffix [icon]="['far', 'eye-slash']" (click)="hidePW = !hidePW" *ngIf="!hidePW"></fa-icon>
-                            <mat-error *ngIf="passwordInput.invalid">
+                            <mat-error *ngIf="(passwordInput.touched || passwordInput.dirty) && passwordInput.invalid">
                                 <mat-error *ngIf="passwordInput.errors.required">
                                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                                 </mat-error>
@@ -136,7 +136,7 @@
                             </span>
                             <input matInput type="password" matInput name="passwordRepeatInput" [(ngModel)]="repeatPassword" #passwordRepeatInput="ngModel" [readOnly]="!hidePW" [disabled]="passwordInput.invalid"
                             required equal="passwordInput">
-                            <mat-error *ngIf="passwordRepeatInput.invalid">
+                            <mat-error *ngIf="(passwordRepeatInput.touched || passwordRepeatInput.dirty) && passwordRepeatInput.invalid">
                                 <mat-error *ngIf="passwordRepeatInput.errors.required">
                                     <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
                                 </mat-error>
@@ -149,8 +149,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
+                <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked" (change)="checkValue(termsChecked)"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
             </div>
+
             <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" (captchaExpired)="handleExpiredCaptcha()" [site_key]="reCaptchaKey" [language]="getreCaptchaLanguage()" *ngIf="reCaptchaKey !== ''"></re-captcha>
   
             <div class="form-submit-btn">

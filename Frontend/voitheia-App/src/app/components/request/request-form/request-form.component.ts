@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { RequestDTO } from 'src/app/common/models/requestDTO';
 import { RequestService } from '../request.service';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
@@ -25,6 +25,8 @@ export class RequestFormComponent implements OnInit {
   reCaptchaValid = false;
 
   request: RequestDTO;
+
+  @ViewChild('RequestAddressForm') requestAddressForm: HTMLFormElement;
 
   constructor(private _requestService: RequestService,
               private _dialogService: DialogService,
@@ -57,11 +59,13 @@ export class RequestFormComponent implements OnInit {
           this.request.street = userData.street;
           this.request.zip = userData.zip;
           this.request.city = userData.city;
+
+          this.requestAddressForm.form.controls['zipcodeInput'].touched = true;
         },
         err => {
           
         }
-      );;
+      );
     }
 
   }

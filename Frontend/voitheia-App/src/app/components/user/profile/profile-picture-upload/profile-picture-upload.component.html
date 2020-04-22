@@ -1,0 +1,68 @@
+<div mat-dialog-title>
+    <h3>{{'User.ProfilePictureUpload.Title' | translate }}</h3>
+</div>
+<div mat-dialog-content>
+    <form #ProfilePictureForm="ngForm" novalidate>
+        <div class="form-group">
+            <input name="fileInput" type="file" (change)="onFileChanged($event)" #fileInput required multiple="false" style="display:none"/>
+        </div>
+    </form>
+    <div>
+        <div class="alert alert-danger" *ngIf="imageError !== ''">
+            <div class="alert-content">
+                <span *ngIf="imageError === 'fileDimensions'">{{'User.ProfilePictureUpload.Errors.Dimensions' | translate:{width: (maxFileWidth + 'px'), height: (maxFileHeight + 'px')} }}</span>
+                <span *ngIf="imageError === 'fileExtension'">{{'User.ProfilePictureUpload.Errors.Extension' | translate}}</span>
+                <span *ngIf="imageError === 'fileSize'">{{'User.ProfilePictureUpload.Errors.Size' | translate:{size: (maxFileSize | filesize)} }}</span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="selectedFile !== null">
+        <div class="profile-picture-container">
+            <img [profile-picture]="fileBase64RawData" class="profile-picture" hidden="true" />
+        </div>
+        <div class="row">
+            <div class="col-md-4 label">
+                {{'User.ProfilePictureUpload.Labels.Name' | translate}}:
+            </div>
+            <div class="col-md-8">
+                {{selectedFile.name}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 label">
+                {{'User.ProfilePictureUpload.Labels.Extension' | translate}}:
+            </div>
+            <div class="col-md-8">
+                {{fileExtension}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 label">
+                {{'User.ProfilePictureUpload.Labels.Size' | translate}}:
+            </div>
+            <div class="col-md-8">
+                {{selectedFile.size | filesize}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 label">
+                {{'User.ProfilePictureUpload.Labels.Dimensions' | translate}}:
+            </div>
+            <div class="col-md-8">
+                {{fileHeight}}px x {{fileWidth}}px
+            </div>
+        </div>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" (click)="fileInput.click()" *ngIf="!readyToUpload">
+        <fa-icon [icon]="['fas', 'paperclip']"></fa-icon> Datei wählen
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteSelectedFile()" *ngIf="readyToUpload">
+        <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon> Datei löschen
+    </button>
+    <button type="submit" mat-raised-button color="primary" (click)="upload()" *ngIf="readyToUpload" [disabled]="!ProfilePictureForm.form.valid || !readyToUpload">
+        <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> {{'General.Buttons.Submit' | translate }}
+    </button>
+</div>

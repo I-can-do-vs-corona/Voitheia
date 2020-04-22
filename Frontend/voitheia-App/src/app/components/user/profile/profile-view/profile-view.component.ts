@@ -11,6 +11,7 @@ import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 import { environment } from 'src/environments/environment';
 import { ChangePasswordComponent } from '../../change-password/change-password.component';
 import { ChangeEmailComponent } from '../../change-email/change-email.component';
+import { ProfilePictureUploadComponent } from '../profile-picture-upload/profile-picture-upload.component';
 
 @Component({
   selector: 'app-profile-view',
@@ -90,6 +91,20 @@ export class ProfileViewComponent implements OnInit {
       if(result === "Success"){
         this._translateService.get(['User.Profile.View.Dialogs.EmailChanged.Title', 'User.Profile.View.Dialogs.EmailChanged.Text', 'General.Buttons.Close']).subscribe((res: string) => {
           this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.EmailChanged.Title'], res['User.Profile.View.Dialogs.EmailChanged.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this.loadUserData()}.bind(this), true);
+        });
+      }
+    });
+  }
+
+  openProfilPictureDialog(){
+    const dialogRef = this._dialog.open(ProfilePictureUploadComponent, {
+      width: environment.dialogWidth
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result === "Success"){
+        this._translateService.get(['User.Profile.View.Dialogs.ProfilePictureUpload.Title', 'User.Profile.View.Dialogs.ProfilePictureUpload.Text', 'General.Buttons.Close']).subscribe((res: string) => {
+          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.ProfilePictureUpload.Title'], res['User.Profile.View.Dialogs.ProfilePictureUpload.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this.loadUserData()}.bind(this), true);
         });
       }
     });

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestResponseDTO } from 'src/app/common/models/requestResponseDTO';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogIconTypeEnum } from 'src/app/common/helper/enums/dialog-icon-type.enum';
 import { MyRequestsService } from '../my-requests.service';
@@ -11,6 +10,7 @@ import { DialogService } from 'src/app/common/shared/services/dialog/dialog.serv
 import { TranslateService } from '@ngx-translate/core';
 import { RequestTypeEnum } from 'src/app/common/helper/enums/request-type.enum';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
+import { MyRequestDTO } from 'src/app/common/models/myRequestDTO';
 
 @Component({
   selector: 'app-my-requests-list',
@@ -19,8 +19,8 @@ import { NavigationService } from 'src/app/common/shared/services/navigation.ser
 })
 export class MyRequestsListComponent implements OnInit {
 
-  openedItem: RequestResponseDTO;
-  requestDataSource: MatTableDataSource<RequestResponseDTO>;
+  openedItem: MyRequestDTO;
+  requestDataSource: MatTableDataSource<MyRequestDTO>;
   displayedColumns = ['firstName', 'type', 'distanceToUser'];
 
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
@@ -31,7 +31,7 @@ export class MyRequestsListComponent implements OnInit {
     if(!this._utilitiesService.isLive()){
       this._navigationService.navigateTo("countdown");
     }
-    this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
+    this.requestDataSource = new MatTableDataSource<MyRequestDTO>();
     this.loadAllData();
   }
 
@@ -82,5 +82,4 @@ export class MyRequestsListComponent implements OnInit {
       }
     );
   }
-
 }

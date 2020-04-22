@@ -22,17 +22,31 @@
             }
         }
 
-        #avatar{
-            height:150px;
+        .profile-picture-container{
+            #change-overlay{
+                width:150px;
+                height:150px;
+                border-radius: 150px;
+                position: relative;
+                top: -150px;
+                color:transparent;
+                font-weight: $bold;
+                z-index: 2;
+                cursor: pointer;
+                display: table;
 
-            img{
-                width: 150px;
-                height: 100%;
-                border: 2px solid $gray-3;
-                background-color: $gray-2;
+                &:hover{
+                    color: $brand-color;
+                    background-color: rgba($white, 0.5);
+                }
+
+                span{
+                    display: table-cell;
+                    vertical-align: bottom;
+                    text-align: center;
+                    padding-bottom: $normal-spacing;
+                }
             }
-
-            margin-bottom: $dubble-spacing;
         }
     }
 }

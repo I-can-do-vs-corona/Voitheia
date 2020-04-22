@@ -2,4 +2,15 @@
     .label{
         text-decoration: underline;
     }
+
+    .profile-picture-container{
+        float:right;
+    }
+
+    @media (max-width: 768px){
+        .profile-picture-container{
+            margin-left:calc(50% - 75px);
+            float:none;
+        }
+    }
 }

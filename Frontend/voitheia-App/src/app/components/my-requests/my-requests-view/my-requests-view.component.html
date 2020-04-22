@@ -2,10 +2,19 @@
     <h3>{{'Request.Details.Title' | translate }}</h3>
 </div>
 <div mat-dialog-content>
-    <p>
-        <span class="label">{{'General.Field.Label.Name' | translate }}</span><br />
-        {{item.firstName}} {{item.lastName}}
-    </p>
+    <div class="row">
+        <div class="col-md-6 order-md-last">
+            <div class="profile-picture-container">
+                <img [profile-picture]="item.assignedUser.profilePicture" class="profile-picture" hidden="true" />
+            </div>
+        </div>
+        <div class="col-md-6 order-md-first">
+            <p>
+                <span class="label">{{'General.Field.Label.Name' | translate }}</span><br />
+                {{item.firstName}} {{item.lastName}}
+            </p>
+        </div>
+    </div>
     <p>
         <span class="label">{{'General.Field.Label.Type' | translate }}</span><br />
         {{item.type}}

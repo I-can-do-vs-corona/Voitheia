@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
 import { UpdateUserDTO } from 'src/app/common/models/updateUserDTO';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserDTO } from 'src/app/common/models/userDTO';
@@ -10,10 +10,12 @@ import { UtilitiesService } from 'src/app/common/shared/services/utilities.servi
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.scss']
 })
-export class ProfileEditComponent implements OnInit {
+export class ProfileEditComponent implements OnInit, AfterViewInit{
 
   userData: UpdateUserDTO;
   showSuccess = false;
+  
+  @ViewChild('EditProfileForm') editProfileForm: HTMLFormElement;
 
   constructor(public dialogRef: MatDialogRef<ProfileEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserDTO,
@@ -49,6 +51,13 @@ export class ProfileEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+  }
+
+  ngAfterViewInit(){
+    setTimeout(()=>{
+      this.editProfileForm.form.controls['zipcodeInput'].touched = true;
+    });
   }
 
 }
