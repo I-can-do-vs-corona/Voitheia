@@ -26,9 +26,17 @@ namespace ActiveCruzer.BLL
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public int CreateRequest(Request request)
+        public int CreateRequest(Request request, string userId)
         {
             var _request = request;
+            if(userId != null)
+            {
+                request.CreatedBy = userId;
+                _context.Request.Add(request);
+                _context.SaveChanges();
+                return request.Id;
+            }
+            request.CreatedBy = null;
             _context.Request.Add(request);
             _context.SaveChanges();
             return request.Id;

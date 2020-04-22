@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BingMapsRESTToolkit;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -28,5 +29,6 @@ namespace ActiveCruzer.Models.DTO
         public string City { get; set; }
         [Required]
         public string Country { get; set; }
+        public DateTime TermsAccepted { get; set; }
     }
 }

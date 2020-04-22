@@ -38,6 +38,7 @@ namespace ActiveCruzer.BLL
             user.Latitude = validatedAddressCoordinates.Latitude;
             user.LastLogin = DateTime.UtcNow;
             user.CreatedOn = DateTime.UtcNow;
+            user.TermsAccepted = credentials.TermsAccepted;
             return await _userManager.CreateAsync(user, credentials.Password);
         }
 
@@ -87,6 +88,13 @@ namespace ActiveCruzer.BLL
             user.LastName = updateUserDto.LastName;
             user.Street = updateUserDto.Street;
             user.Zip = updateUserDto.Zip;
+            return await _userManager.UpdateAsync(user);
+        }
+
+        public async Task<IdentityResult> UpdateTermsAccepted(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            user.TermsAccepted = DateTime.UtcNow;
             return await _userManager.UpdateAsync(user);
         }
 

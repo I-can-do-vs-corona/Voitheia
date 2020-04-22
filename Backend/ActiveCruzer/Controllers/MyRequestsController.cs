@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Crypto.Operators;
 
 namespace ActiveCruzer.Controllers
 {
@@ -172,6 +173,25 @@ namespace ActiveCruzer.Controllers
 
             var requests = _requestBll.GetAllPendingFromUser(userId);
             return Ok(new GetAllMyRequestResponse { Requests = requests, TotalCount = requests.Count});
+        }
+
+        /// <summary>
+        /// get all complex requests | with user aligned in request object
+        /// </summary>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        [Route("GetAllComplex")]
+        public async Task<ActionResult<GetAllMyRequestComplexResponse>> GetComplexAll()
+        {
+            var userId = GetUserId();
+            if(!await _userBll.IsUserConfirmed(userId))
+            {
+                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+            }
+
+            var requests = _requestBll.GetAllPendingComplex(userId);
+            return Ok(new GetAllMyRequestComplexResponse { Requests = requests, TotalCount = requests.Count });
         }
 
         /// <summary>

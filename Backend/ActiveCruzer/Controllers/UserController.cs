@@ -146,15 +146,15 @@ namespace ActiveCruzer.Controllers
             }
         }
 
-/// <summary>
-/// confirm email with email and token
-/// </summary>
-/// <param name="confirmationEmailTokenDto"></param>
-/// <returns></returns>
-/// <response code="200"> returns if email was sucessfuly confirmed</response>
-/// <response code="401"> returns if the link or e-mail is not valid</response>
-/// <response code="400"> returns if the email was not able to be confirmed</response>
-[HttpPost]
+        /// <summary>
+        /// confirm email with email and token
+        /// </summary>
+        /// <param name="confirmationEmailTokenDto"></param>
+        /// <returns></returns>
+        /// <response code="200"> returns if email was sucessfuly confirmed</response>
+        /// <response code="401"> returns if the link or e-mail is not valid</response>
+        /// <response code="400"> returns if the email was not able to be confirmed</response>
+        [HttpPost]
         [Route("ConfirmEmail")]
         [Produces("application/json")]
         public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmationEmailTokenDto confirmationEmailTokenDto)
@@ -169,7 +169,7 @@ namespace ActiveCruzer.Controllers
                 }
                 return BadRequest(new ErrorModel{ code = BadRequest().StatusCode, errormessage = "Something went wrong with the confirmation of your email. Please try again or contact the support."});
             }
-            return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "User not valid." });
+            return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Something went wrong with the confirmation of your email. Please try again or contact the support." });
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace ActiveCruzer.Controllers
                 await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
                 return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
             }
-            return NotFound(new ErrorModel { code = NotFound().StatusCode, errormessage = "User not found." });
+            return Ok(new ErrorModel { code = Ok().StatusCode, errormessage = "Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder." });
         }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace ActiveCruzer.Controllers
                     await _userManager.ResetPasswordAsync(user, resetPasswordDto.token, resetPasswordDto.password);
                     return Ok("Password reset sucessful.");
                 }
-                return NotFound(new ErrorModel { code = NotFound().StatusCode, errormessage = "The user with the email could not be found." });
+                return Ok(new ErrorModel { code = Ok().StatusCode, errormessage = "Password reset sucessful." });
             }
             return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Invalid input." });
         }
@@ -304,8 +304,7 @@ namespace ActiveCruzer.Controllers
                 {
                     return Ok(_user);
                 }
-
-                return Unauthorized(new ErrorModel {code = Unauthorized().StatusCode, errormessage = "You are not allowed to perform this action." });
+                return Unauthorized(new ErrorModel {code = Unauthorized().StatusCode, errormessage = "Please login to perform this action." });
             }
             return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Invalid Address. Please check the street. Accepted: Sankt-Boni. Invalid: St.-Boni" });
             //return new ContentResult
@@ -369,6 +368,19 @@ namespace ActiveCruzer.Controllers
             return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "You are not allowed to perform this action." });
         }
 
+        [HttpPut]
+        [Route("UpdateTermsAccepted")]
+        [Produces("application/json")]
+        public async Task<ActionResult> UpdateTermsAccepted()
+        {
+            var user = await _userBll.UpdateTermsAccepted(GetUserId());
+            if (user != null)
+            {
+                return Ok("Succesfuly verified terms.");
+            }
+            return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Please login to verify the current terms." });
+        }
+
 
         protected void Dispose(bool disposing)
         {
@@ -418,7 +430,8 @@ namespace ActiveCruzer.Controllers
                 await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
                 return Ok("Confirmation email sent.");
             }
-            return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "User not found." });
+            return Ok(new ErrorModel { code = Ok().StatusCode, errormessage = "Confirmation email sent." });
+
         }
 
         /// <summary>
@@ -441,9 +454,9 @@ namespace ActiveCruzer.Controllers
                 {
                     return Ok("Password sucessfuly changed.");
                 }
-                return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Error in password changing. Please try again or contact the support." });
+                return Ok(new ErrorModel { code = Ok().StatusCode, errormessage = "Password sucessfuly changed." });
             }
-            return BadRequest(new ErrorModel { code = 400, errormessage = "Invalid model" });
+            return BadRequest(new ErrorModel { code = 400, errormessage = "Invalid input." });
             //return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Input is not valid." });
         }
 

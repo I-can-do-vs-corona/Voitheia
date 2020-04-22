@@ -52,7 +52,7 @@ namespace ActiveCruzer.Start
         {
             // add service from mysql framework
             services.AddDbContext<ACDatabaseContext>(options =>
-                options.UseMySql(_configuration.GetValue<string>("ActiveCrzuerDB-ConnectionString")));
+                options.UseMySql(_configuration.GetValue<string>("ActiveCrzuerDB-ConnectionStringDEV")));
 
             services.AddIdentityCore<User>(o =>
                 {
