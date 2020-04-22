@@ -137,6 +137,13 @@ namespace ActiveCruzer.BLL
             return false;
         }
 
+        public async Task<IdentityResult> DeleteProfilePicture(string userid)
+        {
+            var user = await _userManager.FindByIdAsync(userid);
+            user.ProfilPicture = null;
+            return await _userManager.UpdateAsync(user);
+        }
+
         ///<Summary>
         /// Function to Dispose the BLL
         ///</Summary>
