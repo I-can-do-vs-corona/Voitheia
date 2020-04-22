@@ -372,6 +372,7 @@ namespace ActiveCruzer.Controllers
             return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "You are not allowed to perform this action." });
         }
 
+        [Authorize]
         [HttpPut]
         [Route("UpdateTermsAccepted")]
         [Produces("application/json")]
@@ -385,6 +386,7 @@ namespace ActiveCruzer.Controllers
             return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Please login to verify the current terms." });
         }
 
+        [Authorize]
         [HttpPut]
         [Route("DeleteProfilePicutre")]
         [Produces("application/json")]
@@ -490,6 +492,7 @@ namespace ActiveCruzer.Controllers
         /// <returns></returns>
         /// <response code="200"> Password sucessfuly changed</response>
         /// <response code="400"> Model is invalid or change process resulted in eror</response>
+        [Authorize]
         [HttpPost]
         [Route("SetNewPassword")]
         [Produces("application/json")]
