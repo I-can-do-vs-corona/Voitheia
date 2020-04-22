@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
+using ActiveCruzer.Startup;
 using AutoMapper;
 using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace ActiveCruzer.BLL
 {
@@ -21,15 +26,20 @@ namespace ActiveCruzer.BLL
     {
         private bool disposed = false;
         private UserManager<User> _userManager;
+        private readonly LoginManager _loginManager;
         private readonly IMapper _mapper;
+        private readonly IOptions<Jwt.JwtAuthentication> _jwtAuthentication;
 
         ///<Summary>
         /// Constructor
         ///</Summary>
-        public UserBLL(UserManager<User> userManager, IMapper mapper)
+        public UserBLL(UserManager<User> userManager, LoginManager loginManager, IMapper mapper,
+            IOptions<Jwt.JwtAuthentication> jwtAuthentication)
         {
             _userManager = userManager;
+            _loginManager = loginManager;
             _mapper = mapper;
+            _jwtAuthentication = jwtAuthentication;
         }
 
         public async Task<IdentityResult> Register(RegisterUserDTO credentials,
@@ -44,22 +54,9 @@ namespace ActiveCruzer.BLL
             return await _userManager.CreateAsync(user, credentials.Password);
         }
 
-        public async Task<User> Login(CredentialsDTO credentials)
+        public async Task<LogInResponse> Login(CredentialsDTO credentials)
         {
-            var user = await _userManager.FindByEmailAsync(credentials.Email);
-            if (user == null)
-            {
-                return null;
-            }
-
-            var passwordCorrect = await _userManager.CheckPasswordAsync(user, credentials.Password);
-            if(passwordCorrect == true)
-            {
-                user.LastLogin = DateTime.UtcNow;
-                await _userManager.UpdateAsync(user);
-            }
-
-            return passwordCorrect ? user : null;
+            return await _loginManager.Login(credentials);
         }
 
 
@@ -76,11 +73,11 @@ namespace ActiveCruzer.BLL
 
         public async Task<IdentityResult> DeleteUser(User user)
         {
-
             return await _userManager.DeleteAsync(user);
         }
 
-        public async Task<IdentityResult> UpdateUser(UpdateUserDto updateUserDto, string userId, GeoCoordinate validatedAddressCoordinates)
+        public async Task<IdentityResult> UpdateUser(UpdateUserDto updateUserDto, string userId,
+            GeoCoordinate validatedAddressCoordinates)
         {
             var user = await _userManager.FindByIdAsync(userId);
             user.Longitude = validatedAddressCoordinates.Longitude;
@@ -106,12 +103,6 @@ namespace ActiveCruzer.BLL
             return user?.EmailConfirmed ?? false;
         }
 
-        public async Task SetLoginDate(User user)
-        {
-            user.LastLogin = DateTime.Today;
-            await _userManager.UpdateAsync(user);
-        }
-
         public async Task ChangeProfilePicture(IFormFile image, string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -120,20 +111,23 @@ namespace ActiveCruzer.BLL
                 image.CopyTo(ms);
                 user.ProfilPicture = ms.ToArray();
             }
+
             await _userManager.UpdateAsync(user);
         }
 
         public async Task<bool> OverdueUsersDeleted()
         {
-            var users =  _userManager.Users.Where(x => x.LastLogin <= DateTime.Today.AddMonths(-6));
-            if(users != null)
+            var users = _userManager.Users.Where(x => x.LastLogin <= DateTime.Today.AddMonths(-6));
+            if (users != null)
             {
                 foreach (User usr in users)
                 {
                     await DeleteUser(usr);
                 }
+
                 return true;
             }
+
             return false;
         }
 
@@ -142,6 +136,32 @@ namespace ActiveCruzer.BLL
             var user = await _userManager.FindByIdAsync(userid);
             user.ProfilPicture = null;
             return await _userManager.UpdateAsync(user);
+        }
+
+        public JwtDto GenerateToken(User user)
+        {
+            var token = GenerateToken(user.UserName, user.Id);
+            return new JwtDto
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                ValidUntil = token.ValidTo.ToUniversalTime()
+            };
+        }
+
+        private JwtSecurityToken GenerateToken(string username, string id)
+        {
+            return new JwtSecurityToken(
+                audience: _jwtAuthentication.Value.ValidAudience,
+                issuer: _jwtAuthentication.Value.ValidIssuer,
+                claims: new[]
+                {
+                    new Claim("id", id),
+                    new Claim(Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Sub, username),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                },
+                expires: DateTime.UtcNow.AddMinutes(3600),
+                notBefore: DateTime.UtcNow,
+                signingCredentials: _jwtAuthentication.Value.SigningCredentials);
         }
 
         ///<Summary>
@@ -168,7 +188,5 @@ namespace ActiveCruzer.BLL
             Dispose(true);
             //GC.SuppressFinalize(this);
         }
-
-
     }
 }
