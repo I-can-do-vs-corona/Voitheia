@@ -3,7 +3,9 @@ using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Security.Policy;
@@ -23,6 +25,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -380,6 +383,24 @@ namespace ActiveCruzer.Controllers
                 return Ok("Succesfuly verified terms.");
             }
             return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Please login to verify the current terms." });
+        }
+
+        [HttpPut]
+        [Route("DeleteProfilePicutre")]
+        [Produces("application/json")]
+        public async Task<ActionResult> DeleteProfilePicture()
+        {
+            var userid = GetUserId();
+            if(userid != null)
+            {
+                var result = await _userBll.DeleteProfilePicture(userid);
+                if (result.Succeeded)
+                {
+                    return Ok("Profile picture sucessful deleted.");
+                }
+                return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "An error occured while deleting the profile picture. Please try again." });
+            }
+            return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Please login to delete your profile picture." });
         }
 
 
