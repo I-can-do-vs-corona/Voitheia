@@ -7,6 +7,7 @@ import { RegisterUserDTO } from 'src/app/common/models/registerUserDTO';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-register',
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  public send(){
+  send(){
     this._userService.registerUser(this.user).subscribe(
       data => {
         this._authService.handleSuccessfullLogin(data as JwtDTO);
@@ -50,6 +51,14 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+
+  checkValue(checked: boolean){
+    if(checked){
+      this.user.termsAccepted = moment.utc().format("YYYY-MM-DDTHH:mm:ss.SSSZ");
+    } else {
+      this.user.termsAccepted = null;
+    }
+ }
 
   handleCorrectCaptcha(event) {
     this.reCaptchaValid = true;

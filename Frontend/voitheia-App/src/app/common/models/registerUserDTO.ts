@@ -1,5 +1,3 @@
-import * as moment from 'moment';
-
 export class RegisterUserDTO {
     email: string;
     firstName: string;
@@ -20,6 +18,6 @@ export class RegisterUserDTO {
         this.zip = "";
         this.city = "";
         this.country = "Deutschland";
-        this.termsAccepted = moment.utc().format("YYYY-MM-DDTHH:mm:ss.SSSZ");
+        this.termsAccepted = null;
     }
 }

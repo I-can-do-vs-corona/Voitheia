@@ -149,8 +149,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
+                <mat-checkbox [(ngModel)]="termsChecked" name="termsChecked" (change)="checkValue(termsChecked)"><span [innerHtml]="'General.Field.Label.Terms' | translate"></span></mat-checkbox>
             </div>
+
             <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" (captchaExpired)="handleExpiredCaptcha()" [site_key]="reCaptchaKey" [language]="getreCaptchaLanguage()" *ngIf="reCaptchaKey !== ''"></re-captcha>
   
             <div class="form-submit-btn">
