@@ -25,9 +25,9 @@ namespace ActiveCruzer.Scheduler
         public override Task ProcessInScope(IServiceProvider serviceProvider)
         {
             var _userbll = serviceProvider.GetRequiredService<UserBLL>();
-            Console.WriteLine("Processing Cronie");
+            var _requestBll = serviceProvider.GetRequiredService<RequestBll>();
             var executed = _userbll.OverdueUsersDeleted();
-            Console.WriteLine("Cronie was executed with result: " + executed);
+            _requestBll.CloseOverDueRequests();
             return Task.CompletedTask;
         }
     }

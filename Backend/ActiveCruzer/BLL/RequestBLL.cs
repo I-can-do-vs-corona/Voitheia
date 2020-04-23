@@ -1,6 +1,7 @@
 ﻿using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Helper;
 using ActiveCruzer.Models;
+using ActiveCruzer.Models.DTO.Request;
 using AutoMapper;
 using GeoCoordinatePortable;
 using System;
@@ -145,6 +146,23 @@ namespace ActiveCruzer.BLL
                                                it.Latitude >= southernMax &&
                                                it.Longitude <= easternMax &&
                                                it.Latitude >= westernMax).Take(amount).ToList();
+        }
+
+        /// <summary>
+        /// set overdue requests to timeout
+        /// </summary>
+        public void CloseOverDueRequests()
+        {
+            var requests = _context.Request.Where(x => x.CreatedOn < DateTime.Today.AddDays(-5) && x.Volunteer != null && x.Status == Request.RequestStatus.Open);
+            if(requests != null)
+            {
+                foreach (Request req in requests)
+                {
+                    req.Status = Request.RequestStatus.Timeout;
+                }
+                _context.UpdateRange(requests);
+                _context.SaveChanges();
+            }
         }
 
         /// <summary>
