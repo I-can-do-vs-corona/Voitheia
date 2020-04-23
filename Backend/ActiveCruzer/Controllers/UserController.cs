@@ -53,19 +53,17 @@ namespace ActiveCruzer.Controllers
         private IEmailSenderBll _emailBll;
 
         private readonly IMapper _mapper;
-        private readonly IOptions<Jwt.JwtAuthentication> _jwtAuthentication;
 
         /// <summary>
         /// Constructor 
         /// </summary>
         /// <param name="logger"></param>
-        public UserController(IMapper mapper, IOptions<Jwt.JwtAuthentication> jwtAuthentication,
+        public UserController(IMapper mapper,
             IConfiguration configuration, UserBLL userBll, UserManager<User> userManager,
             IEmailSenderBll emailBll)
         {
             _geoCodeBll = new GeoCodeBll(mapper, configuration);
             _mapper = mapper;
-            _jwtAuthentication = jwtAuthentication;
             _userBll = userBll;
             _userManager = userManager;
             _emailBll = emailBll;
@@ -108,7 +106,6 @@ namespace ActiveCruzer.Controllers
                     if (result.Succeeded)
                     {
                         User user = await _userBll.GetUser(credentials.Email);
-                        var token = GenerateToken(user.UserName, user.Id, null);
 
                         // email verification 
                         var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -122,11 +119,7 @@ namespace ActiveCruzer.Controllers
                        await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, callbackUri);
 
 
-                        return Ok(new JwtDto
-                        {
-                            Token = new JwtSecurityTokenHandler().WriteToken(token),
-                            ValidUntil = token.ValidTo.ToUniversalTime()
-                        });
+                        return Ok(_userBll.GenerateToken(user));
                     }
                     else
                     {
@@ -135,12 +128,6 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    //return new ContentResult
-                    //{
-                    //    StatusCode = 424,
-                    //    Content = $"Status Code: {424}; FailedDependency; Address is invalid",
-                    //    ContentType = "text/plain",
-                    //};
                     return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Invalid Address. Please check the street. Accepted: Sankt-Boni. Invalid: St.-Boni" });
                 }
                 
@@ -241,19 +228,20 @@ namespace ActiveCruzer.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<JwtDto>> Login([FromBody] CredentialsDTO credentials)
         {
-            User user = await _userBll.Login(credentials); 
+            var loginResult = await _userBll.Login(credentials); 
 
-            if (user != null)
+            switch (loginResult.LoginResult)
             {
-                await _userBll.SetLoginDate(user);
-                var token = GenerateToken(user.UserName, user.Id, credentials.MinutesValid);
-                return Ok(new JwtDto
-                {
-                    Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    ValidUntil = token.ValidTo.ToUniversalTime()
-                });
+                case LoginResult.Sucess:
+                    return Ok(_userBll.GenerateToken(loginResult.User));
+                case LoginResult.Failed:
+                    return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Error. Please check your credentials" });
+                case LoginResult.Locked:
+                    return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Your account is locked. Please try it in 5 minutes again" });
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-            return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Error. Please check your credentials" });
+
         }
 
         /// <summary>
@@ -313,12 +301,6 @@ namespace ActiveCruzer.Controllers
                 return Unauthorized(new ErrorModel {code = Unauthorized().StatusCode, errormessage = "Please login to perform this action." });
             }
             return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Invalid Address. Please check the street. Accepted: Sankt-Boni. Invalid: St.-Boni" });
-            //return new ContentResult
-            //{
-            //    StatusCode = 424,
-            //    Content = $"Status Code: {424}; FailedDependency; Address is invalid",
-            //    ContentType = "text/plain",
-            //};
         }
 
         /// <summary>
@@ -514,20 +496,6 @@ namespace ActiveCruzer.Controllers
             //return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Input is not valid." });
         }
 
-        private JwtSecurityToken GenerateToken(string username, string id, int? credentialsMinutesValid)
-        {
-            return new JwtSecurityToken(
-                audience: _jwtAuthentication.Value.ValidAudience,
-                issuer: _jwtAuthentication.Value.ValidIssuer,
-                claims: new[]
-                {
-                    new Claim("id", id),
-                    new Claim(JwtRegisteredClaimNames.Sub, username),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                },
-                expires: DateTime.UtcNow.AddMinutes(credentialsMinutesValid??1),
-                notBefore: DateTime.UtcNow,
-                signingCredentials: _jwtAuthentication.Value.SigningCredentials);
-        }
+
     }
 }

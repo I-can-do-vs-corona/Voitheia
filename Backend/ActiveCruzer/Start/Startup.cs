@@ -62,6 +62,8 @@ namespace ActiveCruzer.Start
                     o.Password.RequireNonAlphanumeric = false;
                     o.Password.RequiredLength = 8;
                     o.User.RequireUniqueEmail = true;
+                    o.Lockout.AllowedForNewUsers = true;
+                    o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(1);
                 })
                 .AddEntityFrameworkStores<ACDatabaseContext>()
                 .AddDefaultTokenProviders();
@@ -71,6 +73,7 @@ namespace ActiveCruzer.Start
             services.AddTransient<IRequestBll, RequestBll>();
             services.AddTransient<IEmailSenderBll, EmailSenderBll>();
             services.AddTransient<UserBLL>();
+            services.AddTransient<LoginManager>();
 
             services.AddHostedService<ScheduleTask>();
 
