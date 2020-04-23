@@ -16,48 +16,52 @@ export class UserService {
   constructor(private _httpClient: HttpClient, private _utilitiesService: UtilitiesService) { }
 
   registerUser(user: RegisterUserDTO) {
-    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/register', user, {withCredentials: false});
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/register', user);
   }
 
   getUserData() {
-    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'user/getuser', {withCredentials: false});
+    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'user/getuser');
   }
 
   updateUserData(userData: UpdateUserDTO){
-    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/update', userData, {withCredentials: false});
+    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/update', userData);
   }
 
   confirmEmail(confirmEmailDTO: ConfirmEmailDTO){
-    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/confirmEmail', confirmEmailDTO, {withCredentials: false});
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/confirmEmail', confirmEmailDTO);
   }
 
   sendConfirmationMailAgain(email: string){
-    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/sendConfirmationMailAgain', {email: email}, {withCredentials: false});
+    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/sendConfirmationMailAgain', {email: email});
   }
 
   deleteAccount() {
-    return this._httpClient.delete(this._utilitiesService.getAPIUrl() + 'user/Delete', {withCredentials: false});
+    return this._httpClient.delete(this._utilitiesService.getAPIUrl() + 'user/delete');
+  }
+
+  deleteProfilePicture(){
+    return this._httpClient.delete(this._utilitiesService.getAPIUrl() + 'user/deleteProfilePicture');
   }
 
   changePassword(changePasswordDTO: SetNewPasswordDTO){
-    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/setNewPassword', changePasswordDTO, {withCredentials: false});
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/setNewPassword', changePasswordDTO);
   }
 
   changeEmail(changeEmailDTO: SetNewEmailDTO){
-    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/setNewEmail', changeEmailDTO, {withCredentials: false});
+    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/setNewEmail', changeEmailDTO);
   }
 
   sendResetPasswordMail(email: string){
-    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/forgotPassword', {email: email}, {withCredentials: false});
+    return this._httpClient.put(this._utilitiesService.getAPIUrl() + 'user/forgotPassword', {email: email});
   }
 
   resetPassword(resetPasswordCredentials: ResetPasswordCredentials){
-    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/resetPassword', resetPasswordCredentials, {withCredentials: false});
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/resetPassword', resetPasswordCredentials);
   }
 
   updateProfilePicture(fileToUpload: File){
     let formData = new FormData();
     formData.append("image", fileToUpload);
-    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/changeProfilePicture', formData, {withCredentials: false});
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'user/changeProfilePicture', formData);
   }
 }

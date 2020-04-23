@@ -40,7 +40,7 @@ export class ProfileViewComponent implements OnInit {
 
   openDeleteAccountDialog(){
     this._translateService.get(['User.Profile.View.Dialogs.Delete.Title', 'User.Profile.View.Dialogs.Delete.Text', 'General.Buttons.Delete', 'General.Buttons.Cancel']).subscribe((res: string) => {
-      this._dialogService.showDialogTwoButtons(res['User.Profile.View.Dialogs.Delete.Title'], res['User.Profile.View.Dialogs.Delete.Text'], DialogIconTypeEnum.Question, res['General.Buttons.Delete'], res['General.Buttons.Cancel'], function(){this.deleAccount()}.bind(this));
+      this._dialogService.showDialogTwoButtons(res['User.Profile.View.Dialogs.Delete.Title'], res['User.Profile.View.Dialogs.Delete.Text'], DialogIconTypeEnum.Question, res['General.Buttons.Delete'], res['General.Buttons.Cancel'], function(){this.deleteAccount()}.bind(this));
     });
   }
 
@@ -96,21 +96,44 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
-  openProfilPictureDialog(){
+  openChangeProfilPictureDialog(){
     const dialogRef = this._dialog.open(ProfilePictureUploadComponent, {
       width: environment.dialogWidth
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result === "Success"){
-        this._translateService.get(['User.Profile.View.Dialogs.ProfilePictureUpload.Title', 'User.Profile.View.Dialogs.ProfilePictureUpload.Text', 'General.Buttons.Close']).subscribe((res: string) => {
-          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.ProfilePictureUpload.Title'], res['User.Profile.View.Dialogs.ProfilePictureUpload.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this.loadUserData()}.bind(this), true);
+        this._translateService.get(['User.Profile.View.Dialogs.ProfilePicture.Upload.Title', 'User.Profile.View.Dialogs.ProfilePicture.Upload.Text', 'General.Buttons.Close']).subscribe((res: string) => {
+          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.ProfilePicture.Upload.Title'], res['User.Profile.View.Dialogs.ProfilePicture.Upload.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this.loadUserData()}.bind(this), true);
         });
       }
     });
   }
 
-  private deleAccount(){
+  openProfilPictureDeleteDialog(){
+    this._translateService.get(['User.Profile.View.Dialogs.ProfilePicture.Delete.Title', 'User.Profile.View.Dialogs.ProfilePicture.Delete.Text', 'General.Buttons.Delete', 'General.Buttons.Cancel']).subscribe((res: string) => {
+      this._dialogService.showDialogTwoButtons(res['User.Profile.View.Dialogs.ProfilePicture.Delete.Title'], res['User.Profile.View.Dialogs.ProfilePicture.Delete.Text'], DialogIconTypeEnum.Question, res['General.Buttons.Delete'], res['General.Buttons.Cancel'], function(){this.deleteProfilePicture()}.bind(this));
+    });
+  }
+
+  profilePictureExists(): boolean{
+    return (this.userData.profilePicture !== '' && this.userData.profilePicture !== null);
+  }
+
+  private deleteProfilePicture(){
+    this._userService.deleteProfilePicture().subscribe(
+      data => {
+        this._translateService.get(['User.Profile.View.Dialogs.ProfilePicture.Deleted.Title', 'User.Profile.View.Dialogs.ProfilePicture.Deleted.Text', 'General.Buttons.Close']).subscribe((res: string) => {
+          this._dialogService.showDialogOneButton(res['User.Profile.View.Dialogs.ProfilePicture.Deleted.Title'], res['User.Profile.View.Dialogs.ProfilePicture.Deleted.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], function(){this.loadUserData()}.bind(this), true);
+        });
+      },
+      err => {
+        this._utilitiesService.handleError(err);
+      }
+    );
+  }
+
+  private deleteAccount(){
     this._userService.deleteAccount().subscribe(
       data => {
         this._translateService.get(['User.Profile.View.Dialogs.Deleted.Title', 'User.Profile.View.Dialogs.Deleted.Text', 'General.Buttons.Close']).subscribe((res: string) => {

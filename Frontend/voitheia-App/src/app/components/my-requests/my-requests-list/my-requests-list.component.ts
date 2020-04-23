@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { RequestTypeEnum } from 'src/app/common/helper/enums/request-type.enum';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { MyRequestDTO } from 'src/app/common/models/myRequestDTO';
+import { RequestStatusEnum } from 'src/app/common/helper/enums/request-status.enum';
 
 @Component({
   selector: 'app-my-requests-list',
@@ -20,8 +21,16 @@ import { MyRequestDTO } from 'src/app/common/models/myRequestDTO';
 export class MyRequestsListComponent implements OnInit {
 
   openedItem: MyRequestDTO;
-  requestDataSource: MatTableDataSource<MyRequestDTO>;
-  displayedColumns = ['firstName', 'type', 'distanceToUser'];
+
+  allRequests: MyRequestDTO[];
+
+  openRequestsCreatedByMeDataSource: MatTableDataSource<MyRequestDTO>;
+  openRequestsAcceptedByMeDataSource: MatTableDataSource<MyRequestDTO>;
+  closedRequestsDataSource: MatTableDataSource<MyRequestDTO>;
+
+  openRequestsCreatedByMeDisplayedColumns = ['firstName', 'type', 'user'];
+  openRequestsAcceptedByMeDisplayedColumns = ['firstName', 'type', 'distanceToUser', 'user'];
+  closedRequestsDisplayedColumns = ['firstName', 'type', 'author', 'status', 'user'];
 
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
   
@@ -31,12 +40,15 @@ export class MyRequestsListComponent implements OnInit {
     if(!this._utilitiesService.isLive()){
       this._navigationService.navigateTo("countdown");
     }
-    this.requestDataSource = new MatTableDataSource<MyRequestDTO>();
+    
+    this.openRequestsCreatedByMeDataSource = new MatTableDataSource<MyRequestDTO>();
+    this.openRequestsAcceptedByMeDataSource = new MatTableDataSource<MyRequestDTO>();
+    this.closedRequestsDataSource = new MatTableDataSource<MyRequestDTO>();
     this.loadAllData();
   }
 
-  openDetails(index:number){
-    this.openedItem = this.requestDataSource.data[index];
+  openDetails(id:number){
+    this.openedItem = this.allRequests.find(req => req.id === id);
     const dialogRef = this._dialog.open(MyRequestsViewComponent, {
       width: environment.dialogWidth,
       data: {item: this.openedItem}
@@ -75,7 +87,11 @@ export class MyRequestsListComponent implements OnInit {
   private loadAllData(){
     this._myRequestsService.getMyRequests().subscribe(
       data => {
-        this.requestDataSource.data = data['requests'];
+        this.allRequests = data['requests'];
+
+        this.openRequestsCreatedByMeDataSource.data = this.allRequests.filter(req => req.author === true && (req.status === RequestStatusEnum[RequestStatusEnum.Open] || req.status === RequestStatusEnum[RequestStatusEnum.Assigned]));
+        this.openRequestsAcceptedByMeDataSource.data = this.allRequests.filter(req => req.author === false && req.status === RequestStatusEnum[RequestStatusEnum.Assigned]);
+        this.closedRequestsDataSource.data = this.allRequests.filter(req => req.status === RequestStatusEnum[RequestStatusEnum.Closed]);
       },
       err => {
         this._utilitiesService.handleError(err);

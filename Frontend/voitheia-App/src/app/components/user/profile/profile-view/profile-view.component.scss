@@ -23,28 +23,59 @@
         }
 
         .profile-picture-container{
-            #change-overlay{
+            .overlay-wrapper{
                 width:150px;
-                height:150px;
-                border-radius: 150px;
+                height:75px;
                 position: relative;
                 top: -150px;
-                color:transparent;
-                font-weight: $bold;
-                z-index: 2;
-                cursor: pointer;
-                display: table;
 
-                &:hover{
-                    color: $brand-color;
-                    background-color: rgba($white, 0.5);
+                .overlay{
+                    width:100%;
+                    height:100%;
+                    color:transparent;
+                    font-weight: $bold;
+                    z-index: 2;
+                    cursor: pointer;
+                    display: table;
+    
+                    span{
+                        display: table-cell;
+                        text-align: center;
+                    }
                 }
-
-                span{
-                    display: table-cell;
-                    vertical-align: bottom;
-                    text-align: center;
-                    padding-bottom: $normal-spacing;
+    
+                #delete-overlay{
+                    border-top-left-radius: 150px;
+                    border-top-right-radius: 150px;
+                    border: 2px solid $gray-3;
+                    border-bottom:0;
+    
+                    &:hover{
+                        color: $brand-warn-color;
+                        background-color: rgba($brand-warn-color-light, 0.3);
+                    }
+    
+                    span{
+                        vertical-align: top;
+                        padding-top: $normal-spacing;
+                    }
+                }
+    
+                #change-overlay{
+                    border-bottom-left-radius: 150px;
+                    border-bottom-right-radius: 150px;
+                    border: 2px solid $gray-3;
+                    border-top:0;
+    
+                    &:hover{
+                        color: $brand-color;
+                        background-color: rgba($white, 0.5);
+                    }
+    
+                    span{
+                        vertical-align: bottom;
+                        padding-bottom: $normal-spacing;
+                    }
                 }
             }
         }

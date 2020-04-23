@@ -1,15 +1,32 @@
 <div class="row">
-    <div class="col-md-6 offset-md-3 content-container">
+    <div class="col-md-8 offset-md-2 content-container">
         <h3 class="content-header">{{'User.Profile.View.Title' | translate }}</h3>
         <div class="row section">
             <div class="col-12">
-                <div class="profile-picture-container float-right" (click)="openProfilPictureDialog()">
+                <div class="profile-picture-container float-right">
                     <img [profile-picture]="userData.profilePicture" class="profile-picture" hidden="true" />
-                    <div id="change-overlay">
-                        <span>{{'General.Buttons.Change' | translate}}</span>
+                    <div class="overlay-wrapper">
+                        <div class="overlay" id="delete-overlay" (click)="openProfilPictureDeleteDialog()" *ngIf="profilePictureExists()">
+                            <span><fa-icon [icon]="['fas', 'trash-alt']"></fa-icon> {{'General.Buttons.Delete' | translate}}</span>
+                        </div>
+                    </div>
+                    <div class="overlay-wrapper">
+                        <div class="overlay" id="change-overlay" (click)="openChangeProfilPictureDialog()">
+                            <span *ngIf="profilePictureExists()">
+                                <fa-icon [icon]="['fas', 'edit']"></fa-icon> 
+                                {{'General.Buttons.Change' | translate}}
+                            </span>
+                            <span *ngIf="!profilePictureExists()">
+                                <fa-icon [icon]="['fas', 'edit']"></fa-icon> 
+                                {{'General.Buttons.Add' | translate}}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="alert alert-warning" role="alert">
+            <div class="alert-content"><span>{{'General.Infos.Health' | translate}}</span></div>
         </div>
         <div class="alert alert-success" role="alert" *ngIf="!userData.emailConfirmed">
             <div class="alert-content">
