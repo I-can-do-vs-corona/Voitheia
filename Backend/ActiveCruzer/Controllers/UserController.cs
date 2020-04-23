@@ -372,7 +372,7 @@ namespace ActiveCruzer.Controllers
 
         [Authorize]
         [HttpDelete]
-        [Route("DeleteProfilePicutre")]
+        [Route("DeleteProfilePicture")]
         [Produces("application/json")]
         public async Task<ActionResult> DeleteProfilePicture()
         {
