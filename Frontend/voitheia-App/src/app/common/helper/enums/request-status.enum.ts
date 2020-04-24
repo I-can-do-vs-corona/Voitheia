@@ -1,5 +1,5 @@
 export enum RequestStatusEnum {
-    Closed = 1,
-    Open = 2,
-    Pending = 3
+    Open = 1,
+    Assigned = 2,
+    Closed = 4
 }

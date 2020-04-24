@@ -1,31 +1,162 @@
 <div class="row">
-    <div class="col-md-6 offset-md-3 content-container">      
-        <table mat-table [dataSource]="requestDataSource">
-            <!-- Firstname Column -->
-            <ng-container matColumnDef="firstName">
-                <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.FirstName' | translate }} </th>
-                <td mat-cell *matCellDef="let element">
-                    <div class="profile-picture-container">
-                        <img class="profile-picture" [profile-picture]="element.assignedUser.profilePicture" hidden="true">
-                    </div>
-                    {{element.firstName}}
-                </td>
-            </ng-container>
-        
-            <!-- RequestType Column -->
-            <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Type' | translate }} </th>
-                <td mat-cell *matCellDef="let element"> {{'General.Enums.RequestTypeEnum.' + element.type | translate}} </td>
-            </ng-container>
-        
-            <!-- Distance to User Column -->
-            <ng-container matColumnDef="distanceToUser">
-                <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Distance' | translate }} </th>
-                <td mat-cell *matCellDef="let element"> {{element.distanceToUser | distance }} </td>
-            </ng-container>
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" (click)="openDetails(i)"></tr>
-        </table>
+    <div class="col-md-8 offset-md-2 content-container">   
+        <h3 class="content-header">{{'MyRequest.Title' | translate }}</h3>
+        <div class="alert alert-warning" role="alert">
+            <div class="alert-content"><span>{{'General.Infos.Health' | translate}}</span></div>
+        </div>
+        <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    {{'MyRequest.Tabs.AssignedRequests' | translate}}
+                </ng-template>
+                <div class="alert alert-info" role="alert" *ngIf="openRequestsAcceptedByMeDataSource.data.length === 0">
+                    <div class="alert-content"><span>{{'MyRequest.NoRequests' | translate}}</span></div>
+                </div>
+                <table mat-table [dataSource]="openRequestsAcceptedByMeDataSource" *ngIf="openRequestsAcceptedByMeDataSource.data.length > 0">
+                    <!-- Firstname Column -->
+                    <ng-container matColumnDef="firstName">
+                        <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.FirstName' | translate }} </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.firstName}}
+                        </td>
+                    </ng-container>
+                
+                    <!-- RequestType Column -->
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Type' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{'General.Enums.RequestTypeEnum.' + element.type | translate}} </td>
+                    </ng-container>
+                
+                    <!-- Distance to User Column -->
+                    <ng-container matColumnDef="distanceToUser">
+                        <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Distance' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{element.distanceToUser | distance }} </td>
+                    </ng-container>
+
+                     <!-- Created by User Column -->
+                     <ng-container matColumnDef="user">
+                        <th mat-header-cell *matHeaderCellDef> {{'MyRequest.Coloumns.CreatedBy' | translate }} </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf="element.createrUser !== null">
+                                <div class="profile-picture-container">
+                                    <img class="profile-picture" [profile-picture]="element.createrUser.profilePicture" hidden="true">
+                                </div>
+                                {{element.createrUser.firstName}}
+                            </div>
+                            <div *ngIf="element.createrUser === null">
+                                {{'General.Anonymous' | translate}}
+                            </div>
+                        </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="openRequestsAcceptedByMeDisplayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; let element; columns: openRequestsAcceptedByMeDisplayedColumns;" (click)="openDetails(element.id)"></tr>
+                </table>
+            </mat-tab>
+          
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    {{'MyRequest.Tabs.CreatedRequests' | translate}}
+                </ng-template>
+                <div class="alert alert-info" role="alert" *ngIf="openRequestsCreatedByMeDataSource.data.length === 0">
+                    <div class="alert-content"><span>{{'MyRequest.NoRequests' | translate}}</span></div>
+                </div>
+                <table mat-table [dataSource]="openRequestsCreatedByMeDataSource" *ngIf="openRequestsCreatedByMeDataSource.data.length > 0">
+                    <!-- Firstname Column -->
+                    <ng-container matColumnDef="firstName">
+                        <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.FirstName' | translate }} </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.firstName}}
+                        </td>
+                    </ng-container>
+                
+                    <!-- RequestType Column -->
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Type' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{'General.Enums.RequestTypeEnum.' + element.type | translate}} </td>
+                    </ng-container>
+
+                    <!-- Assigned to User Column -->
+                    <ng-container matColumnDef="user">
+                        <th mat-header-cell *matHeaderCellDef> {{'MyRequest.Coloumns.AssignedTo' | translate }} </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf="element.assignedUser !== null">
+                                <div class="profile-picture-container">
+                                    <img class="profile-picture" [profile-picture]="element.assignedUser.profilePicture" hidden="true">
+                                </div>
+                                {{element.assignedUser.firstName}}
+                            </div>
+                            <div *ngIf="element.assignedUser === null">
+                                {{'General.Anonymous' | translate}}
+                            </div>
+                        </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="openRequestsCreatedByMeDisplayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; let element; columns: openRequestsCreatedByMeDisplayedColumns;" (click)="openDetails(element.id)"></tr>
+                </table>
+            </mat-tab>  
+          
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    {{'MyRequest.Tabs.ClosedRequests' | translate}}
+                </ng-template>
+                <div class="alert alert-info" role="alert" *ngIf="closedRequestsDataSource.data.length === 0">
+                    <div class="alert-content"><span>{{'MyRequest.NoRequests' | translate}}</span></div>
+                </div>
+                <table mat-table [dataSource]="closedRequestsDataSource" *ngIf="closedRequestsDataSource.data.length > 0">
+                    <!-- Firstname Column -->
+                    <ng-container matColumnDef="firstName">
+                        <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.FirstName' | translate }} </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{element.firstName}}
+                        </td>
+                    </ng-container>
+                
+                    <!-- RequestType Column -->
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Type' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{'General.Enums.RequestTypeEnum.' + element.type | translate}} </td>
+                    </ng-container>
+                
+                    <!-- Author Column -->
+                    <ng-container matColumnDef="author">
+                        <th mat-header-cell *matHeaderCellDef> {{'MyRequest.Coloumns.Author' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{'General.' + element.author | translate}} </td>
+                    </ng-container>
+
+                    <!-- Status Column -->
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> {{'MyRequest.Coloumns.Status' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{'Request.Status.' + element.status | translate}} </td>
+                    </ng-container>
+
+                     <!-- User Column -->
+                     <ng-container matColumnDef="user">
+                        <th mat-header-cell *matHeaderCellDef> {{'MyRequest.Coloumns.User' | translate }} </th>
+                        <td mat-cell *matCellDef="let element">
+                            <div *ngIf="!element.author && element.createrUser !== null">
+                                <div class="profile-picture-container">
+                                    <img class="profile-picture" [profile-picture]="element.createrUser.profilePicture" hidden="true">
+                                </div>
+                                {{element.createrUser.firstName}}
+                            </div>
+                            <div *ngIf="element.author && element.assignedUser !== null">
+                                <div class="profile-picture-container">
+                                    <img class="profile-picture" [profile-picture]="element.assignedUser.profilePicture" hidden="true">
+                                </div>
+                                {{element.assignedUser.firstName}}
+                            </div>
+                            <div *ngIf="element.createrUser === null && element.assignedUser === null">
+                                {{'General.Anonymous' | translate}}
+                            </div>
+                        </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="closedRequestsDisplayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; let element; columns: closedRequestsDisplayedColumns;" (click)="openDetails(element.id)"></tr>
+                </table>
+            </mat-tab>
+          </mat-tab-group>
     </div>
 </div>

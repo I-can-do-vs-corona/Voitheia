@@ -11,7 +11,7 @@ export class RequestService {
   constructor(private _httpClient: HttpClient, private _utilitiesService: UtilitiesService) {}
 
   createRequest(request: RequestDTO) {
-    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'request', request, {withCredentials: false});
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'request', request);
   }
 
   getRequests(requestAmount = 0, requestDistance = 0){
@@ -19,10 +19,10 @@ export class RequestService {
     parameters += (requestDistance === 0)? this._utilitiesService.getRequestDistance().toString() : requestDistance.toString();
     parameters += "&amount=";
     parameters += (requestAmount === 0)? this._utilitiesService.getRequestAmount().toString() : requestAmount.toString();
-    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'request' + parameters, {withCredentials: false});
+    return this._httpClient.get(this._utilitiesService.getAPIUrl() + 'request' + parameters);
   }
 
   takeRequest(id: number){
-    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'myRequests', {"requestId" : id}, {withCredentials: false});
+    return this._httpClient.post(this._utilitiesService.getAPIUrl() + 'myRequests', {"requestId" : id});
   }
 }

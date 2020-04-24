@@ -10,10 +10,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
           <ul class="navbar-nav ml-auto my-2 my-lg-0" *ngIf="!isLoggedIn()">
-              <li routerLink="/user/login" routerLinkActive="active" class="nav-item"><a class="nav-link login-btn noselect">
-                {{'General.Buttons.Login' | translate }}</a></li>
-              <li routerLink="/user/register" routerLinkActive="active" class="nav-item"><a class="nav-link register-btn noselect">
-                {{'General.Buttons.Register' | translate }}</a></li>
+              <li routerLink="/user/login" routerLinkActive="active" class="nav-item">
+                <a class="nav-link login-btn noselect">
+                  {{'General.Buttons.Login' | translate }}
+                </a>
+              </li>
+              <li routerLink="/user/register" routerLinkActive="active" class="nav-item">
+                <a class="nav-link register-btn noselect">
+                  {{'General.Buttons.Register' | translate }}
+                </a>
+              </li>
           </ul>
       </div>
       <div *ngIf="isLoggedIn()" class="userMenuIcon" placement="bottom-right" [ngbPopover]="userMenuLoggedInPopContent"><!-- popoverTitle="{{'General.Header.UserMenu.Title.LoggedOut' | translate}}" #userMenu="ngbPopover" triggers="manual" (click)="userMenu.close()" (mouseenter)="userMenu.open()">-->

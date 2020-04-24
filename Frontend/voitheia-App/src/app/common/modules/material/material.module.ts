@@ -13,6 +13,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import {MatCheckboxModule, MAT_CHECKBOX_DEFAULT_OPTIONS} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -28,7 +29,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatButtonModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule
   ],
   exports: [
     MatInputModule,
@@ -41,7 +43,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatButtonModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule
   ],
   providers: [
     {

@@ -1,6 +1,9 @@
 <div class="row ">
-    <div class="col-md-6 offset-md-3 content-container">
+    <div class="col-md-8 offset-md-2 content-container">
         <h3 class="content-header">{{'Request.Create.Title' | translate }}</h3>
+        <div class="alert alert-info" role="alert">
+            <div class="alert-content"><span>{{'General.Infos.ZipCode' | translate}}</span></div>
+        </div>
         <mat-horizontal-stepper>
             <mat-step [label]="'Request.Create.Stepper.Request' | translate">
                 <form #RequestForm="ngForm" novalidate>
@@ -55,7 +58,7 @@
             <mat-step [label]="'Request.Create.Stepper.ContactInformation' | translate">
                 <form #RequestAddressForm="ngForm" novalidate>
                   <div class="alert alert-info" role="alert">
-                    <div class="alert-content"><span>{{'General.Field.Label.Hint' | translate}}</span></div>
+                    <div class="alert-content"><span>{{'Request.Create.Hint' | translate}}</span></div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
@@ -139,7 +142,7 @@
                               <mat-form-field>
                                 <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
                                 <input matInput numberLength="5" name="zipcodeInput" [(ngModel)]="request.zip" #zipcodeInput="ngModel" zipCodeWithinRange inputNumber required />
-                                <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'Request.Create.Infos.ZipCode' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
+                                <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'General.Infos.ZipCode' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
                               </mat-form-field>
                               <mat-error *ngIf="(zipcodeInput.touched || zipcodeInput.dirty) && zipcodeInput.invalid">
                                 <mat-error *ngIf="zipcodeInput.errors.required">

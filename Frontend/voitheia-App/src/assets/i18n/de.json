@@ -2,6 +2,9 @@
   "General": {
     "DateFormat": "DD.MM.YYYY HH:mm",
     "Slogan": "Tu etwas Gutes - Hilf jemandem.",
+    "Anonymous": "Anonym",
+    "false": "Nein",
+    "true": "Ja",
     "Buttons":{
         "Submit": "Absenden",
         "Next": "Weiter",
@@ -16,7 +19,8 @@
         "Delete": "Löschen",
         "ResetPassword": "Password zurück setzen",
         "ChangePassword": "Password ändern",
-        "Change": "Ändern"
+        "Change": "Ändern",
+        "Add": "Hinzufügen"
     },
     "Enums": {
       "RequestTypeEnum": {
@@ -52,8 +56,7 @@
         "NewPassword": "Neues Password",
         "NewPasswordRepeat": "Neues Password wiederholen",
         "Address": "Adresse",
-        "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu.",
-        "Hint": "Wie kann dein(e) Helfer(in) dich kontaktieren? Hinweis: Sobald dein(e) Helfer(in) die Anfrage angenommen hat, bekommt er/sie ausschließlich deine Telefonnummer und deinen Vornamen zu sehen."
+        "Terms": "Ich stimme den <a href=\"/terms/terms-conditions\" target=\"_blank\">AGBs</a> und der <br><a href=\"/terms/privacy-policy\" target=\"_blank\">Datenschutzerklärung</a> zu."
       }
     },
     "Input": {
@@ -120,6 +123,10 @@
         "PageNotFound": "Webseite nicht gefunden",
         "Countdown": "Countdown"
       }
+    },
+    "Infos": {
+      "ZipCode": "Aktuell ist die App nur für den raum München freigeschaltet. PLZ im Bereich von 80331 bis 85540.",
+      "Health": "Bitte nutz den Service nur wenn du symptomfrei bist."
     }
   },
   "Navigation": {
@@ -155,6 +162,10 @@
         "Success": {
           "Title": "E-mail erfolgreich bestätigt",
           "Text": "Deine E-mail wurde erfolgreich besätigt. Du kannst ab jetzt Anfragen annehmen und anderen helfen. <b>Danke für deinen Einsatz!</b>"
+        },
+        "Error": {
+          "Title": "E-mail nicht bestätigt",
+          "Text": "Beim bestätigen deiner E-mail ist etwas schief gegangen."
         }
       }
     },
@@ -231,9 +242,19 @@
             "Title": "Email erfolgreich geändert",
             "Text": "Dein email wurde erfolgreich geändert. Du solltest in kürze eine verifizierungs email erhalten. Du musst deine neue email verifizieren bevor du weitere Aufträge annehmen kannst."
           },
-          "ProfilePictureUpload": {
-            "Title": "Profilbild erfolgreich geändert",
-            "Text": "Dein profilbild wurde erfolgreich geändert."
+          "ProfilePicture": {
+            "Upload": {
+              "Title": "Profilbild erfolgreich geändert",
+              "Text": "Dein profilbild wurde erfolgreich geändert."
+            },
+            "Delete": {
+              "Title": "Profilbild löschen",
+              "Text": "Willst du dein profilbild wirklich löschen?"
+            },
+            "Deleted": {
+              "Title": "Profilbild erfolgreich gelöscht",
+              "Text": "Dein profilbild wurde erfolgreich gelöscht."
+            }
           }
         }
       },
@@ -255,6 +276,7 @@
   "Request": {
     "Create": {
       "Title": "Bei was benötigst du Unterstützung?",
+      "Hint": "Wie kann dein(e) Helfer(in) dich kontaktieren? Hinweis: Sobald dein(e) Helfer(in) die Anfrage angenommen hat, bekommt er/sie ausschließlich deine Telefonnummer und deinen Vornamen zu sehen.",
       "Stepper": {
         "Request": "Anfragedetails",
         "ContactInformation": "Kontaktdaten"
@@ -268,8 +290,7 @@
       "Infos": {
         "PetInsurance": "Hinweis: Bitte frage nur nach Haustierbetreuung, wenn du auch eine Haftpflichtversicherung für dein Haustier hast, die Haustierbetreuung absichert.",
         "GeneralInsurance": "Hinweis: Bitte frage nur nach Kinderbetreuung, wenn in deiner Haftpflichtversicherung Gefälligkeitsschäden abgedeckt sind.",
-        "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden...",
-        "ZipCode": "Aktuell ist die App nur für den raum München freigeschaltet. PLZ im Bereich von 80331 bis 85540."
+        "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden..."
       }
     },
     "Details": {
@@ -279,9 +300,28 @@
         "Text": "Du hast die Anfrage erfolgreich angenommen. Vielen Dank fürs helfen!",
         "MyRequestsButton": "Meine Anfragen anzeigen"
       }
+    },
+    "Status":{
+      "Open": "Offen",
+      "Closed": "Geschlossen",
+      "Assigned": "Angenommen"
     }
   },
   "MyRequest": {
+    "Title": "Meine Unterstützungsangebote",
+    "NoRequests": "Du hast aktuell keine Anfragen in dieser Liste.",
+    "Tabs": {
+      "AssignedRequests": "Angenommene",
+      "CreatedRequests": "Erstellte",
+      "ClosedRequests": "Geschlossene"
+    },
+    "Coloumns":{
+      "CreatedBy": "Erstellt von",
+      "AssignedTo": "Angenommen von",
+      "User": "Benutzer",
+      "Author": "Erstellt von mir",
+      "Status": "Status"
+    },
     "Details": {
       "Dialogs": {
         "Cancel": {

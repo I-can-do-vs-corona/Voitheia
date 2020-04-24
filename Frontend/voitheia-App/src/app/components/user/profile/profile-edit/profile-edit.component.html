@@ -11,6 +11,9 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+    <div class="alert alert-info" role="alert">
+        <div class="alert-content"><span>{{'General.Infos.ZipCode' | translate}}</span></div>
+    </div>
     <form #EditProfileForm="ngForm" novalidate>
         <div class="row">
             <div class="col-md-6 ">
@@ -73,7 +76,7 @@
                     <mat-form-field>
                         <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
                         <input matInput numberLength="5" name="zipcodeInput" [(ngModel)]="userData.zip" #zipcodeInput="ngModel" required zipCodeWithinRange inputNumber />
-                        <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'Request.Create.Infos.ZipCode' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
+                        <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'General.Infos.ZipCode' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
                     </mat-form-field>
                     <mat-error *ngIf="(zipcodeInput.touched || zipcodeInput.dirty) && zipcodeInput.invalid">
                         <mat-error *ngIf="zipcodeInput.errors.required">
