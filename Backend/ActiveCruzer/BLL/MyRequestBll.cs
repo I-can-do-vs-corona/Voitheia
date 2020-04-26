@@ -23,7 +23,7 @@ namespace ActiveCruzer.BLL
         /// </summary>
         /// <param name="mapper"></param>
         /// <param name="context"></param>
-        public MyRequestBll(IMapper mapper, UserManager<User> usermanager,ACDatabaseContext context)
+        public MyRequestBll(IMapper mapper, UserManager<User> usermanager, ACDatabaseContext context)
         {
             _mapper = mapper;
             _context = context;
@@ -150,7 +150,9 @@ namespace ActiveCruzer.BLL
         public List<RequestComplexDto> GetAllPendingComplex(string userId)
         {
             var requests = _context.Request
-               .Where(it => (it.Volunteer == userId && it.Status == Request.RequestStatus.Pending) || (it.CreatedBy == userId && it.Status == Request.RequestStatus.Pending)).ToList();
+                .Where(it =>
+                    (it.Volunteer == userId && it.Status == Request.RequestStatus.Pending) ||
+                    (it.CreatedBy == userId && it.Status == Request.RequestStatus.Pending)).ToList();
             return requests.Select(it => MapUserAndRequest(it, userId).Result).ToList();
         }
 
@@ -180,7 +182,7 @@ namespace ActiveCruzer.BLL
             var request = _context.Request.FirstOrDefault(x => x.Id == requestId);
             if (request != null)
             {
-                if(request.Status != Request.RequestStatus.Closed)
+                if (request.Status != Request.RequestStatus.Closed)
                 {
                     return true;
                 }
@@ -191,20 +193,59 @@ namespace ActiveCruzer.BLL
             return false;
         }
 
+        public List<RequestComplexDto> GetCreated(string userId, bool? open, bool? assigned, bool? closed)
+        {
+            if (open ==null && assigned == null && closed == null)
+            {
+                open = true;
+                assigned = true;
+                closed = true;
+            }
+
+            var query = _context.Request.Where(it => it.CreatedBy == userId);
+            if (open != true) query=query.Where(it => it.Status != Request.RequestStatus.Open);
+            if (assigned != true) query=query.Where(it => it.Status != Request.RequestStatus.Pending);
+            if (closed != true) query=query.Where(it => it.Status != Request.RequestStatus.Closed && it.Status != Request.RequestStatus.Timeout);
+
+            var requests = query.ToList();
+            return requests.Select(it => MapUserAndRequest(it, userId).Result).ToList();
+        }
+
+        public List<RequestComplexDto> GetAssigned(string userId, bool? assigned, bool? closed)
+        {
+            if (assigned == null && closed == null)
+            {
+                assigned = true;
+                closed = true;
+            }
+
+            var query = _context.Request.Where(it => it.Volunteer == userId);
+            if (assigned != true) query = query.Where(it => it.Status != Request.RequestStatus.Pending);
+            if (closed != true) query = query.Where(it => it.Status != Request.RequestStatus.Closed && it.Status != Request.RequestStatus.Timeout);
+
+            var requests = query.ToList();
+            return requests.Select(it => MapUserAndRequest(it, userId).Result).ToList();
+        }
+
+        public bool CreatedByUser(string userId, int requestId)
+        {
+            return _context.Request.Any(it => it.Id == requestId && it.CreatedBy == userId);
+        }
+
         private RequestDto MapRequestAndCalculateDistance(Request request, GeoCoordinate userCoordinate)
         {
             var mapped = _mapper.Map<RequestDto>(request);
             mapped.DistanceToUser =
-                (int)userCoordinate.GetDistanceTo(new GeoCoordinate(request.Latitude, request.Longitude));
+                (int) userCoordinate.GetDistanceTo(new GeoCoordinate(request.Latitude, request.Longitude));
             return mapped;
         }
 
         private async Task<RequestComplexDto> MapUserAndRequest(Request request, string userId)
         {
             var mapped = _mapper.Map<RequestComplexDto>(request);
-            var user = await _userManager.FindByIdAsync(request.Volunteer);
+            var volunteer = await _userManager.FindByIdAsync(request.Volunteer);
             var userCreator = await _userManager.FindByIdAsync(request.CreatedBy);
-            if(userId == request.CreatedBy)
+            if (userId == request.CreatedBy)
             {
                 mapped.Author = true;
             }
@@ -212,11 +253,27 @@ namespace ActiveCruzer.BLL
             {
                 mapped.Author = false;
             }
+
             if (userCreator != null)
             {
-                mapped.CreaterUser = new MinimalUserDto { FirstName = userCreator.FirstName, Email = userCreator.Email, PhoneNumber = userCreator.PhoneNumber, ProfilePicture = userCreator.ProfilPicture };
+                mapped.CreaterUser = new MinimalUserDto
+                {
+                    FirstName = userCreator.FirstName, Email = userCreator.Email, PhoneNumber = userCreator.PhoneNumber,
+                    ProfilePicture = userCreator.ProfilPicture
+                };
             }
-            mapped.AssignedUser = new MinimalUserDto { FirstName = user.FirstName, Email = user.Email, PhoneNumber = user.PhoneNumber, ProfilePicture = user.ProfilPicture };
+
+            if (volunteer != null)
+            {
+                mapped.AssignedUser = new MinimalUserDto
+                {
+                    FirstName = volunteer.FirstName,
+                    Email = volunteer.Email,
+                    PhoneNumber = volunteer.PhoneNumber,
+                    ProfilePicture = volunteer.ProfilPicture
+                };
+            }
+
             return mapped;
         }
     }

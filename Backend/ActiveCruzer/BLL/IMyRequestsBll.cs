@@ -16,5 +16,9 @@ namespace ActiveCruzer.BLL
         List<RequestComplexDto> GetAllPendingComplex(string userId);
         bool Exists(int requestId);
         bool IsNotClosed(int id);
+        List<RequestComplexDto> GetCreated(string userId, bool? open, bool? assigned, bool? closed);
+        List<RequestComplexDto> GetAssigned(string userId, bool? assigned, bool? closed);
+
+        bool CreatedByUser(string userId, int requestId);
     }
 }
