@@ -110,6 +110,10 @@ namespace ActiveCruzer.AutoMapper
                     opts => opts.MapFrom(src => src.CreatedOn))
                 .ForMember(dest => dest.EmailConfirmed,
                     opts => opts.MapFrom(src => src.EmailConfirmed))
+                .ForMember(dest => dest.LastLogin,
+                    opts => opts.MapFrom(src => src.LastLogin))
+                .ForMember(dest => dest.TermsAccepted,
+                    opts => opts.MapFrom(src => src.TermsAccepted))
                 .ForMember(dest => dest.ProfilePicture,
                 opts => opts.MapFrom(src => src.ProfilPicture));
 
