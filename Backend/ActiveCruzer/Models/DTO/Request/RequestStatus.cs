@@ -23,6 +23,10 @@ namespace ActiveCruzer.Models.DTO.Request
         /// <summary>
         /// The request is finished
         /// </summary>
-        Closed = 3
+        Closed = 3,
+        /// <summary>
+        /// The request timed out
+        /// </summary>
+        TimedOut = 4
     }
 }

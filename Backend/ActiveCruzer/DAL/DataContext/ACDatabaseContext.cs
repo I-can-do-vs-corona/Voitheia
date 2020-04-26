@@ -32,6 +32,6 @@ namespace ActiveCruzer.DAL.DataContext
         /// <summary>
         /// database model requests
         /// </summary>
-        public Microsoft.EntityFrameworkCore.DbSet<ActiveCruzer.Models.Request> Request { get; set; }
+        public virtual Microsoft.EntityFrameworkCore.DbSet<ActiveCruzer.Models.Request> Request { get; set; }
     }
 }

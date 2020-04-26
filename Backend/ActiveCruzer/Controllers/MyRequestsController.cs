@@ -51,6 +51,7 @@ namespace ActiveCruzer.Controllers
         /// <returns></returns>
         /// <response code="403">The users email is not confirmed</response>
         /// <response code="404">The request with the provided ID does not exist</response>
+        /// <response code="400">Invalid request</response>
         [Authorize]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -67,8 +68,16 @@ namespace ActiveCruzer.Controllers
             {
                 if (_requestBll.Exists(takeRequestDto.RequestId))
                 {
-                    var id = _requestBll.TakeRequest(takeRequestDto.RequestId, userId);
-                    return CreatedAtAction(nameof(GetById), new {id}, new CreateRequestResponseDto {Id = id});
+                    if (!_requestBll.CreatedByUser(userId, takeRequestDto.RequestId))
+                    {
+                        var id = _requestBll.TakeRequest(takeRequestDto.RequestId, userId);
+                        return CreatedAtAction(nameof(GetById), new { id }, new CreateRequestResponseDto { Id = id });
+                    }
+                    else
+                    {
+                        return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "It's not possible to take your own request" });
+
+                    }
                 }
                 else
                 {
@@ -153,6 +162,56 @@ namespace ActiveCruzer.Controllers
         }
 
         /// <summary>
+        /// Get requests created by the logged in user. If no query is provided, all requests are returned
+        /// </summary>
+        /// <param name="open">Return open requests</param>
+        /// <param name="assigned">Return assigned requests</param>
+        /// <param name="closed">Return closed and timed out requests</param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        [Route("created")]
+        [ProducesResponseType(typeof(GetAllMyRequestComplexResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<GetAllMyRequestComplexResponse>> GetCreated(bool? open, bool? assigned, bool? closed)
+        {
+
+            var userId = GetUserId();
+            if (!await _userBll.IsUserConfirmed(userId))
+            {
+                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+            }
+
+            var requests = _requestBll.GetCreated(userId, open, assigned, closed);
+            return Ok(new GetAllMyRequestComplexResponse { Requests = requests, TotalCount = requests.Count });
+        }
+
+        /// <summary>
+        /// Get requests assigned to the logged in user. If no query is provided, all requests are returned
+        /// </summary>
+        /// <param name="assigned">Return assigned requests</param>
+        /// <param name="closed">Return closed and timed out requests</param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet]
+        [Route("assigned")]
+        [ProducesResponseType(typeof(GetAllMyRequestComplexResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<GetAllMyRequestComplexResponse>> GetAssigned(bool? assigned, bool? closed)
+        {
+
+            var userId = GetUserId();
+            if (!await _userBll.IsUserConfirmed(userId))
+            {
+                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+            }
+
+            var requests = _requestBll.GetAssigned(userId, assigned, closed);
+            return Ok(new GetAllMyRequestComplexResponse { Requests = requests, TotalCount = requests.Count });
+        }
+
+
+        /// <summary>
         /// Get all requests assigned to the logged in user
         /// </summary>
         /// <param name="longitude">Longitude in degrees</param>
@@ -161,6 +220,7 @@ namespace ActiveCruzer.Controllers
         /// <param name="metersPerimeter">Which perimeter should be kept in considoration</param>
         /// <returns></returns>
         /// <response code="403">The users email is not confirmed</response>
+        [Obsolete]
         [Authorize]
         [HttpGet]
         public async Task<ActionResult<GetAllRequestResponse>> GetAll()
@@ -179,6 +239,7 @@ namespace ActiveCruzer.Controllers
         /// get all complex requests | with user aligned in request object
         /// </summary>
         /// <returns></returns>
+        [Obsolete]
         [Authorize]
         [HttpGet]
         [Route("GetAllComplex")]
