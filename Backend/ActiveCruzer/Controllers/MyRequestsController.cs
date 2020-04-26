@@ -7,6 +7,7 @@ using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO.MyRequests;
 using ActiveCruzer.Models.DTO.Request;
+using ActiveCruzer.Models.Error;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -54,14 +55,15 @@ namespace ActiveCruzer.Controllers
         /// <response code="400">Invalid request</response>
         [Authorize]
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(CreateRequestResponseDto), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(OwnRequestError), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(RequestDoesNotExistError), StatusCodes.Status404NotFound)]
         public async Task<ActionResult> TakeRequest([FromBody] TakeRequestDto takeRequestDto)
         {
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Unauthorized(new ErrorModel {code = Unauthorized().StatusCode, errormessage=  "Email is not confirmed yet" });
+                return Unauthorized(new EmailNotConfirmedError());
             }
 
             if (ModelState.IsValid)
@@ -71,22 +73,21 @@ namespace ActiveCruzer.Controllers
                     if (!_requestBll.CreatedByUser(userId, takeRequestDto.RequestId))
                     {
                         var id = _requestBll.TakeRequest(takeRequestDto.RequestId, userId);
-                        return CreatedAtAction(nameof(GetById), new { id }, new CreateRequestResponseDto { Id = id });
+                        return CreatedAtAction(nameof(GetById), new {id}, new CreateRequestResponseDto {Id = id});
                     }
                     else
                     {
-                        return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "It's not possible to take your own request" });
-
+                        return BadRequest(new OwnRequestError());
                     }
                 }
                 else
                 {
-                    return NotFound(new ErrorModel {code = NotFound().StatusCode, errormessage = "This request did not exist." });
+                    return NotFound(new RequestDoesNotExistError());
                 }
             }
             else
             {
-                return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "Invalid model." });
+                return BadRequest(new InvalidModelError());
             }
         }
 
@@ -100,12 +101,14 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(GetRequestResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(EmailNotConfirmedError), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(RequestDoesNotExistError), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<GetRequestResponse>> GetById(int id)
         {
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+                return Unauthorized(new EmailNotConfirmedError());
             }
 
             if (_requestBll.ExistsOnUser(id, userId))
@@ -119,7 +122,7 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return NotFound(new ErrorModel {code = NotFound().StatusCode, errormessage = "No requests found." });
+                return NotFound(new RequestDoesNotExistError());
             }
         }
 
@@ -130,17 +133,20 @@ namespace ActiveCruzer.Controllers
         /// <returns></returns>
         /// <response code="200">The request was successfully removed</response>
         /// <response code="400">The request is already closed and can not be removed</response>
-        /// <response code="403">The users email is not confirmed</response>
+        /// <response code="401">The users email is not confirmed</response>
         /// <response code="404">The request with the provided ID does not exist</response>
         [Authorize]
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(OkResult), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(EmailNotConfirmedError), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(InvalidRequestStateError), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(RequestDoesNotExistError), StatusCodes.Status404NotFound)]
         public async Task<ActionResult> RemoveRequest([FromRoute] int id)
         {
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+                return Unauthorized(new EmailNotConfirmedError());
             }
 
             if (_requestBll.ExistsOnUser(id, userId))
@@ -152,12 +158,12 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "No requests found." });
+                    return BadRequest(new InvalidRequestStateError());
                 }
             }
             else
             {
-                return NotFound(new ErrorModel {code = NotFound().StatusCode, errormessage = "This request did not exist." });
+                return NotFound(new RequestDoesNotExistError());
             }
         }
 
@@ -172,18 +178,18 @@ namespace ActiveCruzer.Controllers
         [HttpGet]
         [Route("created")]
         [ProducesResponseType(typeof(GetAllMyRequestComplexResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult<GetAllMyRequestComplexResponse>> GetCreated(bool? open, bool? assigned, bool? closed)
+        [ProducesResponseType(typeof(EmailNotConfirmedError), StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<GetAllMyRequestComplexResponse>> GetCreated(bool? open, bool? assigned,
+            bool? closed)
         {
-
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+                return Unauthorized(new EmailNotConfirmedError());
             }
 
             var requests = _requestBll.GetCreated(userId, open, assigned, closed);
-            return Ok(new GetAllMyRequestComplexResponse { Requests = requests, TotalCount = requests.Count });
+            return Ok(new GetAllMyRequestComplexResponse {Requests = requests, TotalCount = requests.Count});
         }
 
         /// <summary>
@@ -196,18 +202,17 @@ namespace ActiveCruzer.Controllers
         [HttpGet]
         [Route("assigned")]
         [ProducesResponseType(typeof(GetAllMyRequestComplexResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(EmailNotConfirmedError), StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<GetAllMyRequestComplexResponse>> GetAssigned(bool? assigned, bool? closed)
         {
-
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+                return Unauthorized(new EmailNotConfirmedError());
             }
 
             var requests = _requestBll.GetAssigned(userId, assigned, closed);
-            return Ok(new GetAllMyRequestComplexResponse { Requests = requests, TotalCount = requests.Count });
+            return Ok(new GetAllMyRequestComplexResponse {Requests = requests, TotalCount = requests.Count});
         }
 
 
@@ -219,40 +224,43 @@ namespace ActiveCruzer.Controllers
         /// <param name="amount">How many requests to retrieve</param>
         /// <param name="metersPerimeter">Which perimeter should be kept in considoration</param>
         /// <returns></returns>
-        /// <response code="403">The users email is not confirmed</response>
+        /// <response code="401">The users email is not confirmed</response>
         [Obsolete]
         [Authorize]
         [HttpGet]
+        [ProducesResponseType(typeof(EmailNotConfirmedError), StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<GetAllRequestResponse>> GetAll()
         {
             var userId = GetUserId();
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+                return Unauthorized(new EmailNotConfirmedError());
             }
 
             var requests = _requestBll.GetAllPendingFromUser(userId);
-            return Ok(new GetAllMyRequestResponse { Requests = requests, TotalCount = requests.Count});
+            return Ok(new GetAllMyRequestResponse {Requests = requests, TotalCount = requests.Count});
         }
 
         /// <summary>
         /// get all complex requests | with user aligned in request object
         /// </summary>
         /// <returns></returns>
+        /// <response code="401">The users email is not confirmed</response>
         [Obsolete]
         [Authorize]
         [HttpGet]
         [Route("GetAllComplex")]
+        [ProducesResponseType(typeof(EmailNotConfirmedError), StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<GetAllMyRequestComplexResponse>> GetComplexAll()
         {
             var userId = GetUserId();
-            if(!await _userBll.IsUserConfirmed(userId))
+            if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+                return Unauthorized(new EmailNotConfirmedError());
             }
 
             var requests = _requestBll.GetAllPendingComplex(userId);
-            return Ok(new GetAllMyRequestComplexResponse { Requests = requests, TotalCount = requests.Count });
+            return Ok(new GetAllMyRequestComplexResponse {Requests = requests, TotalCount = requests.Count});
         }
 
         /// <summary>
@@ -265,13 +273,15 @@ namespace ActiveCruzer.Controllers
         [HttpPatch("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(EmailNotConfirmedError), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(RequestDoesNotExistError), StatusCodes.Status404NotFound)]
         public async Task<ActionResult> PatchRequest([FromRoute] int id, [FromBody] PatchRequestDto patchRequest)
         {
             var userId = GetUserId();
 
             if (!await _userBll.IsUserConfirmed(userId))
             {
-                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Email is not confirmed yet" });
+                return Unauthorized(new EmailNotConfirmedError());
             }
 
             if (ModelState.IsValid)
@@ -283,12 +293,12 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return NotFound(new ErrorModel { code = NotFound().StatusCode, errormessage = "This request did not exist." });
+                    return NotFound(new RequestDoesNotExistError());
                 }
             }
             else
             {
-                return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "Invalid model." });
+                return BadRequest(new InvalidModelError());
             }
         }
     }

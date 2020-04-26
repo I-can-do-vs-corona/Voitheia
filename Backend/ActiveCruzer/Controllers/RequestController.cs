@@ -9,6 +9,7 @@ using ActiveCruzer.Helper;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
 using ActiveCruzer.Models.DTO.Request;
+using ActiveCruzer.Models.Error;
 using ActiveCruzer.Models.Geo;
 using AutoMapper;
 using GeoCoordinatePortable;
@@ -61,8 +62,8 @@ namespace ActiveCruzer.Controllers
         /// <returns></returns>
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status424FailedDependency)]
+        [ProducesResponseType(typeof(InvalidAddressError),StatusCodes.Status400BadRequest)]
+        
         public ActionResult<CreateRequestResponseDto> InsertRequest([FromBody] CreateRequestDto req)
         {
             if (ModelState.IsValid)
@@ -96,18 +97,12 @@ namespace ActiveCruzer.Controllers
                 }
                 else
                 {
-                    return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "The provided adress is not valid. Please check for the spelling of the street. Accepted: Sankt-Boni. Invalid: St.-Boni." });
-                    //return new ContentResult
-                    //{
-                    //    StatusCode = 424,
-                    //    Content = $"Status Code: {424}; FailedDependency; Address is invalid",
-                    //    ContentType = "text/plain",
-                    //};
+                    return BadRequest(new InvalidAddressError());
                 }
             }
             else
             {
-                return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "Invalid model" });
+                return BadRequest(new InvalidModelError());
             }
         }
 
@@ -119,7 +114,7 @@ namespace ActiveCruzer.Controllers
         [Authorize]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(RequestDoesNotExistError), StatusCodes.Status404NotFound)]
         public ActionResult RemoveRequest([FromRoute] int id)
         {
             if (_requestBll.Exists(id))
@@ -129,7 +124,7 @@ namespace ActiveCruzer.Controllers
             }
             else
             {
-                return NotFound(new ErrorModel {code = NotFound().StatusCode, errormessage = "This request did not exist." });
+                return NotFound(new RequestDoesNotExistError());
             }
         }
 
@@ -163,6 +158,7 @@ namespace ActiveCruzer.Controllers
         /// <returns></returns>
         [Authorize]
         [HttpGet]
+        [ProducesResponseType(typeof(MissingCoordinatesError), StatusCodes.Status400BadRequest)]
         public ActionResult<GetAllRequestResponse> GetAll([FromQuery] double? longitude,
             [FromQuery] double? latitude, [FromQuery] int amount = 10, [FromQuery] int metersPerimeter = 2000)
         {
@@ -181,7 +177,7 @@ namespace ActiveCruzer.Controllers
                 }
                 catch (Exception)
                 {
-                    return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "User not logged in. Provide Longitude and Latitude" });
+                    return BadRequest(new MissingCoordinatesError());
                 }
             }
 

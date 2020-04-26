@@ -13,8 +13,13 @@ namespace ActiveCruzer.Controllers
 
         protected string GetUserId()
         {
-            var claims = User.Claims;
-            return User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+            var id = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+            if (id == null)
+            {
+                throw new Exception("Error getting userid");
+            }
+
+            return id;
         }
 
         protected void Dispose(in bool disposing)
