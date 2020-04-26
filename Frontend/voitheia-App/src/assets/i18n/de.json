@@ -375,17 +375,18 @@
   },
   "Terms": {
     "Terms": {
-      "Title": "Nutzungsbedingungen für Voitheia",
+      "Title": "Nutzungsbedingungen",
       "IntroductionTitle": "1. Einleitung",
       "Introduction": {
+        "IntroductionGenderRemark": "Aus Gründen der besseren Lesbarkeit wird in diesem Text die männliche Form verwendet; selbstverständlich ist stets sowohl die weibliche als auch die männliche Form gemeint.",
         "Purpose": "1.1. Nutzer von Voitheia und Nutzungszweck",
-        "PurposeText": "Nutzer dürfen die Funktionen dieser Webseite („Voitheia“) ausschließlich als Privatperson nutzen. Dafür gelten die nachfolgenden Bestimmungen: Voitheia darf durch jede registrierte natürliche Person („Nutzer“, konkret sowohl Helfer als auch Anfragenede) zu privaten Zwecken unentgeltlich genutzt werden. Ein Anspruch auf Nutzung besteht nicht. Der Betreiber von Voitheia ist berechtigt, die Registrierung einzelner Nutzer ohne Angabe von Gründen zurückzuweisen. Bitte finden Sie weitere Details zum Betreiber auf",
+        "PurposeText": "Nutzer dürfen die Funktionen dieser Webseite („Voitheia“) ausschließlich als Privatperson nutzen. Dafür gelten die nachfolgenden Bestimmungen: Voitheia darf durch jede registrierte natürliche Person („Nutzer“, d.h. sowohl Helfer als auch Anfragender) zu privaten Zwecken unentgeltlich genutzt werden. Ein Anspruch auf Nutzung besteht nicht. Der Betreiber von Voitheia ist berechtigt, die Registrierung einzelner Nutzer ohne Angabe von Gründen zurückzuweisen. Bitte finden Sie weitere Details zum Betreiber auf",
         "Registration": "1.2. Registrierung",
-        "RegistrationText": "Die Nutzung von Voitheia setzt die Registrierung des Nutzers mit Anlegung eines Nutzeraccounts voraus. Bei der Registrierung erhält der Nutzer eine Bestätigungsaufforderung per Mail. Der Account kann erst nach erfolgter Bestätigung (Verifizierung)  genutzt werden. Der Nutzer hat die Daten für den Nutzeraccount vollständig und korrekt anzugeben sowie stets aktuell zu halten. Für den Umgang mit diesen Daten gelten die auch die Bestimmungen von ",
+        "RegistrationText": "Die Nutzung von Voitheia setzt für Helfer die Registrierung des Nutzers mit Anlegung eines Nutzeraccounts voraus. Als Anfragender besteht die Möglichkeit, ein Nutzerprofil anzulegen, oder Anfragen als „Gast“ auszuführen. Bei der Registrierung erhält der Nutzer eine Bestätigungsaufforderung per Mail. Der Account kann erst nach erfolgter Bestätigung (Verifizierung)  genutzt werden. Der Nutzer hat die Daten für den Nutzeraccount vollständig anzugeben sowie stets aktuell zu halten. Für den Umgang mit diesen Daten gelten die auch die Bestimmungen von ",
         "Function": "1.3. Funktion und Zweck von Voitheia",
-        "FunctionText": "Voitheia dient dazu, im ausschließlich privaten und nicht gewerblichen Kontext, Kontakte für Gefälligkeiten zu vermitteln („Nachbarschaftshilfe“). Konkreter können Unterstützungsleistungen unentgeltlich von Unterstützungsbedürftigen (Anfragern) angefragt werden, die dann von freiwilligen Helfern (Helfern) angenommen und ausgeführt werden. Im Weiteren werden die Funktionen de Weibseite erst aus Anfrager, und anschließend aus Helfersicht beschrieben. Anfrager können aus einer Auswahl verschiedener Unterstützungsangebote eines oder mehrere auswählen. Angebote können beispielsweise Einkaufen, Wegbegleitung zum Arzt oder Rezeptabholung in Apotheken,  Kinderbetreuung oder Haustierbetreuung sein. Zusammen mit dieser Anfrage gibt der Anfrager seine persönlichen Daten, wie Adresse und Telefonnummer an. Wenn die Anfrage nicht innerhalb von fünf Tagen angenommen wird, wird sie als nicht mehr relevant angesehen und automatisch gelöscht. Helfer müssen sich im ersten Schritt registrieren. Sobald ein Nutzerprofil angelegt ist, können sie in einer Übersicht die Anfrageangebote aus ihrer Umgebung, sortiert nach Entfernung, sehen. Der Helfer sieht vom Anfrager dabei  nur Vorname, Anfragetyp und Entfernung in Km. Erst nach Annahme einer Anfrage kann der Helfer die Telefonnummer des Anfragers sehen. Weitre Daten, wie Nachname oder Adresse, kann er weiterhin nicht sehen. Der Helfer kann den Anfrager mit Hilfe der Telefonnummer kontaktieren, um Details der Anfrage zu klären. Nach Abschluss der Unterstützungsleistung, kann der Helfer die Anfrage in seinem Profil als abgeschlossen markieren."
+        "FunctionText": "Voitheia dient dazu, im ausschließlich privaten und nicht gewerblichen Kontext, Kontakte für Gefälligkeiten zu vermitteln („Nachbarschaftshilfe“). Unterstützungsleistungen können unentgeltlich von Unterstützungsbedürftigen (im Weiteren „Anfragern“) angefragt werden, die dann von freiwilligen Helfern (im Weiteren „Helfern“) angenommen und ausgeführt werden. Im Folgenden werden die Funktionen der Weibseite erst aus Anfrager, und anschließend aus Helfersicht beschrieben. Anfrager können aus einer Auswahl verschiedener Unterstützungsangebote eines oder mehrere auswählen. Angebote können beispielsweise Einkaufen, Wegbegleitung zum Arzt oder Rezeptabholung in Apotheken,  Kinderbetreuung oder Haustierbetreuung sein. Zusammen mit dieser Anfrage gibt der Anfrager seine persönlichen Daten, wie Adresse und Telefonnummer an. Hat der Anfrager bereits ein Nutzerprofil, werden diese Felder automatisch befüllt. Wenn die Anfrage nicht innerhalb von fünf Tagen angenommen wird, wird sie als nicht mehr relevant angesehen und automatisch gelöscht. Helfer müssen sich im ersten Schritt registrieren. Sobald ein Nutzerprofil angelegt ist, bekommt der Helfer in einer Übersicht die Anfrageangebote aus seiner Umgebung, sortiert nach Entfernung, aufgelistet. Der Helfer kann von der Anfrage nur Vorname des Anfragers, Anfragetyp und Entfernung in Km einsehen. Er kann aus dieser Liste eine oder mehrere Anfragen annehmen. Erst nach Annahme einer Anfrage kann der Helfer die Telefonnummer des Anfragers sehen. Weitere Daten, wie Nachname oder Adresse, sind über die Plattform nicht zugänglich. Der Helfer kann nun den Anfrager mit Hilfe der Telefonnummer kontaktieren, um Details der Anfrage zu klären. Der Helfer kann in Voitheia jederzeit seine angenommenen Anfragen einsehen und verwalten. Nach Abschluss der Unterstützungsleistung, markiert der Helfer die Anfrage in seinem Profil als abgeschlossen. Registrierte Nutzer können in ihrem Profil vergangene, angenommene und abgeschlossene Anfragen einsehen."
       },
-      "Usage": "2. Nutzung von Voitheia",
+      "Usage": "2. Ausschluss von und Beendigung der Nutzung von Voitheia",
       "UsageText": "Jeder Nutzer kann die Nutzung von Voitheia jederzeit beenden, indem er sein Nutzerprofil löscht. Der Betreiber kann einen Nutzer jederzeit sperren oder die Nutzungsmöglichkeit endgültig entziehen, wenn ein Nutzer Voitheia rechtswidrig, insbesondere zu gewerblichen Zwecken oder nutzt, um Anfragern Schaden zuzufügen oder Voitheia in sonstiger Weise rechtswidrig, in anstößiger Weise oder in einer Form nutzt, die zu Beschwerden anderer Nutzer oder Dritter führt.",
 
       "UserObligationsTitle": "3. Nutzerpflichten",
@@ -393,13 +394,13 @@
         "Confidentiality": "3.1 Vertraulichkeit",
         "ConfidentialityText": "Nutzer dürfen Inhalte von Voitheia nur für sich privat verwenden und personenbezogene Daten von Nutzern, insbesondere Anfragern nicht weiterleiten oder veröffentlichen, etwa in sozialen Netzwerken oder auf andere Art und Weise. Ebenso ist eine weitergehende Verarbeitung personenbezogener Daten die über die Zweckerfüllung von Voitheia hinausgeht, untersagt. Daten und Informationen, die Nutzer insbesondere von Anfragern zur Hilfeleistung erhalten sind streng vertraulich zu behandeln und dürfen ausschließlich zum Zweck der unmittelbaren Hilfe für Anfagende genutzt werden, soweit dies für die Hilfeleistung erforderlich ist. Gern dürfen Nutzer jedoch für Voitheia werben, darauf aufmerksam machen (z.B. in sozialen Medien) oder von Ihren Webseiten hierauf verlinken.",
         "Deficiencies": "3.2. Mitteilung von Mängeln",
-        "DeficienciesText": "Der Nutzer teilt Störungen bei der Nutzung von Voitheia unverzüglich an die unter Kundensupport angegebene Kontaktstelle mit.",
+        "DeficienciesText": "Zur ständigen Verbesserung von Voitheia ist es gewünscht, dass Nutzer Störungen bei der Nutzung von Voitheia an die unter Kundensupport angegebene Kontaktstelle mitteilen. Wir freuen uns auch über Anregungen und Verbesserungsvorschläge.",
         "LawfulUse": "3.3. Rechtmäßige Nutzung",
         "LawfulUseText": "Der Nutzer ist verpflichtet, Voitheia nur rechtmäßig nach Maßgabe dieser Nutzungsbestimmungen und in Übereinstimmung mit dem anwendbaren Recht zu nutzen. "
       },
 
-      "Transfer": "4. Übertragungs- und Verwertungsverbot",
-      "TransferText": "Es ist nicht gestattet, Voitheia selbst oder für Dritte entgeltlich oder unentgeltlich zu überlassen oder zu nutzen, Daten oder Funktionen hieraus zu veröffentlichen, zu lizenzieren, zu verkaufen oder anderweitig kommerziell zu nutzen oder zu verwerten.",
+      "Transfer": "4. Voitheia Software",
+      "TransferText": "Es ist nicht gestattet, Voitheia selbst oder für Dritte entgeltlich oder unentgeltlich zu überlassen oder zu nutzen, Daten oder Funktionen hieraus zu veröffentlichen, zu lizenzieren, zu verkaufen oder anderweitig kommerziell zu nutzen oder zu verwerten. Niemand ist in seinem Recht eingeschränkt, die technisch funktionale Software als Teil eines Software-Paketes, das Programme unterschiedlichen Ursprungs enthält, zu verschenken oder zu vertreiben.",
 
       "UserContent": "5. Inhalte von Nutzern",
       "UserContentText": "Die in Voitheia von Nutzern veröffentlichten Inhalte werden vom Betreiber grundsätzlich nicht geprüft und stellen nicht die Meinung des Betreibers dar. Der Betreiber behält sich aber vor, soweit Hinweise auf Missbrauch oder rechtswidrige Inhalte vorliegen, solche Inhalte zu prüfen und ggf. zu löschen. Mit der Veröffentlichung der Daten in Voitheia erklärt der Nutzer, dass diese frei von Rechten Dritter sind und räumt dem Betreiber hieran ein kostenloses, unbeschränktes einfaches Nutzungsrecht zum in diesen Nutzungsbedingungen beschriebenen Zweck ein.",
@@ -436,8 +437,83 @@
       "VSBGText": "Der Betreiber wird nicht an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle im Sinne des deutschen Verbraucherstreitbeilegungsgesetzes (VSBG) teilnehmen und ist hierzu auch nicht verpflichtet."
     },
     "Privacy": {
+      "Title": "Informationen zum Datenschutz",
+      "Introduction": "Wir, der Betreiber des Voitheia Services, freuen uns über Ihr Interesse an dieser Anwendung. Der Schutz Ihrer Privatsphäre als Nutzer von Voitheia ist uns ein wichtiges Anliegen. Im Folgenden informieren wir Sie über den Umgang mit personenbezogenen Daten im Zusammenhang mit Voitheia. „Personenbezogene Daten“ sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person beziehen. Aus Gründen der besseren Lesbarkeit wird in diesem Text die männliche Form verwendet; selbstverständlich ist stets sowohl die weibliche als auch die männliche Form gemeint.",
+      "ResponsibilityTitle": "1. Verantwortlichkeit",
+      "Responsibility": {
+        "ResponsibilityText1": "Für Zwecke dieser Datenschutzhinweise werden einheitlich die Begriffe „Betreiber“ oder „Wir“ verwendet. Datenschutzrechtlich verantwortlich ist der Betreiber. Sie finden alle Informationen über den Betreiber unter",
+        "ResponsibilityText2": "Wenn in diesem Dokument von „Nutzern“ gesprochen wird, so sind Sie als Verwender (in der Rolle „Anfrager“ oder „Helfer“) von Voitheia gemeint."
+      },
 
+      "ScopeAndPurposeTitle": "2. Umfang und Zwecke der Datenverarbeitung",
+      "ScopeAndPurpose": {
+        "DataCategories": "2.1 Datenkategorien",
+        "DataCategoriesText1": "Wir verarbeiten personenbezogene Daten des Nutzers, die dieser bei der Anmeldung (Registrierung) und Nutzung von Voitheia selbst und freiwillig eingibt und die von ihm sonst zur Verarbeitung freigegebenen Daten, um die Voitheia Leistungen bereitstellen zu können. Der Nutzer ist nicht zur Angabe sämtlicher möglicher Daten verpflichtet; es muss jedoch gewährleistet sein, dass der Kontakt in für die Funktionsweise von Voitheia ausreichender Form bereitgestellt wird, um die Funktionalität gewährleisten zu können. Hierzu gehört insbesondere die Bekanntgabe von bestimmten Kontaktinformationen für die Kontaktaufnahme zwischen Anfrager und Helfer. Wenn solche Daten nicht überlassen werden, kann dies zur Folge haben, dass Voitheia nicht oder nur eingeschränkt funktioniert oder genutzt werden kann. Folgende Daten werden für die Bereitstellung des Services erhoben und verarbeitet:",
+        "DataCategoriesList": {
+          "Name": "Name (Vor- und Zuname)",
+          "Number": "Telefonnummer",
+          "Address": "Adresse (Straße & Hausnummer, damit die Entfernung zwischen Helfer & Anfrager bestimmt werden kann)",
+          "Requests": "Erstellte Anfragen (ohne Speicherung des Erstellungsdatums)",
+          "AcceptedRequests": "Angenommene Anfragen inkl. Annahmestatus (ohne Datum)",
+          "Picture": "Nutzerbild (die Verwebdung eines Bildes ist freiwillig)"
+        },
+        "DataCategoriesText2": "Hinweis: Von den eingegebenen Daten sind nur Vorname,Telefonnummer, Anfragetyp und Entfernung für die anderen Nutzer einsehbar.",
+        "ImplementationTitle": "2.2.\tUmsetzung der Datenverarbeitung",
+        "ImplementationText": "Die eingegebenen Adressdaten werden lediglich für die Bestimmung der Entfernung zwischen den Nutzern verwendet. Um die Entfernung zwischen dem Anfrager und dem Helfer bestimmen zu können, wird ein Service der Bing-Maps der Microsoft Inc. (Nähere Informationen hierzu: https://www.microsoft.com/en-us/maps/create-a-bing-maps-key/) über eine Bing API verwendet. Die Standortdaten werden ohne Personenbezug, d.h. anonymisiert an die API gesendet. Die daraus errechnete Differenz der beiden Standorte wird in Voitheia angezeigt. Die Daten von Voitheia werden in einem sog. „Key Vault“ (Datenbank für zur sicheren Datenspeicherung) verarbeitet, in dem die Nutzer-Konfigurationen, Sicherheitsschlüssel und Zugangsdaten zur Datenbank („Connection strings“) sicher verschlüsselt abgespeichert sind, um einen möglichen Missbrauch auszuschließen. Die Webapplikation wird auf einer Microsoft Azure Umgebung gehostet. Die dafür genutzten Ressourcen liegen in Frankfurt, Deutschland. Lediglich Key Vault und Bing APIs liegen außerhalb Deutschlands, zu diesen Ressourcen werden allerdings keine personenbezogenen Daten transferiert.",
+        "PurposeTitle": "2.3 Zwecke der Datenverarbeitung",
+        "PurposeText": "Wir verarbeiten die Nutzerdaten gemäß der jeweils geltenden Datenschutzgesetze. Die Datenverarbeitung erfolgt für folgende Zwecke:",
+        "Purpose": {
+          "ContractImplementation": "a. Vertragsdurchführung",
+          "ContractImplementationText": "Wir verarbeiten Ihre personenbezogenen Daten ausschließlich für die Voitheia-Leistungserbringung im dafür erforderlichen Umfang. Wir löschen die personenbezogenen Daten, sobald eine weitere Verarbeitung für Zwecke der Leistungserbringung nicht mehr erforderlich ist. Eine Speicherung oder Verarbeitung erfolgt nur gemäß Abschnitt „Speicherdauer und Löschung“.",
+          "Consent": "b. Einwilligung zur Datenverarbeitung",
+          "ConsentText": "Soweit Sie uns eine Einwilligung zur Verarbeitung personenbezogener Daten für weitere Zwecke erteilt haben (z.B. zur Auswertung von Nutzungsdaten), erfolgt diese Datenverarbeitung auf Grundlage dieser Einwilligung. Einwilligungen sind stets freiwillig. Sie können Ihre Einwilligung jederzeit über ihr Nutzerprofil widerrufen indem sie entsprechende Einstellungen ändern oder Ihr Nutzerprofil/ Ihren Account löschen. Ihr Widerruf lässt die Rechtmäßigkeit der bis zum Widerruf auf Grundlage der Einwilligung erfolgten Datenverarbeitung unberührt. Ebenso unberührt bleibt eine weitere Verarbeitung dieser Daten aufgrund einer anderen Rechtsgrundlage, etwa zur Erfüllung rechtlicher Verpflichtungen (siehe Abschnitt „Erfüllung gesetzlicher Vorgaben“).",
+          "InterestPursuit": "c. Verfolgung berechtigter Interessen",
+          "InterestPursuitText": "Soweit erforderlich verarbeiten wir Ihre personenbezogenen Daten über die Leistungserbringung hinaus zur Wahrung unserer berechtigten Interessen. Die Erhaltung der Funktionsfähigkeit und Sicherheit unserer IT-Systeme sind solche berechtigten Interessen. Wir löschen personenbezogene Daten grundsätzlich, sobald eine weitere Verarbeitung oder Aufbewahrung zur Wahrung des jeweils verfolgten berechtigten Interesses nicht mehr erforderlich ist. Eine weitere Speicherung oder Verarbeitung erfolgt nur gemäß Abschnitt „Speicherdauer und Löschung“.",
+          "Compliance": "d. Erfüllung gesetzlicher Vorgaben",
+          "ComplianceText": "Als Unternehmen unterliegen wir gesetzlichen Verpflichtungen und Vorgaben, wie etwa handels- und steuerrechtlichen Aufbewahrungspflichten. Wir verarbeiten personenbezogenen Daten des Nutzers deswegen auch, soweit dies zur Erfüllung gesetzlicher Pflichten erforderlich ist. Wir legen personenbezogene Daten eines Nutzers nur bei Vorliegen einer rechtlichen Verpflichtung gegenüber Ordnungs- und Strafverfolgungsbehörden offen und archivieren diese ausschließlich soweit dies gesetzlich für einen bestimmten Zeitraum erforderlich ist."
+        }
+      },
+
+      "CookiesTitle": "3. Verwendung von Cookies / LocalStorages",
+      "CookiesText1": "Voitheia verwendet localStorage, um Voitheia optimal gestalten zu können. Dies ermöglicht eine Erleichterung der Navigation und ein hohes Maß an Benutzerfreundlichkeit. LocalStorage ist eine Möglichkeit, Daten auf dem Endgerät selbst abzulegen. Es ermöglicht die Speicherung von Schlüssel/Wertpaaren in einem Webbrowser und speichert Daten ohne Ablaufdatum. Diese können genutzt werden, um festzustellen, ob von Ihrem Endgerät bereits eine Kommunikation zu uns bestanden hat. Der Benutzer hat jederzeit die Möglichkeit, die Browserdaten/Cache zu löschen, um alle localStorage-Daten zu löschen. Personenbezogene Daten können in localStorages gespeichert werden, soweit Sie eingewilligt haben oder dies technisch zur Leistungserbringung erforderlich ist, z.B. um einen geschützten Login zu ermöglichen. Wir verwenden für Voitheia folgende localStorages: ",
+      "CookiesTable": {
+        "Name": "LocalStorage Name",
+        "Description": "Beschreibung",
+        "TokenDescription": "Autorisierungstoken für den Zugriff auf Backend Daten. ",
+        "ExpirationDateDescription": "Auslaufdatum des Autorisierungstoken.",
+        "EmaiLDescription": "E-Mail Adresse des Nutzers.",
+        "UserIDDescription": "Eindeutige Id mit welcher der User identifiziert wird."
+      },
+      "CookiesText2": "Hinweis: Der jwt_token hat eine Lebensdauer von 6 Stunden. Wenn in dieser Zeit keine Nutzeraktivität festgestellt wird, wird der Nutzer automatisch abgemeldet.",
+
+      "DurationTitle": "4. Speicherdauer und Löschung",
+      "DurationText": "Wir speichern und verarbeiten Ihre personenbezogenen Daten lediglich, solange dies für den jeweiligen Zweck (vgl. Abschnitt „Umfang und Zwecke der Datenverarbeitung“) erforderlich ist. Die Daten werden auf einer Cloud-Instanz von Azure gespeichert, die vom Betreiber betreiben wird. Darüber hinaus erfolgt eine Speicherung und Verarbeitung nur, soweit dies für einen anderen Zweck (vgl. Abschnitt „Umfang und Zwecke der Datenverarbeitung“) zulässig ist, etwa zur Erfüllung rechtlicher Vorgaben (z.B. steuer- oder handelsrechtlicher Aufbewahrungspflichten). In diesem Fall schränken wir die weitere Datenverarbeitung auf diesen Zweck und die Rechtsgrundlage der weiteren Verarbeitung ein. Es wird nicht gespeichert, welcher Nutzer wann welche Unterstützungsleistung angefragt bzw. ausgeführt hat. Daneben werden Anfragen von Anfragern nach 5 Tagen ohne dass ein Helfer diesen angenommen hat, gelöscht. Die Löschung des Nutzerprofils kann innerhalb der Anwendung im Nutzerprofil erfolgen, oder auf Wunsch per Mail an info@voitheia.org. Nach 6 Monaten Inaktivität werden die Nutzerprofile und alle mit dem Nutzer verknüpften Daten (z.B. vergangene Anfragen) automatisch gelöscht.",
+
+      "ContactsTitle": "5. Ansprechpartner für Datenschutz",
+      "ContactsText": "Bei Fragen hinsichtlich der Verarbeitung der personenbezogenen Daten von Voitheia, können Sie sich an den Beauftragten für den Datenschutz wenden, der mit seinem Team auch im Falle von Auskunftsersuchen, Anregungen oder Beschwerden zur Verfügung steht: Der Beauftragte für den Datenschutz bei CGI Deutschland B.V. & Co. KG ist unter folgender E-Mail-Adresse: datenschutz.de@cgi.com, sowie unter folgender Anschrift: Linienstraße 222, 10119 Berlin, erreichbar.",
+
+      "LegalBasesTitle": "6. Rechtsgrundlagen",
+      "LegalBasesText": "Die im Abschnitt „Zwecke der Datenverarbeitung“ dargestellten Verarbeitungen erfolgen auf folgenden Rechtsgrundlagen:",
+      "LegalBases": {
+        "1": "Datenverarbeitung zur Leistungserbringung: Art. 6 Abs. 1 b) DS-GVO",
+        "2": "Datenverarbeitung auf der Basis Ihrer Einwilligung: Art. 6 Abs. 1 a) DS-GVO ",
+        "3": "Datenverarbeitung zur Verfolgung berechtigter Interessen: Art. 6 Abs. 1 f) DS-GVO",
+        "4": "Datenverarbeitung zur Erfüllung gesetzlicher Vorgaben: Art. 6 Abs. 1 c) DS-GVO"
+      },
+
+      "RightsTitle": "7. Betroffenenrechte",
+      "Rights": {
+        "GeneralRights": "7.1. Allgemeine Betroffenenrechte",
+        "GeneralRightsText": "Als von der Datenverarbeitung betroffene Person haben Sie das Recht auf Auskunft (Art. 15 DS-GVO), Berichtigung (Art. 16 DS-GVO), Datenlöschung (Art. 17 DS-GVO), Einschränkung der Verarbeitung (Art. 18 DS-GVO) sowie Datenübertragbarkeit (Art. 20 DS-GVO). Sollten personenbezogenen Daten auf Grundlage von berechtigten Interessen gemäß Art. 6 Abs. 1 lit. f DS-GVO verarbeitet werden, haben Sie das Recht, gemäß Art. 21 DS-GVO jederzeit Widerspruch gegen die Verarbeitung einzulegen.",
+        "Complaints": "7.2. Beschwerde",
+        "ComplaintsText": "Sind Sie der Ansicht, die Verarbeitung Ihrer personenbezogener Daten verstoße gegen gesetzliche Vorgaben, haben Sie das Recht zur Beschwerde bei einer zuständigen Datenschutzaufsichtsbehörde (Art. 77 DS-GVO). Für Sie in diesem Fall zuständig wäre der Landesbeauftragte für Datenschutz und Informationsfreiheit Baden-Württemberg (https://www.baden-wuerttemberg.datenschutz.de/)."
+      },
+
+        "UpdatingTitle": "8. Aktualisierung",
+        "UpdatingText": "Wir behalten uns vor, diese Datenschutzhinweise von Zeit zu Zeit angemessen mit Wirkung für die Zukunft anzupassen, etwa an geänderte Gegebenheiten und technische Entwicklungen. Wir werden Sie über nicht nur unwesentliche Änderungen mit angemessener Frist zuvor in geeigneter Weise informieren sowie auf Ihre Rechte im Zusammenhang mit der Änderung hinweisen."
     },
+
+
     "Imprint": {
       "Title": "Impressum",
       "LegalRemark": "Informationspflicht laut § 5 TMG.",
