@@ -26,6 +26,7 @@ using ActiveCruzer.Controllers;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using ActiveCruzer.Models.Error;
 
 namespace ActiveCruzer.Start
 {
@@ -104,11 +105,7 @@ namespace ActiveCruzer.Start
         {
             return new BadRequestObjectResult(context.ModelState
               .Where(modelError => modelError.Value.Errors.Count > 0)
-              .Select(modelError => new ErrorModel
-              {
-                  code = 400,
-                  errormessage = "Invalid Model."
-              }));
+              .Select(modelError => new InvalidModelError()));
         }
 
 

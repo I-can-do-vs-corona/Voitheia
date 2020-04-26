@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ActiveCruzer.Models
 {
-    public class ErrorModel
+    public abstract class ErrorModel
     {
-        public int code { get; set; }
-        public string errormessage { get; set; }
+        public abstract int Code { get; }
+        public abstract string Errormessage { get; }
     }
 }

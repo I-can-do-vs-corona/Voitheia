@@ -15,6 +15,7 @@ using ActiveCruzer.BLL;
 using ActiveCruzer.DAL.DataContext;
 using ActiveCruzer.Models;
 using ActiveCruzer.Models.DTO;
+using ActiveCruzer.Models.Error;
 using ActiveCruzer.Models.Geo;
 using ActiveCruzer.Startup;
 using AutoMapper;
@@ -89,6 +90,8 @@ namespace ActiveCruzer.Controllers
         [HttpPost]
         [Route("Register")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(ContactSupportError), StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(InvalidAddressError), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<JwtDto>> Register([FromBody] RegisterUserDTO credentials)
         {
             if (ModelState.IsValid)
@@ -111,30 +114,30 @@ namespace ActiveCruzer.Controllers
                         var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         var queryParams = new Dictionary<string, string>()
                         {
-                            {"token", emailToken },
-                            {"email", credentials.Email }
+                            {"token", emailToken},
+                            {"email", credentials.Email}
                         };
-                        var callbackUri = QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
+                        var callbackUri =
+                            QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
                         //var callbackUri = Url.Action(null, "https://voitheia.org/confirm-email", new { emailToken, email = credentials.Email }, Request.Scheme);
-                       await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, callbackUri);
+                        await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, callbackUri);
 
 
                         return Ok(_userBll.GenerateToken(user));
                     }
                     else
                     {
-                        return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Error in registration process. Please contact the support." });
+                        return Conflict(new ContactSupportError());
                     }
                 }
                 else
                 {
-                    return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Invalid Address. Please check the street. Accepted: Sankt-Boni. Invalid: St.-Boni" });
+                    return BadRequest(new InvalidAddressError());
                 }
-                
             }
             else
             {
-                return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Input is not valid." });
+                return BadRequest(new InvalidModelError());
             }
         }
 
@@ -149,8 +152,14 @@ namespace ActiveCruzer.Controllers
         [HttpPost]
         [Route("ConfirmEmail")]
         [Produces("application/json")]
+        [ProducesResponseType(typeof(ContactSupportError), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmationEmailTokenDto confirmationEmailTokenDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new InvalidModelError());
+            }
+
             var user = await _userBll.GetUser(confirmationEmailTokenDto.email);
             if (user != null)
             {
@@ -159,9 +168,11 @@ namespace ActiveCruzer.Controllers
                 {
                     return Ok("E-Mail successfuly confirmed.");
                 }
-                return BadRequest(new ErrorModel{ code = BadRequest().StatusCode, errormessage = "Something went wrong with the confirmation of your email. Please try again or contact the support."});
+
+                return BadRequest(new ContactSupportError());
             }
-            return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Something went wrong with the confirmation of your email. Please try again or contact the support." });
+
+            return BadRequest(new ContactSupportError());
         }
 
         /// <summary>
@@ -175,26 +186,30 @@ namespace ActiveCruzer.Controllers
         [HttpPut]
         [Route("ForgotPassword")]
         [Produces("application/json")]
-        public async Task<IActionResult> ForgotPassword([FromBody]ForgotPasswordDto forgotPasswordDto)
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Input is not valid.");
+                return BadRequest(new InvalidModelError());
             }
+
             var user = await _userManager.FindByEmailAsync(forgotPasswordDto.email);
-            if(user != null)
+            if (user != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var queryParams = new Dictionary<string, string>()
-                        {
-                            {"token",token },
-                            {"email", forgotPasswordDto.email }
-                        };
+                {
+                    {"token", token},
+                    {"email", forgotPasswordDto.email}
+                };
                 var callbackUri = QueryHelpers.AddQueryString("https://voitheia.org/user/reset-password", queryParams);
                 await _emailBll.SendEmailPWTokenAsync(user.FirstName, user.Email, callbackUri);
-                return Ok("Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder.");
+                return Ok(new GeneralError(Ok().StatusCode,
+                    "Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder."));
             }
-            return Ok(new ErrorModel { code = Ok().StatusCode, errormessage = "Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder." });
+
+            return Ok(new GeneralError(Ok().StatusCode,
+                "Your password reset was sucessfuly submittet. Please lookup the reset link in your mailbox/ spam folder."));
         }
 
         /// <summary>
@@ -208,19 +223,21 @@ namespace ActiveCruzer.Controllers
         [HttpPost]
         [Route("ResetPassword")]
         [Produces("application/json")]
-        public async Task <IActionResult> ResetPassword([FromBody]ResetPasswordDto resetPasswordDto)
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
         {
             if (ModelState.IsValid)
             {
                 var user = await _userBll.GetUser(resetPasswordDto.email);
-                if(user != null)
+                if (user != null)
                 {
                     await _userManager.ResetPasswordAsync(user, resetPasswordDto.token, resetPasswordDto.password);
                     return Ok("Password reset sucessful.");
                 }
-                return Ok(new ErrorModel { code = Ok().StatusCode, errormessage = "Password reset sucessful." });
+
+                return Ok(new GeneralError(Ok().StatusCode, "Password reset sucessful."));
             }
-            return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Invalid input." });
+
+            return BadRequest(new InvalidModelError());
         }
 
         [HttpPost]
@@ -228,20 +245,24 @@ namespace ActiveCruzer.Controllers
         [Produces("application/json")]
         public async Task<ActionResult<JwtDto>> Login([FromBody] CredentialsDTO credentials)
         {
-            var loginResult = await _userBll.Login(credentials); 
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new InvalidModelError());
+            }
+
+            var loginResult = await _userBll.Login(credentials);
 
             switch (loginResult.LoginResult)
             {
                 case LoginResult.Sucess:
                     return Ok(_userBll.GenerateToken(loginResult.User));
                 case LoginResult.Failed:
-                    return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Error. Please check your credentials" });
+                    return Unauthorized(new InvalidCredentialsError());
                 case LoginResult.Locked:
-                    return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Your account is locked. Please try it in 5 minutes again" });
+                    return Unauthorized(new AccountLockedError());
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
         }
 
         /// <summary>
@@ -257,13 +278,13 @@ namespace ActiveCruzer.Controllers
         public async Task<ActionResult> DeleteUser()
         {
             var user = await _userBll.GetUserViaId(GetUserId());
-            if(user != null)
+            if (user != null)
             {
-                //await _emailBll.SendDeleteEmailAsync(user.FirstName, user.Email);
                 var result = await _userBll.DeleteUser(user);
                 return Ok(result);
             }
-            return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "You are not allowed to perform this action." });
+
+            return Unauthorized(new NotAuthorizedToPerformActionError());
         }
 
         /// <summary>
@@ -280,8 +301,9 @@ namespace ActiveCruzer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Input is not valid." });
+                return BadRequest(new InvalidModelError());
             }
+
             var validatedAddress = _geoCodeBll.ValidateAddress(new GeoQuery
             {
                 City = user.City,
@@ -292,15 +314,12 @@ namespace ActiveCruzer.Controllers
 
             if (validatedAddress.ConfidenceLevel == ConfidenceLevel.High ||
                 validatedAddress.ConfidenceLevel == ConfidenceLevel.Medium)
-            { 
-                var _user = await _userBll.UpdateUser(user, GetUserId(), validatedAddress.Coordinates);
-                if (_user != null)
-                {
-                    return Ok(_user);
-                }
-                return Unauthorized(new ErrorModel {code = Unauthorized().StatusCode, errormessage = "Please login to perform this action." });
+            {
+                await _userBll.UpdateUser(user, GetUserId(), validatedAddress.Coordinates);
+                return Ok();
             }
-            return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Invalid Address. Please check the street. Accepted: Sankt-Boni. Invalid: St.-Boni" });
+
+            return BadRequest(new InvalidAddressError());
         }
 
         /// <summary>
@@ -320,20 +339,23 @@ namespace ActiveCruzer.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userBll.GetUserViaId(GetUserId());
-                if(user != null)
+                if (user != null)
                 {
-                    if(setNewEmailDto.oldEmail == user.Email)
+                    if (setNewEmailDto.oldEmail == user.Email)
                     {
                         user.Email = setNewEmailDto.newEmail;
                         user.UserName = setNewEmailDto.newEmail;
                         await _userManager.UpdateAsync(user);
                         return Ok("Email sucessfuly updated");
                     }
-                    return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "You are not allowed to perform this action." });
+
+                    return Unauthorized(new NotAuthorizedToPerformActionError());
                 }
-                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "You are not allowed to perform this action." });
+
+                return Unauthorized(new NotAuthorizedToPerformActionError());
             }
-            return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Invalid model." });
+
+            return BadRequest(new InvalidModelError());
         }
 
         /// <summary>
@@ -349,11 +371,12 @@ namespace ActiveCruzer.Controllers
         public async Task<ActionResult<UserDto>> GetUser()
         {
             var user = await _userBll.GetUserViaId(GetUserId());
-            if(user != null)
+            if (user != null)
             {
                 return Ok(_mapper.Map<UserDto>(user));
             }
-            return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "You are not allowed to perform this action." });
+
+            return Unauthorized(new NotAuthorizedToPerformActionError());
         }
 
         [Authorize]
@@ -362,12 +385,16 @@ namespace ActiveCruzer.Controllers
         [Produces("application/json")]
         public async Task<ActionResult> UpdateTermsAccepted()
         {
-            var user = await _userBll.UpdateTermsAccepted(GetUserId());
-            if (user != null)
+            var result = await _userBll.UpdateTermsAccepted(GetUserId());
+
+            if (result.Succeeded)
             {
                 return Ok("Succesfuly verified terms.");
             }
-            return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Please login to verify the current terms." });
+            else
+            {
+                return BadRequest(new TryAgainLaterError());
+            }
         }
 
         [Authorize]
@@ -377,16 +404,14 @@ namespace ActiveCruzer.Controllers
         public async Task<ActionResult> DeleteProfilePicture()
         {
             var userid = GetUserId();
-            if(userid != null)
+
+            var result = await _userBll.DeleteProfilePicture(userid);
+            if (result.Succeeded)
             {
-                var result = await _userBll.DeleteProfilePicture(userid);
-                if (result.Succeeded)
-                {
-                    return Ok("Profile picture sucessful deleted.");
-                }
-                return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "An error occured while deleting the profile picture. Please try again." });
+                return Ok("Profile picture successfully deleted.");
             }
-            return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Please login to delete your profile picture." });
+
+            return BadRequest(new TryAgainLaterError());
         }
 
 
@@ -407,6 +432,7 @@ namespace ActiveCruzer.Controllers
 
             base.Dispose(disposing);
         }
+
         /// <summary>
         /// send email confirmation again with given email
         /// </summary>
@@ -422,24 +448,26 @@ namespace ActiveCruzer.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(new ErrorModel {code = BadRequest().StatusCode, errormessage = "Input is not valid." });
+                return BadRequest(new InvalidModelError());
             }
+
             var user = await _userBll.GetUser(confirmationEmailDto.Email);
-            if(user != null)
+            if (user != null)
             {
                 var emailToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 //var confirmationLink = "https://voitheia.org/user/confirm-email?token=" + emailToken + "&email=" + user.Email;
                 var queryParams = new Dictionary<string, string>()
-                        {
-                            {"token", emailToken },
-                            {"email", confirmationEmailDto.Email }
-                        };
-                var confirmationLink = QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
+                {
+                    {"token", emailToken},
+                    {"email", confirmationEmailDto.Email}
+                };
+                var confirmationLink =
+                    QueryHelpers.AddQueryString("https://voitheia.org/user/confirm-email", queryParams);
                 await _emailBll.SendEmailConfirmationAsync(user.FirstName, user.Email, confirmationLink);
-                return Ok("Confirmation email sent.");
+                return Ok(new GeneralError(Ok().StatusCode, "Confirmation email sent."));
             }
-            return Ok(new ErrorModel { code = Ok().StatusCode, errormessage = "Confirmation email sent." });
 
+            return Ok(new GeneralError(Ok().StatusCode, "Confirmation email sent."));
         }
 
         /// <summary>
@@ -456,17 +484,19 @@ namespace ActiveCruzer.Controllers
         [Produces("application/json")]
         public async Task<ActionResult> ChangeProfilePicture([FromForm] ProfilePictureDto pictureUpload)
         {
-            if (pictureUpload.image != null)
+            if (!ModelState.IsValid)
             {
-                var user = await _userBll.GetUserViaId(GetUserId());
-                if (user != null)
-                {
-                    await _userBll.ChangeProfilePicture(pictureUpload.image, GetUserId());
-                    return Ok("Profile picture succesful changed.");
-                }
-                return Unauthorized(new ErrorModel { code = Unauthorized().StatusCode, errormessage = "Please log in to perform this action" });
+                return BadRequest(new InvalidModelError());
             }
-            return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "No picture provided." });
+
+            var user = await _userBll.GetUserViaId(GetUserId());
+            if (user != null)
+            {
+                await _userBll.ChangeProfilePicture(pictureUpload.image, GetUserId());
+                return Ok("Profile picture succesful changed.");
+            }
+
+            return Unauthorized(new NotAuthorizedToPerformActionError());
         }
 
         /// <summary>
@@ -485,17 +515,19 @@ namespace ActiveCruzer.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userBll.GetUserViaId(GetUserId());
-                var result = await _userManager.ChangePasswordAsync(user, newPasswordDto.oldPassword, newPasswordDto.newPassword);
+                var result =
+                    await _userManager.ChangePasswordAsync(user, newPasswordDto.oldPassword,
+                        newPasswordDto.newPassword);
                 if (result.Succeeded)
                 {
                     return Ok("Password sucessfuly changed.");
                 }
-                return Ok(new ErrorModel { code = Ok().StatusCode, errormessage = "Password sucessfuly changed." });
+
+                return Ok(new GeneralError(Ok().StatusCode, "Password sucessfuly changed."));
             }
-            return BadRequest(new ErrorModel { code = 400, errormessage = "Invalid input." });
+
+            return Unauthorized(new NotAuthorizedToPerformActionError());
             //return BadRequest(new ErrorModel { code = BadRequest().StatusCode, errormessage = "Input is not valid." });
         }
-
-
     }
 }
