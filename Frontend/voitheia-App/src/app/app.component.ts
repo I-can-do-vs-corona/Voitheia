@@ -6,6 +6,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { UtilitiesService } from './common/shared/services/utilities.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent {
   title = 'Voitheia';
 
   constructor(
+    private _utilitiesService: UtilitiesService,
     private _translate: TranslateService,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
@@ -57,8 +59,7 @@ export class AppComponent {
           });
         }
       });
-
-      }
+    }
 
   isProduction(): boolean{
     return environment.production;

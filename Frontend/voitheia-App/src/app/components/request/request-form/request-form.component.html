@@ -116,12 +116,15 @@
                             <fa-icon [icon]="['fas', 'phone']"></fa-icon>
                             &nbsp;
                           </span>
-                          <input matInput name="phoneInput" [(ngModel)]="request.phoneNumber" #phoneInput="ngModel" required />
+                          <input matInput name="phoneInput" [(ngModel)]="request.phoneNumber" #phoneInput="ngModel" required telephoneNumber />
                       </mat-form-field>
                       <mat-error *ngIf="(phoneInput.touched || phoneInput.dirty) && phoneInput.invalid">
                           <mat-error *ngIf="phoneInput.errors.required">
                               <span>{{'General.Input.Error.Required' | translate}}</span>
                           </mat-error>
+                          <mat-error *ngIf="phoneInput.errors.telephoneNumber">
+                            <span>{{'General.Input.Error.TelephoneNumber' | translate}}</span>
+                        </mat-error>
                       </mat-error>
                   </div>
                   <div class="form-group">

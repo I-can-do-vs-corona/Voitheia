@@ -75,7 +75,8 @@
           "Email": "Neue Email adresse darf nicht die gleiche wie die alte sein."
         },
         "numberLength": "Die Eingabe muss {{count}} stellen haben.",
-        "zipCodeWithinRange": "PLZ nicht im erlauben Bereich."
+        "zipCodeWithinRange": "PLZ nicht im erlauben Bereich.",
+        "TelephoneNumber": "Eingabe ist keine gültige Telefonnummer"
       }
     },
     "Dialogs": {
@@ -125,7 +126,7 @@
       }
     },
     "Infos": {
-      "ZipCode": "Aktuell ist die App nur für den raum München freigeschaltet. PLZ im Bereich von 80331 bis 85540.",
+      "ZipCode": "Aktuell ist die App nur für den Raum München freigeschaltet. PLZ im Bereich von 80331 bis 85540.",
       "Health": "Bitte nutz den Service nur wenn du symptomfrei bist."
     }
   },
