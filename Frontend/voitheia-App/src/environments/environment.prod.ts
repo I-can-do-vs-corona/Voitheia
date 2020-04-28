@@ -5,8 +5,8 @@ export const environment = {
   requestAmount: "1000",
   defaultSessionLifetimeMinutes: 360,
   dialogWidth: "450px",
-  registerOpenDate: new Date(2020, 3, 24, 18, 0, 0),
-  goLiveDate: new Date(2020, 4, 1, 18, 0, 0),
+  registerOpenDate: new Date(2020, 4, 6, 18, 0, 0),
+  goLiveDate: new Date(2020, 4, 13, 18, 0, 0),
   reCaptchaKey: "", //6LeJGOoUAAAAAFb1h7wSDXNl64oVQ0-QC_2RITYM
   zipCodeCheckActive: true,
   zipCodeLength: 5,

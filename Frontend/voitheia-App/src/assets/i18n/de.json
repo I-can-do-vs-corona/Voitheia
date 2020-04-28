@@ -75,7 +75,7 @@
           "Email": "Neue Email adresse darf nicht die gleiche wie die alte sein."
         },
         "numberLength": "Die Eingabe muss {{count}} stellen haben.",
-        "zipCodeWithinRange": "PLZ nicht im erlauben Bereich."
+        "zipCodeWithinRange": "PLZ nicht im erlaubten Bereich."
       }
     },
     "Dialogs": {
