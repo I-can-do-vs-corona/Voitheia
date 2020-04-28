@@ -57,6 +57,7 @@ import { ProfilePictureDirective } from './common/helper/directives/profile-pict
 import { ProfilePictureUploadComponent } from './components/user/profile/profile-picture-upload/profile-picture-upload.component';
 import { FilesizePipe } from './common/helper/pipes/filesize.pipe';
 import { inputNumberValidator } from './common/helper/formValidators/inputNumberValidator';
+import { telephoneNumberValidator } from './common/helper/formValidators/telephonenumberValidator';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { inputNumberValidator } from './common/helper/formValidators/inputNumber
     ZipCodeWithinRangeValidator,
     NumberLengthValidator,
     inputNumberValidator,
+    telephoneNumberValidator,
     ProfilePictureDirective,
     LoginComponent,
     RegisterComponent,

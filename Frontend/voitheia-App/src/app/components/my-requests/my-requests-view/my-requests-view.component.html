@@ -4,8 +4,33 @@
 <div mat-dialog-content>
     <div class="row">
         <div class="col-md-6 order-md-last">
-            <div class="profile-picture-container">
-                <img [profile-picture]="item.assignedUser.profilePicture" class="profile-picture" hidden="true" />
+            <div *ngIf="item.author">
+                <div class="profile-picture-wrapper" *ngIf="item.assignedUser !== null">
+                    <div class="label">{{'MyRequest.Coloumns.AssignedTo' | translate}}</div>
+                    <div class="profile-picture-container">
+                        <img [profile-picture]="item.assignedUser.profilePicture" class="profile-picture" hidden="true" />
+                    </div>
+                </div>
+                <div *ngIf="item.createrUser !== null" class="profile-picture-wrapper small">
+                    <div class="label">{{'MyRequest.Coloumns.CreatedBy' | translate}}</div>
+                    <div class="profile-picture-container">
+                        <img [profile-picture]="item.createrUser.profilePicture" class="profile-picture" hidden="true" />
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!item.author">
+                <div class="profile-picture-wrapper" *ngIf="item.createrUser !== null">
+                    <div class="label">{{'MyRequest.Coloumns.CreatedBy' | translate}}</div>
+                    <div class="profile-picture-container">
+                        <img [profile-picture]="item.createrUser.profilePicture" class="profile-picture" hidden="true" />
+                    </div>
+                </div>
+                <div *ngIf="item.assignedUser !== null" class="profile-picture-wrapper small">
+                    <div class="label">{{'MyRequest.Coloumns.AssignedTo' | translate}}</div>
+                    <div class="profile-picture-container">
+                        <img [profile-picture]="item.assignedUser.profilePicture" class="profile-picture" hidden="true" />
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-6 order-md-first">

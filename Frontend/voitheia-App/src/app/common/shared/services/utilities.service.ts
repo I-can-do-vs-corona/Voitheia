@@ -5,6 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { DialogService } from './dialog/dialog.service';
 import { DialogIconTypeEnum } from '../../helper/enums/dialog-icon-type.enum';
 import * as moment from 'moment';
+import { UserDTO } from '../../models/userDTO';
+import { UserService } from 'src/app/components/user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,8 @@ import * as moment from 'moment';
 export class UtilitiesService {
 
   public passwordRegEx: string;
+
+  userData: UserDTO;
 
   constructor(private _translate: TranslateService, private _dialogService: DialogService) {
     this.passwordRegEx = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-ZäöåüÅÖÄÜ]).{8,}$';
