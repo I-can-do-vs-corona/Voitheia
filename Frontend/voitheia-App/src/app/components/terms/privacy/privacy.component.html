@@ -6,13 +6,12 @@
     <p> {{'Terms.Privacy.Introduction' | translate }} </p>
 
     <!--Verantwortlichkeit-->
-    <h3> {{'Terms.Privacy.ResponsibilityTitle' | translate }} </h3>
-    <p> {{'Terms.Privacy.Responsibility.ResponsibilityText1' | translate }} <a href="www.voitheia.org/imprint">www.voitheia.org/imprint</a>. </p>
-    <p> {{'Terms.Privacy.Responsibility.ResponsibilityText1' | translate }} </p>
+    <h3>{{'Terms.Privacy.ResponsibilityTitle' | translate }}</h3>
+    <p [innerHtml]="'Terms.Privacy.Responsibility.ResponsibilityText' | translate"> </p>
 
     <!--Umfang und Zweck-->
-    <h3> {{'Terms.Privacy.ScopeAndPurposeTitle' | translate }} </h3>
-    <h4>  {{'Terms.Privacy.ScopeAndPurpose.DataCategories' | translate }} </h4>
+    <h3>{{'Terms.Privacy.ScopeAndPurposeTitle' | translate }}</h3>
+    <h4>{{'Terms.Privacy.ScopeAndPurpose.DataCategories' | translate }}</h4>
     <p>{{'Terms.Privacy.ScopeAndPurpose.DataCategoriesText1' | translate }} </p>
     <ul>
       <li><p> {{'Terms.Privacy.ScopeAndPurpose.DataCategoriesList.Name' | translate }} </p> </li>
@@ -24,7 +23,7 @@
     </ul>
     <p>{{'Terms.Privacy.ScopeAndPurpose.DataCategoriesText2' | translate }} </p>
     <h4> {{'Terms.Privacy.ScopeAndPurpose.ImplementationTitle' | translate }}</h4>
-    <p>{{'Terms.Privacy.ScopeAndPurpose.ImplementationText' | translate }} </p>
+    <p [innerHtml]="'Terms.Privacy.ScopeAndPurpose.ImplementationText' | translate"></p>
     <h4> {{'Terms.Privacy.ScopeAndPurpose.PurposeTitle' | translate }}</h4>
     <p>{{'Terms.Privacy.ScopeAndPurpose.PurposeText' | translate }} </p>
     <h5>{{'Terms.Privacy.ScopeAndPurpose.Purpose.ContractImplementation' | translate }} </h5>
@@ -99,6 +98,6 @@
     <!--Aktualtisierung-->
     <h3> {{'Terms.Privacy.UpdatingTitle' | translate }} </h3>
     <p> {{'Terms.Privacy.UpdatingText' | translate }} </p>
-
   </div>
+  Stand: 04.05.2020
   </div>
