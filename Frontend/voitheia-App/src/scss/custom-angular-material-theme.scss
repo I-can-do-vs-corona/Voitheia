@@ -198,7 +198,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .mat-raised-button, .mat-stroked-button, .mat-flat-button {
   padding: 0 1.15em;
   margin: 0 .65em;
-  margin-right:$normal-spacing !important;
+  margin-right:$normal-spacing;
   min-width: 3em;
   line-height: 36.4px;
   border-radius: 20px !important;
