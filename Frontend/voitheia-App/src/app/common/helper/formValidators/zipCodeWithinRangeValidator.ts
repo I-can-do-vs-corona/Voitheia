@@ -18,12 +18,7 @@ export class ZipCodeWithinRangeValidator implements Validator {
             return null;
         }
 
-        let ranges = [
-            //München
-            {min: 80331, max: 85540},
-            {min: 60306, max: 65936},
-            {min: 70173, max: 70629}
-        ];
+        let ranges = environment.zipCodeRanges;
 
         let withinOneRange = false;
 

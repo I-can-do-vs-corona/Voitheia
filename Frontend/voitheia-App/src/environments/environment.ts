@@ -14,6 +14,9 @@ export const environment = {
   reCaptchaKey: "",//"6Lc1GOoUAAAAAAxQau6hK3a7rsXjNatarq4pAk6o",
   zipCodeCheckActive: true,
   zipCodeLength: 5,
+  zipCodeRanges: [
+    {min: 0, max: 99999}
+  ],
   //In bytes
   profilePictureMaxSize: 1048576, //= 1MB
   //in Pixel

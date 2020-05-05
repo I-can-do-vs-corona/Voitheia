@@ -10,6 +10,14 @@ export const environment = {
   reCaptchaKey: "", //6LeJGOoUAAAAAFb1h7wSDXNl64oVQ0-QC_2RITYM
   zipCodeCheckActive: true,
   zipCodeLength: 5,
+  zipCodeRanges: [
+    //München
+    {min: 80331, max: 85540},
+    //Frankfurt
+    {min: 60306, max: 65936},
+    //Stuttgart
+    {min: 70173, max: 70629}
+  ],
   //In bytes
   profilePictureMaxSize: 1048576, //= 1MB
   //in Pixel
