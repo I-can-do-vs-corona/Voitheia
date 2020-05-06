@@ -23,5 +23,12 @@
         padding: $normal-spacing;
         margin-top:$normal-spacing;
         margin-right:0;
+        font-weight:$bold;
+    }
+
+    @media (max-width: 991.98px) {
+        .mainpage-button{
+            font-size: $large;
+        }
     }
 }

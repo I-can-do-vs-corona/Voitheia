@@ -12,9 +12,9 @@ export const environment = {
   zipCodeLength: 5,
   zipCodeRanges: [
     //München
-    {min: 80331, max: 85540},
+    {min: 80331, max: 81929},
     //Frankfurt
-    {min: 60306, max: 65936},
+    {min: 60310, max: 60329},
     //Stuttgart
     {min: 70173, max: 70629}
   ],

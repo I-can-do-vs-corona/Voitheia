@@ -12,6 +12,9 @@
       <div *ngIf="registrationOpen()">
         <span>Registriere dich schon heute als Voitheia-Helfer, und sei bereit für die ersten Untersützungsanfragen. Wir informieren dich nochmal per Email, wenn die Plattform gelauncht wurde. Frohes Helfen!</span>
       </div>
+      <div class="alert alert-info" role="alert" *ngIf="registrationOpen()">
+        <div class="alert-content"><span>{{'General.Infos.ZipCode' | translate}}</span></div>
+      </div>
     </div>
   </div>
   <div class="row">
