@@ -276,254 +276,254 @@
   },
   "Request": {
     "Create": {
-      "Title": "Bei was benötigst du Unterstützung?",
-      "Hint": "Wie kann dein(e) Helfer(in) dich kontaktieren? Hinweis: Sobald dein(e) Helfer(in) die Anfrage angenommen hat, bekommt er/sie ausschließlich deine Telefonnummer und deinen Vornamen zu sehen.",
+      "Title": "What do you need assistance with?",
+      "Hint": "How can your helper contact you? Note: Once your helper has accepted the request, he/she will only see your first name and phone number.",
       "Stepper": {
-        "Request": "Anfragedetails",
-        "ContactInformation": "Kontaktdaten"
+        "Request": "Request details",
+        "ContactInformation": "Contact Information"
       },
       "Dialog": {
         "Buttons": {
-          "NewRequest": "Neue Anfrage"
+          "NewRequest": "New Request"
         },
-        "Text": "Vielen Dank! Deine Anfrage wurde gespeichert."
+        "Text": "Thank you! Your request has been recorded."
       },
       "Infos": {
-        "PetInsurance": "Hinweis: Bitte frage nur nach Haustierbetreuung, wenn du auch eine Haftpflichtversicherung für dein Haustier hast, die Haustierbetreuung absichert.",
-        "GeneralInsurance": "Hinweis: Bitte frage nur nach Kinderbetreuung, wenn in deiner Haftpflichtversicherung Gefälligkeitsschäden abgedeckt sind.",
-        "Details": "Gib deine(m/r) Helfer(in) so viele Details wie möglich, um ihm die Hilfeleistung so einfach wie möglich zu machen. Beispiele: Was genau soll gekauft werden, wann brauchst du Unterstützung, wie viele Kinder sollen gehütet werden..."
+        "PetInsurance": "Note: Please only ask for pet care if you also have liability insurance for your pet that covers pet care.",
+        "GeneralInsurance": "Note: Please only ask for childcare if your liability insurance covers courtesy damages.",
+        "Details": "Give your helper as many details as possible to make it as easy as possible for him/her to help. Examples: What exactly should be purchased, when do you need support, how many children should be looked after..."
       }
     },
     "Details": {
-      "Title": "Anfragedetails",
+      "Title": "Request details",
       "Dialogs": {
-        "Title": "Anfrage erfolgreich Angenommen!",
-        "Text": "Du hast die Anfrage erfolgreich angenommen. Vielen Dank fürs helfen!",
-        "MyRequestsButton": "Meine Anfragen anzeigen"
+        "Title": "Request successfully accepted!",
+        "Text": "You have successfully accepted the request. Thank you for your help!",
+        "MyRequestsButton": "Display my requests"
       }
     },
     "Status":{
-      "Open": "Offen",
-      "Closed": "Geschlossen",
-      "Assigned": "Angenommen"
+      "Open": "Open",
+      "Closed": "Closed",
+      "Assigned": "Assigned"
     }
   },
   "MyRequest": {
-    "Title": "Meine Unterstützungsangebote",
-    "NoRequests": "Du hast aktuell keine Anfragen in dieser Liste.",
+    "Title": "My Offers of Support",
+    "NoRequests": "You currently have no requests in this list.",
     "Tabs": {
-      "AssignedRequests": "Angenommene",
-      "CreatedRequests": "Erstellte",
-      "ClosedRequests": "Geschlossene"
+      "AssignedRequests": "Accepted,
+      "CreatedRequests": "Created",
+      "ClosedRequests": "Closed"
     },
     "Coloumns":{
-      "CreatedBy": "Erstellt von",
-      "AssignedTo": "Angenommen von",
-      "User": "Benutzer",
-      "Author": "Erstellt von mir",
+      "CreatedBy": "Created By",
+      "AssignedTo": "Assigned To",
+      "User": "User",
+      "Author": "Created by me",
       "Status": "Status"
     },
     "Details": {
       "Dialogs": {
         "Cancel": {
-          "Title": "Anfrage abgebrochen",
-          "Text": "Du hast die Anfrage erfolgreich abgebrochen. Sie wurde der liste an offenen Anfragen wieder hinzugefügt."
+          "Title": "Request cancelled",
+          "Text": "You have successfully cancelled the request. It has been added back to the list of open requests."
         },
         "Close": {
-          "Title": "Anfrage abgeschlossen",
-          "Text": "Du hast die Anfrage erfolgreich abgeschlossen. Vielen Dank für deinen Einsatz!"
+          "Title": "Request closed",
+          "Text": "You have successfully completed the request. Many thanks for your efforts!"
         }
       }
     }
   },
   "Footer": {
     "Links": {
-      "Idea": "Die Idee",
-      "AboutUs": "Wer wir sind",
-      "Terms": "Nutzungsbedingungen",
-      "PrivacyPolicy": "Datenschutz",
-      "Imprint": "Impressum"
+      "Idea": "The idea",
+      "AboutUs": "About us",
+      "Terms": "Terms and Conditions",
+      "PrivacyPolicy": "Privacy Policy",
+      "Imprint": "Legal notice"
     },
     "Titles": {
-      "About": "Über uns",
+      "About": "About Us",
       "Service": "Service",
-      "Contact": "Kontakt"
+      "Contact": "Contact"
     }
   },
   "About": {
     "AboutUs": {
-      "Title": "Wer wir sind",
-      "Text1": "Wir sind ein Team aus 9 Entwicklern, Bastlern, kreativen Köpfen und enthusiastischen Weltverbesserern.",
+      "Title": "Who are we",
+      "Text1": "We are a team of 9 developers, hobbyists, creative minds and enthusiastic do-gooders.",
       "TeamMember": {
-        "Lukas": "...der im Hintergrund die Fäden zieht",
-        "Andi": "...der im Hinterzimmer aufräumt",
-        "Sebastian": "...der sicherstellt, dass wir immer auf Wolke 7 schweben",
-        "Benedikt": "...der das Ganze nutzbar macht",
-        "Kevin": "...der Allrounder",
-        "Christoph": "...der uns mobil macht",
-        "Alexander": "...der uns Android ready macht",
-        "Helen": "...die uns kritisch über die Schulter schaut",
-        "Sophie": "...die das Ganze mit Leben füllt"
+        "Lukas": "...who pulls the strings in the background",
+        "Andi": "...who cleans up the back room",
+        "Sebastian": "...who makes sure we are always on Cloud 9",
+        "Benedikt": "...who fits it all together",
+        "Kevin": "...the all-rounder",
+        "Christoph": "...who makes us mobile",
+        "Alexander": "...who makes us Android ready",
+        "Helen": "...who looks over our shoulders",
+        "Sophie": "...who fills it all with life"
       }
     },
     "Idea": {
-      "Idea": "Die Idee",
-      "Text1": "Im Rahmen des des #WirvsVirus Hackathons der Bundesregierung im März 2020 haben wir zueinander gefunden – unter ganz besonderen Umständen. Ohne uns einmal persönlich getroffen zu haben, fingen wir an, uns einer besondere Challenge zu widmen: Wie können wir unsere Mitmenschen unterstützen, mit neuen Herausforderungen umzugehen, die Corona uns stellt: Einkaufen, obwohl man einer Risikogruppe angehört? Kinder betreuen und von zuhause unterrichten, und währenddessen das Homeoffice schmeißen? Und dann auch noch mit dem Hund Gassi gehen?",
-      "Text2": "Gleichzeitig gibt es doch so viele, die gerne helfen wollen, und dabei einfach nicht wissen, wie.",
-      "Text3": "Voitheia kommt aus dem Griechischen und bedeutet helfen (original Βοήθεια).",
-      "Vision": "Wir möchten Menschen zusammenbringen, die sich unterstützen und sich gemeinsam diesen Herausforderungen stellen."
+      "Idea": "The Idea",
+      "Text1": "In the context of the #WirvsVirus Hackathon of the German government in March 2020, we have found each other under very special circumstances. Without ever having met in person, we dedicated ourselves to the challenge: How can we support our neighbors in dealing with the new challenges that Corona presents to us: Shopping, although you belong to a risk group? Taking care of children and teaching from home, while working in home office? And then taking the dog for a walk?",
+      "Text2": "At the same time, there are so many who would like to help, but simply do not know how.",
+      "Text3": "Voitheia commes from Greek and means help (originally Βοήθεια).",
+      "Vision": "We want to bring people together to support each other and overcome our shared challenges."
     }
   },
   "Terms": {
     "Terms": {
-      "Title": "Nutzungsbedingungen",
-      "IntroductionTitle": "1. Einleitung",
+      "Title": "Terms of Use",
+      "IntroductionTitle": "1. Introduction",
       "Introduction": {
-        "IntroductionGenderRemark": "Aus Gründen der besseren Lesbarkeit wird in diesem Text die männliche Form verwendet; selbstverständlich ist stets sowohl die weibliche als auch die männliche Form gemeint.",
-        "Purpose": "1.1. Nutzer von Voitheia und Nutzungszweck",
-        "PurposeText": "Nutzer dürfen die Funktionen dieser Webseite („Voitheia“) ausschließlich als Privatperson nutzen. Dafür gelten die nachfolgenden Bestimmungen: Voitheia darf durch jede registrierte natürliche Person („Nutzer“, d.h. sowohl Helfer als auch Anfragender) zu privaten Zwecken unentgeltlich genutzt werden. Ein Anspruch auf Nutzung besteht nicht. Der Betreiber von Voitheia ist berechtigt, die Registrierung einzelner Nutzer ohne Angabe von Gründen zurückzuweisen. Bitte finden Sie weitere Details zum Betreiber auf",
-        "Registration": "1.2. Registrierung",
-        "RegistrationText": "Die Nutzung von Voitheia setzt für Helfer die Registrierung des Nutzers mit Anlegung eines Nutzeraccounts voraus. Als Anfragender besteht die Möglichkeit, ein Nutzerprofil anzulegen, oder Anfragen als „Gast“ auszuführen. Bei der Registrierung erhält der Nutzer eine Bestätigungsaufforderung per Mail. Der Account kann erst nach erfolgter Bestätigung (Verifizierung)  genutzt werden. Der Nutzer hat die Daten für den Nutzeraccount vollständig anzugeben sowie stets aktuell zu halten. Für den Umgang mit diesen Daten gelten die auch die Bestimmungen von ",
-        "Function": "1.3. Funktion und Zweck von Voitheia",
-        "FunctionText": "Voitheia dient dazu, im ausschließlich privaten und nicht gewerblichen Kontext, Kontakte für Gefälligkeiten zu vermitteln („Nachbarschaftshilfe“). Unterstützungsleistungen können unentgeltlich von Unterstützungsbedürftigen (im Weiteren „Anfragern“) angefragt werden, die dann von freiwilligen Helfern (im Weiteren „Helfern“) angenommen und ausgeführt werden. Im Folgenden werden die Funktionen der Weibseite erst aus Anfrager, und anschließend aus Helfersicht beschrieben. Anfrager können aus einer Auswahl verschiedener Unterstützungsangebote eines oder mehrere auswählen. Angebote können beispielsweise Einkaufen, Wegbegleitung zum Arzt oder Rezeptabholung in Apotheken,  Kinderbetreuung oder Haustierbetreuung sein. Zusammen mit dieser Anfrage gibt der Anfrager seine persönlichen Daten, wie Adresse und Telefonnummer an. Hat der Anfrager bereits ein Nutzerprofil, werden diese Felder automatisch befüllt. Wenn die Anfrage nicht innerhalb von fünf Tagen angenommen wird, wird sie als nicht mehr relevant angesehen und automatisch gelöscht. Helfer müssen sich im ersten Schritt registrieren. Sobald ein Nutzerprofil angelegt ist, bekommt der Helfer in einer Übersicht die Anfrageangebote aus seiner Umgebung, sortiert nach Entfernung, aufgelistet. Der Helfer kann von der Anfrage nur Vorname des Anfragers, Anfragetyp und Entfernung in Km einsehen. Er kann aus dieser Liste eine oder mehrere Anfragen annehmen. Erst nach Annahme einer Anfrage kann der Helfer die Telefonnummer des Anfragers sehen. Weitere Daten, wie Nachname oder Adresse, sind über die Plattform nicht zugänglich. Der Helfer kann nun den Anfrager mit Hilfe der Telefonnummer kontaktieren, um Details der Anfrage zu klären. Der Helfer kann in Voitheia jederzeit seine angenommenen Anfragen einsehen und verwalten. Nach Abschluss der Unterstützungsleistung, markiert der Helfer die Anfrage in seinem Profil als abgeschlossen. Registrierte Nutzer können in ihrem Profil vergangene, angenommene und abgeschlossene Anfragen einsehen."
+        "IntroductionGenderRemark": "For the sake of readability, the masculine form is used in this text; of course, both the feminine and masculine form are always meant.",
+        "Purpose": "1.1. Users of Voitheia and purpose of use",
+        "PurposeText": "Users may only use the functions of this website ("Voitheia") as private individuals. The following terms and conditions apply: Voitheia may be used free of charge by any registered natural person ("user", i.e. both helper and enquirer) for private purposes. There is no right to use. The operator of Voitheia is entitled to reject the registration of individual users without giving reasons. Please find further details about the operator at",
+        "Registration": "1.2. Registration",
+        "RegistrationText": "The use of Voitheia requires the user to register and create a user account. As a requestor, it is possible to create a user profile or to execute requests as a "guest". Upon registration, the user will receive a confirmation request by e-mail. The account can only be used after confirmation (verification). The user has to provide the complete data for the user account and keep it up to date. For the handling of this data, the provisions of",
+        "Function": "1.3. Function and purpose of Voitheia",
+        "FunctionText": "Voitheia serves to provide contacts for favours in an exclusively private and non-commercial context ("neighbourhood assistance"). Support services can be requested free of charge by people in need of support (hereinafter "inquirers"), which are then accepted and carried out by volunteers (hereinafter "helpers"). In the following, the functions of the Weibseite are described first from the inquirer's point of view, and then from the helper's point of view. Requesters can choose one or more of a selection of different support offers. Offers can be, for example, shopping, accompaniment to the doctor or picking up prescriptions from pharmacies, childcare or pet care. Together with this request, the requestor provides personal data such as address and telephone number. If the enquirer already has a user profile, these fields are filled in automatically. If the request is not accepted within five days, it is considered to be no longer relevant and is automatically deleted. Helpers must register in the first step. As soon as a user profile has been created, the helper will receive an overview of the request offers from his environment, sorted by distance. The helper can only see the first name of the requester, type of request and distance in km. He can accept one or more requests from this list. Only after accepting a request the helper can see the phone number of the requester. Other data, such as last name or address, are not accessible via the platform. The helper can now contact the requester using the telephone number to clarify details of the request. The helper can view and manage his accepted requests in Voitheia at any time. Once the support service has been completed, the helper marks the request as completed in his profile. Registered users can view past, accepted and closed requests in their profile."
       },
-      "Usage": "2. Ausschluss von und Beendigung der Nutzung von Voitheia",
-      "UsageText": "Jeder Nutzer kann die Nutzung von Voitheia jederzeit beenden, indem er sein Nutzerprofil löscht. Der Betreiber kann einen Nutzer jederzeit sperren oder die Nutzungsmöglichkeit endgültig entziehen, wenn ein Nutzer Voitheia rechtswidrig, insbesondere zu gewerblichen Zwecken oder nutzt, um Anfragern Schaden zuzufügen oder Voitheia in sonstiger Weise rechtswidrig, in anstößiger Weise oder in einer Form nutzt, die zu Beschwerden anderer Nutzer oder Dritter führt.",
+      "Usage": "2. Exclusion from and termination of use of Voitheia",
+      "UsageText": "Any user can end the use of Voitheia at any time by deleting their user profile. The operator can block a user at any time or permanently withdraw the possibility of using Voitheia if a user uses Voitheia illegally, especially for commercial purposes or to cause damage to enquirers, or uses Voitheia in any other way that is illegal, offensive or in a form that leads to complaints from other users or third parties.",
 
-      "UserObligationsTitle": "3. Nutzerpflichten",
+      "UserObligationsTitle": "3. User Obligations",
       "UserObligations": {
-        "Confidentiality": "3.1 Vertraulichkeit",
-        "ConfidentialityText": "Nutzer dürfen Inhalte von Voitheia nur für sich privat verwenden und personenbezogene Daten von Nutzern, insbesondere Anfragern nicht weiterleiten oder veröffentlichen, etwa in sozialen Netzwerken oder auf andere Art und Weise. Ebenso ist eine weitergehende Verarbeitung personenbezogener Daten die über die Zweckerfüllung von Voitheia hinausgeht, untersagt. Daten und Informationen, die Nutzer insbesondere von Anfragern zur Hilfeleistung erhalten sind streng vertraulich zu behandeln und dürfen ausschließlich zum Zweck der unmittelbaren Hilfe für Anfagende genutzt werden, soweit dies für die Hilfeleistung erforderlich ist. Gern dürfen Nutzer jedoch für Voitheia werben, darauf aufmerksam machen (z.B. in sozialen Medien) oder von Ihren Webseiten hierauf verlinken.",
-        "Deficiencies": "3.2. Mitteilung von Mängeln",
-        "DeficienciesText": "Zur ständigen Verbesserung von Voitheia ist es gewünscht, dass Nutzer Störungen bei der Nutzung von Voitheia an die unter Kundensupport angegebene Kontaktstelle mitteilen. Wir freuen uns auch über Anregungen und Verbesserungsvorschläge.",
-        "LawfulUse": "3.3. Rechtmäßige Nutzung",
-        "LawfulUseText": "Der Nutzer ist verpflichtet, Voitheia nur rechtmäßig nach Maßgabe dieser Nutzungsbestimmungen und in Übereinstimmung mit dem anwendbaren Recht zu nutzen. "
+        "Confidentiality": "3.1 Confidentiality",
+        "ConfidentialityText": "Users may only use Voitheia content for their own private use and may not forward or publish personal data of users, especially enquirers, for example in social networks or in any other way. Further processing of personal data that goes beyond the purpose of Voitheia is also prohibited. Data and information that users receive, especially from enquirers for assistance, must be treated as strictly confidential and may only be used for the purpose of providing immediate assistance to enquirers, insofar as this is necessary for the assistance. However, users are welcome to advertise Voitheia, draw attention to it (e.g. in social media) or link to it from their websites.",
+        "Deficiencies": "3.2. Notifications of Defects",
+        "DeficienciesText": "In order to continually improve Voitheia, it is desired that users report any problems they encounter while using Voitheia to the contact point listed under Customer Support. We are also happy to receive suggestions and ideas for improvement.",
+        "LawfulUse": "3.3. Lawful Useage",
+        "LawfulUseText": "The user is obliged to use Voitheia only lawfully in accordance with these terms of use and in accordance with applicable law. "
       },
 
       "Transfer": "4. Voitheia Software",
-      "TransferText": "Es ist nicht gestattet, Voitheia selbst oder für Dritte entgeltlich oder unentgeltlich zu überlassen oder zu nutzen, Daten oder Funktionen hieraus zu veröffentlichen, zu lizenzieren, zu verkaufen oder anderweitig kommerziell zu nutzen oder zu verwerten. Niemand ist in seinem Recht eingeschränkt, die technisch funktionale Software als Teil eines Software-Paketes, das Programme unterschiedlichen Ursprungs enthält, zu verschenken oder zu vertreiben.",
+      "TransferText": "It is not permitted to give or use Voitheia itself or for third parties, whether for a fee or free of charge, to publish, license, sell or otherwise commercially exploit or use data or functions from it. No one is restricted in his or her right to give away or distribute the technically functional software as part of a software package that contains programs of different origin.",
 
-      "UserContent": "5. Inhalte von Nutzern",
-      "UserContentText": "Die in Voitheia von Nutzern veröffentlichten Inhalte werden vom Betreiber grundsätzlich nicht geprüft und stellen nicht die Meinung des Betreibers dar. Der Betreiber behält sich aber vor, soweit Hinweise auf Missbrauch oder rechtswidrige Inhalte vorliegen, solche Inhalte zu prüfen und ggf. zu löschen. Mit der Veröffentlichung der Daten in Voitheia erklärt der Nutzer, dass diese frei von Rechten Dritter sind und räumt dem Betreiber hieran ein kostenloses, unbeschränktes einfaches Nutzungsrecht zum in diesen Nutzungsbedingungen beschriebenen Zweck ein.",
+      "UserContent": "5. User Content",
+      "UserContentText": "The content published by users in Voitheia is generally not checked by the operator and does not represent the opinion of the operator. However, the operator reserves the right to check and, if necessary, delete such content if there are indications of abuse or illegal content. By publishing data in Voitheia, the user declares that the data is free of third-party rights and grants the operator a free, unlimited, simple right of use for the purpose described in these terms of use.",
 
-      "WarrantyTitle": "6. Gewährleistung",
+      "WarrantyTitle": "6. Warranty",
       "Warranty": {
-        "Provision": "6.1 Kostenlose Bereitstellung und Ausschluss von Gewährleistungsrechten",
-        "ProvisionText": "Voitheia wird unentgeltlich und „wie sie ist“ („as-is“) zur Verfügung gestellt. Insbesondere wird keine Verfügbarkeits¬zusage übernommen. Gewährleistungsrechte des Betreibers sind im gesetzlich zulässigen Rahmen ausgeschlossen. Dies gilt auch für etwaigen Support. ",
-        "Correctnes": "6.2. Richtigkeit von Informationen",
-        "CorrectnesText": "Der Betreiber übernimmt keine Verantwortung für Vollständigkeit und Richtigkeit der mit Voitheia bereitgestellten Funktionen und Informationen. Darstellungen von Leistungen erfolgen ohne Gewähr für deren Richtigkeit und beinhalten weder ein Vertragsangebot noch einen Anspruch auf Abschluss eines Vertrages."
+        "Provision": "6.1 Free provision and exclusion of warranty rights",
+        "ProvisionText": "Voitheia is provided free of charge and "as is". In particular, no guarantee of availability is given. Warranty rights of the operator are excluded to the extent permitted by law. This also applies to any support. ",
+        "Correctnes": "6.2. Accuracy of Information",
+        "CorrectnesText": "The operator assumes no responsibility for the completeness and accuracy of the functions and information provided with Voitheia. Services are presented without any guarantee of their correctness and do not constitute an offer of contract or a claim to conclude a contract."
       },
 
-      "LiabilityTitle": "7. Haftung",
+      "LiabilityTitle": "7. Liability",
       "Liability": {
-        "OperatorLiability": "7.1. Haftung des Betreibers",
-        "OperatorLiabilityText": "Der Betreiber leistet keinen Schadenersatz oder Ersatz vergeblicher Aufwendungen, gleich aus welchem Rechtsgrund (z.B. rechtsgeschäftlichen und rechtsgeschäftsähnlichen Schuld¬verhältnissen, Pflichtverletzung und unerlaubter Handlung), mit Ausnahme von Vorsatz oder grober Fahrlässigkeit sowie für die Verletzung von Leben, Leib oder Gesundheit und nach den Vorschriften des Produkthaftungsgesetzes. Der Betreiber übernimmt zudem keine Haftung für Schäden oder sonstige Rechtsansprüche im Zusammenhang mit einer mit Hilfe von Voitheia erfolgten Kontaktaufnahme oder Ausführung einer Unterstützungsleistung (Gefälligkeitsleistungen zwischen Anfrager & Helfer). Ins¬besondere übernimmt der Betreiber keine Haftung für Schäden oder sonstige Rechtsansprüche weil eine Unterstützungsleistung nicht zustande kommt  oder nicht ordnungsgemäß durchgeführt wird.",
-        "Indemnification": "7.2. Haftungsfreistellung",
-        "IndemnificationText": "Wird der Betreiber von Voitheia von einem Dritten wegen eines Verstoßes des Nutzers gegen diese Nutzungsbedingungen in Anspruch genommen, stellt der Nutzer den Betreiber von sämtlichen Ansprüchen und Kosten frei, die dadurch unmittelbar oder mittelbar entstehen, einschließlich angemessener Kosten zur Rechtsverteidigung gegen einen solchen Anspruch. Dies gilt nicht, soweit der Nutzer einen Verstoß nicht zu vertreten hat. Der Betreiber behält sich vor, die Verteidigung gegen solche Ansprüche selbst zu übernehmen.",
-        "Scope": "7.3. Reichweite der Haftungsregelungen",
-        "ScopeText": "Die Haftung des Betreibers wird soweit rechtlich zulässig ausgeschlossen und eingeschränkt. Gesetzliche zwingende Rechte des Nutzers bleiben unberührt."
+        "OperatorLiability": "7.1. Liability of the operator",
+        "OperatorLiabilityText": "The operator shall not pay any compensation or reimbursement of futile expenses, regardless of the legal grounds (e.g. legal and similar obligations, breach of duty and tort), with the exception of intent or gross negligence and for injury to life, limb or health and in accordance with the provisions of the Product Liability Act. Furthermore, the operator assumes no liability for damages or other legal claims in connection with establishing contact or carrying out a support service with the help of Voitheia (courtesy services between inquirer & helper). In particular, the operator assumes no liability for damages or other legal claims because a support service does not come about or is not carried out properly.",
+        "Indemnification": "7.2. Indenmification (Release of Liability)",
+        "IndemnificationText": "If a claim is made against the Voitheia operator by a third party due to a violation of these terms of use by the user, the user indemnifies the operator from all claims and costs that arise directly or indirectly from this, including reasonable costs for legal defense against such a claim. This does not apply if the user is not responsible for a violation. The operator reserves the right to take over the defence against such claims itself.",
+        "Scope": "7.3. Scope of the liability rules",
+        "ScopeText": "The liability of the operator is excluded and limited as far as legally permissible. Mandatory legal rights of the user remain unaffected."
       },
 
-      "FinalClausesTitle": "8. Schlussbestimmungen",
+      "FinalClausesTitle": "8. Final Clauses",
       "FinalClauses": {
-        "SubjectChange": "8.1. Änderungsvorbehalt",
-        "SubjectChangeText": "Der Betreiber behält sich vor, diese Nutzungsbedingungen bei Bedarf anzupassen. Der Betreiber wird  Nutzer über wesentliche Änderungen der Nutzungsbedingungen informieren. Änderungen treten 30 Tage nach deren Veröffentlichung in Kraft. Ist ein Nutzer mit einer Änderung der Nutzungsbedingungen nicht einverstanden, wird er seinen Voitheia-Account löschen. Durch die weitere Nutzung von Voitheia erklärt der Nutzer sein Einverständnis mit den aktualisierten Nutzungsbedingungen.",
-        "Invalidity": "8.2. Unwirksamkeit einzelner Klauseln",
-        "InvalidityText": "Sollten einzelne Bestimmungen dieser Nutzungsbedingungen ungültig oder undurchsetzbar sein oder werden, berührt dies die Wirksamkeit der übrigen Bestimmungen nicht.",
-        "ApplicableLaw": "8.3. Anwendbares Recht",
-        "ApplicableLawText": "Diese Nutzungsbedingungen unterliegen dem für Inlandsgeschäfte maßgeblichen Recht der Bundesrepublik Deutschland. Das Übereinkommen der Vereinten Nationen über Verträge über den internationalen Warenkauf findet keine Anwendung."
+        "SubjectChange": "8.1. Subject to Change",
+        "SubjectChangeText": "The operator reserves the right to adapt these terms of use if necessary. The operator will inform users about significant changes to the terms of use. Changes will come into force 30 days after their publication. If a user does not agree to a change in the terms of use, he/she will delete his/her Voitheia account. By continuing to use Voitheia, the user agrees to the updated terms of use.",
+        "Invalidity": "8.2. Invalidity of individual clauses",
+        "InvalidityText": "Should individual provisions of these terms of use be or become invalid or unenforceable, this shall not affect the validity of the remaining provisions.",
+        "ApplicableLaw": "8.3. Applicable Law",
+        "ApplicableLawText": "These terms of use are subject to the law of the Federal Republic of Germany applicable to domestic transactions. The United Nations Convention on Contracts for the International Sale of Goods shall not apply.."
       },
 
-      "VSBG": "9. Hinweis gemäß § 36 Verbraucherstreitbeilegungsgesetz (VSBG)",
-      "VSBGText": "Der Betreiber wird nicht an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle im Sinne des deutschen Verbraucherstreitbeilegungsgesetzes (VSBG) teilnehmen und ist hierzu auch nicht verpflichtet."
+      "VSBG": "9. Notice According To § 36 Consumer Dispute Settlement Act (§ 36 Verbraucherstreitbeilegungsgesetz (VSBG))",
+      "VSBGText": "The operator will not take part in a dispute resolution procedure before a consumer arbitration board within the meaning of the German Consumer Dispute Resolution Act (VSBG) and is not obliged to do so."
     },
     "Privacy": {
-      "Title": "Informationen zum Datenschutz",
-      "Introduction": "Wir, der Betreiber des Voitheia Services, freuen uns über Ihr Interesse an dieser Anwendung. Der Schutz Ihrer Privatsphäre als Nutzer von Voitheia ist uns ein wichtiges Anliegen. Im Folgenden informieren wir Sie über den Umgang mit personenbezogenen Daten im Zusammenhang mit Voitheia. „Personenbezogene Daten“ sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person beziehen. Aus Gründen der besseren Lesbarkeit wird in diesem Text die männliche Form verwendet; selbstverständlich ist stets sowohl die weibliche als auch die männliche Form gemeint.",
-      "ResponsibilityTitle": "1. Verantwortlichkeit",
+      "Title": "Privacy Information",
+      "Introduction": "We, the operator of the Voitheia service, are pleased about your interest in this application. The protection of your privacy as a Voitheia user is very important to us. In the following, we will inform you about how we handle personal data in connection with Voitheia. "Personal data" is all information that relates to an identified or identifiable natural person. For reasons of better readability, the masculine form is used in this text; naturally, both the feminine and masculine form is always meant",
+      "ResponsibilityTitle": "1st responsibility",
       "Responsibility": {
-        "ResponsibilityText1": "Für Zwecke dieser Datenschutzhinweise werden einheitlich die Begriffe „Betreiber“ oder „Wir“ verwendet. Datenschutzrechtlich verantwortlich ist der Betreiber. Sie finden alle Informationen über den Betreiber unter",
-        "ResponsibilityText2": "Wenn in diesem Dokument von „Nutzern“ gesprochen wird, so sind Sie als Verwender (in der Rolle „Anfrager“ oder „Helfer“) von Voitheia gemeint."
+        "ResponsibilityText1": "For purposes of this privacy statement, the terms "operator" or "we" are used consistently. The operator is responsible under data protection law. You will find all information about the operator under",
+        "ResponsibilityText2": "When this document refers to "users", this refers to you as a user (in the role of "requester" or "helper") of Voitheia".
       },
 
-      "ScopeAndPurposeTitle": "2. Umfang und Zwecke der Datenverarbeitung",
+      "ScopeAndPurposeTitle": "2. Scope and purposes of data processing",
       "ScopeAndPurpose": {
-        "DataCategories": "2.1 Datenkategorien",
-        "DataCategoriesText1": "Wir verarbeiten personenbezogene Daten des Nutzers, die dieser bei der Anmeldung (Registrierung) und Nutzung von Voitheia selbst und freiwillig eingibt und die von ihm sonst zur Verarbeitung freigegebenen Daten, um die Voitheia Leistungen bereitstellen zu können. Der Nutzer ist nicht zur Angabe sämtlicher möglicher Daten verpflichtet; es muss jedoch gewährleistet sein, dass der Kontakt in für die Funktionsweise von Voitheia ausreichender Form bereitgestellt wird, um die Funktionalität gewährleisten zu können. Hierzu gehört insbesondere die Bekanntgabe von bestimmten Kontaktinformationen für die Kontaktaufnahme zwischen Anfrager und Helfer. Wenn solche Daten nicht überlassen werden, kann dies zur Folge haben, dass Voitheia nicht oder nur eingeschränkt funktioniert oder genutzt werden kann. Folgende Daten werden für die Bereitstellung des Services erhoben und verarbeitet:",
+        "DataCategories": "2.1 Data Categories",
+        "DataCategoriesText1": "We process the user's personal data that he or she enters voluntarily when registering and using Voitheia, as well as any other data that he or she has released for processing in order to provide Voitheia services. The user is not obliged to provide all possible data; however, it must be ensured that the contact is provided in a form sufficient for Voitheia to function properly. In particular, this includes the disclosure of certain contact information for the purpose of establishing contact between inquirer and helper. If such data is not provided, this can result in Voitheia not functioning or only being able to be used to a limited extent. The following data is collected and processed to provide the service:",
         "DataCategoriesList": {
-          "Name": "Name (Vor- und Zuname)",
-          "Number": "Telefonnummer",
-          "Address": "Adresse (Straße & Hausnummer, damit die Entfernung zwischen Helfer & Anfrager bestimmt werden kann)",
-          "Requests": "Erstellte Anfragen (ohne Speicherung des Erstellungsdatums)",
-          "AcceptedRequests": "Angenommene Anfragen inkl. Annahmestatus (ohne Datum)",
-          "Picture": "Nutzerbild (die Verwebdung eines Bildes ist freiwillig)"
+          "Name": "Name (First and Last)",
+          "Number": "Phone Number",
+          "Address": "Address (street & house number, so that the distance between helper & requester can be determined)",
+          "Requests": "Created requests (without saving the creation date)",
+          "AcceptedRequests": "Accepted requests including acceptance status (no date)",
+          "Picture": "User picture (the usage of a picture is voluntary)"
         },
-        "DataCategoriesText2": "Hinweis: Von den eingegebenen Daten sind nur Vorname,Telefonnummer, Anfragetyp und Entfernung für die anderen Nutzer einsehbar.",
-        "ImplementationTitle": "2.2.\tUmsetzung der Datenverarbeitung",
-        "ImplementationText": "Die eingegebenen Adressdaten werden lediglich für die Bestimmung der Entfernung zwischen den Nutzern verwendet. Um die Entfernung zwischen dem Anfrager und dem Helfer bestimmen zu können, wird ein Service der Bing-Maps der Microsoft Inc. (Nähere Informationen hierzu: https://www.microsoft.com/en-us/maps/create-a-bing-maps-key/) über eine Bing API verwendet. Die Standortdaten werden ohne Personenbezug, d.h. anonymisiert an die API gesendet. Die daraus errechnete Differenz der beiden Standorte wird in Voitheia angezeigt. Die Daten von Voitheia werden in einem sog. „Key Vault“ (Datenbank für zur sicheren Datenspeicherung) verarbeitet, in dem die Nutzer-Konfigurationen, Sicherheitsschlüssel und Zugangsdaten zur Datenbank („Connection strings“) sicher verschlüsselt abgespeichert sind, um einen möglichen Missbrauch auszuschließen. Die Webapplikation wird auf einer Microsoft Azure Umgebung gehostet. Die dafür genutzten Ressourcen liegen in Frankfurt, Deutschland. Lediglich Key Vault und Bing APIs liegen außerhalb Deutschlands, zu diesen Ressourcen werden allerdings keine personenbezogenen Daten transferiert.",
-        "PurposeTitle": "2.3 Zwecke der Datenverarbeitung",
-        "PurposeText": "Wir verarbeiten die Nutzerdaten gemäß der jeweils geltenden Datenschutzgesetze. Die Datenverarbeitung erfolgt für folgende Zwecke:",
+        "DataCategoriesText2": "Note: Of the data entered, only first name, telephone number, query type and distance are visible to the other users",
+        "ImplementationTitle": "2.2. Implementation of data processing",
+        "ImplementationText": "The address data entered will only be used to determine the distance between users. In order to determine the distance between the requester and the helper, a service of the Bing-Maps of Microsoft Inc. (for more information: https://www.microsoft.com/en-us/maps/create-a-bing-maps-key/) via a Bing API is used. The location data is sent to the API without any personal reference, i.e. anonymized. The calculated difference between the two locations is displayed in Voitheia. Voitheia's data is processed in a so-called "Key Vault" (database for secure data storage), in which the user configurations, security keys and access data to the database ("Connection strings") are stored in a securely encrypted form to prevent possible misuse. The web application is hosted on a Microsoft Azure environment. The resources used for this are located in Frankfurt, Germany. Only Key Vault and Bing APIs are located outside of Germany, but no personal data is transferred to these resources",
+        "PurposeTitle": "2.3 Purposes of data processing",
+        "PurposeText": "We process the user data in accordance with the applicable data protection laws. The data processing is carried out for the following purposes:",
         "Purpose": {
-          "ContractImplementation": "a. Vertragsdurchführung",
-          "ContractImplementationText": "Wir verarbeiten Ihre personenbezogenen Daten ausschließlich für die Voitheia-Leistungserbringung im dafür erforderlichen Umfang. Wir löschen die personenbezogenen Daten, sobald eine weitere Verarbeitung für Zwecke der Leistungserbringung nicht mehr erforderlich ist. Eine Speicherung oder Verarbeitung erfolgt nur gemäß Abschnitt „Speicherdauer und Löschung“.",
-          "Consent": "b. Einwilligung zur Datenverarbeitung",
-          "ConsentText": "Soweit Sie uns eine Einwilligung zur Verarbeitung personenbezogener Daten für weitere Zwecke erteilt haben (z.B. zur Auswertung von Nutzungsdaten), erfolgt diese Datenverarbeitung auf Grundlage dieser Einwilligung. Einwilligungen sind stets freiwillig. Sie können Ihre Einwilligung jederzeit über ihr Nutzerprofil widerrufen indem sie entsprechende Einstellungen ändern oder Ihr Nutzerprofil/ Ihren Account löschen. Ihr Widerruf lässt die Rechtmäßigkeit der bis zum Widerruf auf Grundlage der Einwilligung erfolgten Datenverarbeitung unberührt. Ebenso unberührt bleibt eine weitere Verarbeitung dieser Daten aufgrund einer anderen Rechtsgrundlage, etwa zur Erfüllung rechtlicher Verpflichtungen (siehe Abschnitt „Erfüllung gesetzlicher Vorgaben“).",
-          "InterestPursuit": "c. Verfolgung berechtigter Interessen",
-          "InterestPursuitText": "Soweit erforderlich verarbeiten wir Ihre personenbezogenen Daten über die Leistungserbringung hinaus zur Wahrung unserer berechtigten Interessen. Die Erhaltung der Funktionsfähigkeit und Sicherheit unserer IT-Systeme sind solche berechtigten Interessen. Wir löschen personenbezogene Daten grundsätzlich, sobald eine weitere Verarbeitung oder Aufbewahrung zur Wahrung des jeweils verfolgten berechtigten Interesses nicht mehr erforderlich ist. Eine weitere Speicherung oder Verarbeitung erfolgt nur gemäß Abschnitt „Speicherdauer und Löschung“.",
-          "Compliance": "d. Erfüllung gesetzlicher Vorgaben",
-          "ComplianceText": "Als Unternehmen unterliegen wir gesetzlichen Verpflichtungen und Vorgaben, wie etwa handels- und steuerrechtlichen Aufbewahrungspflichten. Wir verarbeiten personenbezogenen Daten des Nutzers deswegen auch, soweit dies zur Erfüllung gesetzlicher Pflichten erforderlich ist. Wir legen personenbezogene Daten eines Nutzers nur bei Vorliegen einer rechtlichen Verpflichtung gegenüber Ordnungs- und Strafverfolgungsbehörden offen und archivieren diese ausschließlich soweit dies gesetzlich für einen bestimmten Zeitraum erforderlich ist."
+          "ContractImplementation": "a. Contract Implementation",
+          "ContractImplementationText": "We process your personal data exclusively for the purpose of providing Voitheia services to the extent necessary for this purpose. We delete the personal data as soon as further processing is no longer necessary for the purpose of providing the service. Storage or processing is only carried out in accordance with the section "Storage period and deletion",
+          "Consent": "b. Consent to data processing",
+          "ConsentText": "If you have given us your consent to process personal data for further purposes (e.g. for the evaluation of usage data), this data processing will be based on this consent. Consent is always voluntary. You can revoke your consent at any time via your user profile by changing the corresponding settings or deleting your user profile/account. Your revocation does not affect the legality of the data processing that has taken place until revocation on the basis of your consent. Further processing of this data on another legal basis, for example to fulfil legal obligations (see section "Compliance with legal requirements"), also remains unaffected.",
+          "InterestPursuit": "c. Pursuit of Legitimate Interests",
+          "InterestPursuitText": "As far as necessary, we process your personal data beyond the provision of services to protect our legitimate interests. The maintenance of the functionality and security of our IT systems are such legitimate interests. As a matter of principle, we delete personal data as soon as further processing or storage is no longer necessary to safeguard the respective legitimate interest pursued. Further storage or processing is only carried out in accordance with the section "Storage period and deletion".",
+          "Compliance": "d. Legal Compliance",
+          "ComplianceText": "As a company, we are subject to legal obligations and requirements, such as commercial and tax law obligations to retain records. We therefore also process the user's personal data insofar as this is necessary to fulfil legal obligations. We only disclose personal data of a user if there is a legal obligation to do so vis-à-vis regulatory and law enforcement authorities and only archive this data to the extent required by law for a specific period of time."
         }
       },
 
-      "CookiesTitle": "3. Verwendung von Cookies / LocalStorages",
+      "CookiesTitle": "3. Usage of Cookies / LocalStorage",
       "CookiesText1": "Voitheia verwendet localStorage, um Voitheia optimal gestalten zu können. Dies ermöglicht eine Erleichterung der Navigation und ein hohes Maß an Benutzerfreundlichkeit. LocalStorage ist eine Möglichkeit, Daten auf dem Endgerät selbst abzulegen. Es ermöglicht die Speicherung von Schlüssel/Wertpaaren in einem Webbrowser und speichert Daten ohne Ablaufdatum. Diese können genutzt werden, um festzustellen, ob von Ihrem Endgerät bereits eine Kommunikation zu uns bestanden hat. Der Benutzer hat jederzeit die Möglichkeit, die Browserdaten/Cache zu löschen, um alle localStorage-Daten zu löschen. Personenbezogene Daten können in localStorages gespeichert werden, soweit Sie eingewilligt haben oder dies technisch zur Leistungserbringung erforderlich ist, z.B. um einen geschützten Login zu ermöglichen. Wir verwenden für Voitheia folgende localStorages: ",
       "CookiesTable": {
         "Name": "LocalStorage Name",
-        "Description": "Beschreibung",
-        "TokenDescription": "Autorisierungstoken für den Zugriff auf Backend Daten. ",
-        "ExpirationDateDescription": "Auslaufdatum des Autorisierungstoken.",
-        "EmaiLDescription": "E-Mail Adresse des Nutzers.",
-        "UserIDDescription": "Eindeutige Id mit welcher der User identifiziert wird."
+        "Description": "Description",
+        "TokenDescription": "Authorization token for access to backend data.",
+        "ExpirationDateDescription": "Expiration date of the authorization token.",
+        "EmaiLDescription": "E-mail address of the user.",
+        "UserIDDescription": "Unique Id with which the user is identified."
       },
-      "CookiesText2": "Hinweis: Der jwt_token hat eine Lebensdauer von 6 Stunden. Wenn in dieser Zeit keine Nutzeraktivität festgestellt wird, wird der Nutzer automatisch abgemeldet.",
+      "CookiesText2": "Note: The jwt_token has a lifetime of 6 hours. If no user activity is detected during this time, the user is automatically logged off.",
 
-      "DurationTitle": "4. Speicherdauer und Löschung",
-      "DurationText": "Wir speichern und verarbeiten Ihre personenbezogenen Daten lediglich, solange dies für den jeweiligen Zweck (vgl. Abschnitt „Umfang und Zwecke der Datenverarbeitung“) erforderlich ist. Die Daten werden auf einer Cloud-Instanz von Azure gespeichert, die vom Betreiber betreiben wird. Darüber hinaus erfolgt eine Speicherung und Verarbeitung nur, soweit dies für einen anderen Zweck (vgl. Abschnitt „Umfang und Zwecke der Datenverarbeitung“) zulässig ist, etwa zur Erfüllung rechtlicher Vorgaben (z.B. steuer- oder handelsrechtlicher Aufbewahrungspflichten). In diesem Fall schränken wir die weitere Datenverarbeitung auf diesen Zweck und die Rechtsgrundlage der weiteren Verarbeitung ein. Es wird nicht gespeichert, welcher Nutzer wann welche Unterstützungsleistung angefragt bzw. ausgeführt hat. Daneben werden Anfragen von Anfragern nach 5 Tagen ohne dass ein Helfer diesen angenommen hat, gelöscht. Die Löschung des Nutzerprofils kann innerhalb der Anwendung im Nutzerprofil erfolgen, oder auf Wunsch per Mail an info@voitheia.org. Nach 6 Monaten Inaktivität werden die Nutzerprofile und alle mit dem Nutzer verknüpften Daten (z.B. vergangene Anfragen) automatisch gelöscht.",
+      "DurationTitle": "4. Storage duration and deletion",
+      "DurationText": "We store and process your personal data only as long as this is necessary for the respective purpose (see section "Scope and purposes of data processing"). The data will be stored on a cloud instance of Azure, which will be operated by the operator. Beyond that, data will only be stored and processed to the extent permissible for another purpose (cf. section "Scope and Purposes of Data Processing"), e.g. to comply with legal requirements (e.g. tax or commercial law retention obligations). In this case, we limit further data processing to this purpose and the legal basis for further processing. We do not store which user requested or performed which support service when. In addition, requests from enquirers are deleted after 5 days without a helper having accepted them. The deletion of the user profile can be done within the application in the user profile, or on request by e-mail to info@voitheia.org. After 6 months of inactivity, the user profile and all data linked to the user (e.g. past requests) are automatically deleted.",
 
-      "ContactsTitle": "5. Ansprechpartner für Datenschutz",
-      "ContactsText": "Bei Fragen hinsichtlich der Verarbeitung der personenbezogenen Daten von Voitheia, können Sie sich an den Beauftragten für den Datenschutz wenden, der mit seinem Team auch im Falle von Auskunftsersuchen, Anregungen oder Beschwerden zur Verfügung steht: Der Beauftragte für den Datenschutz bei CGI Deutschland B.V. & Co. KG ist unter folgender E-Mail-Adresse: datenschutz.de@cgi.com, sowie unter folgender Anschrift: Linienstraße 222, 10119 Berlin, erreichbar.",
+      "ContactsTitle": "5. Contact person for data protection",
+      "ContactsText": "If you have any questions regarding the processing of Voitheia's personal data, you can contact the data protection officer, who is also available with his team for requests for information, suggestions or complaints: The representative for data protection at CGI Deutschland B.V. & Co. KG is available at the following e-mail address: datenschutz.de@cgi.com, as well as at the following address: Linienstraße 222, 10119 Berlin.",
 
-      "LegalBasesTitle": "6. Rechtsgrundlagen",
-      "LegalBasesText": "Die im Abschnitt „Zwecke der Datenverarbeitung“ dargestellten Verarbeitungen erfolgen auf folgenden Rechtsgrundlagen:",
+      "LegalBasesTitle": "6. Legal Basis",
+      "LegalBasesText": "The processing operations described in the section "Purposes of data processing" are carried out on the following legal bases:",
       "LegalBases": {
-        "1": "Datenverarbeitung zur Leistungserbringung: Art. 6 Abs. 1 b) DS-GVO",
-        "2": "Datenverarbeitung auf der Basis Ihrer Einwilligung: Art. 6 Abs. 1 a) DS-GVO ",
-        "3": "Datenverarbeitung zur Verfolgung berechtigter Interessen: Art. 6 Abs. 1 f) DS-GVO",
-        "4": "Datenverarbeitung zur Erfüllung gesetzlicher Vorgaben: Art. 6 Abs. 1 c) DS-GVO"
+        "1": "Data processing for service provision: Art. 6 para. 1 b) DS-GVO",
+        "2": "Data processing on the basis of your consent: Art. 6 para. 1 a) DS-GVO ",
+        "3": "Data processing for the pursuit of legitimate interests: Art. 6 Paragraph 1 f) DS-GVO",
+        "4": "Data processing to comply with legal requirements: Art. 6 Paragraph 1 c) DS-GVO"
       },
 
-      "RightsTitle": "7. Betroffenenrechte",
+      "RightsTitle": "7. Rights of Data Subject",
       "Rights": {
-        "GeneralRights": "7.1. Allgemeine Betroffenenrechte",
-        "GeneralRightsText": "Als von der Datenverarbeitung betroffene Person haben Sie das Recht auf Auskunft (Art. 15 DS-GVO), Berichtigung (Art. 16 DS-GVO), Datenlöschung (Art. 17 DS-GVO), Einschränkung der Verarbeitung (Art. 18 DS-GVO) sowie Datenübertragbarkeit (Art. 20 DS-GVO). Sollten personenbezogenen Daten auf Grundlage von berechtigten Interessen gemäß Art. 6 Abs. 1 lit. f DS-GVO verarbeitet werden, haben Sie das Recht, gemäß Art. 21 DS-GVO jederzeit Widerspruch gegen die Verarbeitung einzulegen.",
-        "Complaints": "7.2. Beschwerde",
-        "ComplaintsText": "Sind Sie der Ansicht, die Verarbeitung Ihrer personenbezogener Daten verstoße gegen gesetzliche Vorgaben, haben Sie das Recht zur Beschwerde bei einer zuständigen Datenschutzaufsichtsbehörde (Art. 77 DS-GVO). Für Sie in diesem Fall zuständig wäre der Landesbeauftragte für Datenschutz und Informationsfreiheit Baden-Württemberg (https://www.baden-wuerttemberg.datenschutz.de/)."
+        "GeneralRights": "7.1. General rights of data subjects",
+        "GeneralRightsText": "As a person affected by data processing, you have the right of access (Art. 15 DS-GVO), rectification (Art. 16 DS-GVO), deletion of data (Art. 17 DS-GVO), restriction of processing (Art. 18 DS-GVO) and data transferability (Art. 20 DS-GVO). If personal data are processed on the basis of legitimate interests in accordance with Art. 6 Para. 1 letter f DS-GVO, you have the right to object to the processing at any time in accordance with Art. 21 DS-GVO.",
+        "Complaints": "7.2. Complaints",
+        "ComplaintsText": "If you believe that the processing of your personal data violates legal requirements, you have the right to complain to a competent data protection supervisory authority (Art. 77 DS-GVO). In this case, the State Commissioner for Data Protection and Freedom of Information of Baden-Württemberg would be responsible for you (https://www.baden-wuerttemberg.datenschutz.de/)."
       },
 
-        "UpdatingTitle": "8. Aktualisierung",
-        "UpdatingText": "Wir behalten uns vor, diese Datenschutzhinweise von Zeit zu Zeit angemessen mit Wirkung für die Zukunft anzupassen, etwa an geänderte Gegebenheiten und technische Entwicklungen. Wir werden Sie über nicht nur unwesentliche Änderungen mit angemessener Frist zuvor in geeigneter Weise informieren sowie auf Ihre Rechte im Zusammenhang mit der Änderung hinweisen."
+        "UpdatingTitle": "8. Updating",
+        "UpdatingText": "We reserve the right to adapt this data protection notice from time to time as appropriate with effect for the future, for example to changed circumstances and technical developments. We will inform you about not only insignificant changes with a reasonable period of time in advance in a suitable manner and point out your rights in connection with the change."
     },
 
 
     "Imprint": {
-      "Title": "Impressum",
-      "LegalRemark": "Informationspflicht laut § 5 TMG.",
-      "Operator": "Betreiber von Voitheia ist"
+      "Title": "Legal Notice",
+      "LegalRemark": "Duty to inform according to § 5 TMG.",
+      "Operator": "The operator of Voitheia is"
     }
   },
 
   "ErrorPageNotFound": {
-    "PageNotFound": "Seite nicht gefunden",
-    "PageNotFoundText": "Die Seite, die du suchst, exisitiert wohl nicht. Dafür kannst du dir süße Kätzchen ansehen."
+    "PageNotFound": "SPage Not Found",
+    "PageNotFoundText": "I don't think the page you're looking for exists. But you can look at cute kittens."
   }
 }
