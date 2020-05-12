@@ -3,8 +3,8 @@
       "DateFormat": "DD.MM.YYYY HH:mm",
       "Slogan": "Do Something Good - Help Someone.",
       "Anonymous": "Anonym",
-      "false": "Nein",
-      "true": "Ja",
+      "false": "False",
+      "true": "True",
       "Buttons":{
           "Submit": "Submit",
           "Next": "Next",
