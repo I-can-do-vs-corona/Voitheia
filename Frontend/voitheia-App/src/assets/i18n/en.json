@@ -1,0 +1,529 @@
+{
+  "General": {
+    "DateFormat": "DD.MM.YYYY HH:mm",
+    "Slogan": "Do Something Good - Help Someone.",
+    "Anonymous": "Anonym",
+    "false": "Nein",
+    "true": "Ja",
+    "Buttons":{
+        "Submit": "Submit",
+        "Next": "Next",
+        "Back": "Back",
+        "Cancel": "Cancel",
+        "Accept": "Accept",
+        "Login": "Login",
+        "Register": "Register",
+        "Complete": "Complete",
+        "Close": "Close",
+        "Logout": "Logout",
+        "Delete": "Delete",
+        "ResetPassword": "Reset Password",
+        "ChangePassword": "Change Password",
+        "Change": "Change",
+        "Add": "Add"
+    },
+    "Enums": {
+      "RequestTypeEnum": {
+        "Shopping": "Shopping",
+        "Childcare": "Childcare",
+        "Medical": "Medicine Pickup",
+        "Petcare": "Pet Care",
+        "Other": "Other"
+      }
+    },
+    "Field": {
+      "Label": {
+        "FirstName": "First Name",
+        "LastName": "Last Name",
+        "Title": "Title",
+        "Phone": "Phone Number",
+        "Name": "Name",
+        "Username": "Username",
+        "Email": "E-Mail",
+        "CurrentEmail": "Current E-Mail",
+        "NewEmail": "New E-Mail",
+        "NewEmailRepeat": "Retype New Email",
+        "Password": "Password",
+        "RepeatPassword": "Retype New Password",
+        "RegsiteredSince": "Registered Since",
+        "Street": "Street and House Number",
+        "ZipCode": "Zip Code",
+        "City": "City",
+        "Type": "I need assistance with",
+        "Description": "Description",
+        "Distance": "Distance",
+        "CurrentPassword": "Current Password",
+        "NewPassword": "New Password",
+        "NewPasswordRepeat": "Retype New Password",
+        "Address": "Address",
+        "Terms": "I agree to the <a href=\"/terms/terms-conditions\" target=\"_blank\">Terms and Conditions</a> and the <br><a href=\"/terms/privacy-policy\" target=\"_blank\">privacy policy."
+      }
+    },
+    "Input": {
+      "Error": {
+        "Required": "Field is required.",
+        "Email": "Input is not a valid email address.",
+        "PasswordPattern": "Password must contain at least one lowercase letter, one uppercase letter, one number and one special character.",
+        "MinLength" : "You must enter at least {{count}} characters.",
+        "MaxLength" : "You must enter at most {{count}} characters.",
+        "Equal": {
+          "Password": "Passwords do not match.",
+          "Email": "Email addresses do not match."
+        },
+        "NotEqual": {
+          "Password": "New password must not be the same as the old one.",
+          "Email": "New email address must not be the same as the old one."
+        },
+        "numberLength": "The entry must have at least {{count}} set.",
+        "zipCodeWithinRange": "Postcal code is not within a valid range.",
+        "TelephoneNumber": "The entry is not a valid telephone number"
+      }
+    },
+    "Dialogs": {
+      "Titles": {
+        "Error": "Error",
+        "Warning": "Warning",
+        "Info": "Information",
+        "Question": "Question",
+        "Success": "Success"
+      },
+      "Text": {
+        "Error": "An error has occurred"
+      }
+    },
+    "PageTitles": {
+      "Default": "Voitheia",
+      "Home": "Do Something Good - Help Someone.",
+      "User": {
+        "Login": "Login",
+        "Register": "Register",
+        "ConfirmEmail": "Confirm Email",
+        "Profile": {
+          "View": "Profile",
+          "Edit": "Edit Profile"
+        },
+        "ResetPassword": "Reset Password"
+      },
+      "Terms": {
+        "TermsConditions": "Terms and Conditions",
+        "PrivacyPolicy": "Privacy Policy",
+        "Imprint": "Legal Notice"
+      },
+      "About": {
+        "AboutUs": "About Us",
+        "Idea": "The Idea"
+      },
+      "Request": {
+        "Create": "Create Request",
+        "List": "List of Requests"
+      },
+      "MyRequest": {
+        "List": "List of my Requests"
+      },
+      "Misc": {
+        "PageNotFound": "Page not found",
+        "Countdown": "Countdown"
+      }
+    },
+    "Infos": {
+      "ZipCode": "Currently this service is only available for the Munich area (zipcodes in the range 80331 to 85540).",
+      "Health": "Please only use the service if you are symptom-free."
+    }
+  },
+  "Navigation": {
+    "Buttons": {
+      "MyRequests": "My Requests",
+      "Profile": "My Profile"
+    }
+  },
+  "Home": {
+    "Buttons": {
+      "CreateRequest": "I need assistance",
+      "ShowRequests": {
+        "LoggedIn": "Open Requests",
+        "LoggedOut": "I would like to help"
+      }
+    },
+    "Texts": {
+      "Level1": "Make a request or offer your support.",
+      "Level2": "In this exceptional time and with the many restrictions we are currently struggling with due to the Coronavirus, we would like to connect helpers and those seeking help within this community. Do you need short-term support, for example with shopping, caring for children or someone to walk your dog? Make a request and someone from your neighborhood can contact you directly to support you."
+    }
+  },
+  "User": {
+    "Login": {
+      "Title": "Login"
+    },
+    "Register": {
+      "Title": "Register",
+      "HasAccount": "Already Registered? "
+    },
+    "ConfirmEmail": {
+      "Title": "Confirm email",
+      "Messages": {
+        "Success": {
+          "Title": "E-mail successfully confirmed",
+          "Text": "Your e-mail has been successfully confirmed. You can now accept requests and help others. <b>Thank you for your support!</b>"
+        },
+        "Error": {
+          "Title": "E-mail not confirmed",
+          "Text": "Something went wrong with your e-mail confirmation."
+        }
+      }
+    },
+    "ChangePassword": {
+      "Title": "Change password"
+    },
+    "ChangeEmail": {
+      "Title": "Change email"
+    },
+    "ResetPassword": {
+      "Title": "Reset password",
+      "Buttons": {
+        "SendResetPasswordMail": "Send password reset email",
+        "ResetPassword": "Reset password"
+      },
+      "Dialogs": {
+        "ResetMailSent": {
+          "Title": "Password reset email successfully sent",
+          "Text": "The password reset email was successfully sent."
+        },
+        "PasswordReseted": {
+          "Title": "Password successfully changed",
+          "Text": "The password was successfully changed."
+        }
+      }
+    },
+    "ProfilePictureUpload": {
+      "Title": "Upload profile picture",
+      "Labels": {
+        "Name": "File name",
+        "Extension": "File extension",
+        "Size": "File size",
+        "Dimensions": "Dimensions"
+      },
+      "Errors": {
+        "Extension": "The file must be a PNG.",
+        "Dimensions": "The file must have maximum dimensions of {{width}} x {{height}}.",
+        "Size": "The file cannot be larger than {{size}}."
+      }
+    },
+    "Profile": {
+      "View": {
+        "Title": "User Profile",
+        "Section": {
+          "AccountInformation": {
+            "Title": "Account information",
+            "SessionValidUntil": "Session valid until",
+            "DeleteAccount": "Delete user account"
+          },
+          "UserData": "User Data",
+          "ResendConfirmationMail": {
+            "Text": "Your e-mail address has not been confirmed. It must be confirmed to be able to accept requests.",
+            "Link": "Send confirmation email again"
+          }
+        },
+        "Dialogs": {
+          "Delete": {
+            "Title": "Confirm account deletion?",
+            "Text": "Are you sure you want to delete your account? All associated data will also be deleted. Your accepted orders will be released."
+          },
+          "Deleted": {
+            "Title": "User account deleted",
+            "Text": "Your user account was successfully deleted. You will now be logged out. We hope to welcome you as a supporter again in the future."
+          },
+          "ResendConfirmationMail": {
+            "Title": "Confirmation e-mail sent",
+            "Text": "The confirmation mail was sent again."
+          },
+          "PasswordChanged": {
+            "Title": "Password successfully changed",
+            "Text": "Your password has been successfully changed. You will now be logged out."
+          },
+          "EmailChanged": {
+            "Title": "Email successfully changed",
+            "Text": "Your email was successfully changed. You should receive a verification email shortly. You must verify your new email before you can accept further requests."
+          },
+          "ProfilePicture": {
+            "Upload": {
+              "Title": "Profile picture successfully changed",
+              "Text": "Your profile picture was successfully changed."
+            },
+            "Delete": {
+              "Title": "Delete profile picture",
+              "Text": "Do you really want to delete your profile picture?"
+            },
+            "Deleted": {
+              "Title": "Profile picture deleted",
+              "Text": "Your profile picture was successfully deleted."
+            }
+          }
+        }
+      },
+      "Edit": {
+        "Title": "Edit User Profile",
+        "Messages": {
+          "Success": {
+            "Title": "Data updated!!",
+            "Text": "Your profile data was updated successfully."
+          },
+          "Error": {
+            "Title": "Error in updating!",
+            "Text": "Unfortunately there was an error in updating your profile data. Please try again later."
+          }
+        }
+      }
+    }
+  },
+  "Request": {
+    "Create": {
+      "Title": "What do you need assistance with?",
+      "Hint": "How can your helper contact you? Note: Once your helper has accepted the request, he/she will only see your first name and phone number.",
+      "Stepper": {
+        "Request": "Request details",
+        "ContactInformation": "Contact Information"
+      },
+      "Dialog": {
+        "Buttons": {
+          "NewRequest": "New Request"
+        },
+        "Text": "Thank you! Your request has been recorded."
+      },
+      "Infos": {
+        "PetInsurance": "Note: Please only ask for pet care if you also have liability insurance for your pet that covers pet care.",
+        "GeneralInsurance": "Note: Please only ask for childcare if your liability insurance covers courtesy damages.",
+        "Details": "Give your helper as many details as possible to make it as easy as possible for him/her to help. Examples: What exactly should be purchased, when do you need support, how many children should be looked after..."
+      }
+    },
+    "Details": {
+      "Title": "Request details",
+      "Dialogs": {
+        "Title": "Request successfully accepted!",
+        "Text": "You have successfully accepted the request. Thank you for your help!",
+        "MyRequestsButton": "Display my requests"
+      }
+    },
+    "Status":{
+      "Open": "Open",
+      "Closed": "Closed",
+      "Assigned": "Assigned"
+    }
+  },
+  "MyRequest": {
+    "Title": "My Offers of Support",
+    "NoRequests": "You currently have no requests in this list.",
+    "Tabs": {
+      "AssignedRequests": "Accepted,
+      "CreatedRequests": "Created",
+      "ClosedRequests": "Closed"
+    },
+    "Coloumns":{
+      "CreatedBy": "Created By",
+      "AssignedTo": "Assigned To",
+      "User": "User",
+      "Author": "Created by me",
+      "Status": "Status"
+    },
+    "Details": {
+      "Dialogs": {
+        "Cancel": {
+          "Title": "Request cancelled",
+          "Text": "You have successfully cancelled the request. It has been added back to the list of open requests."
+        },
+        "Close": {
+          "Title": "Request closed",
+          "Text": "You have successfully completed the request. Many thanks for your efforts!"
+        }
+      }
+    }
+  },
+  "Footer": {
+    "Links": {
+      "Idea": "The idea",
+      "AboutUs": "About us",
+      "Terms": "Terms and Conditions",
+      "PrivacyPolicy": "Privacy Policy",
+      "Imprint": "Legal notice"
+    },
+    "Titles": {
+      "About": "About Us",
+      "Service": "Service",
+      "Contact": "Contact"
+    }
+  },
+  "About": {
+    "AboutUs": {
+      "Title": "Who are we",
+      "Text1": "We are a team of 9 developers, hobbyists, creative minds and enthusiastic do-gooders.",
+      "TeamMember": {
+        "Lukas": "...who pulls the strings in the background",
+        "Andi": "...who cleans up the back room",
+        "Sebastian": "...who makes sure we are always on Cloud 9",
+        "Benedikt": "...who fits it all together",
+        "Kevin": "...the all-rounder",
+        "Christoph": "...who makes us mobile",
+        "Alexander": "...who makes us Android ready",
+        "Helen": "...who looks over our shoulders",
+        "Sophie": "...who fills it all with life"
+      }
+    },
+    "Idea": {
+      "Idea": "The Idea",
+      "Text1": "In the context of the #WirvsVirus Hackathon of the German government in March 2020, we have found each other under very special circumstances. Without ever having met in person, we dedicated ourselves to the challenge: How can we support our neighbors in dealing with the new challenges that Corona presents to us: Shopping, although you belong to a risk group? Taking care of children and teaching from home, while working in home office? And then taking the dog for a walk?",
+      "Text2": "At the same time, there are so many who would like to help, but simply do not know how.",
+      "Text3": "Voitheia commes from Greek and means help (originally Βοήθεια).",
+      "Vision": "We want to bring people together to support each other and overcome our shared challenges."
+    }
+  },
+  "Terms": {
+    "Terms": {
+      "Title": "Terms of Use",
+      "IntroductionTitle": "1. Introduction",
+      "Introduction": {
+        "IntroductionGenderRemark": "For the sake of readability, the masculine form is used in this text; of course, both the feminine and masculine form are always meant.",
+        "Purpose": "1.1. Users of Voitheia and purpose of use",
+        "PurposeText": "Users may only use the functions of this website ("Voitheia") as private individuals. The following terms and conditions apply: Voitheia may be used free of charge by any registered natural person ("user", i.e. both helper and enquirer) for private purposes. There is no right to use. The operator of Voitheia is entitled to reject the registration of individual users without giving reasons. Please find further details about the operator at",
+        "Registration": "1.2. Registration",
+        "RegistrationText": "The use of Voitheia requires the user to register and create a user account. As a requestor, it is possible to create a user profile or to execute requests as a "guest". Upon registration, the user will receive a confirmation request by e-mail. The account can only be used after confirmation (verification). The user has to provide the complete data for the user account and keep it up to date. For the handling of this data, the provisions of",
+        "Function": "1.3. Function and purpose of Voitheia",
+        "FunctionText": "Voitheia serves to provide contacts for favours in an exclusively private and non-commercial context ("neighbourhood assistance"). Support services can be requested free of charge by people in need of support (hereinafter "inquirers"), which are then accepted and carried out by volunteers (hereinafter "helpers"). In the following, the functions of the Weibseite are described first from the inquirer's point of view, and then from the helper's point of view. Requesters can choose one or more of a selection of different support offers. Offers can be, for example, shopping, accompaniment to the doctor or picking up prescriptions from pharmacies, childcare or pet care. Together with this request, the requestor provides personal data such as address and telephone number. If the enquirer already has a user profile, these fields are filled in automatically. If the request is not accepted within five days, it is considered to be no longer relevant and is automatically deleted. Helpers must register in the first step. As soon as a user profile has been created, the helper will receive an overview of the request offers from his environment, sorted by distance. The helper can only see the first name of the requester, type of request and distance in km. He can accept one or more requests from this list. Only after accepting a request the helper can see the phone number of the requester. Other data, such as last name or address, are not accessible via the platform. The helper can now contact the requester using the telephone number to clarify details of the request. The helper can view and manage his accepted requests in Voitheia at any time. Once the support service has been completed, the helper marks the request as completed in his profile. Registered users can view past, accepted and closed requests in their profile."
+      },
+      "Usage": "2. Exclusion from and termination of use of Voitheia",
+      "UsageText": "Any user can end the use of Voitheia at any time by deleting their user profile. The operator can block a user at any time or permanently withdraw the possibility of using Voitheia if a user uses Voitheia illegally, especially for commercial purposes or to cause damage to enquirers, or uses Voitheia in any other way that is illegal, offensive or in a form that leads to complaints from other users or third parties.",
+
+      "UserObligationsTitle": "3. User Obligations",
+      "UserObligations": {
+        "Confidentiality": "3.1 Confidentiality",
+        "ConfidentialityText": "Users may only use Voitheia content for their own private use and may not forward or publish personal data of users, especially enquirers, for example in social networks or in any other way. Further processing of personal data that goes beyond the purpose of Voitheia is also prohibited. Data and information that users receive, especially from enquirers for assistance, must be treated as strictly confidential and may only be used for the purpose of providing immediate assistance to enquirers, insofar as this is necessary for the assistance. However, users are welcome to advertise Voitheia, draw attention to it (e.g. in social media) or link to it from their websites.",
+        "Deficiencies": "3.2. Notifications of Defects",
+        "DeficienciesText": "In order to continually improve Voitheia, it is desired that users report any problems they encounter while using Voitheia to the contact point listed under Customer Support. We are also happy to receive suggestions and ideas for improvement.",
+        "LawfulUse": "3.3. Lawful Useage",
+        "LawfulUseText": "The user is obliged to use Voitheia only lawfully in accordance with these terms of use and in accordance with applicable law. "
+      },
+
+      "Transfer": "4. Voitheia Software",
+      "TransferText": "It is not permitted to give or use Voitheia itself or for third parties, whether for a fee or free of charge, to publish, license, sell or otherwise commercially exploit or use data or functions from it. No one is restricted in his or her right to give away or distribute the technically functional software as part of a software package that contains programs of different origin.",
+
+      "UserContent": "5. User Content",
+      "UserContentText": "The content published by users in Voitheia is generally not checked by the operator and does not represent the opinion of the operator. However, the operator reserves the right to check and, if necessary, delete such content if there are indications of abuse or illegal content. By publishing data in Voitheia, the user declares that the data is free of third-party rights and grants the operator a free, unlimited, simple right of use for the purpose described in these terms of use.",
+
+      "WarrantyTitle": "6. Warranty",
+      "Warranty": {
+        "Provision": "6.1 Free provision and exclusion of warranty rights",
+        "ProvisionText": "Voitheia is provided free of charge and "as is". In particular, no guarantee of availability is given. Warranty rights of the operator are excluded to the extent permitted by law. This also applies to any support. ",
+        "Correctnes": "6.2. Accuracy of Information",
+        "CorrectnesText": "The operator assumes no responsibility for the completeness and accuracy of the functions and information provided with Voitheia. Services are presented without any guarantee of their correctness and do not constitute an offer of contract or a claim to conclude a contract."
+      },
+
+      "LiabilityTitle": "7. Liability",
+      "Liability": {
+        "OperatorLiability": "7.1. Liability of the operator",
+        "OperatorLiabilityText": "The operator shall not pay any compensation or reimbursement of futile expenses, regardless of the legal grounds (e.g. legal and similar obligations, breach of duty and tort), with the exception of intent or gross negligence and for injury to life, limb or health and in accordance with the provisions of the Product Liability Act. Furthermore, the operator assumes no liability for damages or other legal claims in connection with establishing contact or carrying out a support service with the help of Voitheia (courtesy services between inquirer & helper). In particular, the operator assumes no liability for damages or other legal claims because a support service does not come about or is not carried out properly.",
+        "Indemnification": "7.2. Indenmification (Release of Liability)",
+        "IndemnificationText": "If a claim is made against the Voitheia operator by a third party due to a violation of these terms of use by the user, the user indemnifies the operator from all claims and costs that arise directly or indirectly from this, including reasonable costs for legal defense against such a claim. This does not apply if the user is not responsible for a violation. The operator reserves the right to take over the defence against such claims itself.",
+        "Scope": "7.3. Scope of the liability rules",
+        "ScopeText": "The liability of the operator is excluded and limited as far as legally permissible. Mandatory legal rights of the user remain unaffected."
+      },
+
+      "FinalClausesTitle": "8. Final Clauses",
+      "FinalClauses": {
+        "SubjectChange": "8.1. Subject to Change",
+        "SubjectChangeText": "The operator reserves the right to adapt these terms of use if necessary. The operator will inform users about significant changes to the terms of use. Changes will come into force 30 days after their publication. If a user does not agree to a change in the terms of use, he/she will delete his/her Voitheia account. By continuing to use Voitheia, the user agrees to the updated terms of use.",
+        "Invalidity": "8.2. Invalidity of individual clauses",
+        "InvalidityText": "Should individual provisions of these terms of use be or become invalid or unenforceable, this shall not affect the validity of the remaining provisions.",
+        "ApplicableLaw": "8.3. Applicable Law",
+        "ApplicableLawText": "These terms of use are subject to the law of the Federal Republic of Germany applicable to domestic transactions. The United Nations Convention on Contracts for the International Sale of Goods shall not apply.."
+      },
+
+      "VSBG": "9. Notice According To § 36 Consumer Dispute Settlement Act (§ 36 Verbraucherstreitbeilegungsgesetz (VSBG))",
+      "VSBGText": "The operator will not take part in a dispute resolution procedure before a consumer arbitration board within the meaning of the German Consumer Dispute Resolution Act (VSBG) and is not obliged to do so."
+    },
+    "Privacy": {
+      "Title": "Privacy Information",
+      "Introduction": "We, the operator of the Voitheia service, are pleased about your interest in this application. The protection of your privacy as a Voitheia user is very important to us. In the following, we will inform you about how we handle personal data in connection with Voitheia. "Personal data" is all information that relates to an identified or identifiable natural person. For reasons of better readability, the masculine form is used in this text; naturally, both the feminine and masculine form is always meant",
+      "ResponsibilityTitle": "1st responsibility",
+      "Responsibility": {
+        "ResponsibilityText1": "For purposes of this privacy statement, the terms "operator" or "we" are used consistently. The operator is responsible under data protection law. You will find all information about the operator under",
+        "ResponsibilityText2": "When this document refers to "users", this refers to you as a user (in the role of "requester" or "helper") of Voitheia".
+      },
+
+      "ScopeAndPurposeTitle": "2. Scope and purposes of data processing",
+      "ScopeAndPurpose": {
+        "DataCategories": "2.1 Data Categories",
+        "DataCategoriesText1": "We process the user's personal data that he or she enters voluntarily when registering and using Voitheia, as well as any other data that he or she has released for processing in order to provide Voitheia services. The user is not obliged to provide all possible data; however, it must be ensured that the contact is provided in a form sufficient for Voitheia to function properly. In particular, this includes the disclosure of certain contact information for the purpose of establishing contact between inquirer and helper. If such data is not provided, this can result in Voitheia not functioning or only being able to be used to a limited extent. The following data is collected and processed to provide the service:",
+        "DataCategoriesList": {
+          "Name": "Name (First and Last)",
+          "Number": "Phone Number",
+          "Address": "Address (street & house number, so that the distance between helper & requester can be determined)",
+          "Requests": "Created requests (without saving the creation date)",
+          "AcceptedRequests": "Accepted requests including acceptance status (no date)",
+          "Picture": "User picture (the usage of a picture is voluntary)"
+        },
+        "DataCategoriesText2": "Note: Of the data entered, only first name, telephone number, query type and distance are visible to the other users",
+        "ImplementationTitle": "2.2. Implementation of data processing",
+        "ImplementationText": "The address data entered will only be used to determine the distance between users. In order to determine the distance between the requester and the helper, a service of the Bing-Maps of Microsoft Inc. (for more information: https://www.microsoft.com/en-us/maps/create-a-bing-maps-key/) via a Bing API is used. The location data is sent to the API without any personal reference, i.e. anonymized. The calculated difference between the two locations is displayed in Voitheia. Voitheia's data is processed in a so-called "Key Vault" (database for secure data storage), in which the user configurations, security keys and access data to the database ("Connection strings") are stored in a securely encrypted form to prevent possible misuse. The web application is hosted on a Microsoft Azure environment. The resources used for this are located in Frankfurt, Germany. Only Key Vault and Bing APIs are located outside of Germany, but no personal data is transferred to these resources",
+        "PurposeTitle": "2.3 Purposes of data processing",
+        "PurposeText": "We process the user data in accordance with the applicable data protection laws. The data processing is carried out for the following purposes:",
+        "Purpose": {
+          "ContractImplementation": "a. Contract Implementation",
+          "ContractImplementationText": "We process your personal data exclusively for the purpose of providing Voitheia services to the extent necessary for this purpose. We delete the personal data as soon as further processing is no longer necessary for the purpose of providing the service. Storage or processing is only carried out in accordance with the section "Storage period and deletion",
+          "Consent": "b. Consent to data processing",
+          "ConsentText": "If you have given us your consent to process personal data for further purposes (e.g. for the evaluation of usage data), this data processing will be based on this consent. Consent is always voluntary. You can revoke your consent at any time via your user profile by changing the corresponding settings or deleting your user profile/account. Your revocation does not affect the legality of the data processing that has taken place until revocation on the basis of your consent. Further processing of this data on another legal basis, for example to fulfil legal obligations (see section "Compliance with legal requirements"), also remains unaffected.",
+          "InterestPursuit": "c. Pursuit of Legitimate Interests",
+          "InterestPursuitText": "As far as necessary, we process your personal data beyond the provision of services to protect our legitimate interests. The maintenance of the functionality and security of our IT systems are such legitimate interests. As a matter of principle, we delete personal data as soon as further processing or storage is no longer necessary to safeguard the respective legitimate interest pursued. Further storage or processing is only carried out in accordance with the section "Storage period and deletion".",
+          "Compliance": "d. Legal Compliance",
+          "ComplianceText": "As a company, we are subject to legal obligations and requirements, such as commercial and tax law obligations to retain records. We therefore also process the user's personal data insofar as this is necessary to fulfil legal obligations. We only disclose personal data of a user if there is a legal obligation to do so vis-à-vis regulatory and law enforcement authorities and only archive this data to the extent required by law for a specific period of time."
+        }
+      },
+
+      "CookiesTitle": "3. Usage of Cookies / LocalStorage",
+      "CookiesText1": "Voitheia verwendet localStorage, um Voitheia optimal gestalten zu können. Dies ermöglicht eine Erleichterung der Navigation und ein hohes Maß an Benutzerfreundlichkeit. LocalStorage ist eine Möglichkeit, Daten auf dem Endgerät selbst abzulegen. Es ermöglicht die Speicherung von Schlüssel/Wertpaaren in einem Webbrowser und speichert Daten ohne Ablaufdatum. Diese können genutzt werden, um festzustellen, ob von Ihrem Endgerät bereits eine Kommunikation zu uns bestanden hat. Der Benutzer hat jederzeit die Möglichkeit, die Browserdaten/Cache zu löschen, um alle localStorage-Daten zu löschen. Personenbezogene Daten können in localStorages gespeichert werden, soweit Sie eingewilligt haben oder dies technisch zur Leistungserbringung erforderlich ist, z.B. um einen geschützten Login zu ermöglichen. Wir verwenden für Voitheia folgende localStorages: ",
+      "CookiesTable": {
+        "Name": "LocalStorage Name",
+        "Description": "Description",
+        "TokenDescription": "Authorization token for access to backend data.",
+        "ExpirationDateDescription": "Expiration date of the authorization token.",
+        "EmaiLDescription": "E-mail address of the user.",
+        "UserIDDescription": "Unique Id with which the user is identified."
+      },
+      "CookiesText2": "Note: The jwt_token has a lifetime of 6 hours. If no user activity is detected during this time, the user is automatically logged off.",
+
+      "DurationTitle": "4. Storage duration and deletion",
+      "DurationText": "We store and process your personal data only as long as this is necessary for the respective purpose (see section "Scope and purposes of data processing"). The data will be stored on a cloud instance of Azure, which will be operated by the operator. Beyond that, data will only be stored and processed to the extent permissible for another purpose (cf. section "Scope and Purposes of Data Processing"), e.g. to comply with legal requirements (e.g. tax or commercial law retention obligations). In this case, we limit further data processing to this purpose and the legal basis for further processing. We do not store which user requested or performed which support service when. In addition, requests from enquirers are deleted after 5 days without a helper having accepted them. The deletion of the user profile can be done within the application in the user profile, or on request by e-mail to info@voitheia.org. After 6 months of inactivity, the user profile and all data linked to the user (e.g. past requests) are automatically deleted.",
+
+      "ContactsTitle": "5. Contact person for data protection",
+      "ContactsText": "If you have any questions regarding the processing of Voitheia's personal data, you can contact the data protection officer, who is also available with his team for requests for information, suggestions or complaints: The representative for data protection at CGI Deutschland B.V. & Co. KG is available at the following e-mail address: datenschutz.de@cgi.com, as well as at the following address: Linienstraße 222, 10119 Berlin.",
+
+      "LegalBasesTitle": "6. Legal Basis",
+      "LegalBasesText": "The processing operations described in the section "Purposes of data processing" are carried out on the following legal bases:",
+      "LegalBases": {
+        "1": "Data processing for service provision: Art. 6 para. 1 b) DS-GVO",
+        "2": "Data processing on the basis of your consent: Art. 6 para. 1 a) DS-GVO ",
+        "3": "Data processing for the pursuit of legitimate interests: Art. 6 Paragraph 1 f) DS-GVO",
+        "4": "Data processing to comply with legal requirements: Art. 6 Paragraph 1 c) DS-GVO"
+      },
+
+      "RightsTitle": "7. Rights of Data Subject",
+      "Rights": {
+        "GeneralRights": "7.1. General rights of data subjects",
+        "GeneralRightsText": "As a person affected by data processing, you have the right of access (Art. 15 DS-GVO), rectification (Art. 16 DS-GVO), deletion of data (Art. 17 DS-GVO), restriction of processing (Art. 18 DS-GVO) and data transferability (Art. 20 DS-GVO). If personal data are processed on the basis of legitimate interests in accordance with Art. 6 Para. 1 letter f DS-GVO, you have the right to object to the processing at any time in accordance with Art. 21 DS-GVO.",
+        "Complaints": "7.2. Complaints",
+        "ComplaintsText": "If you believe that the processing of your personal data violates legal requirements, you have the right to complain to a competent data protection supervisory authority (Art. 77 DS-GVO). In this case, the State Commissioner for Data Protection and Freedom of Information of Baden-Württemberg would be responsible for you (https://www.baden-wuerttemberg.datenschutz.de/)."
+      },
+
+        "UpdatingTitle": "8. Updating",
+        "UpdatingText": "We reserve the right to adapt this data protection notice from time to time as appropriate with effect for the future, for example to changed circumstances and technical developments. We will inform you about not only insignificant changes with a reasonable period of time in advance in a suitable manner and point out your rights in connection with the change."
+    },
+
+
+    "Imprint": {
+      "Title": "Legal Notice",
+      "LegalRemark": "Duty to inform according to § 5 TMG.",
+      "Operator": "The operator of Voitheia is"
+    }
+  },
+
+  "ErrorPageNotFound": {
+    "PageNotFound": "SPage Not Found",
+    "PageNotFoundText": "I don't think the page you're looking for exists. But you can look at cute kittens."
+  }
+}
