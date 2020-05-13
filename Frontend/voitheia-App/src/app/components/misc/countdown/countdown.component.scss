@@ -1,13 +1,13 @@
 @import '../../../../scss/variables.scss';
 
 :host{
+    text-align:center;
+
     .content-container{
-        margin-top:100px;
         margin-bottom:100px;
 
         /deep/ .countdown{
             .measurements{
-                text-align:center;
                 margin: $normal-spacing;
             }
 
@@ -19,5 +19,16 @@
 
     .mainpage-button{
         margin-bottom:50px;
+        font-size: $largest;
+        padding: $normal-spacing;
+        margin-top:$normal-spacing;
+        margin-right:0;
+        font-weight:$bold;
+    }
+
+    @media (max-width: 991.98px) {
+        .mainpage-button{
+            font-size: $large;
+        }
     }
 }
