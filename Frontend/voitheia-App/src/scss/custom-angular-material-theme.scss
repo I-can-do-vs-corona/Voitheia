@@ -214,6 +214,38 @@ button.mat-primary:hover, .mat-raised-button.mat-primary:hover, .mat-fab.mat-pri
 
 .mat-form-field {
   width: 100%;
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+
+    .mat-form-field-underline {
+      position: initial !important;
+      display: block;
+      margin-top: -1px;
+    }
+
+    .mat-form-field-subscript-wrapper,
+    .mat-form-field-ripple {
+      position: initial !important;
+      display: table;
+    }
+
+    .mat-form-field-subscript-wrapper {
+      min-height: calc(1em + 1px);
+    }
+  }
+
+  .mat-form-field-suffix, .mat-form-field-prefix{
+    color: $gray-2;
+  }
+  
+  .mat-form-field-prefix{
+    margin-right: $half-spacing;
+  }
+  
+  .mat-error{
+    font-size: $normal;
+  }
 }
 
 .mat-stepper-horizontal{
@@ -227,18 +259,6 @@ button.mat-primary:hover, .mat-raised-button.mat-primary:hover, .mat-fab.mat-pri
     [mat-dialog-title]{
         border-bottom:0;
     }
-}
-
-.mat-form-field-suffix, .mat-form-field-prefix{
-  color: $gray-2;
-}
-
-.mat-form-field-prefix{
-  margin-right: $half-spacing;
-}
-
-.mat-error{
-  font-size: $small;
 }
 
 .customTooltip{
