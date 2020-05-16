@@ -2,7 +2,7 @@
 
 namespace ActiveCruzer.Models.DTO.Request
 {
-    public class GetAllRequestResponse
+    public class GetAllMyRequestResponse
     {
         public List<RequestDto> Requests { get; set; }
         public int TotalCount { get; set; }

@@ -1,0 +1,21 @@
+<div id="dialog-title">
+    <div [ngClass]="['circle', iconType]">
+        <div class="icons">
+            <div class="checkmark"></div>
+            <div class="cross">
+                <div class="line1"></div>
+                <div class="line2"></div>
+            </div>
+            <fa-icon [icon]="faExclamation" class="warning"></fa-icon>
+            <fa-icon [icon]="faInfo" class="info"></fa-icon>
+            <fa-icon [icon]="faQuestion" class="question"></fa-icon>
+        </div>
+    </div>
+    <h1 mat-dialog-title>{{title}}</h1>
+</div>
+<div mat-dialog-content [innerHtml]="content"></div>
+<div mat-dialog-actions align="end">
+    <button *ngIf="!isUndefined(closeButtonText)" mat-stroked-button (click)="close('Close')">{{closeButtonText}}</button>
+    <button *ngIf="!isUndefined(secondaryButtonText)" mat-raised-button (click)="close('Secondary')">{{secondaryButtonText}}</button>
+    <button *ngIf="!isUndefined(primaryButtonText)" mat-raised-button color="primary" (click)="close('Primary')">{{primaryButtonText}}</button>
+</div>

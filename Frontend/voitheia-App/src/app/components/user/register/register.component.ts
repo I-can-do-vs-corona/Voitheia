@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/common/models/user';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import { NavigationService } from 'src/app/common/shared/services/navigation.service';
+import { UserService } from '../user.service';
+import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
 import { AuthService } from 'src/app/common/shared/services/auth.service';
+import { JwtDTO } from 'src/app/common/models/JwtDTO';
+import { RegisterUserDTO } from 'src/app/common/models/registerUserDTO';
+import { NavigationService } from 'src/app/common/shared/services/navigation.service';
+import { environment } from 'src/environments/environment';
+import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-register',
@@ -11,32 +16,64 @@ import { AuthService } from 'src/app/common/shared/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  user: User;
-  faPaperPlane = faPaperPlane;
+  user: RegisterUserDTO;
+  termsChecked = false;
+  repeatPassword = "";
+  hidePW = true;
+  passwordRegEx = '';
+
+  reCaptchaKey = '';
+  reCaptchaValid = false;
   
-  constructor(private _authService: AuthService, private _navigationService: NavigationService) {
-    this.user = new User();
+  constructor(private _userService: UserService, private _authService: AuthService, private _utilitiesService: UtilitiesService, private _navigationService: NavigationService, private _translateService: TranslateService) {
+    this.user = new RegisterUserDTO();
+    this.passwordRegEx = _utilitiesService.passwordRegEx;
   }
 
   ngOnInit(): void {
+    if(!this._utilitiesService.isRegistrationOpen()){
+      this._navigationService.navigateTo("countdown");
+    }
+
+    this.reCaptchaKey = environment.reCaptchaKey;
+    if (!this.reCaptchaKey || this.reCaptchaKey === '') {
+      this.reCaptchaValid = true;
+    }
   }
 
-  public cancelRegister(){
-    this._navigationService.navigateTo('login');
-
-  }
-
-  public send(){    
-    this._authService.registerUser(this.user).subscribe(
+  send(){
+    this._userService.registerUser(this.user).subscribe(
       data => {
-        //this._authService.setToken(data["token"]);
-        //TODO: Handle Login Success
-        
-        this._navigationService.navigateTo("login");
+        this._authService.handleSuccessfullLogin(data as JwtDTO);
       },
       err => {
-        alert("error");
+        this._utilitiesService.handleError(err);
       }
     );
+  }
+
+  checkValue(checked: boolean){
+    if(checked){
+      this.user.termsAccepted = moment.utc().format("YYYY-MM-DDTHH:mm:ss.SSSZ");
+    } else {
+      this.user.termsAccepted = null;
+    }
+ }
+
+  handleCorrectCaptcha(event) {
+    this.reCaptchaValid = true;
+  }
+
+  handleExpiredCaptcha() {
+    this.reCaptchaValid = false;
+  }
+
+  getreCaptchaLanguage() {
+    if (this._translateService.currentLang === 'de') {
+      return 'de';
+    } else if (this._translateService.currentLang === 'se') {
+      return 'sv';
+    }
+    return 'en';
   }
 }

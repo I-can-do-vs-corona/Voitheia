@@ -3,6 +3,7 @@ using ActiveCruzer.Models.Geo;
 using AutoMapper;
 using BingMapsRESTToolkit;
 using GeoCoordinatePortable;
+using Microsoft.Extensions.Configuration;
 
 namespace ActiveCruzer.BLL
 {
@@ -10,17 +11,19 @@ namespace ActiveCruzer.BLL
     {
 
         private readonly IMapper _mapper;
+        private string _bingKey;
 
-        public GeoCodeBll(IMapper mapper)
+        public GeoCodeBll(IMapper mapper, IConfiguration configuration)
         {
             _mapper = mapper;
+            _bingKey = configuration["RingumsBing"];
         }
 
         public ValidatedAddress ValidateAddress(GeoQuery query)
         {
             var request = new GeocodeRequest
             {
-                BingMapsKey = Startup.BingKey,
+                BingMapsKey = _bingKey,
                 Query = query.ToString()
             };
 

@@ -1,0 +1,194 @@
+@import '../../../../../../src/scss/variables.scss';
+
+:host{
+    // Define vars we'll be using
+    $icon-size: 7em;
+    $icon-thickness: $normal / 9;
+    $circle-thickness: $normal / 9;
+
+    .circle {
+        display:none;
+
+        margin-bottom: $normal-spacing;
+        border: $circle-thickness solid rgba(0, 0, 0, 0.2);
+        position: relative;
+        vertical-align: top;
+        border-radius: 50%;
+        width: $icon-size;
+        height: $icon-size;
+        font-size:$normal;
+
+        .icons{
+            .checkmark {
+                display:none;
+    
+                $check-height: $icon-size/2;
+                $check-width: $check-height/2;
+                $check-left: ($icon-size/6 + $icon-size/12);
+        
+                &:after {
+                    animation-duration: 800ms;
+                    animation-timing-function: ease;
+                    animation-name: checkmark;
+                    transform: scaleX(-1) rotate(135deg);
+        
+                    opacity: 1;
+                    height: $check-height;
+                    width: $check-width;
+                    transform-origin: left top;
+                    border-right: $icon-thickness solid $success-text;
+                    border-top: $icon-thickness solid $success-text;
+                    content: '';
+                    left: $check-left;
+                    top: $check-height;
+                    position: absolute;
+                }
+        
+                @keyframes checkmark {
+                    0% {
+                        height: 0;
+                        width: 0;
+                        opacity: 1;
+                    }
+                    30% {
+                        height: 0;
+                        width: $check-width;
+                        opacity: 1;
+                    }
+                    60% {
+                        height: $check-height;
+                        width: $check-width;
+                        opacity: 1;
+                    }
+                    100% {
+                        height: $check-height;
+                        width: $check-width;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .cross{
+                display:none;
+
+                $cross-width: $icon-size * 0.8;
+                $cross-top: ($icon-size - $circle-thickness) / 2;
+                $cross-left: (($icon-size - $circle-thickness) - ($cross-width + $icon-thickness)) / 2;
+
+                .line1, .line2{
+                    position: absolute;
+                    top: $icon-size / 2;
+                    left: $icon-size / 2;
+                    border-top: $icon-thickness solid $error-text;
+                  }
+
+                  .line1{
+                    animation:lines 0.5s ease .5s forwards, lineOne 0.5s ease 1.1s forwards;
+                  }
+                  
+                  .line2{
+                    animation:lines 0.5s ease .5s forwards, lineTwo 0.5s ease 1.1s forwards;
+                  }
+
+                  @keyframes lines{
+                    0%{
+                      width: 0;
+                      left: $icon-size / 2;
+                    }
+                    100% {
+                        left:$cross-left;
+                        width: $cross-width;
+                    }
+                  }
+
+                  @keyframes lineOne{
+                    0%{
+                        left:$cross-left;
+                        width: $cross-width;
+                    }
+                    100% {
+                        transform: rotate(45deg);
+                        left:$cross-left;
+                        width: $cross-width;
+                    }
+                  }
+
+                  @keyframes lineTwo{
+                    0%{
+                        left:$cross-left;
+                        width: $cross-width;
+                    }
+                    100% {
+                        transform: rotate(-45deg);
+                        left:$cross-left;
+                        width: $cross-width;
+                    }
+                  }
+            }
+
+            .warning{
+                display: none;
+                font-size: $icon-size * 0.65;
+            }
+
+            .info{
+                display: none;
+                font-size: $icon-size * 0.65;
+            }
+
+            .question{
+                display:none;
+                font-size: $icon-size * 0.65;
+            }
+        }
+
+        &.success{
+            display: inline-block;
+            border-color:$success-text;
+
+            .icons .checkmark{
+                display: inline;
+            }
+        }
+        
+        &.error {
+            display: inline-block;
+            border-color:$error-text;
+
+            .icons .cross{
+                display:inline;
+            }
+        }
+
+        &.warning {
+            display: inline-block;
+            border-color:$warning-text;
+
+            .icons .warning{
+                display:inline;
+                color: $warning-text;
+            }
+        }
+
+        &.info {
+            display: inline-block;
+            border-color:$info-text;
+
+            .icons .info{
+                display:inline;
+                color: $info-text;
+            }
+        }
+
+        &.question {
+            display: inline-block;
+            border-color:$question-text;
+
+            .icons .question{
+                display:inline;
+                color: $question-text;
+            }
+        }
+    }
+    
+}

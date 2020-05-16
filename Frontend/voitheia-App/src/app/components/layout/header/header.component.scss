@@ -1,49 +1,327 @@
-@import '../../../../variables.scss';
+@import '../../../../scss/variables.scss';
 
 :host{
-    nav{
-        height:$header-height;
-        width:100%;
-        background-color:$brand-secondary-color-light;
-        padding:$half-spacing;
-        position:absolute;
-        top:0;
-        z-index:105;
-        font-size:$large;
+  
+  /deep/ .popover{
     
-        i#logo{
-            height:100px;
-            width:100px;
-            background-image: url(../../../../assets/images/logo.svg);
-            background-repeat: no-repeat;
-            background-size: contain;
-            margin-right:$half-spacing;
-        }
-
-        h1{
-            font-size: 4em; 
-            font-weight: bold; 
-            display: inline-block;
-            cursor: pointer;
-            font-family: 'Kelson', sans-serif;
-        }
-    
-        &.sticky {
-            height:70px;
-            position:fixed;
-            -webkit-box-shadow: 0px 2px 5px 0px rgba(92, 92, 92, 0.377);
-            -moz-box-shadow: 0px 2px 5px 0px rgba(92, 92, 92, 0.377);
-            box-shadow: 0px 2px 5px 0px rgba(92, 92, 92, 0.377);
-            font-size:$medium;
-
-            i#logo{
-                height:70px;
-                width:70px;
-            }
-
-            h1{
-                font-size: 3em;
-            }
-        }
+    .arrow{
+      display:none;
     }
+
+    .popover-body{
+      padding:0;
+
+       ul{
+         list-style: none;
+         width:100%;
+         margin:0;
+         padding:0;
+
+         li{
+           padding: $half-spacing;
+
+           &:first-child{
+            border-top-right-radius: $third-spacing;
+            border-top-left-radius: $third-spacing;
+           }
+
+           &:last-child{
+            border-bottom-right-radius: $third-spacing;
+            border-bottom-left-radius: $third-spacing;
+           }
+
+           &:hover{
+             background-color: $gray-1;
+           }
+
+           a{
+             color: $black;
+           }
+         }
+       }
+    }
+  }
+
+
+//ab hier altes
+
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+  .navbar-nav .nav-link {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .navbar-nav .dropdown-menu {
+    position: static;
+    float: none;
+  }
+  
+  .navbar-toggle {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+  }
+  
+  .navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+   }
+  
+  .collapse:not(.show) {
+     display: none;
+   }
+    
+  .collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
+  }
+  
+  .navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+  }
+  
+    i#logo{
+      height: 50px;
+      width: 50px;
+      background-image: url(../../../../assets/images/logos/voitheia_white.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-right: $half-spacing;
+      
+      fill: red;
+    }
+  
+    .container {
+      min-width: 100%!important;
+    }
+  
+   
+    @media (max-width: 991.98px) {
+      .navbar-expand-lg > .container {
+        padding-right: 0;
+        padding-left: 0;
+      }
+      .navbar-expand-lg > .container > .navbar-collapse{
+        border-top: 1px solid rgba(50, 50, 50, 0.5);
+      }
+    }
+  
+    @media (min-width: 992px) {
+      .navbar-expand-lg {
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+      }
+      .navbar-expand-lg .navbar-nav {
+        flex-direction: row;
+      }
+      .navbar-expand-lg .navbar-nav .dropdown-menu {
+        position: absolute;
+      }
+      .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+      }
+      .navbar-expand-lg > .container {
+        flex-wrap: nowrap;
+      }
+      .navbar-expand-lg .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+      }
+      .navbar-expand-lg .navbar-toggle {
+        display: none;
+      }
+    }
+  
+  
+  
+    #mainNav {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      background-color: #fff;
+      transition: background-color 0.2s ease;
+    }
+    #mainNav .navbar-brand {
+      font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-weight: 700;
+      color: #212529;
+      font-size: x-large;
+    }
+    #mainNav .navbar-brand:hover {
+      cursor: pointer;
+      color: $brand-color;
+    }
+    #mainNav .navbar-nav .nav-item .nav-link {
+      color: #6c757d;
+      font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.75rem 0;
+    }
+    #mainNav .navbar-nav .nav-item .nav-link:hover, #mainNav .navbar-nav .nav-item .nav-link:active {
+      color: $brand-color;
+      cursor: pointer;
+    }
+    #mainNav .navbar-nav .nav-item .register-btn:hover, #mainNav .navbar-nav .nav-item .register-btn:active  {
+      border-color: $brand-color-dark !important;
+      color: $brand-color-dark;
+      
+    }
+    #mainNav .navbar-nav .nav-item .nav-link.active {
+      color: $brand-secondary-color !important;
+    }
+    @media (min-width: 992px) {
+      #mainNav {
+        box-shadow: none;
+        background-color: transparent;
+      }
+
+      #mainNav .navbar-brand {
+        color: rgb(255, 255, 255);
+        font-size: xx-large;
+      }
+      #mainNav .navbar-brand:hover {
+          cursor: pointer;
+        color: $brand-color;
+      }
+      #mainNav .navbar-nav .nav-item .nav-link {
+        color: rgba(255, 255, 255, 0.7);
+        padding: 0 1rem;
+      }
+    
+      #mainNav .navbar-nav .nav-item .register-btn {
+        color: $brand-color;
+        padding: 0 1rem;
+        border-radius: 10rem;
+        border: 2px solid $brand-color;
+        padding: 0.5rem !important;
+      }
+    
+      #mainNav .navbar-nav .nav-item .login-btn, #mainNav .navbar-nav .nav-item .lang-btn {
+        padding: 0 1rem;
+        border-radius: 10rem;
+        border: none;
+        padding: 0.5rem !important;
+        margin-right: 0.5rem;
+      }  
+    
+      #mainNav .navbar-nav .nav-item:last-child .nav-link {
+        padding-right: 0;
+      }
+  
+      #mainNav.navbar-scrolled i#logo {
+        background-image: url(../../../../assets/images/logos/voitheia_black.svg);
+      }
+  
+    #mainNav.navbar-scrolled {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      background-color: #fff;
+      color:$black;
+    }
+    #mainNav.navbar-scrolled .navbar-brand {
+      color: $black;
+    }
+  
+    #mainNav.navbar-scrolled .navbar-brand:hover {
+      color: $brand-color;
+    }
+    #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link {
+      color: $black;
+    }  
+  
+    #mainNav.navbar-scrolled .navbar-nav .nav-item .register-btn {
+      border-color: $black;
+    }
+    #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link:hover {
+      cursor: pointer;
+      color: #00a4d6;
+    }
+    #mainNav.navbar-scrolled .navbar-nav .nav-item .register-btn:hover {
+      border-color: $brand-color-dark;
+    }
+  
+    .fixed-top {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+    }
+  }
+  
+  .navbar-expand .navbar-toggle {
+    display: none;
+  }
+  .navbar-expand .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }  
+  
+  .icon-bar {
+    width: 22px; 
+    height: 2px;
+    background-color: #B6B6B6;
+    display: block;
+    transition: all 0.2s;
+    margin-top: 4px
+  }
+   
+  .navbar-toggle {
+    border: none;
+    background: transparent !important;
+  }
+  
+  .navbar-toggle:focus, .navbar-toggle:active, .navbar-toggle:active:focus{
+    outline: none;
+    text-decoration: none;
+  }
+  
+  
+  
+  /* ANIMATED UP ARROW */
+  .navbar-toggle.collapsed .top-bar {
+    transform: translate3d(0,0,0) rotate(0deg);
+    width: 22px;
+  }
+  
+  .navbar-toggle.collapsed .middle-bar { 
+    transform: translate3d(0,0,0) rotate(0deg);
+  }
+  
+  .navbar-toggle.collapsed .bottom-bar { 
+    transform: translate3d(0,0,0) rotate(0deg);
+    width: 22px;
+  }
+  
+  .navbar-toggle .top-bar { 
+    transform: translate3d(1px,0,0) rotate(-45deg);
+    transform-origin: center center;
+    width: 11px;
+  }
+  .navbar-toggle .middle-bar { 
+    transform: rotate(-90deg);
+    transform-origin: center center;
+  }
+  
+  .navbar-toggle .bottom-bar { 
+    transform: translate3d(0px,-14px,0) rotate(-135deg);
+    transform-origin: right top;
+    width: 11px;
+  }
+  /* END ANIMATED UP ARROW */
 }

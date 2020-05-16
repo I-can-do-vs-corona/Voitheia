@@ -1,22 +1,46 @@
-<!-- <p>header works!</p> -->
-<!--<header class="container" id="header">
-  <div class="row justify-content-center">
-    <a (click)="_navigationService.navigateTo('home')">
-      <h1 class="center_title">Voitheia</h1>
-    </a>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-default navbar-light fixed-top py-3" id="mainNav">
+  <div class="container">
+      <i id="logo"></i>
+      <a class="navbar-brand"routerLink="/home">Voitheia</a>
+      <div>
+        <button id="hamburger" *ngIf="!isLoggedIn()" (click)="hamburgerMenuToggle()" class="navbar-toggle navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-bar top-bar"></span>
+          <span class="icon-bar middle-bar"></span>
+          <span class="icon-bar bottom-bar"></span>	
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                <li>
+                  <a class="nav-link lang-btn noselect" (click)="changeLanguage('en')" *ngIf="getCurrentLanguage() !== 'en'"><i class="flag flag-gb"></i></a>
+                  <a class="nav-link lang-btn noselect"(click)="changeLanguage('de')" *ngIf="getCurrentLanguage() !== 'de'"><i class="flag flag-de"></i></a>
+                </li>
+                <li routerLink="/user/login" routerLinkActive="active" class="nav-item" *ngIf="!isLoggedIn()">
+                  <a class="nav-link login-btn noselect">
+                    {{'General.Buttons.Login' | translate }}
+                  </a>
+                </li>
+                <li routerLink="/user/register" routerLinkActive="active" class="nav-item" *ngIf="!isLoggedIn()">
+                  <a class="nav-link register-btn noselect">
+                    {{'General.Buttons.Register' | translate }}
+                  </a>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="isLoggedIn()" class="userMenuIcon" placement="bottom-right" [ngbPopover]="userMenuLoggedInPopContent"><!-- popoverTitle="{{'General.Header.UserMenu.Title.LoggedOut' | translate}}" #userMenu="ngbPopover" triggers="manual" (click)="userMenu.close()" (mouseenter)="userMenu.open()">-->
+          <fa-icon [icon]="['fas', 'user']"></fa-icon>
+          <ng-template #userMenuLoggedInPopContent>
+            <ul>
+              <li routerLink="/my-requests/list" routerLinkActive="active"><a class="nav-link login-btn noselect" >
+                {{'Navigation.Buttons.MyRequests' | translate }}</a></li>
+              <li routerLink="/user/profile" routerLinkActive="active"><a class="nav-link login-btn noselect" >
+                {{'Navigation.Buttons.Profile' | translate }}</a></li>
+              <li (click)= "logout()"><a class="nav-link login-btn noselect" >
+                <fa-icon [icon]="['fas', 'power-off']"></fa-icon>
+                {{'General.Buttons.Logout' | translate }}</a></li>
+            </ul>
+          </ng-template>
+        </div>
+      </div>
   </div>
-</header>-->
-<nav class="navbar navbar-expand-lg justify-content-between" id="header">
-    <i id="logo"></i>
-    <a (click)="_navigationService.navigateTo('home')">
-      <h1 class="my-auto">Voitheia</h1>
-    </a>
-    <div class="ml-auto" id="navigation">
-      <a *ngIf="!isLoggedIn()" (click)="_navigationService.navigateTo('login')">
-        <fa-icon [icon]="faSignInAlt"></fa-icon>
-      </a>
-      <a *ngIf="isLoggedIn()" (click)="logout()">
-        <fa-icon [icon]="faSignOutAlt"></fa-icon>
-      </a>
-    </div>
 </nav>

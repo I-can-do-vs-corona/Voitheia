@@ -1,0 +1,9 @@
+@import '../../../../scss/variables.scss';
+
+:host{
+  img{
+    width:120px;
+    height:120px;
+    margin-bottom: $half-spacing;
+  }
+}

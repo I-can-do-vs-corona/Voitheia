@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ActiveCruzer.Models.Geo;
-
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using ActiveCruzer.Models.DTO;
 
 namespace ActiveCruzer.Models
 {
     /// <summary>
     /// model for requests
     /// </summary>
+    [Table("Requests")]
     public class Request
     {
+        [Key]
         public int Id { get; set; }
-        public int? Volunteer { get; set; }
+        public string Volunteer { get; set; }
         public RequestType RequestType { get; set; }
         public string Description { get; set; }
         public RequestStatus Status { get; set; }
@@ -27,6 +32,7 @@ namespace ActiveCruzer.Models
         public string Street { get; set; }
         public string Zip { get; set; }
         public string City { get; set; }
+        public string CreatedBy { get; set; }
 
 
         public Request()

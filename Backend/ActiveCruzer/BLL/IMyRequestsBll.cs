@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using ActiveCruzer.Models;
+using ActiveCruzer.Models.DTO.Request;
 
 namespace ActiveCruzer.BLL
 {
     public interface IMyRequestsBll : IDisposable
     {
-        int TakeRequest(in int requestId, in int userId);
-        void FinishRequest(in int requestId, in int userId);
-        void AbortRequest(in int requestId, in int userId);
-        Request GetRequest(in int requestId, in int userId);
-        bool ExistsOnUser(in int id, in int userId);
-        List<Request> GetAllPendingFromUser(int hardcodedUser);
-        bool Exists(in int requestId);
-        bool IsNotClosed(in int id);
+        int TakeRequest(int requestId, string userId);
+        void FinishRequest(int requestId);
+        void AbortRequest(int requestId, string userId);
+        RequestDto GetRequest(int requestId, string userId);
+        bool ExistsOnUser(int id, string userId);
+        List<RequestDto> GetAllPendingFromUser(string hardcodedUser);
+        List<RequestComplexDto> GetAllPendingComplex(string userId);
+        bool Exists(int requestId);
+        bool IsNotClosed(int id);
+        List<RequestComplexDto> GetCreated(string userId, bool? open, bool? assigned, bool? closed);
+        List<RequestComplexDto> GetAssigned(string userId, bool? assigned, bool? closed);
+
+        bool CreatedByUser(string userId, int requestId);
     }
 }

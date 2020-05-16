@@ -5,9 +5,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSelectChange } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestViewComponent } from '../request-view/request-view.component';
-import { RequestTypeEnum } from 'src/app/common/helper/enums';
+import { DialogIconTypeEnum } from 'src/app/common/helper/enums/dialog-icon-type.enum';
+import { RequestTypeEnum } from 'src/app/common/helper/enums/request-type.enum';
 import { MatPaginator } from '@angular/material/paginator';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
+import { environment } from 'src/environments/environment';
+import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
+import { DialogService } from 'src/app/common/shared/services/dialog/dialog.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-request-list',
@@ -25,14 +30,21 @@ export class RequestListComponent implements OnInit {
 
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
 
-  constructor(private _requestService: RequestService,public _navigationService: NavigationService, public dialog: MatDialog) {
-    
+  constructor(private _requestService: RequestService,
+              private _utilitiesService: UtilitiesService,
+              private _dialogService: DialogService,
+              private _translateService: TranslateService,
+              private _navigationService: NavigationService,
+              private _dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-      this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
-      this.requestDataSource.paginator = this.paginator;
-      this.loadAllData();
+    if(!this._utilitiesService.isLive()){
+      this._navigationService.navigateTo("countdown");
+    }
+    this.requestDataSource = new MatTableDataSource<RequestResponseDTO>();
+    this.requestDataSource.paginator = this.paginator;
+    this.loadAllData();
   }
 
   applyFilter(event: MatSelectChange) {
@@ -61,8 +73,8 @@ export class RequestListComponent implements OnInit {
   
   openDetails(index:number){
     this.openedItem = this.requestDataSource.data[index];
-    const dialogRef = this.dialog.open(RequestViewComponent, {
-      width: '450px',
+    const dialogRef = this._dialog.open(RequestViewComponent, {
+      width: environment.dialogWidth,
       data: {item: this.openedItem}
     });
 
@@ -70,16 +82,17 @@ export class RequestListComponent implements OnInit {
       if(result){
         this._requestService.takeRequest(this.openedItem.id).subscribe(
           data => {
-            alert("angenommen & gespeichert")
+            this._translateService.get(['Request.Details.Dialogs.Title', 'Request.Details.Dialogs.Text', 'Request.Details.Dialogs.MyRequestsButton', 'General.Buttons.Close']).subscribe((res: string) => {
+              this._dialogService.showDialogTwoButtons(res['Request.Details.Dialogs.Title'], res['Request.Details.Dialogs.Text'], DialogIconTypeEnum.Success, res['Request.Details.Dialogs.MyRequestsButton'], res['General.Buttons.Close'], function(){this._navigationService.navigateTo("my-requests/list")}.bind(this));
+            });
             this.loadAllData();
           },
           err => {
-            alert("error");
+            this._utilitiesService.handleError(err);
           }
         );
-      }else{
-        this.openedItem = null;
       }
+      this.openedItem = null;
     });
   }
 
@@ -91,7 +104,7 @@ export class RequestListComponent implements OnInit {
         this.resultsLength = this.unfilteredResult.length;
       },
       err => {
-        alert("error");
+        this._utilitiesService.handleError(err);
       }
     );
   }

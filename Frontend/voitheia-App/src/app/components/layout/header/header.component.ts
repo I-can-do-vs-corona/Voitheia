@@ -1,7 +1,8 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, NgModule } from '@angular/core';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
 import { AuthService } from 'src/app/common/shared/services/auth.service';
-import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-header',
@@ -9,17 +10,14 @@ import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isCollapsed = true;
 
-  faSignInAlt = faSignInAlt;
-  faSignOutAlt = faSignOutAlt;
-
-  stickyHeaderHeight = 70;
   unstickyHeaderHeight = 100;
   offset = 5;
   scrollFactor = 1.5;
 
-  constructor(public _navigationService: NavigationService, private _authService: AuthService) { }
-
+  constructor(private _authService: AuthService, private _translateService: TranslateService) { 
+  }
   ngOnInit(): void {
     
   }
@@ -32,43 +30,42 @@ export class HeaderComponent implements OnInit {
     this._authService.logout();
   }
 
+  public navbarCollapse(){
+    if (window.pageYOffset > (this.unstickyHeaderHeight + this.offset)){
+      let headerElement = document.getElementById('mainNav');
+      headerElement.classList.add('navbar-scrolled');
 
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll(e) {
-    if (window.pageYOffset > (this.unstickyHeaderHeight + this.offset) && window.pageYOffset < (this.unstickyHeaderHeight + this.offset + (this.stickyHeaderHeight * this.scrollFactor))){
-      var calculatedTop = (window.pageYOffset - (this.unstickyHeaderHeight + this.offset + (this.stickyHeaderHeight * this.scrollFactor)));
-
-      let headerElement = document.getElementById('header');
-      headerElement.classList.add('sticky');
-      headerElement.setAttribute("style", "top:" + calculatedTop + "px");
-
-      let tableHeaders = document.getElementsByClassName('mat-table-sticky');
-      for (let i = 0; i < tableHeaders.length; i++) {
-        const element = tableHeaders[i] as HTMLElement;
-        element.style.top = (this.stickyHeaderHeight + calculatedTop) + "px";
-      }
     }
-    else if (window.pageYOffset >= (this.unstickyHeaderHeight + this.offset + (this.stickyHeaderHeight * this.scrollFactor))) {
-      let headerElement = document.getElementById('header');
-      headerElement.classList.add('sticky');
-      headerElement.removeAttribute("style");
-
-      let tableHeaders = document.getElementsByClassName('mat-table-sticky');
-      for (let i = 0; i < tableHeaders.length; i++) {
-        const element = tableHeaders[i] as HTMLElement;
-        element.style.top = this.stickyHeaderHeight + "px";
-      }
-    } else {
-      let headerElement = document.getElementById('header');
-      headerElement.classList.remove('sticky');
-      headerElement.removeAttribute("style");
-
-      let tableHeaders = document.getElementsByClassName('mat-table-sticky');
-      for (let i = 0; i < tableHeaders.length; i++) {
-        const element = tableHeaders[i] as HTMLElement;
-        element.style.top = "0px";
-      }
+    else {
+      let headerElement = document.getElementById('mainNav');
+      headerElement.classList.remove('navbar-scrolled');
     }
   }
 
+  public hamburgerMenuToggle(){
+    this.isCollapsed = !this.isCollapsed;
+    let ham = document.getElementById("hamburger");
+    let content = document.getElementById("navbarSupportedContent");
+    if(this.isCollapsed){
+      ham.classList.add("collapsed");
+    }else {
+      ham.classList.remove("collapsed");
+    }
+  }
+
+  public changeLanguage(languageCode: string) {
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    if (languageCode === 'de' || languageCode === 'en') {
+      this._translateService.use(languageCode);
+    }
+  }
+
+  public getCurrentLanguage() {
+    return this._translateService.currentLang;
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(e) {
+    this.navbarCollapse();
+  }
 }

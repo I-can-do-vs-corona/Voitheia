@@ -1,0 +1,37 @@
+<div class="container h-100">
+    <div style="margin-left: 10%; margin-top: 4.5rem; margin-bottom: 4rem;" class="row h-100 ">
+        <div class="col-lg-10 align-self-end">
+          <h1 class="text-white font-weight-bold">
+            {{'General.Slogan' | translate}}
+
+          </h1>
+        </div>
+        <div class="col-lg-10 align-self-baseline">
+            <p class=" font-weight-light mb-5">
+                {{'Home.Texts.Level1' | translate }}
+                <br>
+                {{'Home.Texts.Level2' | translate }}
+            </p>
+            <div class="row">
+                <div class="col-md-4">
+                    <button class="mainpage-button" type="submit" mat-raised-button color="primary"  routerLink="/request/create">
+                        {{'Home.Buttons.CreateRequest' | translate }}
+                    </button>
+                </div>
+                <div class="col-md-2 my-auto">
+                    <p class="button-centered-connector text-white-75 font-weight-light">oder</p>
+                </div>
+                <div class="col-md-4">
+                    <button  class="mainpage-button" type="submit" mat-raised-button color="primary"  routerLink="/request/list">
+                        <span *ngIf="isLoggedIn()">
+                            {{'Home.Buttons.ShowRequests.LoggedIn' | translate }}
+                        </span>
+                        <span *ngIf="!isLoggedIn()">
+                            {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

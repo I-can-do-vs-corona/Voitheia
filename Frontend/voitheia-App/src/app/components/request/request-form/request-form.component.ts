@@ -1,9 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { RequestDTO } from 'src/app/common/models/requestDTO';
 import { RequestService } from '../request.service';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { NavigationService } from 'src/app/common/shared/services/navigation.service';
-import { RequestTypeEnum } from 'src/app/common/helper/enums';
+import { RequestTypeEnum } from 'src/app/common/helper/enums/request-type.enum';
+import { DialogIconTypeEnum } from 'src/app/common/helper/enums/dialog-icon-type.enum';
+import { DialogService } from 'src/app/common/shared/services/dialog/dialog.service';
+import { TranslateService } from '@ngx-translate/core';
+import { UtilitiesService } from 'src/app/common/shared/services/utilities.service';
+import { AuthService } from 'src/app/common/shared/services/auth.service';
+import { UserService } from '../../user/user.service';
+import { UserDTO } from 'src/app/common/models/userDTO';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-request-form',
@@ -11,17 +18,56 @@ import { RequestTypeEnum } from 'src/app/common/helper/enums';
   styleUrls: ['./request-form.component.scss']
 })
 export class RequestFormComponent implements OnInit {
-
-  faPaperPlane = faPaperPlane;
   RequestTypeEnum: typeof RequestTypeEnum = RequestTypeEnum;
+
+  termsChecked = false;
+  reCaptchaKey = '';
+  reCaptchaValid = false;
 
   request: RequestDTO;
 
-  constructor(private _requestService: RequestService, private _navigationService: NavigationService) {
+  @ViewChild('RequestAddressForm') requestAddressForm: HTMLFormElement;
+
+  constructor(private _requestService: RequestService,
+              private _dialogService: DialogService,
+              private _navigationService: NavigationService,
+              private _utilitiesService: UtilitiesService,
+              private _translateService: TranslateService,
+              private _authService: AuthService,
+              private _userService: UserService) {
     this.request = new RequestDTO();
   }
 
   ngOnInit(): void {
+    if(!this._utilitiesService.isLive()){
+      this._navigationService.navigateTo("countdown");
+    }
+
+    this.reCaptchaKey = environment.reCaptchaKey;
+    if (!this.reCaptchaKey || this.reCaptchaKey === '') {
+      this.reCaptchaValid = true;
+    }
+
+    if(this._authService.isLoggedIn()){
+      this._userService.getUserData().subscribe(
+        data => {
+          let userData = data as UserDTO;
+          
+          this.request.email = userData.email;
+          this.request.firstName = userData.firstName;
+          this.request.lastName = userData.lastName;
+          this.request.street = userData.street;
+          this.request.zip = userData.zip;
+          this.request.city = userData.city;
+
+          this.requestAddressForm.form.controls['zipcodeInput'].touched = true;
+        },
+        err => {
+          
+        }
+      );
+    }
+
   }
 
   public send(){
@@ -29,11 +75,34 @@ export class RequestFormComponent implements OnInit {
     
     this._requestService.createRequest(this.request).subscribe(
       data => {
-        //this._navigationService.navigateTo("request/create/success")
+        this._translateService.get(['Request.Create.Dialog.Text', 'Request.Create.Dialog.Buttons.NewRequest', 'General.Dialogs.Titles.Success', 'General.Buttons.Close']).subscribe((res: string) => {
+          this._dialogService.showDialogTwoButtons(res['General.Dialogs.Titles.Success'], res['Request.Create.Dialog.Text'], DialogIconTypeEnum.Success, res['General.Buttons.Close'], res['Request.Create.Dialog.Buttons.NewRequest'], function(){this._navigationService.navigateTo("home")}.bind(this), function(){this._navigationService.navigateTo("request/create")}.bind(this));
+        });
       },
       err => {
-        alert("error");
+        this._utilitiesService.handleError(err);
       }
     );
+  }
+
+  number(input:string): number{
+    return Number(input);
+  }
+
+  handleCorrectCaptcha(event) {
+    this.reCaptchaValid = true;
+  }
+
+  handleExpiredCaptcha() {
+    this.reCaptchaValid = false;
+  }
+
+  getreCaptchaLanguage() {
+    if (this._translateService.currentLang === 'de') {
+      return 'de';
+    } else if (this._translateService.currentLang === 'se') {
+      return 'sv';
+    }
+    return 'en';
   }
 }

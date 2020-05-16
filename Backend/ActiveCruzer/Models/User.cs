@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace ActiveCruzer.Models
 {
-    
+    [Table("Users")]
     public class User : IdentityUser
     {
         public string Street { get; set; }
@@ -10,6 +12,11 @@ namespace ActiveCruzer.Models
         public string Zip { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int IntId { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public DateTime LastLogin { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime TermsAccepted { get; set; }
+        public byte[] ProfilPicture { get; set; }
     }
 }

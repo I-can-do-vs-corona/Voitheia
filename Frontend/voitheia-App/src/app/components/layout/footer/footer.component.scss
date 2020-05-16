@@ -1,9 +1,36 @@
-:host{
-    #footer {
-        position: absolute;
-        bottom:0;
-        width:100%;
-        height: 2.5em;
-        background-color: #383838;
+@import '../../../../scss/variables.scss';
+
+:host {
+  .page-footer {
+    display: block;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background-color: rgba(50, 50, 50, 1);
+    padding-top: 1.5rem;
+    font-size: $small;
+  }
+
+  .font-weight-bold {
+    color: $white;
+    font-size: $medium;
+    font-weight: $bold;
+  }
+
+  .list-unstyled {
+    /* unvisited link */
+    a, a:visited, a:focus, .hyperlink, .hyperlink:visited, .hyperlink:focus{
+      color: $white;
     }
+
+    .CGI, .Hackathon{  
+      &:after {
+        display:none;
+      }
+    }
+  }
+  
+  h5 {
+    margin-top: 0px;
+  }
 }

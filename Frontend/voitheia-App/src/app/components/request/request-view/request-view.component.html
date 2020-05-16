@@ -1,24 +1,26 @@
-<h3 mat-dialog-title>{{'Request.Details.Title' | translate }}</h3>
+<div mat-dialog-title>
+    <h3>{{'Request.Details.Title' | translate }}</h3>
+</div>
 <div mat-dialog-content>
     <p>
-        <span class="label">{{'Request.Field.Label.Name' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.FirstName' | translate }}</span><br />
         {{item.firstName}}
     </p>
     <p>
-        <span class="label">{{'Request.Field.Label.Type' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.Type' | translate }}</span><br />
         {{item.type}}
     </p>
     <p>
-        <span class="label">{{'Request.Field.Label.Description' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.Description' | translate }}</span><br />
         {{item.description}}
     </p>
     <p>
-        <span class="label">{{'Request.Field.Label.Distance' | translate }}</span><br />
+        <span class="label">{{'General.Field.Label.Distance' | translate }}</span><br />
         {{item.distanceToUser}}
     </p>
 </div>
 
 <div mat-dialog-actions>
-    <button class="btn btn-outline-dark" (click)="onCancel()">{{'General.Buttons.Cancel' | translate }}</button>
-    <button class="btn btn-primary" (click)="onAccept()">{{'General.Buttons.Accept' | translate }}</button>
+    <button mat-raised-button (click)="onCancel()">{{'General.Buttons.Cancel' | translate }}</button>
+    <button mat-raised-button color="primary" (click)="onAccept()">{{'General.Buttons.Accept' | translate }}</button>
 </div>

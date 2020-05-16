@@ -2,6 +2,6 @@
 {
     public class GetRequestResponse
     {
-        public RequestDto Request { get; set; }
+        public MinimalRequestDto Request { get; set; }
     }
 }

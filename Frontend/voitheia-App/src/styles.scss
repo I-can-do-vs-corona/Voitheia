@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import './variables.scss';
-@import './custom-angular-material-theme.scss';
+//@import './custom-angular-material-theme.scss';
+@import './scss/variables.scss';
+
+//FontAwesome
+@import "./scss/fontAwesome/fontawesome.scss";
+@import "./scss/fontAwesome/solid.scss";
 
 @font-face {
     //https://www.fontfabric.com/fonts/kelson-sans/#font-styles
@@ -11,29 +15,312 @@
          url('./assets/fonts/KelsonSans-Light.ttf') format('truetype');
   }
 
-html, body { height: 100%; }
+html, body { min-height: 100vh; height: fit-content; margin:0;}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: $base-font-size;
+    background-color: transparent;
+    color: $white;
 
-    background-color: $brand-secondary-color-light;
-    color:white;
+  /*Needed to position the footer*/
+  #page-container {
+      height: fit-content;
+      min-height: 100vh;
+    //min-height: 100%;
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("assets/images/bg_main_brand.jpg"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+   
+  }
 
-    /*Needed to position the footer*/
-    #page-container{
-        position: relative;
-        min-height:100vh;
+  #page-content {
+      height: auto;
+      min-height: 100vh;
+      max-height: 100%;
+      padding-bottom: 0 !important;
+  }
+
+  @media (min-width: 992px) {
+    #page-container {
+      height: auto;
+      min-height: 100vh;
+      //padding-top: 4.5rem;
+      padding-bottom: 0;
+    }
+    #page-container p {
+      font-size: 1.15rem;
+    }
+    #page-container h1 {
+      font-size: 3rem;
+    }
+  }
+  @media (min-width: 1200px) {
+    #page-container h1 {
+      font-size: 3.5rem;
+    }
+  }
+
+  #page-content > :last-child > :first-child{
+    margin-bottom: $footer-distance;
+    margin-top: $header-distance;
+  }
+  
+  .content-container {
+    background-color: white;
+    padding: 2rem 4rem; 
+    border-radius: 8px;
+    color:$default-text;
+
+    .content-header {
+      color: black;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+  
+    .form-submit-btn {
+      margin: auto;
+      width: 50%;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .label{
+    text-decoration: underline;
+  }
+
+  a, a:visited, a:focus, a:not([href]), .hyperlink, .hyperlink:visited, .hyperlink:focus{
+    color: $link-color;
+    text-decoration: $link-text-decoration;
+  }
+
+  a:active, a.active, .hyperlink:active, .hyperlink.active {
+    color: $link-hover-color;
+
+    &:hover{
+      color: $link-color;
+      text-decoration: $link-hover-text-decoration;
+      text-decoration-color: $link-hover-color;
+    }
+  }
+
+  a:hover, .hyperlink:hover{
+    color: $link-hover-color;
+    text-decoration: $link-hover-text-decoration;
+    background-color: $link-hover-bgcolor;
+  }
+
+  //Not needed at the moment
+  a[href^="http://"], a[href^="https://"]  {
+    @extend %fa-icon;
+    @extend .fas;
+
+    &:after {
+      margin-left:$half-spacing;
+      content: fa-content($fa-var-external-link-alt);
+    }
+  }
+  
+  .info-icon{
+    color: $gray-2;
+    font-size: $medium;
+
+    &:hover{
+      color: $info-text;
+    }
+  }
+
+  .alert{
+    border-left-width: $third-spacing;
+    border-radius: 0;
+
+    margin: $normal-spacing 0 !important;
+    padding: $half-spacing $normal-spacing;
+    display: inline-block;
+    width:100%;
+    min-height:calc(#{$largest} + #{$half-spacing} + #{$half-spacing});
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px -5px rgba($black,.5);
+
+    @extend %fa-icon;
+    @extend .fas;
+  
+    &:before {
+      margin-right:$quarter-spacing;
+      font-size: $largest;
+
+      content: '';
     }
 
-    .container-fluid{
-        //padding:0;
+    > :first-child {
+      margin-top: 0;
     }
 
-    .mat-form-field {
+    .alert-content{
+      float: right;
+      //large = size of icon, quarter-spacing = margin of :before, quarter-spacing = margin of alert-content, quarter-spacing = to make it a bit smaller than 100% together with icon
+      width: calc(100% - #{$largest} - #{$quarter-spacing} - #{$quarter-spacing} - #{$quarter-spacing});
+    }
+
+    @media screen and (max-width: 768px)
+    {
+      > :first-child {
+        margin-top: 10px;
+      }
+
+      .alert-content {
+        float: none;
         width: 100%;
+      }
     }
 
-    .mat-stepper-horizontal{
-        background-color: transparent;
+    &.alert-primary{
+      border-color: $brand-color-dark;
+      color: $brand-color-dark;
+      background-color: $brand-color-light;
+
+      &:before {
+        display:none;
+      }
+
+      .alert-content{
+        float: none;
+        width: 100%;
+      }
     }
+
+    &.alert-secondary{
+      border-color: $brand-secondary-color-dark;
+      color: $brand-secondary-color-dark;
+      background-color: $brand-secondary-color-light;
+
+      &:before {
+        display:none;
+      }
+
+      .alert-content{
+        float: none;
+        width: 100%;
+      }
+    }
+
+    &.alert-success{
+      border-color: $success-text;
+      color: $success-text;
+      background-color: $success-bg;
+
+      &:before {
+        content: fa-content($fa-var-check-circle);
+      }
+    }
+
+    &.alert-danger{
+      border-color: $danger-text;
+      color: $danger-text;
+      background-color: $danger-bg;
+
+      &:before {
+        content: fa-content($fa-var-times-circle);
+      }
+    }
+
+    &.alert-warning{
+      border-color: $warning-text;
+      color: $warning-text;
+      background-color: $warning-bg;
+
+      &:before {
+        content: fa-content($fa-var-exclamation-circle);
+      }
+    }
+
+    &.alert-info{
+      border-color: $info-text;
+      color: $info-text;
+      background-color: $info-bg;
+
+      &:before {
+        content: fa-content($fa-var-info-circle);
+      }
+    }
+
+    &.alert-question{ //Custom
+      border-color: $question-text;
+      color: $question-text;
+      background-color: $question-bg;
+
+      &:before {
+        content: fa-content($fa-var-question-circle);
+      }
+    }
+  }
+  .profile-picture-container{
+    width: 150px;
+    height: 150px;
+    margin-bottom: $dubble-spacing;
+
+    .profile-picture{
+      width:100%;
+      height:100%;
+      border: 2px solid $gray-3;
+      background-color: $gray-2;
+      border-radius: 50%!important;
+      z-index: 1;
+    }
+  }
+
+  /*!
+    * Generated with CSS Flag Sprite generator (https://www.flag-sprites.com/)
+    */
+
+    .flag {
+      display: inline-block;
+      width: 16px;
+      height: 11px;
+      background: url('assets/images/flags.png') no-repeat;
+      margin-right: $half-spacing;
+
+      &.flag-se {
+          background-position: 0 -11px;
+      }
+  
+      &.flag-de {
+          background-position: 0 0;
+      }
+  
+      &.flag-gb {
+          background-position: -16px 0;
+      }
+  }
+}
+
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
 }

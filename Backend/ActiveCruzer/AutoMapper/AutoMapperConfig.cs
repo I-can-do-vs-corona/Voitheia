@@ -69,6 +69,44 @@ namespace ActiveCruzer.AutoMapper
                 .ForMember(dest => dest.Type,
                     opts => opts.MapFrom(src => src.RequestType));
 
+            CreateMap<Request, RequestComplexDto>()
+                .ForMember(dest => dest.Description,
+                    opts => opts.MapFrom(src => src.Description))
+                .ForMember(dest => dest.Id,
+                    opts => opts.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Email,
+                    opts => opts.MapFrom(src => src.Email))
+                .ForMember(dest => dest.FirstName,
+                    opts => opts.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName,
+                    opts => opts.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.PhoneNumber,
+                    opts => opts.MapFrom(src => src.PhoneNumber))
+                .ForMember(dest => dest.Street,
+                    opts => opts.MapFrom(src => src.Street))
+                .ForMember(dest => dest.Zip,
+                    opts => opts.MapFrom(src => src.Zip))
+                .ForMember(dest => dest.City,
+                    opts => opts.MapFrom(src => src.City))
+                .ForMember(dest => dest.Status,
+                    opts => opts.MapFrom(src => src.Status))
+                .ForMember(dest => dest.Type,
+                    opts => opts.MapFrom(src => src.RequestType));
+                
+                
+
+            CreateMap<Request, MinimalRequestDto>()
+                .ForMember(dest => dest.Description,
+                    opts => opts.MapFrom(src => src.Description))
+                .ForMember(dest => dest.FirstName,
+                    opts => opts.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.Id,
+                    opts => opts.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Status,
+                    opts => opts.MapFrom(src => src.Status))
+                .ForMember(dest => dest.Type,
+                    opts => opts.MapFrom(src => src.RequestType));
+
             CreateMap<Location, ValidatedAddress>()
                 .ForMember(dest => dest.ConfidenceLevel,
                     opts => opts.MapFrom(src => src.ConfidenceLevelType))

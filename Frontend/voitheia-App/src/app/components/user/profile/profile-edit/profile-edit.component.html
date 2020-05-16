@@ -1,0 +1,116 @@
+<div mat-dialog-title>
+    <h3>{{'Request.Details.Title' | translate }}</h3>
+</div>
+<div mat-dialog-content>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="showSuccess">
+        <div class="alert-content">
+            <h4 class="alert-heading">{{'User.Profile.Edit.Messages.Success.Title' | translate}}</h4>
+            <p>{{'User.Profile.Edit.Messages.Success.Text' | translate}}</p>
+        </div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="dismissAlert()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="alert alert-info" role="alert">
+        <div class="alert-content"><span>{{'General.Infos.ZipCode' | translate}}</span></div>
+    </div>
+    <form #EditProfileForm="ngForm" novalidate>
+        <div class="row">
+            <div class="col-md-6 ">
+                <div class="form-group">
+                    <mat-form-field>
+                        <mat-label><span [innerHTML]="'General.Field.Label.FirstName' | translate"></span>
+                        </mat-label>
+                        <input matInput name="firstnameInput" [(ngModel)]="userData.firstName" #firstnameInput="ngModel" required />
+                    </mat-form-field>
+                    <mat-error *ngIf="(firstnameInput.touched || firstnameInput.dirty) && firstnameInput.invalid">
+                        <mat-error *ngIf="firstnameInput.errors.required">
+                            <span>{{'General.Input.Errors.Required' | translate}}</span>
+                        </mat-error>
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="form-group">
+                    <mat-form-field>
+                        <mat-label>
+                            <span [innerHTML]="'General.Field.Label.LastName' | translate"></span>
+                        </mat-label>
+                        <input matInput name="lastnameInput" [(ngModel)]="userData.lastName" #lastnameInput="ngModel" required />
+                    </mat-form-field>
+                    <mat-error *ngIf="(lastnameInput.touched || lastnameInput.dirty) && lastnameInput.invalid">
+                        <mat-error *ngIf="lastnameInput.errors.required">
+                            <span>{{'General.Input.Errors.Required' | translate}}</span>
+                        </mat-error>
+                    </mat-error>
+                </div>
+            </div>
+        </div>
+        <!--<div class="form-group">
+            <mat-form-field>
+                <mat-label><span [innerHTML]="'General.Field.Label.Phone' | translate"></span></mat-label>
+                <input matInput name="phoneInput" [(ngModel)]="userData.phoneNumber" #phoneInput="ngModel"
+                    required />
+            </mat-form-field>
+            <mat-error *ngIf="phoneInput.invalid">
+                <mat-error *ngIf="phoneInput.errors.required">
+                    <span [innerHTML]="'General.Errors.Required' | translate"></span>
+                </mat-error>
+            </mat-error>
+        </div>-->
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label><span [innerHTML]="'General.Field.Label.Street' | translate"></span></mat-label>
+                <input matInput name="addressInput" [(ngModel)]="userData.street" #addressInput="ngModel"
+                    required />
+            </mat-form-field>
+            <mat-error *ngIf="(addressInput.touched || addressInput.dirty) && addressInput.invalid">
+                <mat-error *ngIf="addressInput.errors.required">
+                    <span>{{'General.Input.Errors.Required' | translate}}</span>
+                </mat-error>
+            </mat-error>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <mat-form-field>
+                        <mat-label><span [innerHTML]="'General.Field.Label.ZipCode' | translate"></span></mat-label>
+                        <input matInput numberLength="5" name="zipcodeInput" [(ngModel)]="userData.zip" #zipcodeInput="ngModel" required zipCodeWithinRange inputNumber />
+                        <fa-icon matSuffix [icon]="['fas', 'info-circle']" class="info-icon" matTooltip="{{'General.Infos.ZipCode' | translate}}" matTooltipClass="customTooltip" matTooltipHideDelay="2000"></fa-icon>
+                    </mat-form-field>
+                    <mat-error *ngIf="(zipcodeInput.touched || zipcodeInput.dirty) && zipcodeInput.invalid">
+                        <mat-error *ngIf="zipcodeInput.errors.required">
+                            <span>{{'General.Input.Errors.Required' | translate}}</span>
+                        </mat-error>
+                        <mat-error *ngIf="zipcodeInput.errors.numberLength">
+                            <span>{{'General.Input.Error.numberLength' | translate:{count : 5} }}</span>
+                        </mat-error>
+                        <mat-error *ngIf="zipcodeInput.errors.zipCodeWithinRange && !zipcodeInput.errors.numberLength">
+                            <span>{{'General.Input.Error.zipCodeWithinRange' | translate}}</span>
+                        </mat-error>
+                    </mat-error>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <mat-form-field>
+                        <mat-label><span [innerHTML]="'General.Field.Label.City' | translate"></span></mat-label>
+                        <input matInput name="cityInput" [(ngModel)]="userData.city" #cityInput="ngModel" required />
+                    </mat-form-field>
+                    <mat-error *ngIf="(cityInput.touched || cityInput.dirty) && cityInput.invalid">
+                        <mat-error *ngIf="cityInput.errors.required">
+                            <span>{{'General.Input.Errors.Required' | translate}}</span>
+                        </mat-error>
+                    </mat-error>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="onCancel()">{{'General.Buttons.Cancel' | translate }}</button>
+    <button type="submit" mat-raised-button color="primary" (click)="onSave()" [disabled]="!EditProfileForm.form.valid">
+        <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> {{'General.Buttons.Submit' | translate }}
+    </button>
+</div>

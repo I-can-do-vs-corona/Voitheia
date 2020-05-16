@@ -1,0 +1,37 @@
+<div class="text-center text-justify">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h1>
+        Bald ist es soweit - Sei dabei, wenn die Plattform live geht!
+      </h1>
+      <p>
+        {{'Home.Texts.Level1' | translate }}
+        <br>
+        {{'Home.Texts.Level2' | translate }}
+      </p>
+      <div *ngIf="registrationOpen()">
+        <span>Registriere dich schon heute als Voitheia-Helfer, und sei bereit für die ersten Untersützungsanfragen. Wir informieren dich nochmal per Email, wenn die Plattform gelauncht wurde. Frohes Helfen!</span>
+      </div>
+      <div class="alert alert-info" role="alert" *ngIf="registrationOpen()">
+        <div class="alert-content"><span>{{'General.Infos.ZipCode' | translate}}</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <div *ngIf="registrationOpen()">
+        <button class="mainpage-button" type="submit" mat-raised-button color="primary" routerLink="/user/register">
+          <span>
+            {{'Home.Buttons.ShowRequests.LoggedOut' | translate }}
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3 content-container">
+      <p>Voitheia Launch</p><br />
+      <countdown [text]="text" units="Days | Hours | Minutes | Seconds" [end]="goLive"></countdown>
+    </div>
+  </div>
+</div>

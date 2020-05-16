@@ -4,9 +4,25 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "https://activecruzer.azurewebsites.net/",
+  apiBaseUrl: "https://activecruzerdev.azurewebsites.net/",
   requestDistance: "10000",
-  requestAmount: "1000"
+  requestAmount: "1000",
+  defaultSessionLifetimeMinutes: 360,
+  dialogWidth: "450px",
+  registerOpenDate: new Date(2020, 4, 3, 18, 0, 0),
+  goLiveDate: new Date(2020, 4, 18, 18, 0, 0),
+  reCaptchaKey: "",//"6Lc1GOoUAAAAAAxQau6hK3a7rsXjNatarq4pAk6o",
+  zipCodeCheckActive: true,
+  zipCodeLength: 5,
+  zipCodeRanges: [
+    {min: 0, max: 99999}
+  ],
+  //In bytes
+  profilePictureMaxSize: 1048576, //= 1MB
+  //in Pixel
+  profilePictureMaxWidth: 500,
+  profilePictureMaxHeight: 500,
+  profilePictureAllowedTypes: ['image/png']
 };
 
 /*

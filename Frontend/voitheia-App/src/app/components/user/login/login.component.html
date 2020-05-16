@@ -1,34 +1,60 @@
 <div class="row">
-    <div class="col-md-8 offset-md-2">
-        <h3>{{'Login.Title' | translate }}</h3>
-        <!-- <mat-horizontal-stepper>
-            <mat-step [label]="'Request.Create.Stepper.Request' | translate"> -->
-                <form #RequestForm="ngForm" novalidate>
-                    <div class="row">
-                        
-                        <div class="col-md">
-                            <div class="form-group">
-                                <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Login.Name' | translate"></span></mat-label>
-                                    <input  matInput name="textareaInput" [(ngModel)]="user.email" #textareaInput="ngModel" required>
-                                </mat-form-field>
-                            </div>
-                            <div class="form-group">
-                                <mat-form-field>
-                                    <mat-label><span [innerHTML]="'Login.Password' | translate"></span></mat-label>
-                                    <input  type="password" matInput name="textareaInput" [(ngModel)]="user.password" #textareaInput="ngModel" required>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary"  (click)="send()">
-                            <fa-icon [icon]="faPaperPlane"></fa-icon> {{'General.Buttons.Login' | translate }}
-                        </button>
-                        <button type="submit" class="btn btn-outline-dark" (click)= "registerUser()">
-                            <fa-icon [icon]="faUserPlus"></fa-icon> {{'General.Buttons.Register' | translate }}
-                        </button>
-                    </div>
-                </form>
+    <div class="col-md-8 offset-md-2 content-container">
+        <h3 class="content-header">{{'User.Login.Title' | translate }}</h3>
+        <div class="alert alert-warning" role="alert">
+            <div class="alert-content"><span>{{'General.Infos.Health' | translate}}</span></div>
+        </div>
+        <form #RequestForm="ngForm" novalidate>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label><span [innerHTML]="'General.Field.Label.Email' | translate"></span></mat-label>
+                    <span matPrefix><fa-icon [icon]="['fas', 'user']"></fa-icon> &nbsp;</span>
+                    <input type="email" email matInput name="emailInput" [(ngModel)]="user.email" #emailInput="ngModel" required>
+                    <mat-error *ngIf="(emailInput.touched || emailInput.dirty) && emailInput.invalid">
+                        <mat-error *ngIf="emailInput.hasError('required')">
+                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                        </mat-error>
+                        <mat-error *ngIf="emailInput.hasError('email')">
+                            <span [innerHTML]="'General.Input.Error.Email' | translate"></span>
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field>
+                    <mat-label><span [innerHTML]="'General.Field.Label.Password' | translate"></span></mat-label>
+                    <span matPrefix><fa-icon [icon]="['fas', 'lock']"></fa-icon> &nbsp;</span>
+                    <input type="password" matInput name="passwordInput" [(ngModel)]="user.password" #passwordInput="ngModel" required>
+                    <mat-error *ngIf="(passwordInput.touched || passwordInput.dirty) && passwordInput.invalid">
+                        <mat-error *ngIf="passwordInput.hasError('required')">
+                            <span [innerHTML]="'General.Input.Error.Required' | translate"></span>
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" (captchaExpired)="handleExpiredCaptcha()" [site_key]="reCaptchaKey" [language]="getreCaptchaLanguage()" *ngIf="reCaptchaKey !== ''"></re-captcha>
+  
+            <div class="form-submit-btn">
+                <button style="width: 100%" type="submit" mat-raised-button color="primary" (click)="login()" [disabled]="RequestForm.invalid || !reCaptchaValid">
+                    <fa-icon [icon]="['fas', 'paper-plane']"></fa-icon> {{'General.Buttons.Login' | translate }}
+                </button>                      
+            </div>
+            <div id="register_msg">
+                <a routerLink="/user/reset-password" routerLinkActive="active">
+                    <span>
+                        {{'General.Buttons.ResetPassword' | translate }}
+                    </span>
+                </a>
+                <span>
+                    -
+                </span>
+                <a routerLink="/user/register" routerLinkActive="active">
+                    <span>
+                        {{'General.Buttons.Register' | translate }}
+                    </span>
+                </a>
+            </div>
+        </form>
     </div>
 </div>

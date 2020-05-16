@@ -1,7 +1,10 @@
 <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-8 offset-md-2 content-container">
+        <div class="alert alert-warning" role="alert">
+            <div class="alert-content"><span>{{'General.Infos.Health' | translate}}</span></div>
+        </div>
         <mat-form-field>
-            <mat-label>{{'Request.Field.Label.Type' | translate }}</mat-label>
+            <mat-label>{{'General.Field.Label.Type' | translate }}</mat-label>
             <mat-select multiple (selectionChange)="applyFilter($event)">
                 <mat-option *ngFor="let requestType of RequestTypeEnum | keys" [value]="requestType">
                     <span [innerHTML]="'General.Enums.RequestTypeEnum.' + RequestTypeEnum[requestType] | translate"></span>
@@ -12,20 +15,20 @@
         <table mat-table [dataSource]="requestDataSource" matSort matSortActive="distanceToUser" matSortDisableClear matSortDirection="desc">
             <!-- Firstname Column -->
             <ng-container matColumnDef="firstName">
-                <th mat-header-cell *matHeaderCellDef> {{'Request.Field.Label.FirstName' | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.FirstName' | translate }} </th>
                 <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
             </ng-container>
         
             <!-- RequestType Column -->
             <ng-container matColumnDef="type">
-                <th mat-header-cell *matHeaderCellDef> {{'Request.Field.Label.Type' | translate }} </th>
+                <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Type' | translate }} </th>
                 <td mat-cell *matCellDef="let element"> {{'General.Enums.RequestTypeEnum.' + element.type | translate}} </td>
             </ng-container>
         
             <!-- Distance to User Column -->
             <ng-container matColumnDef="distanceToUser">
-                <th mat-header-cell *matHeaderCellDef> {{'Request.Field.Label.Distance' | translate }} </th>
-                <td mat-cell *matCellDef="let element"> {{element.distanceToUser / 1000.0 | number: '1.0-1'}} km</td>
+                <th mat-header-cell *matHeaderCellDef> {{'General.Field.Label.Distance' | translate }} </th>
+                <td mat-cell *matCellDef="let element"> {{element.distanceToUser | distance }} </td>
             </ng-container>
         
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

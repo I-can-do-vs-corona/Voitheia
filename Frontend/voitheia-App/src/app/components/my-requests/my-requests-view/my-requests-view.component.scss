@@ -1,5 +1,36 @@
+@import '../../../../scss/variables.scss';
+
 :host{
     .label{
         text-decoration: underline;
+    }
+
+    .profile-picture-wrapper{
+        text-align:center;
+
+        .label{
+            font-size: $xtra-small;
+            color: $gray-3;
+            text-decoration: none;
+        }
+
+        &.small{
+            .profile-picture-container{
+                width:40px;
+                height:40px;
+            }   
+        }
+    }
+
+    .profile-picture-container{
+        float:none;
+        margin:auto;
+    }
+
+    @media (max-width: 768px){
+        .profile-picture-container{
+            margin-left:calc(50% - 75px);
+            float:none;
+        }
     }
 }

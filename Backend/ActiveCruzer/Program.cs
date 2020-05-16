@@ -10,6 +10,7 @@ using Microsoft.Azure.KeyVault.Core;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Extensions.Configuration.AzureKeyVault;
+using ActiveCruzer.DAL.DataContext;
 
 namespace ActiveCruzer
 {
@@ -23,13 +24,6 @@ namespace ActiveCruzer
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                //.ConfigureLogging(logging =>
-                //{
-                //    logging.ClearProviders();
-                //    logging.AddConsole();
-                //    logging.AddDebug();
-                //    logging.SetMinimumLevel(LogLevel.Debug);
-                //}
                 .ConfigureAppConfiguration((context, config) =>
                 {
                     var keyVaultEndpoint = GetKeyVaultEndpoint();
@@ -44,7 +38,7 @@ namespace ActiveCruzer
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Start.Startup>();
                 });
     }
 }
